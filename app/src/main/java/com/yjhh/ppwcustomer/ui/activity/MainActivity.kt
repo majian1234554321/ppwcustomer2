@@ -1,19 +1,13 @@
 package com.yjhh.ppwcustomer.ui.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
-
-    lateinit var iv :ImageView
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        iv =   findViewById(R.id.iv)
-
     }
 }

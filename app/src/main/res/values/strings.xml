@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">takeout-personal</string>
+    <string name="app_name">personal</string>
     <string name="loading">加载中…</string>
 </resources>

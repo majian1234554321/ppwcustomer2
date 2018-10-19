@@ -15,7 +15,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> implements ProgressCancelListener {
+public class OnSuccessAndFaultSub<T> extends DisposableObserver<T> implements ProgressCancelListener {
     /**
      * 是否需要显示默认Loading
      */
@@ -84,6 +84,7 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
         progressDialog = null;
     }
 
+
     /**
      * 对错误进行统一处理
      * 隐藏ProgressDialog
@@ -130,8 +131,8 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
      * String str = body.string();//获取字符串数据
      */
     @Override
-    public void onNext(ResponseBody body) {
-        try {
+    public void onNext(T response) {
+       /* try {
 
             final String result = body.string();
 
@@ -148,7 +149,16 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }*/
+
+        if (response != null && ((BaseResponse) response).status == 0) {
+
+            mOnSuccessAndFaultListener.onSuccess(response);
+        } else {
+            mOnSuccessAndFaultListener.onFault("");
         }
+
+
     }
 
     /**

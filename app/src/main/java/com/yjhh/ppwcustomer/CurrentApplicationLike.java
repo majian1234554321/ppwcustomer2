@@ -9,8 +9,7 @@ import android.support.multidex.MultiDex;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
-import com.tencent.tinker.loader.app.TinkerApplication;
-import com.tencent.tinker.loader.shareutil.ShareConstants;
+
 
 public class CurrentApplicationLike extends DefaultApplicationLike {
 

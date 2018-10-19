@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+
 import android.support.annotation.ColorInt;
 import android.support.annotation.FloatRange;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
 import com.yjhh.ppwcustomer.R;
 
 
@@ -481,4 +484,8 @@ public class SystemBarUtil {
             }
         }
     }
+
+
+
+
 }

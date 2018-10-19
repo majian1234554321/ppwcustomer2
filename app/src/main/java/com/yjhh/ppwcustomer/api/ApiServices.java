@@ -1,10 +1,7 @@
 package com.yjhh.ppwcustomer.api;
 
 import com.yjhh.ppwcustomer.common.Constants;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -46,37 +43,16 @@ public class ApiServices {
         private static final ApiServices INSTANCE = new ApiServices();
     }
 
-    /**
-     * 获取RetrofitServiceManager
-     *
-     * @return
-     */
+
     public static ApiServices getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
-    /**
-     * 获取对应的Service
-     *
-     * @param service Service 的 class
-     * @param <T>
-     * @return
-     */
+
     public <T> T create(Class<T> service) {
         return mRetrofit.create(service);
     }
 
-
-
-    public <T> void toSubscribe(Observable<T> o, DisposableObserver<T> s) {
-
-        o.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .retry(2)//请求失败重连次数
-                .subscribe(s);
-
-    }
 
 
 
