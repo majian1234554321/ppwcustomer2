@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import com.yjhh.ppwcustomer.common.RxBus
+import com.yjhh.common.utils.RxBus
 import com.yjhh.ppwcustomer.pay.PaymentStatus
 
 import org.json.JSONObject
@@ -19,7 +19,6 @@ import java.util.Random
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import java.nio.charset.Charset
 import kotlin.experimental.and

@@ -23,99 +23,96 @@ import com.yjhh.ppwcustomer.R;
 import com.yjhh.ppwcustomer.common.Constants;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
-	
-	private static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
-	
-	private Button gotoBtn, regBtn, launchBtn, checkBtn, payBtn, favButton;
-	
-	// IWXAPI �ǵ�����app��΢��ͨ�ŵ�openapi�ӿ�
+
+    private static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
+
     private IWXAPI api;
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.entry);
-        
+        // setContentView(R.layout.entry);
 
-    	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
-		api.registerApp(Constants.APP_ID);
+
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        api.registerApp(Constants.APP_ID);
 
         // debug
-       
+
         // debug end
-        
+
         api.handleIntent(getIntent(), this);
     }
 
-	@Override
-	protected void onNewIntent(Intent intent) {
-		super.onNewIntent(intent);
-		
-		setIntent(intent);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        setIntent(intent);
         api.handleIntent(intent, this);
-	}
+    }
 
 
-	@Override
-	public void onReq(BaseReq req) {
-		Toast.makeText(this, "openid = " + req.openId, Toast.LENGTH_SHORT).show();
-		
-		switch (req.getType()) {
-		case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
-			goToGetMsg();		
-			break;
-		case ConstantsAPI.COMMAND_SHOWMESSAGE_FROM_WX:
-			goToShowMsg((ShowMessageFromWX.Req) req);
-			break;
-		case ConstantsAPI.COMMAND_LAUNCH_BY_WX:
-			//Toast.makeText(this, R.string.launch_from_wx, Toast.LENGTH_SHORT).show();
-			break;
-		default:
-			break;
-		}
-	}
+    @Override
+    public void onReq(BaseReq req) {
+        Toast.makeText(this, "openid = " + req.openId, Toast.LENGTH_SHORT).show();
+
+        switch (req.getType()) {
+            case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
+                goToGetMsg();
+                break;
+            case ConstantsAPI.COMMAND_SHOWMESSAGE_FROM_WX:
+                goToShowMsg((ShowMessageFromWX.Req) req);
+                break;
+            case ConstantsAPI.COMMAND_LAUNCH_BY_WX:
+                //Toast.makeText(this, R.string.launch_from_wx, Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
 
 
-	@Override
-	public void onResp(BaseResp resp) {
-		Toast.makeText(this, "openid = " + resp.openId, Toast.LENGTH_SHORT).show();
-		
-		if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
-			Toast.makeText(this, "code = " + ((SendAuth.Resp) resp).code, Toast.LENGTH_SHORT).show();
-		}
-		
-		int result = 0;
-		
-		switch (resp.errCode) {
-		case BaseResp.ErrCode.ERR_OK:
-			//result = R.string.errcode_success;
-			break;
-		case BaseResp.ErrCode.ERR_USER_CANCEL:
-			//result = R.string.errcode_cancel;
-			break;
-		case BaseResp.ErrCode.ERR_AUTH_DENIED:
-			//result = R.string.errcode_deny;
-			break;
-		default:
-			//result = R.string.errcode_unknown;
-			break;
-		}
-		
-		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-	}
-	
-	private void goToGetMsg() {
+    @Override
+    public void onResp(BaseResp resp) {
+        Toast.makeText(this, "openid = " + resp.openId, Toast.LENGTH_SHORT).show();
+
+        if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
+            Toast.makeText(this, "code = " + ((SendAuth.Resp) resp).code, Toast.LENGTH_SHORT).show();
+        }
+
+        int result = 0;
+
+        switch (resp.errCode) {
+            case BaseResp.ErrCode.ERR_OK:
+                //result = R.string.errcode_success;
+                break;
+            case BaseResp.ErrCode.ERR_USER_CANCEL:
+                //result = R.string.errcode_cancel;
+                break;
+            case BaseResp.ErrCode.ERR_AUTH_DENIED:
+                //result = R.string.errcode_deny;
+                break;
+            default:
+                //result = R.string.errcode_unknown;
+                break;
+        }
+
+        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+    }
+
+    private void goToGetMsg() {
 		/*Intent intent = new Intent(this, GetFromWXActivity.class);
 		intent.putExtras(getIntent());
 		startActivity(intent);
 		finish();*/
-	}
-	
-	private void goToShowMsg(ShowMessageFromWX.Req showReq) {
+    }
+
+    private void goToShowMsg(ShowMessageFromWX.Req showReq) {
 		/*WXMediaMessage wxMsg = showReq.message;
 		WXAppExtendObject obj = (WXAppExtendObject) wxMsg.mediaObject;
 		
-		StringBuffer msg = new StringBuffer(); // ��֯һ������ʾ����Ϣ����
+		StringBuffer msg = new StringBuffer();
 		msg.append("description: ");
 		msg.append(wxMsg.description);
 		msg.append("\n");
@@ -131,5 +128,5 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 		intent.putExtra(Constants.ShowMsgActivity.BAThumbData, wxMsg.thumbData);
 		startActivity(intent);
 		finish();*/
-	}
+    }
 }

@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yjhh.ppwcustomer.base.BaseFragment
+import com.yjhh.common.base.BaseFragment
+
 
 class LoginFragment : BaseFragment() {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun getLayoutRes(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    override fun initView(rootView: View?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
 }

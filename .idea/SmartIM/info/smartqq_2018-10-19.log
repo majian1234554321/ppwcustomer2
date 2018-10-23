@@ -59,3 +59,33 @@
 				intercept msg : type:51, msg:null
 2018-10-19 14:12:10.200 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
 				intercept msg : type:51, msg:null
+2018-10-19 15:49:47.878 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 16:49:59.146 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 16:50:00.817 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:02:36.251 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:07:50.477 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:13:53.920 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:15:46.219 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:15:47.334 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:19:11.936 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:20:01.798 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:25:48.574 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:25:52.302 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:37:23.782 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:37:45.868 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null
+2018-10-19 17:37:55.196 [Thread-8] INFO  io.github.biezhi.wechat.api.WechatClient -
+				intercept msg : type:51, msg:null

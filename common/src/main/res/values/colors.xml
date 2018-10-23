@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F47646</color>
+    <color name="colorPrimaryDark">#F47646</color>
+    <color name="colorAccent">#F47646</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="ed772b">#ED772B</color>
+    <!--不同灰度颜色 -->
+    <color name="gray1">#111111</color>
+    <color name="gray2">#222222</color>
+    <color name="gray3">#333333</color>
+    <color name="gray4">#444444</color>
+    <color name="gray49">#494949</color>
+    <color name="gray5">#555555</color>
+    <color name="gray6">#666666</color>
+    <color name="gray7">#777777</color>
+    <color name="gray75">#757575</color>
+    <color name="gray8">#888888</color>
+    <color name="gray9">#999999</color>
+    <color name="graya">#AAAAAA</color>
+    <color name="grayb">#BBBBBB</color>
+    <color name="grayc">#CCCCCC</color>
+    <color name="grayc2">#C2C2C2</color>
+    <color name="grayd">#DDDDDD</color>
+    <color name="grayd5">#D5D5D5</color>
+    <color name="graye">#EEEEEE</color>
+    <color name="grayf1">#F1F1F1</color>
+    <color name="grayf9">#F9F9F9</color>
+    <color name="grayfe">#FEFEFE</color>
+    <color name="_9">#999999</color>
+    <color name="e">#EEEEEE</color>
+    <color name="c">#CCCCCC</color>
+</resources>

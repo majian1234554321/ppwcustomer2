@@ -48,7 +48,9 @@
     <RadioGroup
             android:layout_alignParentBottom="true" android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <RadioButton android:layout_width="100dp" android:layout_height="50dp"
+        <RadioButton android:layout_width="100dp"
+                     android:id="@+id/rb1"
+                     android:layout_height="50dp"
                      android:text="12122112"
         />
 

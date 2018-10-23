@@ -14,7 +14,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import com.yjhh.ppwcustomer.common.Constants;
-import com.yjhh.ppwcustomer.common.RxBus;
+import com.yjhh.common.utils.RxBus;
 import com.yjhh.ppwcustomer.pay.PaymentStatus;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
@@ -29,6 +29,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         // setContentView(R.layout.pay_result);
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         api.handleIntent(getIntent(), this);
+
     }
 
     @Override

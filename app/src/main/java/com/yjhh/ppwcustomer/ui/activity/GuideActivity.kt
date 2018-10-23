@@ -8,14 +8,15 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.yjhh.ppwcustomer.R
-import kotlinx.android.synthetic.main.activity_guide.*
 import android.view.ViewTreeObserver
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
+import com.yjhh.common.base.BaseActivity
 import com.yjhh.ppwcustomer.adapter.GuideViewPagerAdapter
-import com.yjhh.ppwcustomer.base.BaseActivity
-import com.yjhh.ppwcustomer.common.ActivityCollector
+import com.yjhh.common.utils.ActivityCollector
+import kotlinx.android.synthetic.main.activity_guide.*
 
-
+@Route(path = "/guideactivity/guide")
 class GuideActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,31 +82,15 @@ class GuideActivity : BaseActivity() {
 
             override fun onPageSelected(position: Int) {
 
-                val leftMargin = mDistance * position
+               // val leftMargin = mDistance * position
                 val params = iv_light_dots.layoutParams as RelativeLayout.LayoutParams
-                params.leftMargin = leftMargin
+                //params.leftMargin = leftMargin
                 iv_light_dots.layoutParams = params
                 if (position == 2) {
                     bt_next.visibility = View.VISIBLE
                 }
                 if (position != 2 && bt_next.visibility == View.VISIBLE) {
                     bt_next.visibility = View.GONE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 }
             }
@@ -123,7 +108,7 @@ class GuideActivity : BaseActivity() {
 
     private fun addDots() {
         mOne_dot = ImageView(this);
-        mOne_dot.setImageResource(R.drawable.gray_dot);
+        mOne_dot.setImageResource(R.drawable.gray_dot)
         val layoutParams =
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(0, 0, 40, 0)

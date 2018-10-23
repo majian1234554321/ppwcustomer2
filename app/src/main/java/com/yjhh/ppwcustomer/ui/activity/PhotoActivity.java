@@ -26,8 +26,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.yjhh.common.base.BaseActivity;
 import com.yjhh.ppwcustomer.R;
-import com.yjhh.ppwcustomer.base.BaseActivity;
+
 
 import java.io.File;
 import java.io.IOException;

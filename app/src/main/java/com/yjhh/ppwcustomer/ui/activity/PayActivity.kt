@@ -1,10 +1,11 @@
 package com.yjhh.ppwcustomer.ui.activity
 
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
 import com.tencent.mm.opensdk.utils.Log
+import com.yjhh.common.base.BaseActivity
 import com.yjhh.ppwcustomer.R
-import com.yjhh.ppwcustomer.base.BaseActivity
+
 import com.yjhh.ppwcustomer.pay.RxPay
 
 class PayActivity : BaseActivity() {

@@ -1,8 +1,6 @@
 package com.yjhh.ppwcustomer.ui.activity;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -12,20 +10,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.yjhh.common.base.BaseActivity;
 import com.yjhh.ppwcustomer.R;
-import com.yjhh.ppwcustomer.base.BaseActivity;
-import com.yjhh.ppwcustomer.common.ActivityCollector;
-import com.yjhh.ppwcustomer.common.LogUtils;
-import com.yjhh.ppwcustomer.common.RxCountDown;
+
+import com.yjhh.common.utils.ActivityCollector;
+import com.yjhh.common.utils.LogUtils;
+import com.yjhh.common.utils.RxCountDown;
 import com.yjhh.ppwcustomer.common.utils.SharedPreferencesUtils;
-import com.yjhh.ppwcustomer.listener.PermissionListener;
-import io.reactivex.Observable;
+import com.yjhh.common.listener.PermissionListener;
 import io.reactivex.observers.DisposableObserver;
 
 import java.util.List;
 
-
+@Route(path = "/splashactivity/splash")
 public class SplashActivity extends BaseActivity {
 
     public String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
@@ -76,7 +74,6 @@ public class SplashActivity extends BaseActivity {
                         if (!TextUtils.isEmpty((String) SharedPreferencesUtils.getParam(SplashActivity.this, "currentVersionName", ""))) {
                             ActivityCollector.JumpActivity(SplashActivity.this, MainActivity.class);
                         } else {
-                            Toast.makeText(SplashActivity.this, "暫未", Toast.LENGTH_SHORT).show();
                             try {
                                 SharedPreferencesUtils.setParam(SplashActivity.this, "currentVersionName", getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
                             } catch (PackageManager.NameNotFoundException e) {
@@ -87,8 +84,6 @@ public class SplashActivity extends BaseActivity {
                         }
 
                         finish();
-
-
                     }
                 });
 
