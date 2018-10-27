@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
@@ -30,24 +31,45 @@ import io.reactivex.functions.Function
 import kotlinx.android.synthetic.main.module_login_activity_login.*
 import java.util.concurrent.TimeUnit
 
-
 @Route(path = "/LoginActivity/Login")
-class LoginActivity : BaseActivity(), LoginView {
+class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.iv_show_pwd -> {
+                if (et_password.inputType != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                    et_password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    iv_show_pwd.setImageResource(R.drawable.pass_visuable)
+                } else {
+                    et_password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    iv_show_pwd.setImageResource(R.drawable.pass_gone)
+                }
+                val pwd = et_password.text.toString()
+                if (!TextUtils.isEmpty(pwd))
+                    et_password.setSelection(pwd.length)
+            }
+
+            R.id.regist->{
+                ARouter.getInstance()
+            .build("/DisplayActivity/Display")
+            .withString("displayTab", "RegistFragment")
+            .withInt("age", 23)
+            .navigation()
+            }
+            else -> {
+            }
+        }
+    }
+
     override fun onSuccess(result: LoginBean?) {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onFault(errorMsg: String?) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
 
-    @Autowired
-    @JvmField
-    var name: String? = null
-    @Autowired
-    @JvmField
-    var age: Int? = 0
+
 
     @SuppressLint("SetTextI18n", "CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,47 +98,32 @@ class LoginActivity : BaseActivity(), LoginView {
                                     password.toString()
                                 )
                             )
-
-
                     })
             }
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Log.i("TAG", it.blockingFirst().toString())
                 if (it.blockingFirst().getString("flag")!!.toBoolean()) {
-                    val loginPresent = LoginPresent(this, this)
-                    loginPresent.login("A", "B")
+
 
                     Log.i("TAG", it.blockingFirst().toString())
                 } else {
-                    Toast.makeText(this, "登录信息错误", Toast.LENGTH_SHORT).show()
+                    val loginPresent = LoginPresent(this, this)
+                    loginPresent.login("21212", "212", "21212")
+
                 }
             }
 
 
-        val disposable2 = RxView.clicks(iv_show_pwd).subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                if (et_password.inputType != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                    et_password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                    iv_show_pwd.setImageResource(R.drawable.pass_visuable)
-                } else {
-                    et_password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    iv_show_pwd.setImageResource(R.drawable.pass_gone)
-                }
-                val pwd = et_password.text.toString()
-                if (!TextUtils.isEmpty(pwd))
-                    et_password.setSelection(pwd.length)
 
-            }
+        iv_show_pwd.setOnClickListener(this)
+        regist.setOnClickListener(this)
+
 
         compositeDisposable.add(disposable1)
-        compositeDisposable.add(disposable2)
 
-//        ARouter.getInstance()
-//            .build("/splashactivity/splash")
-//            .withString("name", "老王")
-//            .withInt("age", 23)
-//            .navigation()
+
+
 
 
     }

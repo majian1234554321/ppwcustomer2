@@ -47,15 +47,11 @@ android {
             }
         }
 
-
         /*javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
             }
         }*/
-
-
-
 
 
     }
@@ -122,7 +118,7 @@ dependencies {
     implementation files('libs/alipaySdk-20180601.jar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6'
 
-    kapt  'com.alibaba:arouter-compiler:1.2.1'
+    kapt 'com.alibaba:arouter-compiler:1.2.1'
 
     implementation project(':model_login')
 }

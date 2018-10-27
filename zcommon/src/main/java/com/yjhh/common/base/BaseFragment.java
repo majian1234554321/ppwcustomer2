@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yjhh.common.utils.LogUtils;
+import io.reactivex.disposables.CompositeDisposable;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public abstract class BaseFragment extends Fragment {
 
     public Context context;
 
+    public CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -43,10 +46,15 @@ public abstract class BaseFragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(getLayoutRes(), container, false);
         }
-        initView(rootView);
+        //initView(rootView);
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -220,4 +228,13 @@ public abstract class BaseFragment extends Fragment {
      * @param rootView
      */
     protected abstract void initView(View rootView);
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
+    }
 }

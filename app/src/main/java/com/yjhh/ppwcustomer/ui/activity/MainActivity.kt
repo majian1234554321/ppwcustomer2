@@ -18,11 +18,10 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         rb1.setOnClickListener {
-          //  Toast.makeText(this,"0",Toast.LENGTH_SHORT).show()
+            //  Toast.makeText(this,"0",Toast.LENGTH_SHORT).show()
 
 
-
-           // ActivityCollector.JumpActivity(this,LoginActivity::class.java)
+            // ActivityCollector.JumpActivity(this,LoginActivity::class.java)
 
 
             ARouter.getInstance()

@@ -1,33 +1,38 @@
 package com.yjhh.loginmodule.present
 
 import android.content.Context
-import com.yjhh.common.api.OnSuccessAndFaultSub
-import com.yjhh.common.listener.OnSuccessAndFaultListener
+import com.yjhh.common.api.BaseResponse
+import com.yjhh.common.api.ProcessObserver
+
 
 import com.yjhh.common.present.BasePresent
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.model.LoginModel
 import com.yjhh.loginmodule.view.LoginView
-
-
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 class LoginPresent(var context: Context, var loginView: LoginView) : BasePresent() {
     private var loginModel: LoginModel = LoginModel()
 
 
-    fun login(username: String, password: String) {
-        toSubscribe(loginModel.login(username, password), OnSuccessAndFaultSub<LoginBean>(object :
-            OnSuccessAndFaultListener<LoginBean> {
-            override fun onSuccess(result: LoginBean?) {
-                loginView.onSuccess(result)
+    fun login(username: String, password: String, identity: String) {
+
+        toSubscribe(loginModel.login(username, password, identity), object : ProcessObserver<LoginBean>(context) {
+            override fun onSuccess(data: LoginBean) {
+                loginView.onSuccess(data)
             }
 
-            override fun onFault(errorMsg: String?) {
-                loginView.onFault(errorMsg)
+            override fun onFault(message: String) {
+                loginView.onFault(message)
             }
 
-        }))
+        })
+
 
     }
 

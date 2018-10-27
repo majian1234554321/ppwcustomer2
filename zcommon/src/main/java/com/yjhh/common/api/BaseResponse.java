@@ -1,13 +1,12 @@
 package com.yjhh.common.api;
 
 public class BaseResponse<T> {
-    public int status;
+    public String code;
     public String message;
+    public boolean success;
     public T data;
 
     public boolean isSuccess() {
-        return status == 200;
+        return "200".equals(code);
     }
 }
-
-
