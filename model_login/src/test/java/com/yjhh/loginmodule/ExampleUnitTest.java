@@ -1,8 +1,6 @@
 package com.yjhh.loginmodule;
 
-import android.util.Log;
-import com.yjhh.loginmodule.api.Base;
-import com.yjhh.loginmodule.api.Son;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,10 +13,8 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-     //   assertEquals(4, 2 + 2);
+        assertEquals(4, 2 + 2);
 
 
-        Base base = new Base();
-        base.aVoid();
     }
 }

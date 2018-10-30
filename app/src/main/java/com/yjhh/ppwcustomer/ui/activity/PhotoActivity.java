@@ -28,11 +28,13 @@ import android.widget.Toast;
 
 import com.yjhh.common.base.BaseActivity;
 import com.yjhh.ppwcustomer.R;
+import com.yjhh.ppwcustomer.bean.ProvinceBean;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -390,6 +392,13 @@ public class PhotoActivity extends BaseActivity {
         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(filePath, options);
+
+
+
+
+
+
+
     }
 
 

@@ -6,10 +6,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseFragment
+
 import com.yjhh.ppwcustomer.R
 
-import com.yjhh.ppwcustomer.ui.fragment.LoginFragment
 import com.yjhh.ppwcustomer.ui.fragment.RegistFragment
+import com.yjhh.ppwcustomer.ui.fragment.ResetPasswordFragment
 import kotlinx.android.synthetic.main.activity_display.*
 
 
@@ -24,9 +25,7 @@ class DisplayActivity : BaseActivity() {
     @JvmField
     var age: Int? = 0
 
-
-    // private lateinit var fragments: BaseFragment
-
+    //var fragments: BaseFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
         super.onCreate(savedInstanceState)
@@ -43,9 +42,15 @@ class DisplayActivity : BaseActivity() {
             }
 
 
-//           else -> {
-//
-//            }
+            "ResetPasswordFragment" -> {
+                val fragments = ResetPasswordFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, fragments).commit()
+            }
+
+            else -> {
+
+            }
         }
 
 

@@ -51,7 +51,21 @@
         <RadioButton android:layout_width="100dp"
                      android:id="@+id/rb1"
                      android:layout_height="50dp"
-                     android:text="12122112"
+                     android:text="1111"
+        />
+
+
+        <RadioButton android:layout_width="100dp"
+                     android:id="@+id/rb2"
+                     android:layout_height="50dp"
+                     android:text="22222"
+        />
+
+
+        <RadioButton android:layout_width="100dp"
+                     android:id="@+id/rb3"
+                     android:layout_height="50dp"
+                     android:text="33333"
         />
 
     </RadioGroup>

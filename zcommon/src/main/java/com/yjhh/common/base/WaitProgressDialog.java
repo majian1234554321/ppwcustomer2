@@ -11,6 +11,5 @@ public class WaitProgressDialog extends ProgressDialog {
     public WaitProgressDialog(Context context, boolean isShow) {
         super(context);
 
-
     }
 }
