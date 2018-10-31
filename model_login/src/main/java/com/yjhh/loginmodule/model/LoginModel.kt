@@ -7,6 +7,7 @@ import com.yjhh.loginmodule.api.LoginService
 import com.yjhh.loginmodule.bean.LoginBean
 
 import io.reactivex.Observable
+import okhttp3.ResponseBody
 
 class LoginModel {
 
@@ -14,7 +15,7 @@ class LoginModel {
 
         val map = ArrayMap<String, String>()
         with(map) {
-            put("username", username)
+            put("account", username)
             put("password", password)
             put("identity", identity)
 
@@ -23,5 +24,22 @@ class LoginModel {
 
         return ApiServices.getInstance().create(LoginService::class.java).login(map)
     }
+
+
+
+    fun login2(username: String, password: String, identity: String): Observable<ResponseBody> {
+
+        val map = ArrayMap<String, String>()
+        with(map) {
+            put("account", username)
+            put("password", password)
+            put("identity", identity)
+
+        }
+
+
+        return ApiServices.getInstance().create(LoginService::class.java).login2(map)
+    }
+
 
 }

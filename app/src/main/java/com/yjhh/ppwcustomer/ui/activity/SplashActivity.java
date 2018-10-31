@@ -17,7 +17,7 @@ import com.yjhh.ppwcustomer.R;
 import com.yjhh.common.utils.ActivityCollector;
 import com.yjhh.common.utils.LogUtils;
 import com.yjhh.common.utils.RxCountDown;
-import com.yjhh.ppwcustomer.common.utils.SharedPreferencesUtils;
+import com.yjhh.common.utils.SharedPreferencesUtils;
 import com.yjhh.common.listener.PermissionListener;
 import io.reactivex.observers.DisposableObserver;
 

@@ -1,12 +1,17 @@
 package com.yjhh.common.api;
 
 
+import android.support.annotation.NonNull;
 import com.yjhh.common.Constants;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class ApiServices {
@@ -22,13 +27,24 @@ public class ApiServices {
         builder.writeTimeout(DEFAULT_READ_TIME_OUT, TimeUnit.SECONDS);//写操作 超时时间
         builder.readTimeout(DEFAULT_READ_TIME_OUT, TimeUnit.SECONDS);//读操作超时时间
 
-      /*  // 添加公共参数拦截器
-        HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor.Builder()
-                .addHeaderParams("paltform","android")
-                .addHeaderParams("userToken","1234343434dfdfd3434")
-                .addHeaderParams("userId","123445")
-                .build();
-        builder.addInterceptor(commonInterceptor);*/
+        // 添加公共参数拦截器
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(
+                new Interceptor() {
+                    @Override
+                    public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
+                        Request original = chain.request();
+
+                        Request request = original.newBuilder()
+                                .header("userAgent", "PPW_App")
+                                .header("X-Requested—With", "XMLHttpRequest")
+                                .method(original.method(), original.body())
+                                .build();
+
+                        return chain.proceed(request);
+                    }
+                });
+
 
         // 创建Retrofit
         mRetrofit = new Retrofit.Builder()
@@ -36,6 +52,7 @@ public class ApiServices {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Constants.BASE_URL)
+                // .client(httpClient.build())
                 .build();
     }
 
@@ -52,8 +69,6 @@ public class ApiServices {
     public <T> T create(Class<T> service) {
         return mRetrofit.create(service);
     }
-
-
 
 
 }

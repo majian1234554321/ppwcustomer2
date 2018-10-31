@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class ProcessObserver<T>(var context: Context) : Observer<BaseResponse<T>> {
     private var showProgress: Boolean = true
-    private var progressDialog: WaitProgressDialog = WaitProgressDialog(context)
+    // private var progressDialog: WaitProgressDialog = WaitProgressDialog(context)
     override fun onSubscribe(d: Disposable) {
 
     }
@@ -23,15 +23,14 @@ abstract class ProcessObserver<T>(var context: Context) : Observer<BaseResponse<
         } else {
             onFault(tBaseResponse.message)
         }
-
     }
 
-    abstract fun onSuccess(data: T)
+    abstract fun onSuccess(data: T?)
 
     abstract fun onFault(message: String)
 
     override fun onError(e: Throwable) {
-
+        onFault(e.toString())
     }
 
     override fun onComplete() {
@@ -40,13 +39,16 @@ abstract class ProcessObserver<T>(var context: Context) : Observer<BaseResponse<
 
 
     private fun showProgressDialog() {
-        if (showProgress)
-            progressDialog.show()
+        if (showProgress) {
+        }
+        //   progressDialog.show()
     }
 
     private fun dismissProgressDialog() {
-        if (showProgress)
-            progressDialog.dismiss()
+        if (showProgress) {
+
+        }
+        // progressDialog.dismiss()
     }
 
 }

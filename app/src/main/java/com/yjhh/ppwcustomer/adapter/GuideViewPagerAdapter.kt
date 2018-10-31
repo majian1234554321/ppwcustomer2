@@ -12,6 +12,7 @@ class GuideViewPagerAdapter(private val mViewList: List<View>) : PagerAdapter() 
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
+
         return view === `object`
     }
 

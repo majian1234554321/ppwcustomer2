@@ -1,11 +1,14 @@
 package com.yjhh.loginmodule.present
 
 import android.content.Context
+import com.yjhh.common.api.BaseResponse
 import com.yjhh.common.api.ProcessObserver
+import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.model.RegByAccountModel
 import com.yjhh.loginmodule.view.RegistView
+import org.json.JSONObject
 
 class RegByAccountPresent(var context: Context, var registView: RegistView) : BasePresent() {
 
@@ -15,7 +18,9 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
     fun sendSms(type: String, phone: String) {
 
         toSubscribe(regByAccountModel.sendSms(type, phone), object : ProcessObserver<LoginBean>(context) {
-            override fun onSuccess(data: LoginBean) {
+
+
+            override fun onSuccess(data: LoginBean?) {
                 registView.sendSMSSuccess(data)
             }
 
@@ -31,7 +36,7 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
         toSubscribe(
             regByAccountModel.regByAccount(phone, password, smsCode, identity, refId),
             object : ProcessObserver<LoginBean>(context) {
-                override fun onSuccess(data: LoginBean) {
+                override fun onSuccess(data: LoginBean?) {
                     registView.registSuccess(data)
                 }
 
@@ -41,4 +46,30 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
 
             })
     }
+
+
+    fun regByAccount2(phone: String, password: String, smsCode: String, identity: String, refId: String) {
+        toSubscribe2(
+            regByAccountModel.regByAccount2(phone, password, smsCode, identity, refId),
+            object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+
+                    val jsonValue = JSONObject(response)
+
+                    if (jsonValue.getBoolean("success")) {
+                        registView.registSuccess2(jsonValue.getString("data"))
+                    } else {
+                        registView.registFault("")
+                    }
+                }
+
+
+                override fun onFault(message: String) {
+                    registView.registFault(message)
+                }
+
+            })
+    }
+
+
 }
