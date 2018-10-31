@@ -11,11 +11,22 @@ public class ProvinceBean implements IPickerViewData {
 
     public List<CityBean> cityBeans;
 
+    public ProvinceBean() {
+    }
+
     public ProvinceBean(String provinceName, String provinceCode, List<CityBean> cityBeans) {
         this.provinceName = provinceName;
         this.provinceCode = provinceCode;
         this.cityBeans = cityBeans;
     }
+
+
+    public ProvinceBean(String provinceName, String provinceCode) {
+        this.provinceName = provinceName;
+        this.provinceCode = provinceCode;
+
+    }
+
 
 
     public static class CityBean {
@@ -42,6 +53,9 @@ public class ProvinceBean implements IPickerViewData {
             public AreaBean(String areaName, String areaCode) {
                 this.areaName = areaName;
                 this.areaCode = areaCode;
+            }
+
+            public AreaBean() {
             }
         }
     }
