@@ -3,6 +3,8 @@ package com.yjhh.ppwcustomer;
 
 import android.util.Log;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.google.gson.Gson;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
@@ -40,7 +42,10 @@ public class CurrentApplication extends TinkerApplication {
         ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
 
         ARouter.init(mAppInstance); // 尽可能早，推荐在Application中初始化
-
+        SDKInitializer.initialize(this);
+        //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
+        //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
+        SDKInitializer.setCoordType(CoordType.BD09LL);
 
         Observable.just("1")
                 .flatMap(new Function<String, ObservableSource<ProvinceBean2[]>>() {

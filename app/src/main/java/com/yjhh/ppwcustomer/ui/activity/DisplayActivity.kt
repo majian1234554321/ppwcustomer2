@@ -8,6 +8,7 @@ import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseFragment
 
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.ui.fragment.ForgotPasswordFragment
 
 import com.yjhh.ppwcustomer.ui.fragment.RegistFragment
 import com.yjhh.ppwcustomer.ui.fragment.ResetPasswordFragment
@@ -16,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_display.*
 
 @Route(path = "/DisplayActivity/Display")
 class DisplayActivity : BaseActivity() {
-
 
     @Autowired
     @JvmField
@@ -33,7 +33,6 @@ class DisplayActivity : BaseActivity() {
 
         frameLayout.setPadding(0, getStatusBarHeight(this), 0, 0)
 
-
         when (displayTab) {
             "RegistFragment" -> {
                 val fragments = RegistFragment()
@@ -41,9 +40,14 @@ class DisplayActivity : BaseActivity() {
                     .replace(R.id.frameLayout, fragments).commit()
             }
 
-
             "ResetPasswordFragment" -> {
                 val fragments = ResetPasswordFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, fragments).commit()
+            }
+
+            "ForgotPasswordFragment" -> {
+                val fragments = ForgotPasswordFragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, fragments).commit()
             }

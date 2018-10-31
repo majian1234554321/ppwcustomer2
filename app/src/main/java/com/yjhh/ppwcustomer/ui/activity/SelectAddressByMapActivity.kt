@@ -47,7 +47,7 @@ class SelectAddressByMapActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SDKInitializer.initialize(applicationContext)
+       // SDKInitializer.initialize(applicationContext)
         setContentView(R.layout.activity_select_address_by_map)
         mContext = this
         mImgBack.setOnClickListener { v ->

@@ -80,6 +80,7 @@ class MainActivity : BaseActivity() {
                     }
 
                     3 -> {
+                        startActivity(Intent(this@MainActivity, SelectAddressByMapActivity::class.java))
                     }
 
                     else -> {
@@ -93,7 +94,6 @@ class MainActivity : BaseActivity() {
             }
 
         })
-
 
 
     }
