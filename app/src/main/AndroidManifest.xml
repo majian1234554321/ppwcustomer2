@@ -131,6 +131,10 @@
         </activity>
         <activity android:name=".ui.activity.UploadActivity">
         </activity>
+        <activity android:name=".ui.activity.SelectAddressByMapActivity">
+        </activity>
+
+
     </application>
 
 </manifest>

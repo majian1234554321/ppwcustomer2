@@ -22,7 +22,7 @@ import java.util.List;
 public class CurrentApplication extends TinkerApplication {
 
 
-  public  static ProvinceBean2 [] provinceBean;
+    public static ProvinceBean2[] provinceBean;
 
     public CurrentApplication() {
         super(ShareConstants.TINKER_ENABLE_ALL, "com.yjhh.ppwcustomer.CurrentApplicationLike",
@@ -43,37 +43,30 @@ public class CurrentApplication extends TinkerApplication {
 
 
         Observable.just("1")
-                .flatMap(new Function<String, ObservableSource<ProvinceBean2 []>>() {
+                .flatMap(new Function<String, ObservableSource<ProvinceBean2[]>>() {
                     @Override
-                    public ObservableSource<ProvinceBean2 [] > apply(String s) throws Exception {
+                    public ObservableSource<ProvinceBean2[]> apply(String s) throws Exception {
 
                         Gson gson = new Gson();
                         String JsonData = new GetJsonDataUtil().getJson(mAppInstance, "province.json");
 
                         Log.i("CurrentApplication", JsonData);
-                         provinceBean = gson.fromJson(JsonData, ProvinceBean2 [].class);
+                        provinceBean = gson.fromJson(JsonData, ProvinceBean2[].class);
 
-
-
-
-
-
-
-
-                        return Observable.just(provinceBean );
+                        return Observable.just(provinceBean);
                     }
                 })
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ProvinceBean2 []>() {
+                .subscribe(new Observer<ProvinceBean2[]>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(ProvinceBean2 [] s) {
+                    public void onNext(ProvinceBean2[] s) {
 
-                        Log.i("CurrentApplication", s.length+""+s[0].getName()+s[0].getNode().get(0).getName());
+                        Log.i("CurrentApplication", s.length + "" + s[0].getName() + s[0].getNode().get(0).getName());
                     }
 
                     @Override

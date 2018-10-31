@@ -60,7 +60,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
         when (v?.id) {
 
 
-
             R.id.bt_register -> {
                 val observeret_phone = RxTextView.textChanges(et_phone)
                 val observeret_password = RxTextView.textChanges(et_password)
@@ -114,7 +113,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
         })
 
         val disposable = RxView.clicks(tv_verifyCode)
-            //防止重复点击
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribeOn(AndroidSchedulers.mainThread())
             .flatMap {

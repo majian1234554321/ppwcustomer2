@@ -18,8 +18,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 
 import com.bigkoo.pickerview.view.OptionsPickerView
+import com.flyco.tablayout.listener.CustomTabEntity
+import com.flyco.tablayout.listener.OnTabSelectListener
 import com.yjhh.ppwcustomer.bean.ProvinceBean
 import com.yjhh.ppwcustomer.bean.ProvinceBean2
+import com.yjhh.ppwcustomer.bean.TabEntity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,31 +30,71 @@ import kotlin.collections.ArrayList
 @Route(path = "/mainActivity/main")
 class MainActivity : BaseActivity() {
 
+    private val mTitles = arrayOf("首页", "消息", "联系人", "更多")
+    private val mIconUnselectIds = intArrayOf(
+        R.mipmap.tab_home_unselect,
+        R.mipmap.tab_speech_unselect,
+        R.mipmap.tab_contact_unselect,
+        R.mipmap.tab_more_unselect
+    )
+    private val mIconSelectIds = intArrayOf(
+        R.mipmap.tab_home_select,
+        R.mipmap.tab_speech_select,
+        R.mipmap.tab_contact_select,
+        R.mipmap.tab_more_select
+    )
+
+    private val mTabEntities = java.util.ArrayList<CustomTabEntity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        picture.text = CurrentApplication.provinceBean[0].name
-        rb1.setOnClickListener {
-
-
-            ARouter.getInstance()
-                .build("/LoginActivity/Login")
-                .withString("name", "老王")
-                .withInt("age", 23)
-                .navigation(this)
-
+        for (i in mTitles.indices) {
+            mTabEntities.add(TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
         }
+        ctl_layout.setTabData(mTabEntities)
 
 
-        rb2.setOnClickListener {
-            startActivity(Intent(this, UploadActivity::class.java))
-        }
+        ctl_layout.setOnTabSelectListener(object : OnTabSelectListener {
+            override fun onTabSelect(position: Int) {
+                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
-        rb3.setOnClickListener {
-            showPickerView()
-        }
+                when (position) {
+                    0 -> {
+                        ARouter.getInstance()
+                            .build("/LoginActivity/Login")
+                            .withString("name", "老王")
+                            .withInt("age", 23)
+                            .navigation(this@MainActivity)
+                    }
+
+                    1 -> {
+                        startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                    }
+
+
+                    2 -> {
+                        showPickerView()
+                    }
+
+                    3 -> {
+                    }
+
+                    else -> {
+                    }
+                }
+
+            }
+
+            override fun onTabReselect(position: Int) {
+                //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
+
 
     }
 

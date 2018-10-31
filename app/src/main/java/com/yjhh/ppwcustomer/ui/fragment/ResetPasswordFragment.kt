@@ -75,7 +75,6 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
                     Observable.just(true)
                 }
             }
-
             .doOnNext {
                 Log.i("TAG", "初始化")
                 regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
@@ -103,7 +102,6 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
                 }
                 Log.i("TAG", it.toString())
             }
-
 
         compositeDisposable.add(disposable)
 

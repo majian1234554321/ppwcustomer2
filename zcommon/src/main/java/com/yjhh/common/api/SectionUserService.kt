@@ -52,4 +52,12 @@ interface SectionUserService {
 
 
 
+    @FormUrlEncoded
+    @POST("user/forgotPassword")
+    fun forgotPassword(): Observable<ResponseBody>//找回密码
+
+
+
+
+
 }

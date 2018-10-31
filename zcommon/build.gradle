@@ -92,6 +92,9 @@ dependencies {
     api 'com.zhihu.android:matisse:0.5.1'
 
     api 'com.contrarywind:Android-PickerView:4.1.6'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
+
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
 
 

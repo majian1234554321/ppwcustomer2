@@ -51,9 +51,7 @@ public class ProvinceBean2 implements IPickerViewData {
     public static class NodeBeanX {
         /**
          * code : 110100
-         * name : 市辖区
-         * node : [{"code":"110101","name":"东城区","node":[],"parent":"110100"},{"code":"110102","name":"西城区","node":[],"parent":"110100"},{"code":"110105","name":"朝阳区","node":[],"parent":"110100"},{"code":"110106","name":"丰台区","node":[],"parent":"110100"},{"code":"110107","name":"石景山区","node":[],"parent":"110100"},{"code":"110108","name":"海淀区","node":[],"parent":"110100"},{"code":"110109","name":"门头沟区","node":[],"parent":"110100"},{"code":"110111","name":"房山区","node":[],"parent":"110100"},{"code":"110112","name":"通州区","node":[],"parent":"110100"},{"code":"110113","name":"顺义区","node":[],"parent":"110100"},{"code":"110114","name":"昌平区","node":[],"parent":"110100"},{"code":"110115","name":"大兴区","node":[],"parent":"110100"},{"code":"110116","name":"怀柔区","node":[],"parent":"110100"},{"code":"110117","name":"平谷区","node":[],"parent":"110100"},{"code":"110118","name":"密云区","node":[],"parent":"110100"},{"code":"110119","name":"延庆区","node":[],"parent":"110100"}]
-         * parent : 110000
+
          */
 
         private String code;
