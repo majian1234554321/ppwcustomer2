@@ -35,6 +35,23 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             }
 
+
+            R.id.iev_message -> {
+
+            }
+
+            R.id.iev_browse -> {
+
+            }
+            R.id.iev_about -> {
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "AboutFragment")
+                    .withInt("age", 23)
+                    .navigation()
+            }
+
+
             else -> {
 
             }
@@ -43,6 +60,9 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
     override fun initView(rootView: View?) {
 
+        iev_about.setOnClickListener(this)
+        iev_browse.setOnClickListener(this)
+        iev_message.setOnClickListener(this)
 
         tv_address.setOnClickListener(this)
         tv_loginout.setOnClickListener(this)

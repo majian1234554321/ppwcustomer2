@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_message"
+                app:textValue="我的消息"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+
+        />
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_browse"
+                app:textValue="最近浏览"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+
+        />
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_about"
+                app:textValue="关于我们"
+                app:ievtextColor="@color/white"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
+        <TextView
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_address"
+                android:text="我的地址"
+
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/tv_address"
+                android:id="@+id/tv_loginout"
+                android:text="退出登录"
+
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+
+        />
 
 
+    </LinearLayout>
 
-    <TextView
-            android:layout_width="match_parent"
 
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_address"
-            android:text="我的地址"
-
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-
-    />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/tv_address"
-            android:id="@+id/tv_loginout"
-            android:text="退出登录"
-
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-
-    />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
