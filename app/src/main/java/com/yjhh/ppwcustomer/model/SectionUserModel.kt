@@ -41,10 +41,36 @@ class SectionUserModel {
     }
 
 
-    fun getAllUserAddress(id: String): Observable<ResponseBody> {
+    fun getAllUserAddress(isDefault: String?, pageIndex: String, pageSize: String): Observable<ResponseBody> {
         map.clear()
-        map["id"] = id
+        map["isDefault"] = isDefault
+        map["pageIndex"] = pageIndex
+        map["pageSize"] = pageSize
+
         return ApiServices.getInstance().create(SectionUserService::class.java).getAllUserAddress(map)//获取用户存入的所有的地址
+    }
+
+
+    fun setNickName(nickName: String): Observable<ResponseBody> { //设置用户昵称
+
+        map.clear()
+        map["nickName"] = nickName
+        return ApiServices.getInstance().create(SectionUserService::class.java).setNickName(map)
+    }
+
+
+    fun resetPassword(
+        password: String?,
+        newPassword: String?,
+        smsCode: String?,
+        type: String?
+    ): Observable<ResponseBody> { //重置用户密码
+        map.clear()
+        map["password"] = password
+        map["newPassword"] = newPassword
+        map["smsCode"] = smsCode
+        map["type"] = type
+        return ApiServices.getInstance().create(SectionUserService::class.java).resetPassword(map)
     }
 
 

@@ -38,16 +38,7 @@ class LoginPresent(var context: Context, var loginView: LoginView) : BasePresent
 
         toSubscribe2(loginModel.login2(username, password, identity), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-
-                val jsonValue = JSONObject(response)
-
-                if (jsonValue.getBoolean("success")) {
-                    loginView.onSuccess2(jsonValue.getString("data"))
-                } else {
-                    loginView.onFault("")
-                }
-
-
+                    loginView.onSuccess2(response)
             }
 
 

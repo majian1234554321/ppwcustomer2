@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
-import com.baidu.mapapi.SDKInitializer
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.search.core.PoiInfo
@@ -23,11 +22,14 @@ import com.baidu.mapapi.search.geocode.*
 import com.baidu.mapapi.search.sug.SuggestionResult
 import com.baidu.mapapi.search.sug.SuggestionSearch
 import com.baidu.mapapi.search.sug.SuggestionSearchOption
+import com.yjhh.common.base.BaseActivity
+import com.yjhh.common.utils.SystemBarUtil
 import com.yjhh.ppwcustomer.R
+
 import kotlinx.android.synthetic.main.activity_select_address_by_map.*
 import kotlin.collections.ArrayList
 
-class SelectAddressByMapActivity : AppCompatActivity() {
+class SelectAddressByMapActivity : BaseActivity() {
 
     private val REQUEST_CODE_CITY = 999
     private lateinit var mLocClient: LocationClient
@@ -48,7 +50,9 @@ class SelectAddressByMapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // SDKInitializer.initialize(applicationContext)
+        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary),0f);
         setContentView(R.layout.activity_select_address_by_map)
+        ll.setPadding(0, getStatusBarHeight(this), 0, 0)
         mContext = this
         mImgBack.setOnClickListener { v ->
             if (!acStateIsMap) {
@@ -106,7 +110,9 @@ class SelectAddressByMapActivity : AppCompatActivity() {
         // 创建GeoCoder实例对象
         geoCoder = GeoCoder.newInstance()
         geoCoder.setOnGetGeoCodeResultListener(object : OnGetGeoCoderResultListener {
-            override fun onGetGeoCodeResult(p0: GeoCodeResult?) {}
+            override fun onGetGeoCodeResult(p0: GeoCodeResult?) {
+
+            }
 
             override fun onGetReverseGeoCodeResult(p0: ReverseGeoCodeResult?) {
                 p0?.poiList?.let {
@@ -128,6 +134,7 @@ class SelectAddressByMapActivity : AppCompatActivity() {
 
         // 初始化搜索模块，注册搜索事件监听
         mSuggestionSearch = SuggestionSearch.newInstance()
+
         mSuggestionSearch.setOnGetSuggestionResultListener { suggestionResult ->
             suggestionResult?.allSuggestions?.let {
                 mSuggestionInfos.clear()
@@ -151,6 +158,7 @@ class SelectAddressByMapActivity : AppCompatActivity() {
                 .latitude(bdLocation.latitude)// 经度
                 .longitude(bdLocation.longitude)// 纬度
                 .build()// 构建
+
             mBaiduMap.setMyLocationData(data)// 设置定位数据
             // 是否是第一次定位
             if (isFirstLoc) {
@@ -161,6 +169,16 @@ class SelectAddressByMapActivity : AppCompatActivity() {
                 locationLatLng = LatLng(bdLocation.latitude, bdLocation.longitude)
                 // 获取城市，待会用于POISearch
                 mSelectCity = bdLocation.city
+
+
+                bdLocation.getAddrStr()   //获取详细地址信息
+                bdLocation.getCountry()   //获取国家
+                bdLocation.getProvince()    //获取省份
+                bdLocation.getCity()   //获取城市
+                bdLocation.getDistrict()    //获取区县
+                bdLocation.getStreet()
+
+
                 mTvSelectedCity.text = mSelectCity
                 // 发起反地理编码请求(经纬度->地址信息)
                 val reverseGeoCodeOption = ReverseGeoCodeOption()
@@ -173,6 +191,7 @@ class SelectAddressByMapActivity : AppCompatActivity() {
         val option = LocationClientOption()
         option.setCoorType("bd09ll")
         option.setIsNeedAddress(true)
+
         option.setIsNeedLocationDescribe(true)
         option.setIsNeedLocationPoiList(true)
         option.locationMode = LocationClientOption.LocationMode.Hight_Accuracy

@@ -3,6 +3,7 @@ package com.yjhh.ppwcustomer.ui.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -20,9 +21,14 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.bigkoo.pickerview.view.OptionsPickerView
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
+import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.ppwcustomer.bean.ProvinceBean
 import com.yjhh.ppwcustomer.bean.ProvinceBean2
 import com.yjhh.ppwcustomer.bean.TabEntity
+import com.yjhh.ppwcustomer.ui.fragment.Main1Fragment
+import com.yjhh.ppwcustomer.ui.fragment.Main2Fragment
+import com.yjhh.ppwcustomer.ui.fragment.Main3Fragment
+import com.yjhh.ppwcustomer.ui.fragment.Main4Fragment
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -50,12 +56,19 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         for (i in mTitles.indices) {
             mTabEntities.add(TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
         }
         ctl_layout.setTabData(mTabEntities)
 
+        val fragment1 = Main1Fragment()
+        val fragment2 = Main2Fragment()
+        val fragment3 = Main3Fragment()
+        val fragment4 = Main4Fragment()
+        ctl_layout.currentTab = 0
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, fragment1).commit()
 
         ctl_layout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabSelect(position: Int) {
@@ -63,24 +76,51 @@ class MainActivity : BaseActivity() {
 
                 when (position) {
                     0 -> {
-                        ARouter.getInstance()
-                            .build("/LoginActivity/Login")
-                            .withString("name", "老王")
-                            .withInt("age", 23)
-                            .navigation(this@MainActivity)
+//                        ARouter.getInstance()
+//                            .build("/LoginActivity/Login")
+//                            .withString("name", "老王")
+//                            .withInt("age", 23)
+//                            .navigation(this@MainActivity)
+
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, fragment1).commit()
+
                     }
 
                     1 -> {
-                        startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                        //  startActivity(Intent(this@MainActivity, UploadActivity::class.java))
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, fragment2).commit()
                     }
 
 
                     2 -> {
-                        showPickerView()
+                        //   showPickerView()
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, fragment3).commit()
                     }
 
                     3 -> {
-                        startActivity(Intent(this@MainActivity, SelectAddressByMapActivity::class.java))
+
+                        if (!TextUtils.isEmpty(
+                                SharedPreferencesUtils.getParam(
+                                    this@MainActivity,
+                                    "sessionId",
+                                    ""
+                                ) as String
+                            )
+                        ) {
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.frameLayout, fragment4).commit()
+                        } else {
+                            ARouter.getInstance()
+                                .build("/LoginActivity/Login")
+                                .withString("name", "老王")
+                                .withInt("age", 23)
+                                .navigation(this@MainActivity)
+                        }
+
+
                     }
 
                     else -> {
@@ -172,7 +212,9 @@ class MainActivity : BaseActivity() {
             .setDividerColor(Color.BLACK)
             .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
             .setContentTextSize(20)
+            .isDialog(true)
             .build<ProvinceBean>()
+
 
         // pvOptions.setPicker(list1)//一级选择器
         pvOptions.setPicker(
@@ -181,7 +223,7 @@ class MainActivity : BaseActivity() {
             options3Items as List<MutableList<MutableList<ProvinceBean>>>?
 
         )
-        pvOptions.show()
+        pvOptions.show(ctl_layout, true)
     }
 
 

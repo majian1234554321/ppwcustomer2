@@ -53,16 +53,8 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
             regByAccountModel.regByAccount2(phone, password, smsCode, identity, refId),
             object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
-
-                    val jsonValue = JSONObject(response)
-
-                    if (jsonValue.getBoolean("success")) {
-                        registView.registSuccess2(jsonValue.getString("data"))
-                    } else {
-                        registView.registFault("")
-                    }
+                    registView.registSuccess2(response)
                 }
-
 
                 override fun onFault(message: String) {
                     registView.registFault(message)

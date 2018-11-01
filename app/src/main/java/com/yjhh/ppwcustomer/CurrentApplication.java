@@ -8,6 +8,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.google.gson.Gson;
 import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
+import com.yjhh.common.base.BaseApplication;
 import com.yjhh.ppwcustomer.bean.ProvinceBean;
 import com.yjhh.ppwcustomer.bean.ProvinceBean2;
 import com.yjhh.ppwcustomer.common.utils.GetJsonDataUtil;
@@ -21,15 +22,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CurrentApplication extends TinkerApplication {
+public class CurrentApplication extends BaseApplication {
 
 
     public static ProvinceBean2[] provinceBean;
 
-    public CurrentApplication() {
-        super(ShareConstants.TINKER_ENABLE_ALL, "com.yjhh.ppwcustomer.CurrentApplicationLike",
-                "com.tencent.tinker.loader.TinkerLoader", false);
-    }
+
 
     private static CurrentApplication mAppInstance;
 
