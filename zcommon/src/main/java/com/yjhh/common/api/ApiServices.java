@@ -1,8 +1,12 @@
 package com.yjhh.common.api;
 
 
+
 import android.support.annotation.NonNull;
 import com.yjhh.common.Constants;
+
+import com.yjhh.common.base.BaseApplication;
+import com.yjhh.common.utils.SharedPreferencesUtils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,8 +40,9 @@ public class ApiServices {
                         Request original = chain.request();
 
                         Request request = original.newBuilder()
-                                .header("userAgent", "PPW_App")
-                                .header("X-Requested—With", "XMLHttpRequest")
+//                                .header("userAgent", "PPW_App")
+//                                .header("X-Requested—With", "XMLHttpRequest")
+                                .header("JSESSIONID", String.valueOf(SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1")))
                                 .method(original.method(), original.body())
                                 .build();
 
@@ -52,7 +57,7 @@ public class ApiServices {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Constants.BASE_URL)
-                // .client(httpClient.build())
+                 .client(httpClient.build())
                 .build();
     }
 

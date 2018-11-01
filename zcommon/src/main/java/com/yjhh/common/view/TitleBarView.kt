@@ -61,9 +61,13 @@ class TitleBarView @JvmOverloads constructor(
 
         rl_background.setBackgroundColor(titleBarBackground)
 
-        toolbar.setOnClickListener {
+        
+
+        toolbar.setNavigationOnClickListener {
             navigationOnClickListener.OnNavigation()
         }
+
+
 
 
     }

@@ -12,11 +12,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
 import com.yjhh.common.utils.SystemBarUtil;
@@ -34,7 +36,9 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        transparentAndCoverStatusBar(this);
+        //transparentAndCoverStatusBar(this);
+        SystemBarUtil.immersiveStatusBar(this,0f);
+       // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),1.0f);
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
 

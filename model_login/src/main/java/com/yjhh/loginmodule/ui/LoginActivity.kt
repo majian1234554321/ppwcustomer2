@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
             R.id.forget_password ->{
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
-                    .withString("displayTab", "ResetPasswordFragment")
+                    .withString("displayTab", "ForgotPasswordFragment")
                     .withInt("age", 23)
                     .navigation()
             }

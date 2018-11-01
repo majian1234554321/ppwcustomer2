@@ -46,16 +46,18 @@ interface SectionUserService {
     fun setAvater(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户头像
 
 
-    @FormUrlEncoded
     @POST("user/info")
-    fun getUserinfo(): Observable<ResponseBody>//设置用户头像
-
+    fun getUserinfo(): Observable<ResponseBody>//获取用户信息
 
 
     @FormUrlEncoded
     @POST("user/forgotPassword")
-    fun forgotPassword(): Observable<ResponseBody>//找回密码
+    fun forgotPassword(@FieldMap map: Map<String, String>): Observable<ResponseBody>//忘记密码
 
+
+    @FormUrlEncoded
+    @POST("user/setNickName")
+    fun setNickName(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户昵称
 
 
 

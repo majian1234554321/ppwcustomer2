@@ -1,10 +1,13 @@
 package com.yjhh.common.api
 
 import android.content.Context
+import android.text.TextUtils
 import com.yjhh.common.base.WaitProgressDialog
+import com.yjhh.common.utils.LogUtils
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import okhttp3.ResponseBody
+import org.json.JSONObject
 
 
 abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
@@ -18,12 +21,27 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
         this.showProgress = showProgress
     }
 
-    override fun onNext(t:ResponseBody) {
-
-     val response =  t.string()
+    override fun onNext(t: ResponseBody) {
 
 
-        processValue(response)
+        val response = t.string()
+
+
+        LogUtils.i("ProcessObserver2", response)
+        if (!TextUtils.isEmpty(response) && response.contains("success")) {
+            val jsonValue = JSONObject(response)
+            if (jsonValue.getBoolean("success")) {
+                val jsonString = jsonValue.getString("data")
+                processValue(jsonString)
+            } else {
+                onFault(jsonValue.getString("message"))
+            }
+
+
+        } else {
+            onFault(response)
+        }
+
 
     }
 

@@ -27,7 +27,7 @@ import java.util.List;
 public class SplashActivity extends BaseActivity {
 
     public String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION};
     private TextView tips;
 
     @Override
@@ -60,7 +60,7 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void onNext(Integer t) {
                         LogUtils.i("TAG", "onGranted" + t + Thread.currentThread().getName());
-                       // tips.setText(String.valueOf(t));
+                        // tips.setText(String.valueOf(t));
                     }
 
                     @Override
