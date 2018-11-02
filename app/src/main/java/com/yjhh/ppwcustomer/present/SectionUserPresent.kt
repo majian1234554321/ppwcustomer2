@@ -3,17 +3,38 @@ package com.yjhh.ppwcustomer.present
 import android.content.Context
 import android.util.Log
 import com.yjhh.common.api.ProcessObserver2
-import com.yjhh.common.base.BaseApplication.context
+import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.present.BasePresent
+import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.model.SectionUserModel
 
 
 class SectionUserPresent(context: Context) : BasePresent() {
 
+    private lateinit var registView: RegistView
+
+    constructor(context: Context, registView: RegistView) : this(context) {
+        this.registView = registView
+    }
+
     val model = SectionUserModel()
 
     fun setAvater() {
 
+    }
+
+    fun forgotPassword(phone: String?, password: String?, smsCode: String?) {
+        toSubscribe2(model.forgotPassword(phone, password, smsCode), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("forgotPassword", response)
+                registView.registSuccess2(response)
+
+            }
+
+            override fun onFault(message: String) {
+                registView.registFault(message)
+            }
+        })
     }
 
 
@@ -26,11 +47,11 @@ class SectionUserPresent(context: Context) : BasePresent() {
         toSubscribe2(model.resetPassword(password, newPassword, smsCode, type), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("resetPassword", response)
-
+                registView.registSuccess2(response)
             }
 
             override fun onFault(message: String) {
-
+                registView.registFault(message)
             }
         })
     }

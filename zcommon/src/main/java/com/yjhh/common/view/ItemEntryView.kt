@@ -14,6 +14,7 @@ import android.widget.Toast
 
 import com.yjhh.common.R
 import com.yjhh.common.listener.NavigationOnClickListener
+import kotlinx.android.synthetic.main.itementryview.view.*
 
 
 class ItemEntryView @JvmOverloads constructor(
@@ -43,6 +44,13 @@ class ItemEntryView @JvmOverloads constructor(
             ContextCompat.getColor(context, R.color.colorPrimary)
         )
 
+        val ievunderline = type.getBoolean(
+            R.styleable.ItemEntryView_ievunderline,
+            false
+        )
+
+
+
         type.recycle()
 
         val view = View.inflate(context, R.layout.itementryview, this)
@@ -51,8 +59,16 @@ class ItemEntryView @JvmOverloads constructor(
         tv_name.setTextColor(textColor)
         tv_name.textSize = textSize
 
+        val line = view.findViewById<View>(R.id.line)
+
+        if (ievunderline) {
+            line.visibility = View.VISIBLE
+        } else {
+            line.visibility = View.GONE
+        }
 
         val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
+
 
         rl_background.setBackgroundColor(titleBarBackground)
 

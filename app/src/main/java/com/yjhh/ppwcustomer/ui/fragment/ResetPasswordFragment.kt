@@ -4,6 +4,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseFragment
@@ -12,7 +13,9 @@ import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.present.SectionUserPresent
 import io.reactivex.Observable
+import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,10 +29,21 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
     }
 
     override fun registSuccess2(date: String?) {
+        Toast.makeText(context, "密码修改成功,请重新登录", Toast.LENGTH_SHORT).show()
+
+        loginOut()
+
+        ARouter.getInstance()
+            .build("/LoginActivity/Login")
+            .withString("name", "老王")
+            .withInt("age", 23)
+            .navigation(context)
+        activity?.finish()
 
     }
 
     override fun registFault(registFaultMessage: String) {
+        Toast.makeText(context, "密码修改失败$registFaultMessage", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -47,63 +61,25 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
     val MAX_COUNT_TIME = 5L
 
     override fun onClick(v: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        if (et_password.text.length >= 6 && et_password2.text.length >= 6 && et_password.text.toString() != et_password2.text.toString()) {
+            val sectionUserPresent = SectionUserPresent(context, this)
+            sectionUserPresent.resetPassword(et_password.text.toString(), et_password2.text.toString(), "", "0")
+        } else {
+            Toast.makeText(context, "密码不能大于6位并且新旧密码不能相等", Toast.LENGTH_LONG).show()
+        }
+
     }
 
     override fun getLayoutRes(): Int = R.layout.resetpasswordfragment
 
     override fun initView(rootView: View?) {
 
-        val regByAccountPresent = RegByAccountPresent(context, this)
         bt_commit.setOnClickListener(this)
 
         tbv_title.setOnNavigation(NavigationOnClickListener {
             activity?.finish()
         })
-
-
-        val disposable = RxView.clicks(tv_verifyCode)
-            //防止重复点击
-            .throttleFirst(1, TimeUnit.SECONDS)
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .flatMap {
-                val phone = et_phone.text.toString()
-                if (TextUtils.isEmpty(phone) && phone.length == 11) {
-                    Toast.makeText(activity, "手机号码不能为空", Toast.LENGTH_SHORT).show()
-                    Observable.empty()
-                } else {
-                    Observable.just(true)
-                }
-            }
-            .doOnNext {
-                Log.i("TAG", "初始化")
-                regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .flatMap {
-                RxView.enabled(tv_verifyCode).accept(false)
-                RxTextView.text(tv_verifyCode).accept("剩余 $MAX_COUNT_TIME 秒")
-
-                Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
-                    .take(MAX_COUNT_TIME)
-                    //将递增数字替换成递减的倒计时数字
-                    .map { aLong -> MAX_COUNT_TIME - (aLong + 1); }
-            }
-
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                if (it == 0L) {
-                    RxView.enabled(tv_verifyCode).accept(true)
-                    RxTextView.text(tv_verifyCode).accept("发送验证码")
-
-                } else {
-                    RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
-
-                }
-                Log.i("TAG", it.toString())
-            }
-
-        compositeDisposable.add(disposable)
 
 
     }

@@ -2,9 +2,7 @@ package com.yjhh.ppwcustomer.ui.fragment
 
 import android.view.View
 import android.widget.Toast
-import com.yjhh.common.base.BaseApplication
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.common.utils.GlideImageLoader
 import kotlinx.android.synthetic.main.main1fragment.*

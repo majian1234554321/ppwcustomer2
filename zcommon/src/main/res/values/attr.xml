@@ -21,6 +21,7 @@
         <attr name="ievtextSize" format="dimension"/>
         <attr name="ievimageSrc" format="reference"/>
         <attr name="ievbackground" format="color"/>
+        <attr name="ievunderline" format="boolean"/>
     </declare-styleable>
 
 </resources>

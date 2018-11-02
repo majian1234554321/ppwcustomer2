@@ -10,11 +10,8 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SystemBarUtil
 
 import com.yjhh.ppwcustomer.R
-import com.yjhh.ppwcustomer.ui.fragment.ForgotPasswordFragment
-import com.yjhh.ppwcustomer.ui.fragment.MyAddressFragment
+import com.yjhh.ppwcustomer.ui.fragment.*
 
-import com.yjhh.ppwcustomer.ui.fragment.RegistFragment
-import com.yjhh.ppwcustomer.ui.fragment.ResetPasswordFragment
 import kotlinx.android.synthetic.main.activity_display.*
 
 
@@ -33,7 +30,7 @@ class DisplayActivity : BaseActivity() {
         ARouter.getInstance().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
-        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary),1.0f);
+        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary), 1.0f);
         frameLayout.setPadding(0, getStatusBarHeight(this), 0, 0)
 
         when (displayTab) {
@@ -55,8 +52,21 @@ class DisplayActivity : BaseActivity() {
                     .replace(R.id.frameLayout, fragments).commit()
             }
 
-            "MyAddressFragment" ->{
+            "MyAddressFragment" -> {
                 val fragments = MyAddressFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, fragments).commit()
+            }
+
+
+            "AboutFragment" -> {
+                val fragments = AboutFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, fragments).commit()
+            }
+
+            "SettingFragment" -> {
+                val fragments = SettingFragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, fragments).commit()
             }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.yjhh.common.utils.LogUtils;
+import com.yjhh.common.utils.SharedPreferencesUtils;
 import io.reactivex.disposables.CompositeDisposable;
 
 import java.util.List;
@@ -236,5 +237,14 @@ public abstract class BaseFragment extends Fragment {
         if (compositeDisposable != null) {
             compositeDisposable.clear();
         }
+    }
+
+
+    public void loginOut(){
+        SharedPreferencesUtils.setParam(context, "mobile", "");
+        SharedPreferencesUtils.setParam(context, "nickName", "");
+        SharedPreferencesUtils.setParam(context, "sessionId", "");
+        SharedPreferencesUtils.setParam(context, "type", "");
+
     }
 }

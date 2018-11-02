@@ -43,6 +43,7 @@ class RegByAccountModel {
             put("phone", phone)
             put("password", password)
             put("smsCode", smsCode)
+            put("identity", identity)
             put("refId", refId)
 
         }
