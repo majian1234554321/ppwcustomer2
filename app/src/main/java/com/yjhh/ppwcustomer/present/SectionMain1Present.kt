@@ -68,7 +68,7 @@ class SectionMain1Present(context: Context) : BasePresent() {
     }
 
 
-    fun joinMain(pageIndex: Int, pageSize: Int) {
+    fun joinMain(pageIndex: Int, pageSize: Int,flag:String) {
 
         val homeIndex = sectionMainModel.homeIndex()
         val recProduct = sectionMainModel.recProduct(pageIndex, pageSize)
@@ -118,7 +118,7 @@ class SectionMain1Present(context: Context) : BasePresent() {
             .subscribe(
                 {
                     if (it != null) {
-                        main1View.onSuccess(it)
+                        main1View.onSuccess(it,flag)
                     } else {
                         main1View.onFault("无法获取首页数据")
                     }

@@ -9,7 +9,6 @@
 
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/rl"
-
                     android:layout_height="wrap_content">
 
         <include android:id="@+id/layout"
@@ -43,13 +42,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="220dp"/>
 
-                        <android.support.v7.widget.RecyclerView
-                                android:id="@+id/rv_Grid"
+                        <com.yjhh.ppwcustomer.ui.customview.GridViewPager
+                                android:id="@+id/mGridViewPager"
+                                android:layout_height="180dp"
                                 android:background="#FFFFFF"
-                                android:paddingLeft="8dp"
-                                android:paddingBottom="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="200dp"/>
+                                android:layout_width="match_parent" />
 
                     </LinearLayout>
 

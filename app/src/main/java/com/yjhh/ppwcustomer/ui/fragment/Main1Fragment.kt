@@ -19,39 +19,25 @@ import com.yjhh.ppwcustomer.common.utils.GlideImageLoader
 import com.yjhh.ppwcustomer.present.SectionMain1Present
 import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.yjhh.ppwcustomer.adapter.RvAdapter
+
+import android.util.Log
+
+
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 
 
-class Main1Fragment : BaseFragment(), Main1View, OnRefreshListener,
-    OnLoadMoreListener {
-    override fun onLoadMore(refreshLayout: RefreshLayout) {
-        isRefresh = false
-        startindex++
-        sectionMain1Present.joinMain(startindex, pageSize)
-    }
-
-    override fun onRefresh(refreshLayout: RefreshLayout) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        isRefresh = true
-        startindex = 0
-        sectionMain1Present.joinMain(startindex, pageSize)
-        refreshLayout.finishRefresh()
-    }
+class Main1Fragment : BaseFragment(), Main1View {
 
 
     var startindex = 0
-    val pageSize = 7
+    val pageSize = 10
 
     var isRefresh = true
 
     override fun getLayoutRes(): Int = R.layout.main1fragment
 
 
-    override fun onSuccess(main1bean: MainFinalDataBean) {
+    override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
 
         if (main1bean.main1HeadBean != null) {
             val bannerImage = ArrayList<String>()
@@ -65,7 +51,7 @@ class Main1Fragment : BaseFragment(), Main1View, OnRefreshListener,
 
 
             val list = ArrayList<Main1HeadBean.TabsBean>()
-
+            list.clear()
             if (main1bean.main1HeadBean.tabs != null) {
                 main1bean.main1HeadBean.tabs.forEach { mutableList ->
                     mutableList.forEach {
@@ -75,82 +61,119 @@ class Main1Fragment : BaseFragment(), Main1View, OnRefreshListener,
             }
 
 
-            rv_Grid.adapter = RvAdapter(context, list)
+            mGridViewPager
+                //设置每一页的容量
+                .setPageSize(10)
+                .setGridItemClickListener { pos, position, str ->
+                    Log.d(
+                        "123",
+                        pos.toString() + "/" + str+position
+                    )
+
+
+
+
+                }
+                .setGridItemLongClickListener { pos, position, str ->
+                    Log.d(
+                        "456",
+                        pos.toString() + "/" + str
+                    )
+                }
+                .init(list)
+
 
         } else {
 
         }
 
 
+
         if (main1bean.main1FootBean != null) {
-            setData(isRefresh, main1bean.main1FootBean.items)
+
+            if ("refresh" == flag) {
+                setData(true, main1bean.main1FootBean.items)
+                mAdapter.setEnableLoadMore(true)
+            } else {
+                val isRefresh = startindex == 1
+                setData(isRefresh, main1bean.main1FootBean.items)
+            }
+
         }
 
 
     }
 
     override fun onFault(errorMsg: String?) {
-
+        mAdapter.setEnableLoadMore(true)
     }
 
-
+    var mAdapter = Main1FragmentAdapter()
     lateinit var sectionMain1Present: SectionMain1Present
-    lateinit var mAdapter: Main1FragmentAdapter
     override fun initView(rootView: View?) {
 
         sectionMain1Present = SectionMain1Present(context, this)
-        sectionMain1Present.joinMain(startindex, pageSize)
-        val list = ArrayList<Main1FootBean.ItemsBean>()
-        mAdapter = Main1FragmentAdapter(context,list)
-
+        // sectionMain1Present.joinMain(startindex, pageSize,)
+        mAdapter.setOnLoadMoreListener { loadMore() }
+        swipeLayout.setRefreshHeader(ClassicsHeader(context))
+        initRefreshLayout()
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerview.layoutManager = linearLayoutManager
         recyclerview.adapter = mAdapter
 
-        swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        swipeLayout.setOnRefreshListener(this)
-        swipeLayout.setOnLoadMoreListener(this)
-        swipeLayout.setEnableRefresh(true)
 
 
 
 
-        rv_Grid.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
-        rv_Grid.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
 
-                outRect.left = 10
-                outRect.top = 10
-                outRect.top = 10
-            }
-        })
+
+
+
+
+
+
+        refresh("refresh")
 
     }
 
 
-    fun setData(isRefresh: Boolean, data: ArrayList<Main1FootBean.ItemsBean>) {
+    private fun initRefreshLayout() {
 
+        swipeLayout.setOnRefreshListener { refreshLayout ->
+            refresh("refresh")
+            refreshLayout.finishRefresh()
+        }
+    }
+
+    private fun refresh(flag: String) {
+        startindex = 0
+        mAdapter.setEnableLoadMore(false)//这里的作用是防止下拉刷新的时候还可以上拉加载
+        sectionMain1Present.joinMain(startindex, pageSize, flag);
+    }
+
+    private fun loadMore() {
+        sectionMain1Present.joinMain(startindex, pageSize, "load")
+
+    }
+
+
+    fun setData(isRefresh: Boolean, data: List<Main1FootBean.ItemsBean>) {
+        startindex++
+        val size = data.size
         if (isRefresh) {
-            startindex = 0
-            mAdapter.setRefreshData(data)
+            mAdapter.setNewData(data)
         } else {
-            if (data.isNotEmpty()) {
-                if (data.size == pageSize) {
-                    mAdapter.setLoadMoreData(data)
-
-                } else {
-                    mAdapter.setLoadMoreData(data)
-
-                    Toast.makeText(context, "没有更多数据了", Toast.LENGTH_SHORT).show()
-
-
-
-
-                }
-            } else {
-
-                Toast.makeText(context, "数据加载失败", Toast.LENGTH_LONG).show()
+            if (size > 0) {
+                mAdapter.addData(data)
             }
+        }
+        if (size < PAGE_SIZE) {
+            //第一页如果不够一页就不显示没有更多数据布局
+            mAdapter.loadMoreEnd(isRefresh)
+            Toast.makeText(context, "no more data", Toast.LENGTH_SHORT).show()
+        } else {
+            mAdapter.loadMoreComplete()
         }
 
 
