@@ -36,7 +36,6 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         tips = findViewById(R.id.text);
-
         requestRuntimePermission(permissions, new PermissionListener() {
             @Override
             public void onGranted() {

@@ -12,6 +12,7 @@ import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.present.SectionUserPresent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -20,16 +21,16 @@ import java.util.concurrent.TimeUnit
 
 class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
     override fun getLayoutRes(): Int = R.layout.forgotpasswordfragment
-    override fun registSuccess(date: LoginBean?) {
-
-    }
+    override fun registSuccess(date: LoginBean?) = Unit
 
     override fun registSuccess2(date: String?) {
+        Toast.makeText(context, "重置密码成功", Toast.LENGTH_SHORT).show()
+        activity?.finish()
 
     }
 
     override fun registFault(registFaultMessage: String) {
-
+        Toast.makeText(context, "重置密码失败$registFaultMessage", Toast.LENGTH_SHORT).show()
     }
 
     override fun sendSMSSuccess(date: LoginBean?) {
@@ -41,12 +42,19 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView 
     }
 
     val identity = "0"//身份（即客户端类型，0用户 1骑手 2商户）
-    val TYPE = "21"//1登录 2注册 21 重置密码
+    val TYPE = "22"//1登录 2注册 21 重置密码 22找回密码
     val refId = "";//推荐人ID/phone
     val MAX_COUNT_TIME = 5L
 
     override fun onClick(v: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        if (et_phone.text.length == 11 && et_password.text.length >= 6 && et_verifyCode.text != null) {
+            val present = SectionUserPresent(context, this)
+            present.forgotPassword(et_phone.text.toString(), et_password.text.toString(), et_verifyCode.text.toString())
+        } else {
+            Toast.makeText(context, "手机号、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 
@@ -66,26 +74,33 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView 
             .subscribeOn(AndroidSchedulers.mainThread())
             .flatMap {
                 val phone = et_phone.text.toString()
-                if (TextUtils.isEmpty(phone) && phone.length == 11) {
-                    Toast.makeText(activity, "手机号码不能为空", Toast.LENGTH_SHORT).show()
-                    Observable.empty()
-                } else {
+                if (!TextUtils.isEmpty(phone) && phone.length == 11) {
                     Observable.just(true)
+                } else {
+                    Toast.makeText(activity, "手机号码不符合要求", Toast.LENGTH_SHORT).show()
+                    Observable.empty()
                 }
             }
             .doOnNext {
                 Log.i("TAG", "初始化")
-                regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                if (it) {
+                    regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                }
+
             }
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap {
-                RxView.enabled(tv_verifyCode).accept(false)
-                RxTextView.text(tv_verifyCode).accept("剩余 $MAX_COUNT_TIME 秒")
+                if (it) {
+                    RxView.enabled(tv_verifyCode).accept(false)
+                    RxTextView.text(tv_verifyCode).accept("剩余 $MAX_COUNT_TIME 秒")
 
-                Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
-                    .take(MAX_COUNT_TIME)
-                    //将递增数字替换成递减的倒计时数字
-                    .map { aLong -> MAX_COUNT_TIME - (aLong + 1); }
+                    Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
+                        .take(MAX_COUNT_TIME)
+                        //将递增数字替换成递减的倒计时数字
+                        .map { aLong -> MAX_COUNT_TIME - (aLong + 1); }
+                } else {
+                    Observable.just(0L)
+                }
             }
 
             .observeOn(AndroidSchedulers.mainThread())

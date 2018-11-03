@@ -2,7 +2,6 @@ package com.yjhh.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.yjhh.common.base.BaseApplication;
 
 public class SharedPreferencesUtils {
     /**

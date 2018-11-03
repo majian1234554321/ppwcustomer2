@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <ImageView android:layout_width="120dp" android:layout_height="80dp"
+               android:id="@+id/iv_image"
+               android:scaleType="fitXY"
+               android:src="@mipmap/ic_launcher"
+    />
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/tv_name"
+              android:layout_toRightOf="@+id/iv_image"
+              android:text="正宗油爆大虾"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="1.2KM"
+              android:id="@+id/tv_distance"
+              android:layout_alignParentRight="true"
+
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="¥ 19.9"
+              android:layout_toRightOf="@+id/iv_image"
+              android:layout_above="@+id/tv_info"
+              android:gravity="center"
+              android:layout_below="@id/tv_name"
+              android:id="@+id/tv_price"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="¥ 30.0"
+              android:id="@+id/tv_discountPrice"
+              android:layout_marginLeft="12dp"
+              android:layout_toRightOf="@+id/tv_price"
+              android:layout_above="@+id/tv_info"
+              android:gravity="center"
+              android:layout_below="@id/tv_name"
+
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="提供121212wqwq121"
+              android:id="@+id/tv_info"
+              android:layout_alignBottom="@+id/iv_image"
+              android:layout_toRightOf="@+id/iv_image"
+    />
+
+</RelativeLayout>

@@ -38,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //transparentAndCoverStatusBar(this);
         SystemBarUtil.immersiveStatusBar(this,0f);
-       // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),1.0f);
+       // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
 

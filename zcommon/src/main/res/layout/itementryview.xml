@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:id="@+id/rl_background"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+    <TextView android:layout_width="match_parent"
+              android:id="@+id/tv_name"
+              android:layout_centerVertical="true"
+              android:layout_height="wrap_content"/>
+    <View android:layout_width="match_parent"
+          android:id="@+id/line"
+          android:layout_marginLeft="12dp"
+          android:background="@color/all_9"
+          android:layout_alignParentBottom="true"
+          android:layout_height="1dp"/>
+
+
+</RelativeLayout>

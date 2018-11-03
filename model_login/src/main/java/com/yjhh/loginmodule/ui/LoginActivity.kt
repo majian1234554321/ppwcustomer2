@@ -18,6 +18,7 @@ import org.json.JSONObject
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseActivity
+import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.loginmodule.R
 import com.yjhh.loginmodule.bean.LoginBean
@@ -61,12 +62,16 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
                     .navigation()
             }
 
-            R.id.forget_password ->{
+            R.id.forget_password -> {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "ForgotPasswordFragment")
                     .withInt("age", 23)
                     .navigation()
+            }
+
+            R.id.iv_close -> {
+                finish()
             }
             else -> {
             }
@@ -94,6 +99,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         SharedPreferencesUtils.setParam(this, "type", type)
 
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+
 
         finish()
     }
@@ -153,6 +159,12 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         iv_show_pwd.setOnClickListener(this)
         regist.setOnClickListener(this)
         forget_password.setOnClickListener(this)
+
+        iv_close.setOnClickListener(this)
+
+
+        iv_weChat.setOnClickListener(this)
+        iv_sina.setOnClickListener(this)
 
         compositeDisposable.add(disposable1)
 

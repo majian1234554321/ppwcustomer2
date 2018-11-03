@@ -39,8 +39,8 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
     val refId = "";//推荐人ID/phone
 
     override fun registSuccess(date: LoginBean?) {
-//        Toast.makeText(context, "用户注册成功", Toast.LENGTH_SHORT).show()
-//        activity?.finish()
+
+        activity?.finish()
     }
 
     override fun registFault(registFaultMessage: String) {
@@ -61,33 +61,18 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
 
 
             R.id.bt_register -> {
-                val observeret_phone = RxTextView.textChanges(et_phone)
-                val observeret_password = RxTextView.textChanges(et_password)
-                val observable = Observable.combineLatest(observeret_phone, observeret_password,
-                    BiFunction<CharSequence, CharSequence, Boolean> { phone, password ->
-                        if (phone.length == 11 && password.length >= 6) {
-                            true
-                        } else {
-                            Toast.makeText(context, "用户名或密码不符合要求", Toast.LENGTH_SHORT).show()
-                            false
-                        }
-                    }
-                ).subscribe {
-                    if (it) {
-                        regByAccountPresent.regByAccount2(
-                            et_phone.text.toString()
-                            , et_password.text.toString()
-                            , et_verifyCode.text.toString()
-                            , identity
-                            , refId
-                        )
-                    } else {
-                        Toast.makeText(activity, "注册信息填写错误", Toast.LENGTH_SHORT).show()
-                    }
+
+                if (et_phone.text.length == 11 && et_password.text.length >= 6 && et_verifyCode.text != null) {
+                    regByAccountPresent.regByAccount2(
+                        et_phone.text.toString()
+                        , et_password.text.toString()
+                        , et_verifyCode.text.toString()
+                        , identity
+                        , refId
+                    )
+                } else {
+                    Toast.makeText(context, "用户名、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
                 }
-
-                compositeDisposable.add(observable)
-
 
             }
 
@@ -117,33 +102,40 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
             .subscribeOn(AndroidSchedulers.mainThread())
             .flatMap {
                 val phone = et_phone.text.toString()
-                if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(activity, "手机号码不能为空", Toast.LENGTH_SHORT).show()
-                    Observable.empty()
-                } else {
+                if (!TextUtils.isEmpty(phone) && phone.length == 11) {
                     Observable.just(true)
+                } else {
+                    Toast.makeText(activity, "手机号码不符合要求", Toast.LENGTH_SHORT).show()
+                    Observable.empty()
                 }
             }
 
             .doOnNext {
-                Log.i("TAG", "初始化")
-                regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                if (it) {
+                    Log.i("TAG", "初始化")
+                    regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                }
             }
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap {
-                RxView.enabled(tv_verifyCode).accept(false)
-                RxTextView.text(tv_verifyCode).accept("剩余 $MAX_COUNT_TIME 秒")
+                if (it) {
+                    RxView.enabled(tv_verifyCode).accept(false)
+                    RxTextView.text(tv_verifyCode).accept("剩余 $MAX_COUNT_TIME 秒")
 
-                Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
-                    .take(MAX_COUNT_TIME)
-                    .map { aLong -> MAX_COUNT_TIME - (aLong + 1); }
+                    Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
+                        .take(MAX_COUNT_TIME)
+                        .map { aLong -> MAX_COUNT_TIME - (aLong + 1); }
+                } else {
+                    Observable.just(0L)
+                }
+
+
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (it == 0L) {
                     RxView.enabled(tv_verifyCode).accept(true)
                     RxTextView.text(tv_verifyCode).accept("发送验证码")
-
                 } else {
                     RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
 

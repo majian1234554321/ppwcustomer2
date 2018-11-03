@@ -59,6 +59,19 @@ class SectionUserModel {
     }
 
 
+
+    fun forgotPassword(phone: String?, password: String?,smsCode:String?): Observable<ResponseBody> { //
+
+        map.clear()
+        map["phone"] = phone
+        map["password"] = password
+        map["smsCode"] = smsCode
+        return ApiServices.getInstance().create(SectionUserService::class.java).forgotPassword(map)
+    }
+
+
+
+
     fun resetPassword(
         password: String?,
         newPassword: String?,

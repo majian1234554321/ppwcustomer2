@@ -101,25 +101,8 @@ class MainActivity : BaseActivity() {
                     }
 
                     3 -> {
-
-                        if (!TextUtils.isEmpty(
-                                SharedPreferencesUtils.getParam(
-                                    this@MainActivity,
-                                    "sessionId",
-                                    ""
-                                ) as String
-                            )
-                        ) {
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.frameLayout, fragment4).commit()
-                        } else {
-                            ARouter.getInstance()
-                                .build("/LoginActivity/Login")
-                                .withString("name", "老王")
-                                .withInt("age", 23)
-                                .navigation(this@MainActivity)
-                        }
-
 
                     }
 

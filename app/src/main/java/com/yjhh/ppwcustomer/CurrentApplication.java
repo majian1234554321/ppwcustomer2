@@ -6,10 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.google.gson.Gson;
-import com.tencent.tinker.loader.app.TinkerApplication;
-import com.tencent.tinker.loader.shareutil.ShareConstants;
-import com.yjhh.common.base.BaseApplication;
-import com.yjhh.ppwcustomer.bean.ProvinceBean;
+import com.yjhh.common.BaseApplication;
 import com.yjhh.ppwcustomer.bean.ProvinceBean2;
 import com.yjhh.ppwcustomer.common.utils.GetJsonDataUtil;
 import io.reactivex.*;
@@ -17,10 +14,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CurrentApplication extends BaseApplication {
 
