@@ -2,6 +2,7 @@ package com.yjhh.common.api
 
 import android.content.Context
 import android.text.TextUtils
+import com.google.gson.Gson
 import com.yjhh.common.base.WaitProgressDialog
 import com.yjhh.common.utils.LogUtils
 import io.reactivex.Observer
@@ -12,6 +13,14 @@ import org.json.JSONObject
 
 abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
     private var showProgress: Boolean = true
+
+
+    object constructor  {
+        val gson = Gson()
+    }
+
+
+
     // private var progressDialog: WaitProgressDialog = WaitProgressDialog(context)
     override fun onSubscribe(d: Disposable) {
 

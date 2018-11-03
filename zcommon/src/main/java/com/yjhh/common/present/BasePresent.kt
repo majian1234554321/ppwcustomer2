@@ -11,6 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 
 open class BasePresent {
+
     fun <T> toSubscribe(o: Observable<BaseResponse<T>>, s: Observer<BaseResponse<T>>) {
         o.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

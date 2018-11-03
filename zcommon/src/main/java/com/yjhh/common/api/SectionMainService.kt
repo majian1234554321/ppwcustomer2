@@ -9,9 +9,15 @@ import retrofit2.http.POST
 interface SectionMainService {
 
 
+
+    @POST("home")
+    fun homeIndex(): Observable<ResponseBody>// 用户首页
+
+
+
     @FormUrlEncoded
-    @POST("home/index")
-    fun cards(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 用户首页
+    @POST("shop/recProduct")
+    fun recProduct(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 获取推荐商品
 
 
 }
