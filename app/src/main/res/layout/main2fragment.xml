@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                xmlns:tl="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent" android:layout_height="match_parent">
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:layout_marginTop="24dp"
               android:gravity="center"
+              android:id="@+id/tv_title"
               android:textSize="@dimen/sp_16"
               android:padding="@dimen/sp_12"
               android:text="订单"
     />
 
-    <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                            android:id="@+id/recyclerview"
-                                            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
+    <com.flyco.tablayout.SlidingTabLayout
+            android:layout_below="@+id/tv_title"
+            android:id="@+id/mTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            tl:tl_tab_space_equal="true"
+            android:background="#F6CE59"
+            tl:tl_indicator_width="10dp"/>
+    <android.support.v4.view.ViewPager android:layout_width="match_parent"
+                                       android:id="@+id/mViewPager"
+                                       android:layout_below="@+id/mTabLayout"
+                                       android:layout_height="wrap_content"/>
 
 </RelativeLayout>

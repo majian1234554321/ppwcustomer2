@@ -71,8 +71,6 @@ class Main1Fragment : BaseFragment(), Main1View {
                     )
 
 
-
-
                 }
                 .setGridItemLongClickListener { pos, position, str ->
                     Log.d(
@@ -113,7 +111,7 @@ class Main1Fragment : BaseFragment(), Main1View {
     override fun initView(rootView: View?) {
 
         sectionMain1Present = SectionMain1Present(context, this)
-        // sectionMain1Present.joinMain(startindex, pageSize,)
+
         mAdapter.setOnLoadMoreListener { loadMore() }
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initRefreshLayout()
@@ -121,15 +119,6 @@ class Main1Fragment : BaseFragment(), Main1View {
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerview.layoutManager = linearLayoutManager
         recyclerview.adapter = mAdapter
-
-
-
-
-
-
-
-
-
 
 
 
@@ -175,8 +164,6 @@ class Main1Fragment : BaseFragment(), Main1View {
         } else {
             mAdapter.loadMoreComplete()
         }
-
-
     }
 
 
