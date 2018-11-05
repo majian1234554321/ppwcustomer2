@@ -25,6 +25,8 @@ import java.util.concurrent.TimeUnit
 
 
 class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, NavigationOnClickListener {
+
+
     override fun OnNavigation() {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -86,7 +88,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
 
     val MAX_COUNT_TIME = 5L
     private lateinit var regByAccountPresent: RegByAccountPresent
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
 
         regByAccountPresent = RegByAccountPresent(context, this)

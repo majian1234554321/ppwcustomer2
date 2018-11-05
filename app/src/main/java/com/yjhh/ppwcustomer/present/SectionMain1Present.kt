@@ -70,6 +70,7 @@ class SectionMain1Present(context: Context) : BasePresent() {
 
     fun joinMain(pageIndex: Int, pageSize: Int,flag:String) {
 
+
         val homeIndex = sectionMainModel.homeIndex()
         val recProduct = sectionMainModel.recProduct(pageIndex, pageSize)
 

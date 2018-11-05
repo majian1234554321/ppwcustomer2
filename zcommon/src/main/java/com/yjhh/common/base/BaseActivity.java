@@ -23,11 +23,12 @@ import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
 import com.yjhh.common.utils.SystemBarUtil;
 import io.reactivex.disposables.CompositeDisposable;
+import me.yokeyword.fragmentation.SupportActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends SupportActivity  {
 
     public static PermissionListener mListener;
     public static final int REQUEST_CODE = 1;

@@ -9,6 +9,8 @@ import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.settingfragment.*
 
 class SettingFragment : BaseFragment(), View.OnClickListener {
+
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iev_resetPwd -> {
@@ -51,7 +53,7 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         iev_resetPwd.setOnClickListener(this)
         iev_resetPhone.setOnClickListener(this)
         iev_resetMessage.setOnClickListener(this)

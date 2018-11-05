@@ -6,6 +6,8 @@ import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.aboutfragment.*
 
 class AboutFragment : BaseFragment(), View.OnClickListener {
+    override fun getLayoutRes(): Int = R.layout.aboutfragment
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iev_1 -> {
@@ -19,9 +21,8 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun getLayoutRes(): Int = R.layout.aboutfragment
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         iev_1.setOnClickListener(this)
         iev_2.setOnClickListener(this)
         iev_3.setOnClickListener(this)

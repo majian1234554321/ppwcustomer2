@@ -78,9 +78,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         }
     }
 
-    override fun onSuccess(result: LoginBean?) {
-        // Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
-    }
+    override fun onSuccess(result: LoginBean?) = Unit
 
 
     override fun onSuccess2(result: String?) {
@@ -100,6 +98,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
 
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
 
+        RxBus.default.post(LoginBean(mobile, true))
 
         finish()
     }

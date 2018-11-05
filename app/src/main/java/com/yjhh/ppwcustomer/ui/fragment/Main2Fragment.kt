@@ -15,7 +15,9 @@ import java.util.ArrayList
 
 
 class Main2Fragment : BaseFragment() {
-    override fun initView(rootView: View?) {
+
+
+    override fun initView() {
         val mTitles = arrayOf("全部", "进行中", "待评价")
 
 

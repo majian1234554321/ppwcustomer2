@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.forgotpasswordfragment.*
 import java.util.concurrent.TimeUnit
 
 class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
+
+
     override fun getLayoutRes(): Int = R.layout.forgotpasswordfragment
     override fun registSuccess(date: LoginBean?) = Unit
 
@@ -58,7 +60,7 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView 
     }
 
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
         val regByAccountPresent = RegByAccountPresent(context, this)
         bt_commit.setOnClickListener(this)
