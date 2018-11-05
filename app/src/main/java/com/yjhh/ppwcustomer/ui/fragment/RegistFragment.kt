@@ -25,6 +25,8 @@ import java.util.concurrent.TimeUnit
 
 
 class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, NavigationOnClickListener {
+
+
     override fun OnNavigation() {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

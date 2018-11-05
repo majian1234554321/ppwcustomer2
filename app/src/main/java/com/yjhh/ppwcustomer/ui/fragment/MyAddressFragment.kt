@@ -10,6 +10,8 @@ import com.yjhh.ppwcustomer.present.SectionUserPresent
 import kotlinx.android.synthetic.main.myaddressfragment.*
 
 class MyAddressFragment : BaseFragment() {
+
+
     override fun getLayoutRes(): Int = R.layout.myaddressfragment
 
     override fun initView(rootView: View) {

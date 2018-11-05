@@ -33,47 +33,66 @@ class DisplayActivity : BaseActivity() {
         SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary), 1.0f);
         frameLayout.setPadding(0, getStatusBarHeight(this), 0, 0)
 
+
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        var fragments: BaseFragment? = null
         when (displayTab) {
             "RegistFragment" -> {
-                val fragments = RegistFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = RegistFragment()
             }
 
             "ResetPasswordFragment" -> {
-                val fragments = ResetPasswordFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = ResetPasswordFragment()
             }
 
             "ForgotPasswordFragment" -> {
-                val fragments = ForgotPasswordFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = ForgotPasswordFragment()
             }
 
             "MyAddressFragment" -> {
-                val fragments = MyAddressFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = MyAddressFragment()
+
             }
 
-
             "AboutFragment" -> {
-                val fragments = AboutFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = AboutFragment()
+
             }
 
             "SettingFragment" -> {
-                val fragments = SettingFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragments).commit()
+                fragments = SettingFragment()
+
             }
+
+            "CollectionFragment" -> {
+                fragments = CollectionFragment()
+
+            }
+
+            "MyMessageFragment" -> {
+                fragments = CollectionFragment()
+
+            }
+
+            "RecentlyBrowseFragment" -> {
+                fragments = CollectionFragment()
+
+            }
+
+            "CouponFragment" -> {
+                fragments = CouponFragment()
+
+            }
+
 
             else -> {
 
             }
+        }
+
+
+        if (fragments != null) {
+            fragmentTransaction.replace(R.id.frameLayout, fragments).commit()
         }
 
 

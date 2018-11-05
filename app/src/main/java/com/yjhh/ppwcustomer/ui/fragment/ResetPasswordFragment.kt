@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.resetpasswordfragment.*
 import java.util.concurrent.TimeUnit
 
 class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
+
+
     override fun registSuccess(date: LoginBean?) {
 
     }
@@ -41,6 +43,8 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
         activity?.finish()
 
     }
+
+
 
     override fun registFault(registFaultMessage: String) {
         Toast.makeText(context, "密码修改失败$registFaultMessage", Toast.LENGTH_SHORT).show()

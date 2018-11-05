@@ -29,4 +29,7 @@
     <color name="grayf1">#F1F1F1</color>
     <color name="grayf9">#F9F9F9</color>
     <color name="grayfe">#FEFEFE</color>
+
+    <color name="tab_unselect">#c9c9c9</color>
+
 </resources>

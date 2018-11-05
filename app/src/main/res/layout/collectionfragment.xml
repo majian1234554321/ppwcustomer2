@@ -14,7 +14,7 @@
               android:id="@+id/tv_title"
               android:textSize="@dimen/sp_16"
               android:padding="@dimen/sp_12"
-              android:text="订单"
+              android:text="收藏"
     />
 
 

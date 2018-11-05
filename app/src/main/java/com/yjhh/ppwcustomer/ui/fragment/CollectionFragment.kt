@@ -1,26 +1,17 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-
 import android.view.View
+import com.flyco.tablayout.listener.CustomTabEntity
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
-
-import com.flyco.tablayout.listener.CustomTabEntity
 import com.yjhh.ppwcustomer.adapter.Main2ViewPagerAdapter
+import kotlinx.android.synthetic.main.collectionfragment.*
 
-import com.yjhh.ppwcustomer.bean.TabEntity
-import kotlinx.android.synthetic.main.main2fragment.*
-import kotlinx.android.synthetic.main.main2fragment.view.*
-import java.util.ArrayList
-
-
-class Main2Fragment : BaseFragment() {
+class CollectionFragment : BaseFragment() {
 
 
     override fun initView(rootView: View?) {
-        val mTitles = arrayOf("全部", "进行中", "待评价")
-
-
+        val mTitles = arrayOf("商家", "商品", "内容")
 
 
         val mTabEntities = ArrayList<CustomTabEntity>()
@@ -32,10 +23,12 @@ class Main2Fragment : BaseFragment() {
 
 
 
-        mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments,mTitles)
+        mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, mTitles)
         mTabLayout.setViewPager(mViewPager)
 
     }
 
-    override fun getLayoutRes(): Int = R.layout.main2fragment
+    override fun getLayoutRes(): Int = R.layout.collectionfragment
+
+
 }

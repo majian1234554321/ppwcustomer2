@@ -21,24 +21,45 @@ import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
 
 import android.util.Log
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 
 
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 
 
 class Main1Fragment : BaseFragment(), Main1View {
+    override fun getLayoutRes(): Int = R.layout.main1fragment
+
+    override fun initView(v: View) {
+        mAdapter = Main1FragmentAdapter()
+        sectionMain1Present = SectionMain1Present(context, this)
+
+        swipeLayout.setRefreshHeader(ClassicsHeader(context))
+        swipeLayout.setRefreshFooter(ClassicsFooter(context))
+
+        initRefreshLayout()
+        // mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerview.layoutManager = linearLayoutManager
+        recyclerview.adapter = mAdapter
+
+        swipeLayout.setOnLoadMoreListener {
+            loadMore()
+        }
+        swipeLayout.autoRefresh()
+
+    }
+
+
 
 
     var startindex = 0
     val pageSize = 10
 
-    var isRefresh = true
-
-    override fun getLayoutRes(): Int = R.layout.main1fragment
-
 
     override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
 
+        swipeLayout.finishLoadMore()
         if (main1bean.main1HeadBean != null) {
             val bannerImage = ArrayList<String>()
             main1bean.main1HeadBean.banners.forEach {
@@ -67,7 +88,7 @@ class Main1Fragment : BaseFragment(), Main1View {
                 .setGridItemClickListener { pos, position, str ->
                     Log.d(
                         "123",
-                        pos.toString() + "/" + str+position
+                        pos.toString() + "/" + str + position
                     )
 
 
@@ -91,7 +112,7 @@ class Main1Fragment : BaseFragment(), Main1View {
 
             if ("refresh" == flag) {
                 setData(true, main1bean.main1FootBean.items)
-                mAdapter.setEnableLoadMore(true)
+                //  mAdapter.setEnableLoadMore(true)
             } else {
                 val isRefresh = startindex == 1
                 setData(isRefresh, main1bean.main1FootBean.items)
@@ -103,28 +124,11 @@ class Main1Fragment : BaseFragment(), Main1View {
     }
 
     override fun onFault(errorMsg: String?) {
-        mAdapter.setEnableLoadMore(true)
+        swipeLayout.finishLoadMore()
     }
 
-    var mAdapter = Main1FragmentAdapter()
+    lateinit var mAdapter: Main1FragmentAdapter
     lateinit var sectionMain1Present: SectionMain1Present
-    override fun initView(rootView: View?) {
-
-        sectionMain1Present = SectionMain1Present(context, this)
-
-        mAdapter.setOnLoadMoreListener { loadMore() }
-        swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        initRefreshLayout()
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerview.layoutManager = linearLayoutManager
-        recyclerview.adapter = mAdapter
-
-
-
-        refresh("refresh")
-
-    }
 
 
     private fun initRefreshLayout() {
@@ -138,7 +142,7 @@ class Main1Fragment : BaseFragment(), Main1View {
     private fun refresh(flag: String) {
         startindex = 0
         mAdapter.setEnableLoadMore(false)//这里的作用是防止下拉刷新的时候还可以上拉加载
-        sectionMain1Present.joinMain(startindex, pageSize, flag);
+        sectionMain1Present.joinMain(startindex, pageSize, flag)
     }
 
     private fun loadMore() {

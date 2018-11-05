@@ -16,7 +16,6 @@
                         android:layout_height="wrap_content">
 
 
-
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="60dp"
@@ -53,6 +52,7 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:drawableTop="@mipmap/ic_launcher"
                       android:layout_weight="1"
+                      android:id="@+id/tv_Coupon"
                       android:gravity="center"
                       android:text="优惠券"
             />
@@ -60,16 +60,32 @@
                       android:drawableTop="@mipmap/ic_launcher"
                       android:layout_weight="1"
                       android:gravity="center"
+                      android:id="@+id/tv_Integral"
                       android:text="金币"
             />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:drawableTop="@mipmap/ic_launcher"
                       android:layout_weight="1"
+                      android:id="@+id/tv_Collection"
                       android:gravity="center"
                       android:text="收藏"
             />
 
         </LinearLayout>
+
+
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_evaluate"
+                app:ievtextValue="我的评价"
+                app:ievunderline="true"
+                app:ievbackground="@color/white"
+                app:ievtextColor="@color/all_9"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+
+        />
+
+
 
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_message"
@@ -90,6 +106,24 @@
 
         />
 
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_address"
+                app:ievtextValue="我的收货地址"
+                app:ievbackground="@color/white"
+                app:ievtextColor="@color/all_9"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_service"
+                app:ievtextValue="在线客服"
+                app:ievbackground="@color/white"
+                app:ievtextColor="@color/all_9"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+
+
+
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_about"
                 app:ievtextValue="关于我们"
@@ -98,16 +132,7 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
-        <TextView
-                android:layout_width="match_parent"
 
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_address"
-                android:text="我的地址"
-
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
 
         />
 

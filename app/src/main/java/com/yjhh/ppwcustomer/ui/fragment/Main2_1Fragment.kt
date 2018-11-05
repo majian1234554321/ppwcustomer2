@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer.ui.fragment
 
 import android.nfc.tech.MifareUltralight
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -14,9 +15,12 @@ import com.yjhh.ppwcustomer.bean.Main1FootBean
 import com.yjhh.ppwcustomer.bean.MainFinalDataBean
 import com.yjhh.ppwcustomer.present.SectionOrderPresent
 import com.yjhh.ppwcustomer.view.SectionOrderView
+
 import kotlinx.android.synthetic.main.main2_1fragment.*
 
-class Main2_1Fragment : BaseFragment() ,SectionOrderView{
+class Main2_1Fragment : BaseFragment(), SectionOrderView {
+
+
     override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
@@ -35,7 +39,7 @@ class Main2_1Fragment : BaseFragment() ,SectionOrderView{
     }
 
     override fun onFault(errorMsg: String?) {
-       // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     var startindex = 0
@@ -62,6 +66,14 @@ class Main2_1Fragment : BaseFragment() ,SectionOrderView{
         refresh("refresh")
 
     }
+
+
+    override fun initData() {
+
+        swipeLayout.autoRefresh()
+
+    }
+
 
     private fun initRefreshLayout() {
         swipeLayout.setOnRefreshListener { refreshLayout ->
