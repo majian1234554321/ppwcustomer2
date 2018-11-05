@@ -20,7 +20,7 @@ class Main2_3Fragment : BaseFragment(), OnRefreshListener {
 
     override fun getLayoutRes(): Int = R.layout.main2_3fragment
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         swipeLayout.setRefreshFooter(ClassicsFooter(context))

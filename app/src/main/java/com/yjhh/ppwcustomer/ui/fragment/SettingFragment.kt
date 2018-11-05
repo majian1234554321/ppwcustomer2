@@ -53,7 +53,7 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         iev_resetPwd.setOnClickListener(this)
         iev_resetPhone.setOnClickListener(this)
         iev_resetMessage.setOnClickListener(this)

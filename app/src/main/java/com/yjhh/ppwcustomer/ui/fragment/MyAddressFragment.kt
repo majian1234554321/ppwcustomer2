@@ -14,7 +14,7 @@ class MyAddressFragment : BaseFragment() {
 
     override fun getLayoutRes(): Int = R.layout.myaddressfragment
 
-    override fun initView(rootView: View) {
+    override fun initView() {
         tbv_title.setOnNavigation(NavigationOnClickListener {
             activity?.finish()
         })

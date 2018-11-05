@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.main2_2fragment.*
 class Main2_2Fragment :BaseFragment() {
 
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -7,7 +7,7 @@ import com.yjhh.ppwcustomer.R
 class AllAddressFragment : BaseFragment() {
 
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

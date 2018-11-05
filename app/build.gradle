@@ -116,7 +116,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/BaiduLBS_Android.jar')
 
-
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     implementation files('libs/alipaySdk-20180601.jar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.6'

@@ -9,7 +9,7 @@ class MyMessageFragment : BaseFragment() {
 
     override fun getLayoutRes(): Int  = R.layout.mymessagefragment
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

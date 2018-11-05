@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:padding="12dp"
+                android:layout_height="wrap_content">
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_memberName"
+              android:text="全品类卡"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="有效期至2019年1月1日"
+              android:id="@+id/tv_endTime"
+              android:layout_alignParentRight="true"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_below="@+id/tv_Price"
+              android:id="@+id/tv_tips"
+              android:text="所有入驻商家全部享受会员价"
+    />
+    <TextView android:layout_width="wrap_content" android:layout_height="@dimen/dp_40"
+              android:text="¥ 99.00"
+              android:layout_marginTop="8dp"
+              android:gravity="center"
+              android:layout_marginBottom="8dp"
+              android:layout_below="@+id/tv_memberName"
+              android:id="@+id/tv_Price"
+    />
+
+
+    <com.yjhh.ppwcustomer.ui.customview.ARSetupView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tv_endTime"
+            android:id="@+id/arsv"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="40dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="购买"
+            android:id="@+id/mb_pay"
+            android:layout_below="@+id/arsv"
+            android:layout_alignBottom="@+id/tv_tips"
+            android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.collectionfragment.*
 class CollectionFragment : BaseFragment() {
 
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         val mTitles = arrayOf("商家", "商品", "内容")
 
 

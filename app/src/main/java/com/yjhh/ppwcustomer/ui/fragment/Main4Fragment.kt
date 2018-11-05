@@ -1,22 +1,19 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.content.Intent
-import android.content.SharedPreferences
+
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.listener.NavigationOnClickListener
+
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.ppwcustomer.R
-import com.yjhh.ppwcustomer.R.id.*
-import com.yjhh.ppwcustomer.ui.activity.DisplayActivity
-import io.reactivex.functions.Consumer
+
 import kotlinx.android.synthetic.main.main4fragment.*
-import kotlinx.android.synthetic.main.registfragment.*
+
 
 class Main4Fragment : BaseFragment(), View.OnClickListener {
 
@@ -27,7 +24,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             R.id.iev_about -> {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
-                    .withString("displayTab", "AboutFragment")
+                    .withString("displayTab", "MembershipCardFragment")
                     .withInt("age", 23)
                     .navigation()
             }
@@ -84,13 +81,13 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.tv_Coupon -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-                } else {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
                         .withString("displayTab", "CouponFragment")
                         .withInt("age", 23)
                         .navigation(context)
+                } else {
+
                 }
 
             }
@@ -171,7 +168,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
         if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
 

@@ -77,7 +77,7 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
 
     override fun getLayoutRes(): Int = R.layout.resetpasswordfragment
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
         bt_commit.setOnClickListener(this)
 

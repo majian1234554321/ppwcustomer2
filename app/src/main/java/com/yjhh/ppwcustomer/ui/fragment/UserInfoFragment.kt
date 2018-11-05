@@ -10,7 +10,7 @@ class UserInfoFragment : BaseFragment(), View.OnClickListener {
 
     override fun getLayoutRes(): Int = R.layout.userinfofragment
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         iev_nickName.setOnClickListener(this)
         iev_birthday.setOnClickListener(this)
         iev_address.setOnClickListener(this)

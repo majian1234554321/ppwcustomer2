@@ -44,8 +44,6 @@
                 android:process=":remote">
         </service>
 
-
-
         <provider
                 android:name="android.support.v4.content.FileProvider"
                 android:authorities="${applicationId}.fileProvider"
@@ -107,9 +105,9 @@
                 android:name=".wxapi.WXPayEntryActivity"
                 android:exported="true"
                 android:launchMode="singleTop"/>
-        <activity android:name=".ui.activity.MainActivity"
-                  android:windowSoftInputMode="adjustPan"
-        >
+        <activity
+                android:name=".ui.activity.MainActivity"
+                android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
                 android:name=".ui.activity.SplashActivity"
@@ -132,8 +130,8 @@
         </activity>
         <activity android:name=".ui.activity.SelectAddressByMapActivity">
         </activity>
-
-
+        <activity android:name=".ui.activity.Main22Activity">
+        </activity>
     </application>
 
 </manifest>

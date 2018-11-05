@@ -51,7 +51,7 @@ class Main2_1Fragment : BaseFragment(), SectionOrderView {
     val mAdapter = Main2FragmentAdapter()
     lateinit var present: SectionOrderPresent
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
 
         present = SectionOrderPresent(context)
 

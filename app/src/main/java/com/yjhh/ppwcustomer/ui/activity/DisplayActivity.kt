@@ -84,6 +84,15 @@ class DisplayActivity : BaseActivity() {
 
             }
 
+            "MembershipCardFragment" -> {
+                fragments = MembershipCardFragment()
+
+            }
+
+
+
+
+
 
             else -> {
 

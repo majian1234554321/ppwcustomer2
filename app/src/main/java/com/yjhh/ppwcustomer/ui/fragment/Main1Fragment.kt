@@ -30,7 +30,7 @@ import com.yjhh.ppwcustomer.bean.Main1HeadBean
 class Main1Fragment : BaseFragment(), Main1View {
     override fun getLayoutRes(): Int = R.layout.main1fragment
 
-    override fun initView(v: View) {
+    override fun initView() {
         mAdapter = Main1FragmentAdapter()
         sectionMain1Present = SectionMain1Present(context, this)
 
@@ -161,13 +161,13 @@ class Main1Fragment : BaseFragment(), Main1View {
                 mAdapter.addData(data)
             }
         }
-        if (size < PAGE_SIZE) {
-            //第一页如果不够一页就不显示没有更多数据布局
-            mAdapter.loadMoreEnd(isRefresh)
-            Toast.makeText(context, "no more data", Toast.LENGTH_SHORT).show()
-        } else {
-            mAdapter.loadMoreComplete()
-        }
+//        if (size < PAGE_SIZE) {
+//            //第一页如果不够一页就不显示没有更多数据布局
+//            mAdapter.loadMoreEnd(isRefresh)
+//            Toast.makeText(context, "no more data", Toast.LENGTH_SHORT).show()
+//        } else {
+//            mAdapter.loadMoreComplete()
+//        }
     }
 
 

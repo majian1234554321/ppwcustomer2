@@ -1,8 +1,10 @@
 package com.yjhh.common.base;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,109 +34,162 @@ public abstract class BaseFragment extends SupportFragment {
 
     public CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private boolean isVisible = false;//当前Fragment是否可见
-    private boolean isInitView = false;//是否与View建立起映射关系
-    private boolean isFirstLoad = true;//是否是第一次加载数据
 
-    private View convertView;
-    private SparseArray<View> mViews;
+    protected Activity mActivity;
+    protected View mRootView;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //  LogUtil.m("   " + this.getClass().getSimpleName());
-        convertView = inflater.inflate(getLayoutRes(), container, false);
+    /**
+     * 是否对用户可见
+     */
+    protected boolean mIsVisible;
+    /**
+     * 是否加载完成
+     * 当执行完onViewCreated方法后即为true
+     */
+    protected boolean mIsPrepare;
 
-        return convertView;
-    }
+    /**
+     * 是否加载完成
+     * 当执行完onViewCreated方法后即为true
+     */
+    protected boolean mIsImmersion;
 
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //  LogUtil.m("   " + this.getClass().getSimpleName());
-        mViews = new SparseArray<>();
-        initView(view);
-        isInitView = true;
-        lazyLoadData();
-    }
 
     public Context context;
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //  LogUtil.m("context" + "   " + this.getClass().getSimpleName());
+        mActivity = (Activity) context;
         this.context = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mRootView = inflater.inflate(getLayoutRes(), container, false);
+        return mRootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (isLazyLoad()) {
+            mIsPrepare = true;
+            mIsImmersion = true;
+            onLazyLoad();
+        } else {
+            initData();
+
+
+        }
+        initView();
+        setListener();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        //  LogUtil.m("isVisibleToUser " + isVisibleToUser + "   " + this.getClass().getSimpleName());
-        if (isVisibleToUser) {
-            isVisible = true;
-            lazyLoadData();
-
-        } else {
-            isVisible = false;
-        }
         super.setUserVisibleHint(isVisibleToUser);
-    }
 
-
-    private void lazyLoadData() {
-        if (isFirstLoad) {
-            //   LogUtil.m("第一次加载 " + " isInitView  " + isInitView + "  isVisible  " + isVisible + "   " + this.getClass().getSimpleName());
+        if (getUserVisibleHint()) {
+            mIsVisible = true;
+            onVisible();
         } else {
-            //  LogUtil.m("不是第一次加载" + " isInitView  " + isInitView + "  isVisible  " + isVisible + "   " + this.getClass().getSimpleName());
+            mIsVisible = false;
+            onInvisible();
         }
-        if (!isFirstLoad || !isVisible || !isInitView) {
-            //  LogUtil.m("不加载" + "   " + this.getClass().getSimpleName());
-            return;
-        }
-
-        //  LogUtil.m("完成数据第一次加载"+ "   " + this.getClass().getSimpleName());
-        initData();
-        isFirstLoad = false;
     }
 
     /**
-     * 加载页面布局文件
+     * 是否懒加载
      *
-     * @return
+     * @return the boolean
+     */
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    /**
+     * 是否在Fragment使用沉浸式
+     *
+     * @return the boolean
+     */
+    protected boolean isImmersionBarEnabled() {
+        return true;
+    }
+
+    /**
+     * 用户可见时执行的操作
+     */
+    protected void onVisible() {
+        onLazyLoad();
+    }
+
+    private void onLazyLoad() {
+        if (mIsVisible && mIsPrepare) {
+            mIsPrepare = false;
+            initData();
+        }
+        if (mIsVisible && mIsImmersion && isImmersionBarEnabled()) {
+            // initImmersionBar();
+        }
+    }
+
+    /**
+     * Sets layout id.
+     *
+     * @return the layout id
      */
     protected abstract int getLayoutRes();
 
     /**
-     * 让布局中的view与fragment中的变量建立起映射
+     * 初始化数据
      */
-    protected abstract void initView(View view);
+    protected void initData() {
+
+    }
+
 
     /**
-     * 加载要显示的数据
+     * view与数据绑定
      */
-    protected  void initData(){
+    protected void initView() {
 
     }
 
     /**
-     * fragment中可以通过这个方法直接找到需要的view，而不需要进行类型强转
+     * 设置监听
+     */
+    protected void setListener() {
+
+    }
+
+    /**
+     * 用户不可见执行
+     */
+    protected void onInvisible() {
+
+    }
+
+    /**
+     * 找到activity的控件
      *
-     * @param viewId
-     * @param <E>
-     * @return
+     * @param <T> the type parameter
+     * @param id  the id
+     * @return the t
      */
-    protected <E extends View> E findView(int viewId) {
-        if (convertView != null) {
-            E view = (E) mViews.get(viewId);
-            if (view == null) {
-                view = (E) convertView.findViewById(viewId);
-                mViews.put(viewId, view);
-            }
-            return view;
-        }
-        return null;
+    @SuppressWarnings("unchecked")
+    protected <T extends View> T findActivityViewById(@IdRes int id) {
+        return (T) mActivity.findViewById(id);
     }
+
 
 }

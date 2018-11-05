@@ -22,7 +22,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
     }
 
 
-    override fun initView(rootView: View?) {
+    override fun initView() {
         iev_1.setOnClickListener(this)
         iev_2.setOnClickListener(this)
         iev_3.setOnClickListener(this)
