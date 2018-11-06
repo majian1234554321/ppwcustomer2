@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tl="http://schemas.android.com/tools"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tl="http://schemas.android.com/tools"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_below="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <android.support.design.widget.AppBarLayout android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            >
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:orientation="vertical" android:layout_height="wrap_content">
+
+
+                    <ImageView android:layout_width="60dp"
+
+                               android:id="@+id/iv_homeImage"
+                               android:src="@mipmap/ic_launcher"
+                               android:layout_height="60dp"/>
+
+
+                    <TextView android:layout_width="match_parent"
+                              android:id="@+id/tv_storeName"
+                              android:layout_toRightOf="@+id/iv_homeImage"
+                              android:layout_height="wrap_content"
+                              tools:text="外婆家（楚河汉街店)"
+                    />
+                    <TextView android:layout_width="match_parent"
+                              android:layout_below="@+id/tv_storeName"
+                              android:layout_height="wrap_content"
+                              tools:text="评价54元"
+                    />
+
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              tools:text="外婆家（楚河汉街店)"
+                    />
+                    <TextView android:layout_width="match_parent"
+                              android:textColor="@color/all_9"
+                              android:textSize="@dimen/sp_16"
+                              android:layout_below="@+id/iv_homeImage"
+                              android:layout_height="wrap_content"
+                              tools:text="外婆家（楚河汉街店)"
+                    />
+
+
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <com.flyco.tablayout.SlidingTabLayout
+                    android:layout_below="@+id/tv_title"
+                    android:id="@+id/mTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    tl:tl_tab_space_equal="true"
+                    android:background="#F6CE59"
+                    tl:tl_indicator_width="10dp"/>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:layout_height="wrap_content">
+
+
+            <android.support.v4.view.ViewPager
+                    android:layout_width="match_parent"
+                    android:id="@+id/mViewPager"
+                    android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content">
+
+
+        <LinearLayout
+                android:id="@+id/shopping_cart_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/shopping_cart_height"
+                android:background="@color/light_black"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:layout_alignParentBottom="true">
+            <TextView
+                    android:id="@+id/tv_shopping_cart_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="120"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/shopping_cart_total_price_word_size"
+                    android:textStyle="bold"
+
+                    android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:textColor="@color/white"
+                      android:layout_gravity="center"
+                      android:id="@+id/tv_pay"
+                      android:text="去结算"
+                      android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <FrameLayout
+                android:id="@+id/shopping_cart_layout"
+                android:layout_width="@dimen/shopping_cart_circle_size"
+                android:layout_height="@dimen/shopping_cart_circle_size"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_above="@+id/lineview"
+                android:clickable="true"
+                android:background="@drawable/circle_blue">
+            <ImageView
+                    android:id="@+id/shopping_cart"
+                    android:layout_width="@dimen/shopping_cart_image_height"
+                    android:layout_height="@dimen/shopping_cart_image_height"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_shopping_cart_white_24dp"/>
+        </FrameLayout>
+
+        <TextView
+                android:id="@+id/lineview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/shopping_cart_bottom_margin"
+                android:visibility="invisible"
+                android:layout_alignParentBottom="true"/>
+
+        <TextView
+                android:id="@+id/shopping_cart_total_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/small_red_circle"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:layout_above="@id/shopping_cart_bottom"
+                android:layout_alignRight="@id/shopping_cart_layout"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

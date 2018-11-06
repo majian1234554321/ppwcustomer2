@@ -16,17 +16,18 @@ import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.adapter.CouponFragmentAdapter
 import kotlinx.android.synthetic.main.couponfragment.*
 
-class CouponFragment : BaseFragment(), OnRefreshListener, OnLoadMoreListener {
+class CouponFragment : BaseFragment(), OnRefreshListener, OnLoadMoreListener, OnRefreshLoadMoreListener {
     override fun onLoadMore(refreshLayout: RefreshLayout) {
 
         myAdapter.addData(getData())
 
 
-        mSmartRefreshLayout.finishLoadMore()
+        mSmartRefreshLayout.finishLoadMore(1000)
     }
 
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
+        myAdapter.setNewData(getData())
         mSmartRefreshLayout.finishRefresh()
     }
 
@@ -48,7 +49,7 @@ class CouponFragment : BaseFragment(), OnRefreshListener, OnLoadMoreListener {
         mSmartRefreshLayout.setOnRefreshListener(this)
 
         mSmartRefreshLayout.setEnableLoadMore(true)
-        mSmartRefreshLayout.setOnLoadMoreListener(this)
+        mSmartRefreshLayout.setOnRefreshLoadMoreListener(this)
 
           myAdapter = CouponFragmentAdapter(context,getData())
 

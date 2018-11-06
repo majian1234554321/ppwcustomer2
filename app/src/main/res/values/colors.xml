@@ -30,6 +30,11 @@
     <color name="grayf9">#F9F9F9</color>
     <color name="grayfe">#FEFEFE</color>
 
+    <color name="deep_gray_2">#636262</color>
+
+    <color name="red">#FF0000</color>
+    <color name="light_black">#fd383838</color>
+
     <color name="tab_unselect">#c9c9c9</color>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
+import android.content.Intent
 import android.graphics.Rect
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.support.v7.widget.LinearLayoutManager
@@ -25,10 +26,29 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 
 
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
+import com.yjhh.ppwcustomer.ui.activity.ActivityELMe
+
+import kotlinx.android.synthetic.main.main1title.*
 
 
-class Main1Fragment : BaseFragment(), Main1View {
+class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
+
+
+    var startindex = 0
+    val pageSize = 10
+
     override fun getLayoutRes(): Int = R.layout.main1fragment
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.tv_location -> {
+                startActivity(Intent())
+            }
+            else -> {
+            }
+        }
+    }
+
 
     override fun initView() {
         mAdapter = Main1FragmentAdapter()
@@ -48,13 +68,18 @@ class Main1Fragment : BaseFragment(), Main1View {
         }
         swipeLayout.autoRefresh()
 
+        tv_location.text = "武昌区2"
+
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+
+            startActivity(Intent(context, ActivityELMe::class.java))
+        }
+
+
+        tv_location.setOnClickListener(this)
+
+
     }
-
-
-
-
-    var startindex = 0
-    val pageSize = 10
 
 
     override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
@@ -62,7 +87,7 @@ class Main1Fragment : BaseFragment(), Main1View {
         swipeLayout.finishLoadMore()
         if (main1bean.main1HeadBean != null) {
             val bannerImage = ArrayList<String>()
-            main1bean.main1HeadBean.banners.forEach {
+            main1bean.main1HeadBean.banners?.forEach {
                 bannerImage.add(it.imageUrl)
             }
             banner.setImages(bannerImage)
@@ -74,32 +99,32 @@ class Main1Fragment : BaseFragment(), Main1View {
             val list = ArrayList<Main1HeadBean.TabsBean>()
             list.clear()
             if (main1bean.main1HeadBean.tabs != null) {
-                main1bean.main1HeadBean.tabs.forEach { mutableList ->
+                main1bean.main1HeadBean.tabs?.forEach { mutableList ->
                     mutableList.forEach {
                         list.add(it)
                     }
                 }
             }
 
+            if (list.size > 0) {
+                mGridViewPager
+                    //设置每一页的容量
+                    .setPageSize(10)
+                    .setGridItemClickListener { pos, position, str ->
+                        Log.d(
+                            "123",
+                            pos.toString() + "/" + str + position
+                        )
 
-            mGridViewPager
-                //设置每一页的容量
-                .setPageSize(10)
-                .setGridItemClickListener { pos, position, str ->
-                    Log.d(
-                        "123",
-                        pos.toString() + "/" + str + position
-                    )
-
-
-                }
-                .setGridItemLongClickListener { pos, position, str ->
-                    Log.d(
-                        "456",
-                        pos.toString() + "/" + str
-                    )
-                }
-                .init(list)
+                    }
+                    .setGridItemLongClickListener { pos, position, str ->
+                        Log.d(
+                            "456",
+                            pos.toString() + "/" + str
+                        )
+                    }
+                    .init(list)
+            }
 
 
         } else {
@@ -143,6 +168,8 @@ class Main1Fragment : BaseFragment(), Main1View {
         startindex = 0
         mAdapter.setEnableLoadMore(false)//这里的作用是防止下拉刷新的时候还可以上拉加载
         sectionMain1Present.joinMain(startindex, pageSize, flag)
+
+
     }
 
     private fun loadMore() {

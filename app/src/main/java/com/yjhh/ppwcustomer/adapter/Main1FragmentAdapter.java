@@ -18,6 +18,10 @@ public class Main1FragmentAdapter extends BaseQuickAdapter<Main1FootBean.ItemsBe
                 .setText(R.id.tv_price,item.getPrice()+"")
                 .setText(R.id.tv_distance,item.getDistance())
                 .setText(R.id.tv_info,item.getMemo());
+
+
+
+
     }
 
 
