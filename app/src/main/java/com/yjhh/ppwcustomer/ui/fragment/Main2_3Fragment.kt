@@ -22,19 +22,19 @@ class Main2_3Fragment : BaseFragment(), OnRefreshListener {
 
     override fun initView() {
 
-        swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        swipeLayout.setRefreshFooter(ClassicsFooter(context))
-        swipeLayout.setOnRefreshListener(this)
-
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerview.layoutManager = linearLayoutManager
-        //recyclerview.adapter = mAdapter
+//        swipeLayout.setRefreshHeader(ClassicsHeader(context))
+//        swipeLayout.setRefreshFooter(ClassicsFooter(context))
+//        swipeLayout.setOnRefreshListener(this)
+//
+//        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+//        recyclerview.layoutManager = linearLayoutManager
+//        //recyclerview.adapter = mAdapter
 
 
     }
 
     override fun initData() {
         Log.i("TAG", "Main2_3Fragment")
-        swipeLayout.autoRefresh()
+       // swipeLayout.autoRefresh()
     }
 }

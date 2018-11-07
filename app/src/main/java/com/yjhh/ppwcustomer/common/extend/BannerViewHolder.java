@@ -1,3 +1,4 @@
+/*
 package com.yjhh.ppwcustomer.common.extend;
 
 import android.view.View;
@@ -55,3 +56,4 @@ public class BannerViewHolder extends BaseViewHolder {
 
     }
 }
+*/

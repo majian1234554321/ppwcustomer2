@@ -132,6 +132,10 @@
         </activity>
         <activity android:name=".ui.activity.Main22Activity">
         </activity>
+        <activity android:name=".ui.activity.BusinessHomeActivity">
+        </activity>
+        <activity android:name=".ui.activity.ActivityELMe">
+        </activity>
     </application>
 
 </manifest>

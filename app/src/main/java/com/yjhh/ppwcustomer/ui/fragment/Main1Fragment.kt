@@ -1,8 +1,14 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
+import android.content.Intent
+import android.graphics.Color
 import android.graphics.Rect
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
+import android.os.Handler
+import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -19,116 +25,47 @@ import com.yjhh.ppwcustomer.common.utils.GlideImageLoader
 import com.yjhh.ppwcustomer.present.SectionMain1Present
 import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
-
-import android.util.Log
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
-
-
+import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
+import com.yjhh.ppwcustomer.ui.customview.GridViewPager
+import com.youth.banner.Banner
+
+import kotlinx.android.synthetic.main.main1title.*
 
 
-class Main1Fragment : BaseFragment(), Main1View {
-    override fun getLayoutRes(): Int = R.layout.main1fragment
-
-    override fun initView() {
-        mAdapter = Main1FragmentAdapter()
-        sectionMain1Present = SectionMain1Present(context, this)
-
-        swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        swipeLayout.setRefreshFooter(ClassicsFooter(context))
-
-        initRefreshLayout()
-        // mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerview.layoutManager = linearLayoutManager
-        recyclerview.adapter = mAdapter
-
-        swipeLayout.setOnLoadMoreListener {
-            loadMore()
-        }
-        swipeLayout.autoRefresh()
-
-    }
-
-
+class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
 
     var startindex = 0
     val pageSize = 10
 
+    override fun getLayoutRes(): Int = R.layout.main1fragment
 
-    override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
-
-        swipeLayout.finishLoadMore()
-        if (main1bean.main1HeadBean != null) {
-            val bannerImage = ArrayList<String>()
-            main1bean.main1HeadBean.banners.forEach {
-                bannerImage.add(it.imageUrl)
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.tv_location -> {
+                startActivity(Intent())
             }
-            banner.setImages(bannerImage)
-                .setImageLoader(GlideImageLoader())
-                .setDelayTime(5000)
-                .start()
-
-
-            val list = ArrayList<Main1HeadBean.TabsBean>()
-            list.clear()
-            if (main1bean.main1HeadBean.tabs != null) {
-                main1bean.main1HeadBean.tabs.forEach { mutableList ->
-                    mutableList.forEach {
-                        list.add(it)
-                    }
-                }
+            else -> {
             }
-
-
-            mGridViewPager
-                //设置每一页的容量
-                .setPageSize(10)
-                .setGridItemClickListener { pos, position, str ->
-                    Log.d(
-                        "123",
-                        pos.toString() + "/" + str + position
-                    )
-
-
-                }
-                .setGridItemLongClickListener { pos, position, str ->
-                    Log.d(
-                        "456",
-                        pos.toString() + "/" + str
-                    )
-                }
-                .init(list)
-
-
-        } else {
-
         }
-
-
-
-        if (main1bean.main1FootBean != null) {
-
-            if ("refresh" == flag) {
-                setData(true, main1bean.main1FootBean.items)
-                //  mAdapter.setEnableLoadMore(true)
-            } else {
-                val isRefresh = startindex == 1
-                setData(isRefresh, main1bean.main1FootBean.items)
-            }
-
-        }
-
-
     }
 
-    override fun onFault(errorMsg: String?) {
-        swipeLayout.finishLoadMore()
-    }
 
-    lateinit var mAdapter: Main1FragmentAdapter
+    var mAdapter: Main1FragmentAdapter = Main1FragmentAdapter()
     lateinit var sectionMain1Present: SectionMain1Present
+    override fun initView() {
+        sectionMain1Present = SectionMain1Present(context, this)
+        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        swipeLayout.setRefreshHeader(ClassicsHeader(context))
+        initAdapter()
+        initRefreshLayout()
+        swipeLayout.autoRefresh()
+        addHeaderView()
+        mAdapter.setPreLoadNumber(1)
+
+    }
 
 
     private fun initRefreshLayout() {
@@ -137,37 +74,118 @@ class Main1Fragment : BaseFragment(), Main1View {
             refresh("refresh")
             refreshLayout.finishRefresh()
         }
+
+
     }
+
+
+    private fun initAdapter() {
+
+        mAdapter.setOnLoadMoreListener({
+            loadMore()
+        }, mRecyclerView)
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
+
+        mRecyclerView.adapter = mAdapter
+
+        mRecyclerView.addOnItemTouchListener(object : OnItemClickListener() {
+            override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+                Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+
+    var banner: Banner? = null
+
+    var mGridViewPager: GridViewPager? = null
+
+    private fun addHeaderView() {
+
+        val headView = View.inflate(context, R.layout.mainhead, null);
+        banner = headView.findViewById<Banner>(R.id.banner)
+
+        mGridViewPager = headView.findViewById(R.id.mGridViewPager)
+        mAdapter.addHeaderView(headView)
+
+        val bannerParams = banner!!.getLayoutParams()
+        val titleBarParams = toolbar.getLayoutParams()
+        bannerHeight = bannerParams.height - titleBarParams.height
+
+    }
+
+    var bannerHeight = 0
+
+
+    override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
+
+
+        if (main1bean.main1HeadBean != null) {
+            val bannerImage = ArrayList<String>()
+            main1bean.main1HeadBean.banners?.forEach {
+                // bannerImage.add(it.imageUrl)
+            }
+            banner!!.setImages(bannerImage)
+                .setImageLoader(GlideImageLoader())
+                .setDelayTime(5000)
+                .start()
+
+
+            val list = ArrayList<Main1HeadBean.TabsBean>()
+            list.clear()
+            if (main1bean.main1HeadBean.tabs != null) {
+                main1bean.main1HeadBean.tabs?.forEach {
+                    list.add(it)
+                }
+            }
+
+            if (list.size > 0) {
+                mGridViewPager!!
+                    .setPageSize(10)
+                    .setGridItemClickListener { pos, position, str ->
+
+                    }
+                    .setGridItemLongClickListener { pos, position, str ->
+
+                    }
+                    .init(list)
+            }
+
+
+        } else {
+
+        }
+
+
+
+        if ("refresh" == flag) {
+
+            mAdapter.setNewData(main1bean.main1FootBean.items)
+
+        } else {
+            mAdapter.addData(main1bean.main1FootBean.items)
+            mAdapter.loadMoreComplete()
+        }
+
+
+    }
+
+    override fun onFault(errorMsg: String?) {
+
+    }
+
 
     private fun refresh(flag: String) {
         startindex = 0
-        mAdapter.setEnableLoadMore(false)//这里的作用是防止下拉刷新的时候还可以上拉加载
         sectionMain1Present.joinMain(startindex, pageSize, flag)
+
+
     }
 
     private fun loadMore() {
+        Toast.makeText(context, "12", Toast.LENGTH_SHORT).show()
         sectionMain1Present.joinMain(startindex, pageSize, "load")
-
-    }
-
-
-    fun setData(isRefresh: Boolean, data: List<Main1FootBean.ItemsBean>) {
-        startindex++
-        val size = data.size
-        if (isRefresh) {
-            mAdapter.setNewData(data)
-        } else {
-            if (size > 0) {
-                mAdapter.addData(data)
-            }
-        }
-//        if (size < PAGE_SIZE) {
-//            //第一页如果不够一页就不显示没有更多数据布局
-//            mAdapter.loadMoreEnd(isRefresh)
-//            Toast.makeText(context, "no more data", Toast.LENGTH_SHORT).show()
-//        } else {
-//            mAdapter.loadMoreComplete()
-//        }
     }
 
 

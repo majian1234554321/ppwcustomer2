@@ -82,6 +82,7 @@ class SectionMain1Present(context: Context) : BasePresent() {
                     val jSONObject1 = JSONObject(jsonValue1)
                     if (jSONObject1.getBoolean("success")) {
                         val jsonString = jSONObject1.getString("data")
+
                         val main1HeadBeans = gson.fromJson<Main1HeadBean>(jsonString, Main1HeadBean::class.java)
 
                         mainFinalDataBean.main1HeadBean = main1HeadBeans

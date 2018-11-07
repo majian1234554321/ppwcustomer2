@@ -22,7 +22,7 @@ public class ItemTypeFactory implements TypeFactory {
     @Override public BaseViewHolder createViewHolder(int type, View itemView) {
         switch (type) {
             case BANNER_ITEM_LAYOUT:
-                return new BannerViewHolder(itemView);
+               // return new BannerViewHolder(itemView);
             case CONTENT_ITEM_LAYOUT:
                 return new ContentViewHolder(itemView);
             default:
