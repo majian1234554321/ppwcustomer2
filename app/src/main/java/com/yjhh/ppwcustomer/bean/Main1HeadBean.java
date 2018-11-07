@@ -1,21 +1,19 @@
 package com.yjhh.ppwcustomer.bean;
 
-import com.yjhh.ppwcustomer.common.extend.TypeFactory;
-import com.yjhh.ppwcustomer.common.extend.Visitable;
-
 import java.util.List;
 
 public class Main1HeadBean {
 
-    private List<BannersBean> banners;
-    private List<ContentsBean> contents;
-    private List<List<TabsBean>> tabs;
 
-    public List<BannersBean> getBanners() {
+    private List<?> banners;
+    private List<ContentsBean> contents;
+    private List<TabsBean> tabs;
+
+    public List<?> getBanners() {
         return banners;
     }
 
-    public void setBanners(List<BannersBean> banners) {
+    public void setBanners(List<?> banners) {
         this.banners = banners;
     }
 
@@ -27,81 +25,28 @@ public class Main1HeadBean {
         this.contents = contents;
     }
 
-    public List<List<TabsBean>> getTabs() {
+    public List<TabsBean> getTabs() {
         return tabs;
     }
 
-    public void setTabs(List<List<TabsBean>> tabs) {
+    public void setTabs(List<TabsBean> tabs) {
         this.tabs = tabs;
     }
 
-    public static class BannersBean  {
-        /**
-         * imageUrl : http://192.168.2.200:8080/file/20181030/4da9c5571b3b02de.png
-         * linkUrl : http://www.hbyjhh.com
-         * orderBy : 0
-         * title : 测试
-         */
-
-
-
-        private String imageUrl;
-        private String linkUrl;
-        private int orderBy;
-        private String title;
-
-        public String getImageUrl() {
-            return imageUrl;
-        }
-
-        public void setImageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
-        }
-
-        public String getLinkUrl() {
-            return linkUrl;
-        }
-
-        public void setLinkUrl(String linkUrl) {
-            this.linkUrl = linkUrl;
-        }
-
-        public int getOrderBy() {
-            return orderBy;
-        }
-
-        public void setOrderBy(int orderBy) {
-            this.orderBy = orderBy;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-    }
-
-    public static class ContentsBean  {
+    public static class ContentsBean {
         /**
          * id : 0
-         * isNews : false
-         * isRec : false
+         * ifNews : false
+         * ifRec : false
          * linkUrl : https://www.baidu.com
-         * publishTimes : 0
          * title : 今天天气不错
          * type : 0
          */
 
-
-
-
         private int id;
-        private boolean isNews;
-        private boolean isRec;
+        private boolean ifNews;
+        private boolean ifRec;
         private String linkUrl;
-        private int publishTimes;
         private String title;
         private int type;
 
@@ -113,20 +58,20 @@ public class Main1HeadBean {
             this.id = id;
         }
 
-        public boolean isIsNews() {
-            return isNews;
+        public boolean isIfNews() {
+            return ifNews;
         }
 
-        public void setIsNews(boolean isNews) {
-            this.isNews = isNews;
+        public void setIfNews(boolean ifNews) {
+            this.ifNews = ifNews;
         }
 
-        public boolean isIsRec() {
-            return isRec;
+        public boolean isIfRec() {
+            return ifRec;
         }
 
-        public void setIsRec(boolean isRec) {
-            this.isRec = isRec;
+        public void setIfRec(boolean ifRec) {
+            this.ifRec = ifRec;
         }
 
         public String getLinkUrl() {
@@ -135,14 +80,6 @@ public class Main1HeadBean {
 
         public void setLinkUrl(String linkUrl) {
             this.linkUrl = linkUrl;
-        }
-
-        public int getPublishTimes() {
-            return publishTimes;
-        }
-
-        public void setPublishTimes(int publishTimes) {
-            this.publishTimes = publishTimes;
         }
 
         public String getTitle() {
@@ -160,34 +97,30 @@ public class Main1HeadBean {
         public void setType(int type) {
             this.type = type;
         }
-
-
     }
 
     public static class TabsBean {
         /**
          * iconUrl : http://192.168.2.200:8080/file/20181030/4da9c5571b3b02de.png
-         * isAll : false
-         * isBuild : false
-         * isHideText : false
-         * isHot : false
-         * isSeckill : false
+         * ifAll : false
+         * ifBuild : false
+         * ifHideText : false
+         * ifHot : false
+         * ifSeckill : false
          * linkUrl : http://www.hbyjhh.com
          * rowIndex : 0
          * text : 测试
-         * title : 测试
          */
 
         private String iconUrl;
-        private boolean isAll;
-        private boolean isBuild;
-        private boolean isHideText;
-        private boolean isHot;
-        private boolean isSeckill;
+        private boolean ifAll;
+        private boolean ifBuild;
+        private boolean ifHideText;
+        private boolean ifHot;
+        private boolean ifSeckill;
         private String linkUrl;
         private int rowIndex;
         private String text;
-        private String title;
 
         public String getIconUrl() {
             return iconUrl;
@@ -197,44 +130,44 @@ public class Main1HeadBean {
             this.iconUrl = iconUrl;
         }
 
-        public boolean isIsAll() {
-            return isAll;
+        public boolean isIfAll() {
+            return ifAll;
         }
 
-        public void setIsAll(boolean isAll) {
-            this.isAll = isAll;
+        public void setIfAll(boolean ifAll) {
+            this.ifAll = ifAll;
         }
 
-        public boolean isIsBuild() {
-            return isBuild;
+        public boolean isIfBuild() {
+            return ifBuild;
         }
 
-        public void setIsBuild(boolean isBuild) {
-            this.isBuild = isBuild;
+        public void setIfBuild(boolean ifBuild) {
+            this.ifBuild = ifBuild;
         }
 
-        public boolean isIsHideText() {
-            return isHideText;
+        public boolean isIfHideText() {
+            return ifHideText;
         }
 
-        public void setIsHideText(boolean isHideText) {
-            this.isHideText = isHideText;
+        public void setIfHideText(boolean ifHideText) {
+            this.ifHideText = ifHideText;
         }
 
-        public boolean isIsHot() {
-            return isHot;
+        public boolean isIfHot() {
+            return ifHot;
         }
 
-        public void setIsHot(boolean isHot) {
-            this.isHot = isHot;
+        public void setIfHot(boolean ifHot) {
+            this.ifHot = ifHot;
         }
 
-        public boolean isIsSeckill() {
-            return isSeckill;
+        public boolean isIfSeckill() {
+            return ifSeckill;
         }
 
-        public void setIsSeckill(boolean isSeckill) {
-            this.isSeckill = isSeckill;
+        public void setIfSeckill(boolean ifSeckill) {
+            this.ifSeckill = ifSeckill;
         }
 
         public String getLinkUrl() {
@@ -259,14 +192,6 @@ public class Main1HeadBean {
 
         public void setText(String text) {
             this.text = text;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
         }
     }
 }

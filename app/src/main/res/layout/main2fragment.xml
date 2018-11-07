@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tl="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-    <View
-            android:id="@+id/view"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent" android:layout_height="24dp"/>
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:layout_below="@+id/view"
-              android:gravity="center"
-              android:background="@color/colorPrimary"
-              android:id="@+id/tv_title"
-              android:textSize="@dimen/sp_16"
-              android:padding="@dimen/sp_12"
-              android:text="订单"
+
+
+    <View android:layout_width="match_parent"
+          android:id="@+id/view" android:layout_height="24dp"
+          android:background="@color/colorPrimary"
     />
 
 
-    <com.flyco.tablayout.SlidingTabLayout
-            android:layout_below="@+id/tv_title"
-            android:id="@+id/mTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            tl:tl_tab_space_equal="true"
-            android:background="#F6CE59"
-            tl:tl_indicator_width="10dp"/>
-    <android.support.v4.view.ViewPager android:layout_width="match_parent"
-                                       android:id="@+id/mViewPager"
-                                       android:layout_below="@+id/mTabLayout"
-                                       android:layout_height="wrap_content"/>
+<com.yjhh.ppwcustomer.ui.customview.dropdownmenu.DropDownMenu
+        android:layout_below="@+id/view"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/dropDownMenu"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        app:ddmenuTextSize="13sp"
+        app:ddtextUnselectedColor="@color/drop_down_unselected"
+        app:ddtextSelectedColor="@color/drop_down_selected"
+        app:dddividerColor="@color/gray"
+        app:ddunderlineColor="@color/gray"
+        app:ddmenuMenuHeightPercent="0.5"
+        app:ddmenuSelectedIcon="@drawable/drop_down_selected_icon"
+        app:ddmaskColor="@color/mask_color"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuUnselectedIcon="@drawable/drop_down_unselected_icon"
+/>
 
 </RelativeLayout>

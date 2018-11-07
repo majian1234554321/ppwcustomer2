@@ -24,7 +24,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             R.id.iev_about -> {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
-                    .withString("displayTab", "MembershipCardFragment")
+                    .withString("displayTab", "AboutFragment")
                     .withInt("age", 23)
                     .navigation()
             }

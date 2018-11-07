@@ -9,7 +9,7 @@ import com.yjhh.ppwcustomer.bean.Main1FootBean;
 
 public class Main1FragmentAdapter extends BaseQuickAdapter<Main1FootBean.ItemsBean, BaseViewHolder> {
     public Main1FragmentAdapter() {
-        super(R.layout.main1adapter);
+        super(R.layout.main1adapter,null);
     }
 
     @Override
