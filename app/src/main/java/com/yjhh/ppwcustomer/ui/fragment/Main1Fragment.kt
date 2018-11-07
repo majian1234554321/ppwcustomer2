@@ -185,6 +185,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
     private fun loadMore() {
         Toast.makeText(context, "12", Toast.LENGTH_SHORT).show()
+        startindex++
         sectionMain1Present.joinMain(startindex, pageSize, "load")
     }
 

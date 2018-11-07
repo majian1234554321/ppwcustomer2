@@ -1,7 +1,7 @@
+/*
 package com.yjhh.ppwcustomer.ui.fragment
 
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 
 import android.view.View
 import android.widget.Toast
@@ -13,67 +13,56 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.adapter.CouponFragmentAdapter
-import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.bean.CouponBean
 import com.yjhh.ppwcustomer.present.SectionCouponPresent
-import com.yjhh.ppwcustomer.present.SectionOrderPresent
 import com.yjhh.ppwcustomer.view.CouponView
-
 import kotlinx.android.synthetic.main.couponfragment.*
 
 
-class CouponFragment : BaseFragment(), CouponView {
+class CouponFragment2 : BaseFragment(), CouponView {
+
+    var startindex = 0
+    val pageSize = 10
 
     var status = "-1"//状态，默认null(null/-1 全部 0未生效 1 有效的 2已过期的/失效的)
+
     override fun onSuccess(main1bean: CouponBean, flag: String) {
         if ("refresh" == flag) {
-            mAdapter.onRefresh(main1bean.items)
-
+            mAdapter.setNewData(main1bean.items)
         } else {
-            mAdapter.onLoad(main1bean.items)
+            mAdapter.addData(main1bean.items)
             mAdapter.loadMoreComplete()
         }
     }
 
     override fun onFault(errorMsg: String?) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    var startindex = 0
-    val pageSize = 10
+    override fun initData() {
+
+    }
+
 
     override fun getLayoutRes(): Int = R.layout.couponfragment
 
 
+     var mAdapter: CouponFragmentAdapter = CouponFragmentAdapter()
+
     lateinit var sectionCouponPresent: SectionCouponPresent
-    lateinit var present: SectionOrderPresent
-
-    var list = ArrayList<CouponBean.ItemsBean>()
-
-    lateinit var mAdapter: CouponFragmentAdapter
-
     override fun initView() {
-
-
-        mAdapter = CouponFragmentAdapter(list, context)
         sectionCouponPresent = SectionCouponPresent(context, this)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()
         swipeLayout.autoRefresh()
-
-
     }
 
-
     private fun initAdapter() {
-
         mAdapter.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
-
 
         mRecyclerView.adapter = mAdapter
 
@@ -101,22 +90,22 @@ class CouponFragment : BaseFragment(), CouponView {
         startindex = 0
         sectionCouponPresent.coupon(status, startindex, pageSize, "refresh")
 
+
     }
 
 
     private fun loadMore() {
-        Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
-
         startindex++
         sectionCouponPresent.coupon(status, startindex, pageSize, "load")
 
-    }
-
-
-    override fun initData() {
-        Log.i("TAG", "Main2_1Fragment")
 
     }
 
 
-}
+
+
+
+
+
+
+}*/

@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+
+    <ImageView android:layout_width="80dp" android:layout_height="80dp"
+               android:src="@mipmap/ic_launcher"
+               android:id="@+id/iv_image"
+    />
 
     <TextView android:layout_width="match_parent"
-              android:id="@+id/texttext"
+              android:id="@+id/tv_status"
               android:textColor="@color/all_9"
               android:text="1212"
-              android:gravity="center"
+              android:layout_toRightOf="@+id/iv_image"
               android:textSize="18dp"
               android:layout_height="80dp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView android:layout_width="match_parent"
+              android:id="@+id/tv_endTime"
+              android:textColor="@color/all_9"
+              android:text="1212"
+              android:layout_toRightOf="@+id/iv_image"
+              android:textSize="18dp"
+              android:layout_height="80dp"/>
+
+    <TextView android:layout_width="match_parent"
+              android:id="@+id/tv_info"
+              android:textColor="@color/all_9"
+              android:text="1212"
+              android:layout_toRightOf="@+id/iv_image"
+              android:textSize="18dp"
+              android:layout_height="80dp"/>
+
+</RelativeLayout>

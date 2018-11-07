@@ -55,13 +55,13 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.tv_Collection -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-                } else {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
                         .withString("displayTab", "CollectionFragment")
                         .withInt("age", 23)
                         .navigation(context)
+                } else {
+
                 }
 
             }

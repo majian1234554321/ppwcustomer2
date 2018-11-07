@@ -10,15 +10,27 @@
                                        app:textColor="@color/white"
                                        android:layout_height="wrap_content"/>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout android:layout_width="match_parent"
-                                                       android:layout_below="@+id/tbv_title"
-                                                       android:id="@+id/mSmartRefreshLayout"
-                                                       android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                                android:id="@+id/mRecyclerView"
-                                                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:id="@+id/frame"
+                 android:layout_below="@+id/tbv_title"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+    >
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout android:layout_width="match_parent"
+
+                                                           android:id="@+id/swipeLayout"
+                                                           android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                    android:id="@+id/mRecyclerView"
+                                                    android:layout_height="match_parent"/>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    </FrameLayout>
+
 
 </RelativeLayout>
