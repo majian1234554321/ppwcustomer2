@@ -167,6 +167,16 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             }
 
+
+            R.id.rl_buy->{
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "MembershipCardFragment")
+                    .withInt("age", 23)
+                    .navigation()
+
+            }
+
             else -> {
 
             }
@@ -206,6 +216,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             iv_setting,
             tv_name,
             profile_image
+                ,rl_buy
         )
 
         list.forEach {

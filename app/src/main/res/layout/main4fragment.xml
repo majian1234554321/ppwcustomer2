@@ -16,30 +16,57 @@
                         android:layout_height="wrap_content">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="2dp"/>
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/rl0"
+                            android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/ic_launcher"
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="2dp"/>
 
-            <TextView android:layout_width="match_parent"
-                      android:id="@+id/tv_name"
-                      android:layout_toLeftOf="@+id/iv_setting"
-                      android:layout_toRightOf="@+id/profile_image"
-                      android:paddingLeft="@dimen/sp_12"
-                      android:text="未登录"
-                      android:gravity="center_vertical"
-                      android:layout_height="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:id="@+id/tv_name"
+                          android:layout_toLeftOf="@+id/iv_setting"
+                          android:layout_toRightOf="@+id/profile_image"
+                          android:paddingLeft="@dimen/sp_12"
+                          android:text="未登录"
+                          android:gravity="center_vertical"
+                          android:layout_height="60dp"/>
 
 
-            <ImageView android:layout_width="30dp"
-                       android:src="@mipmap/ic_launcher"
-                       android:id="@+id/iv_setting"
-                       android:layout_centerVertical="true"
-                       android:layout_alignParentRight="true"
-                       android:layout_height="30dp"/>
+                <ImageView android:layout_width="30dp"
+                           android:src="@mipmap/ic_launcher"
+                           android:id="@+id/iv_setting"
+
+                           android:layout_centerVertical="true"
+                           android:layout_alignParentRight="true"
+                           android:layout_height="30dp"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/rl_buy"
+                            android:layout_below="@+id/rl0"
+                            android:layout_marginLeft="@dimen/sp_16"
+                            android:layout_marginRight="@dimen/sp_16"
+                            android:padding="@dimen/sp_12"
+                            android:background="@drawable/roundedrectangle"
+                            android:layout_height="wrap_content">
+
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentRight="true"
+                          android:text="立即购买，享8折起优惠"
+                          android:id="@+id/tv_buy"
+                />
+
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
@@ -74,7 +101,6 @@
         </LinearLayout>
 
 
-
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_evaluate"
                 app:ievtextValue="我的评价"
@@ -84,7 +110,6 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"
 
         />
-
 
 
         <com.yjhh.common.view.ItemEntryView
@@ -122,16 +147,12 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
-
-
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_about"
                 app:ievtextValue="关于我们"
                 app:ievbackground="@color/white"
                 app:ievtextColor="@color/all_9"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-
 
 
         />

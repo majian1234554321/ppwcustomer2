@@ -65,11 +65,15 @@ class CouponFragment : BaseFragment(), CouponView {
         initRefreshLayout()
         swipeLayout.autoRefresh()
 
+
+
+
+
         var textview = TextView(context)
         textview.text = "查看已失效的优惠券"
         textview.textSize = 25f
         textview.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
-        mAdapter.addFooterView(textview)
+        mAdapter.addFooterView(textview,0)
 
 
     }
