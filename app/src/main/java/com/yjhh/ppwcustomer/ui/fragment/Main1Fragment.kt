@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -26,6 +27,7 @@ import com.yjhh.ppwcustomer.present.SectionMain1Present
 import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
 import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.yjhh.common.Constants
 import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
@@ -45,7 +47,11 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_location -> {
-                startActivity(Intent())
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "SelectDistrictFragment")
+                    .withInt("age", 23)
+                    .navigation()
             }
             else -> {
             }
@@ -56,6 +62,8 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     var mAdapter: Main1FragmentAdapter = Main1FragmentAdapter()
     lateinit var sectionMain1Present: SectionMain1Present
     override fun initView() {
+
+        tv_location.text = Constants.district
         sectionMain1Present = SectionMain1Present(context, this)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
@@ -64,7 +72,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         swipeLayout.autoRefresh()
         addHeaderView()
         mAdapter.setPreLoadNumber(1)
-
+        tv_location.setOnClickListener(this)
     }
 
 
@@ -185,6 +193,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
     private fun loadMore() {
         Toast.makeText(context, "12", Toast.LENGTH_SHORT).show()
+        startindex++
         sectionMain1Present.joinMain(startindex, pageSize, "load")
     }
 

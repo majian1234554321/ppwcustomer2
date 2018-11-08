@@ -13,7 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.yjhh.common.R
-import com.yjhh.common.listener.NavigationOnClickListener
+import com.yjhh.common.listener.LeftOnClickListener
+import com.yjhh.common.listener.RightOnClickListener
+
 import kotlinx.android.synthetic.main.titlebarview.view.*
 
 
@@ -27,10 +29,18 @@ class TitleBarView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-    private lateinit var navigationOnClickListener: NavigationOnClickListener
-
-    fun setOnNavigation(navigationOnClickListener: NavigationOnClickListener) {
+    private lateinit var navigationOnClickListener: LeftOnClickListener
+    private lateinit var rightOnClickListener: RightOnClickListener
+    fun setLeftOnClick(navigationOnClickListener: LeftOnClickListener) {
         this.navigationOnClickListener = navigationOnClickListener
+    }
+
+    fun setRightOnClick(rightOnClickListener: RightOnClickListener) {
+        this.rightOnClickListener = rightOnClickListener
+    }
+
+    fun setTitle(name: String) {
+        tv_title.text = name
     }
 
 
@@ -52,22 +62,27 @@ class TitleBarView @JvmOverloads constructor(
 
         val view = View.inflate(context, R.layout.titlebarview, this)
         val tv_title = view.findViewById<TextView>(R.id.tv_title)
+
+
+
         tv_title.text = textValue
         tv_title.setTextColor(textColor)
         tv_title.textSize = textSize
 
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+
         val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
 
         rl_background.setBackgroundColor(titleBarBackground)
 
-        
 
-        toolbar.setNavigationOnClickListener {
-            navigationOnClickListener.OnNavigation()
+        iv_right.setOnClickListener {
+            rightOnClickListener.OnRightClick()
         }
 
 
+        iv_back.setOnClickListener {
+            navigationOnClickListener.OnLeftClick()
+        }
 
 
     }

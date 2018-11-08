@@ -2,6 +2,7 @@ package com.yjhh.loginmodule.ui
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
@@ -17,6 +18,9 @@ import com.google.gson.JsonObject
 import org.json.JSONObject
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.tencent.mm.opensdk.modelmsg.SendAuth
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
+import com.yjhh.common.Constants
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
@@ -73,6 +77,30 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
             R.id.iv_close -> {
                 finish()
             }
+
+
+            R.id.iv_weChat -> {
+
+                val api = WXAPIFactory.createWXAPI(this, Constants.APP_ID_WX, true)
+
+                api.registerApp(Constants.APP_ID_WX);
+
+
+                val req =  SendAuth.Req();
+                req.scope = "snsapi_userinfo";//
+//                req.scope = "snsapi_login";//提示 scope参数错误，或者没有scope权限
+                req.state = "wechat_sdk_微信登录";
+                api.sendReq(req);
+
+
+            }
+
+
+            R.id.iv_sina -> {
+                // finish()
+            }
+
+
             else -> {
             }
         }
@@ -154,16 +182,15 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
             }
 
 
-
-        iv_show_pwd.setOnClickListener(this)
-        regist.setOnClickListener(this)
-        forget_password.setOnClickListener(this)
-
-        iv_close.setOnClickListener(this)
+        val view = arrayOf(iv_show_pwd, regist, forget_password, iv_close, iv_weChat, iv_sina)
 
 
-        iv_weChat.setOnClickListener(this)
-        iv_sina.setOnClickListener(this)
+        view.forEach {
+            it.setOnClickListener(this)
+        }
+
+
+
 
         compositeDisposable.add(disposable1)
 
@@ -180,4 +207,17 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+//        if (mSsoHandler != null) {
+//            mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+//        }
+    }
+
+
+
+
 }
+
+
+

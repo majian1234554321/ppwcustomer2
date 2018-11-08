@@ -1,6 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.userinfofragment.*
@@ -25,6 +26,11 @@ class UserInfoFragment : BaseFragment(), View.OnClickListener {
             R.id.iev_birthday -> {
             }
             R.id.iev_address -> {
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "MyAddressFragment")
+                    .withInt("age", 23)
+                    .navigation()
             }
 
             else -> {

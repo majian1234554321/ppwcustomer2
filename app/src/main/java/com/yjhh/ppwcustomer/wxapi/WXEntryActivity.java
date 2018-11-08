@@ -37,9 +37,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
         api.registerApp(Constants.APP_ID);
 
-        // debug
 
-        // debug end
 
         api.handleIntent(getIntent(), this);
     }
@@ -71,6 +69,18 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 break;
         }
     }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        api.handleIntent(data,this);
+    }
+
+
+
+
 
 
     @Override

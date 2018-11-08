@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
+import com.yjhh.common.utils.BDLocationUtils;
 import com.yjhh.common.utils.SystemBarUtil;
 import io.reactivex.disposables.CompositeDisposable;
 import me.yokeyword.fragmentation.SupportActivity;
@@ -28,22 +29,47 @@ import me.yokeyword.fragmentation.SupportActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseActivity extends SupportActivity  {
+public class BaseActivity extends SupportActivity {
 
     public static PermissionListener mListener;
     public static final int REQUEST_CODE = 1;
 
     public CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private BDLocationUtils bdLocationUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //transparentAndCoverStatusBar(this);
-        SystemBarUtil.immersiveStatusBar(this,0f);
-       // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
+        SystemBarUtil.immersiveStatusBar(this, 0f);
+        // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
 
 
+        initBaiDuMap();
+
+
+    }
+
+    public void initBaiDuMap() {
+
+        bdLocationUtils = new BDLocationUtils(this);
+        bdLocationUtils.doLocation();//开启定位
+        bdLocationUtils.mLocationClient.start();//开始定位
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bdLocationUtils.mLocationClient.stop();
     }
 
     @Override

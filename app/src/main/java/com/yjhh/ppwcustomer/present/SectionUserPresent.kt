@@ -2,19 +2,29 @@ package com.yjhh.ppwcustomer.present
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.present.BasePresent
 import com.yjhh.loginmodule.view.RegistView
+import com.yjhh.ppwcustomer.bean.MyAddressBean
 import com.yjhh.ppwcustomer.model.SectionUserModel
+import com.yjhh.ppwcustomer.view.MyAddressView
 
 
 class SectionUserPresent(context: Context) : BasePresent() {
 
     private lateinit var registView: RegistView
 
+    private lateinit var addressView: MyAddressView
+
     constructor(context: Context, registView: RegistView) : this(context) {
         this.registView = registView
+    }
+
+
+    constructor(context: Context, addressView: MyAddressView) : this(context) {
+        this.addressView = addressView
     }
 
     val model = SectionUserModel()
@@ -83,8 +93,8 @@ class SectionUserPresent(context: Context) : BasePresent() {
 
     }
 
-    fun deleteUseraddress(id: String) {
-        toSubscribe2(model.getUseraddressDetail(id), object : ProcessObserver2(context) {
+    fun deleteUseraddress(id: String?) {
+        toSubscribe2(model.deleteUseraddress(id), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("deleteUseraddress", response)
 
@@ -129,11 +139,14 @@ class SectionUserPresent(context: Context) : BasePresent() {
 
     }
 
-    fun getAllUserAddress(isDefault: String?, pageIndex: String, pageSize: String) {
+    fun getAllUserAddress(isDefault: String?, pageIndex: Int, pageSize: Int, flag: String) {
         toSubscribe2(model.getAllUserAddress(isDefault, pageIndex, pageSize), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("getAllUserAddress", response)
 
+                val bean = gson.fromJson<MyAddressBean>(response, MyAddressBean::class.java)
+
+                addressView.onSuccess(bean, flag)
 
             }
 
@@ -144,7 +157,41 @@ class SectionUserPresent(context: Context) : BasePresent() {
         })
     }
 
-    fun saveuseraddress() {
+    fun editByLocation(
+        id: String //
+        , gender: String
+        , name: String
+        , phone: String
+        , address: String
+        , no: String
+        , tags: String
+        , longitude: String
+        , latitude: String
+        , def: String
+    ) {
+        toSubscribe2(model.editByLocation(
+            id,
+            gender,
+            name,
+            phone,
+            address,
+            no,
+            tags,
+            longitude,
+            latitude,
+            def
+
+        ), object : ProcessObserver2(context) {
+            override fun onFault(message: String) {
+
+            }
+
+            override fun processValue(response: String?) {
+                Log.i("editByLocation", response)
+                addressView.onSuccess(MyAddressBean(),"flag")
+            }
+
+        })
 
 
     }

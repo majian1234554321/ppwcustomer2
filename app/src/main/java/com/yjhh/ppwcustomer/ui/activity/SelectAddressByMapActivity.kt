@@ -49,8 +49,8 @@ class SelectAddressByMapActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // SDKInitializer.initialize(applicationContext)
-        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary),0f);
+        // SDKInitializer.initialize(applicationContext)
+        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary), 0f);
         setContentView(R.layout.activity_select_address_by_map)
         ll.setPadding(0, getStatusBarHeight(this), 0, 0)
         mContext = this
@@ -77,7 +77,7 @@ class SelectAddressByMapActivity : BaseActivity() {
         initMap()
     }
 
-    private fun initMap() {
+     fun initMap() {
         mBaiduMap = mMap.map
         val mapStatus = MapStatus.Builder().zoom(15f).build()
         val mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mapStatus)
@@ -128,6 +128,8 @@ class SelectAddressByMapActivity : BaseActivity() {
             val poiInfo = mPoiInfoList[position]
             val intent = Intent()
             intent.putExtra("address", poiInfo.name)
+            intent.putExtra("latitude", poiInfo.location.latitude.toString())
+            intent.putExtra("longitude", poiInfo.location.longitude.toString())
             setResult(RESULT_OK, intent)
             finish()
         }
@@ -149,7 +151,7 @@ class SelectAddressByMapActivity : BaseActivity() {
         // 注册定位监听
         mLocClient.registerLocationListener { bdLocation ->
             // 如果bdLocation为空或mapView销毁后不再处理新数据接收的位置
-            if (bdLocation == null || mBaiduMap == null) {
+            if (bdLocation == null) {
                 return@registerLocationListener
             }
             val data = MyLocationData.Builder()// 定位数据
@@ -168,15 +170,13 @@ class SelectAddressByMapActivity : BaseActivity() {
                 mBaiduMap.animateMapStatus(msu)
                 locationLatLng = LatLng(bdLocation.latitude, bdLocation.longitude)
                 // 获取城市，待会用于POISearch
-                mSelectCity = bdLocation.city
+                mSelectCity = bdLocation.city//获取城市
 
-
-                bdLocation.getAddrStr()   //获取详细地址信息
-                bdLocation.getCountry()   //获取国家
-                bdLocation.getProvince()    //获取省份
-                bdLocation.getCity()   //获取城市
-                bdLocation.getDistrict()    //获取区县
-                bdLocation.getStreet()
+                bdLocation.addrStr   //获取详细地址信息
+                bdLocation.country   //获取国家
+                bdLocation.province    //获取省份
+                bdLocation.district    //获取区县
+                bdLocation.street
 
 
                 mTvSelectedCity.text = mSelectCity

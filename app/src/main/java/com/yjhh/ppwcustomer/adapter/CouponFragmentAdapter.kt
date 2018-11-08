@@ -1,47 +1,49 @@
 package com.yjhh.ppwcustomer.adapter
 
+
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.CouponBean
 import kotlinx.android.synthetic.main.couponfragmentadapter.view.*
 
+class CouponFragmentAdapter(var data: ArrayList<CouponBean.ItemsBean>, var context: Context) :
+    BaseQuickAdapter<CouponBean.ItemsBean, CouponFragmentAdapter.ViewHolder>(data) {
 
-class CouponFragmentAdapter(var context: Context ) : RecyclerView.Adapter<CouponFragmentAdapter.ViewHolder>() {
 
-    lateinit var list:ArrayList<String>
-
-    constructor(context: Context, list:ArrayList<String>) :this(context){
-        this.list = list
-    }
-
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        return ViewHolder(View.inflate(context,R.layout.couponfragmentadapter,null))
-    }
-
-    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-            with(viewHolder.itemView){
-                texttext.text = list[i]
-            }
-    }
-    fun addData(data: ArrayList<String>){
-        list.addAll(data)
+    fun onRefresh(data: ArrayList<CouponBean.ItemsBean>) {
+        this.data = data
         notifyDataSetChanged()
     }
 
-    fun setNewData(data: ArrayList<String>){
-        list  = data
+    fun onLoad(data: ArrayList<CouponBean.ItemsBean>) {
+        this.data.addAll(data)
         notifyDataSetChanged()
     }
 
 
     override fun getItemCount(): Int {
-        return list.size
+        return data.size
     }
 
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(View.inflate(context, R.layout.couponfragmentadapter, null))
+    }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        with(holder.itemView) {
+            tv_status.text = data[position].title
+            tv_info.text = data[position].remark
+            tv_info.text = data[position].remark
+        }
+    }
+
+    override fun convert(helper: CouponFragmentAdapter.ViewHolder, item: CouponBean.ItemsBean)=Unit
+
+     class ViewHolder(view: View) : BaseViewHolder(view)
 }

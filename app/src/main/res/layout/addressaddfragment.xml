@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="新增地址"
+                                       android:id="@+id/tbv_title"
+                                       app:textColor="@color/white"
+                                       android:layout_height="wrap_content"/>
+
+
+    <TextView android:layout_width="match_parent"
+              android:text="确定"
+              android:id="@+id/tv_commit"
+              android:layout_alignParentBottom="true"
+              android:gravity="center"
+              android:layout_height="48dp"/>
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@+id/tbv_title"
+            android:layout_above="@+id/tv_commit"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="55dp"
+                      android:text="联系人"
+
+                      android:id="@+id/tv_Contacts"
+                      android:layout_height="wrap_content"/>
+            <EditText android:layout_width="match_parent"
+                      android:background="@null"
+                      android:id="@+id/et_Contacts"
+                      android:layout_toRightOf="@+id/tv_Contacts"
+                      android:layout_height="wrap_content"/>
+            <View android:layout_width="match_parent"
+                  android:id="@+id/view1"
+                  android:layout_below="@+id/et_Contacts"
+                  android:layout_toRightOf="@+id/tv_Contacts"
+                  android:background="@color/all_9"
+                  android:layout_height="1dp"/>
+
+
+            <RadioGroup
+                    android:orientation="horizontal"
+                    android:layout_toRightOf="@id/tv_Contacts"
+                    android:layout_below="@+id/view1"
+                    android:id="@+id/rg_gender"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <RadioButton android:layout_width="wrap_content"
+                             android:text="先生"
+                             android:id="@+id/rb_male"
+                             android:layout_height="wrap_content"/>
+                <RadioButton android:layout_width="wrap_content"
+                             android:text="女士"
+                             android:id="@+id/rb_female"
+                             android:layout_height="wrap_content"/>
+
+            </RadioGroup>
+
+
+            <View android:layout_width="match_parent"
+
+                  android:layout_below="@+id/rg_gender"
+
+                  android:background="@color/all_9"
+                  android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="手机号"
+                      android:layout_centerVertical="true"
+                      android:id="@+id/tv_phone"
+                      android:layout_height="wrap_content"/>
+            <EditText android:layout_width="match_parent"
+                      android:background="@null"
+                      android:id="@+id/et_phone"
+                      android:layout_toRightOf="@+id/tv_phone"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:layout_centerVertical="true"
+                      android:text="通讯录"
+            />
+
+            <View android:layout_width="match_parent"
+                  android:layout_below="@+id/et_phone"
+                  android:layout_toRightOf="@+id/tv_phone"
+                  android:background="@color/all_9"
+                  android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="地址"
+                      android:layout_centerVertical="true"
+                      android:id="@+id/tv_address"
+                      android:layout_height="wrap_content"/>
+            <EditText android:layout_width="match_parent"
+                      android:background="@null"
+                      android:id="@+id/et_address"
+                      android:layout_toRightOf="@+id/tv_address"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                       android:layout_alignParentRight="true"
+                       android:layout_centerVertical="true"
+                       android:src="@mipmap/ic_launcher"
+            />
+
+            <View android:layout_width="match_parent"
+                  android:layout_below="@+id/et_address"
+                  android:layout_toRightOf="@+id/tv_address"
+                  android:background="@color/all_9"
+                  android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="门牌号"
+                      android:layout_centerVertical="true"
+                      android:id="@+id/tv_left"
+                      android:layout_height="wrap_content"/>
+            <EditText android:layout_width="match_parent"
+                      android:background="@null"
+                      android:id="@+id/et_text"
+                      android:layout_toRightOf="@+id/tv_left"
+                      android:layout_height="wrap_content"/>
+            <View android:layout_width="match_parent"
+                  android:layout_below="@+id/et_text"
+                  android:layout_toRightOf="@+id/tv_left"
+                  android:background="@color/all_9"
+                  android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="55dp"
+                      android:text="标签"
+                      android:id="@+id/tv_label"
+                      android:layout_centerVertical="true"
+                      android:layout_height="wrap_content"/>
+
+
+            <RadioGroup
+                    android:orientation="horizontal"
+                    android:id="@+id/rg_label"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_label"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <RadioButton android:layout_width="wrap_content"
+                             android:text="家"
+                             android:id="@+id/rb_label1"
+                             android:layout_height="wrap_content"/>
+                <RadioButton android:layout_width="wrap_content"
+                             android:text="公司"
+                             android:id="@+id/rb_label2"
+                             android:layout_height="wrap_content"/>
+                <RadioButton android:layout_width="wrap_content"
+                             android:text="学校"
+                             android:id="@+id/rb_label3"
+                             android:layout_height="wrap_content"/>
+
+            </RadioGroup>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
