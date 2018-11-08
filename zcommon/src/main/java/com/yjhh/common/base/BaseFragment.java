@@ -21,6 +21,8 @@ import me.yokeyword.fragmentation.SupportFragment;
 import java.util.List;
 
 public abstract class BaseFragment extends SupportFragment {
+
+
     public void loginOut() {
 
 

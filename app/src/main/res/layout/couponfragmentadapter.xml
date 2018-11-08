@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" xmlns:tools="http://schemas.android.com/tools">
 
 
     <ImageView android:layout_width="80dp" android:layout_height="80dp"
@@ -12,25 +12,29 @@
     <TextView android:layout_width="match_parent"
               android:id="@+id/tv_status"
               android:textColor="@color/all_9"
-              android:text="1212"
+              tools:text="1212"
               android:layout_toRightOf="@+id/iv_image"
               android:textSize="18dp"
-              android:layout_height="80dp"/>
+              android:layout_height="wrap_content"/>
 
     <TextView android:layout_width="match_parent"
               android:id="@+id/tv_endTime"
               android:textColor="@color/all_9"
-              android:text="1212"
+              tools:text="1212"
               android:layout_toRightOf="@+id/iv_image"
+              android:layout_below="@+id/tv_status"
               android:textSize="18dp"
-              android:layout_height="80dp"/>
+              android:layout_height="wrap_content"/>
 
     <TextView android:layout_width="match_parent"
               android:id="@+id/tv_info"
+              android:layout_alignBottom="@+id/iv_image"
               android:textColor="@color/all_9"
-              android:text="1212"
+              tools:text="1212"
               android:layout_toRightOf="@+id/iv_image"
               android:textSize="18dp"
-              android:layout_height="80dp"/>
+              android:layout_height="wrap_content"/>
+
+
 
 </RelativeLayout>

@@ -8,7 +8,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.listener.NavigationOnClickListener
+import com.yjhh.common.listener.LeftOnClickListener
+
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
@@ -81,7 +82,7 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
 
         bt_commit.setOnClickListener(this)
 
-        tbv_title.setOnNavigation(NavigationOnClickListener {
+        tbv_title.setLeftOnClick(LeftOnClickListener {
             activity?.finish()
         })
 

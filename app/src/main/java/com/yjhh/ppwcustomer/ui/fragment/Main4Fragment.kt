@@ -31,25 +31,25 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.iev_browse -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-                } else {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
                         .withString("displayTab", "RecentlyBrowseFragment")
                         .withInt("age", 23)
                         .navigation(context)
+                } else {
+
                 }
             }
 
             R.id.iev_message -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-                } else {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
                         .withString("displayTab", "MyMessageFragment")
                         .withInt("age", 23)
                         .navigation(context)
+                } else {
+
                 }
             }
 
@@ -68,13 +68,13 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.tv_Integral -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-                } else {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
                         .withString("displayTab", "IntegralFragment")
                         .withInt("age", 23)
                         .navigation(context)
+                } else {
+
                 }
 
             }
@@ -103,11 +103,11 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             R.id.tv_name -> {
 
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-//                    ARouter.getInstance()
-//                        .build("/LoginActivity/Login")
-//                        .withString("name", "老王")
-//                        .withInt("age", 23)
-//                        .navigation(context)
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "UserInfoFragment")
+                        .withInt("age", 23)
+                        .navigation()
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
@@ -121,6 +121,11 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.profile_image -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "UserInfoFragment")
+                        .withInt("age", 23)
+                        .navigation()
 
                 } else {
                     ARouter.getInstance()
@@ -171,13 +176,18 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
     override fun initView() {
 
         if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
+            tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
         } else {
             tv_name.text = "未登录"
         }
 
-        var dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
+        val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
             LogUtils.i("Main4Fragment", it.mobile)
+            if (it.loginSuccess) {
+                tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
+            } else {
+                tv_name.text = "未登录"
+            }
         }
 
         compositeDisposable.add(dis)

@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer.model
 
 
 import android.util.ArrayMap
+import com.yjhh.common.Constants.province
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionUserService
 import io.reactivex.Observable
@@ -21,7 +22,7 @@ class SectionUserModel {
     }
 
 
-    fun deleteUseraddress(id: String): Observable<ResponseBody> {
+    fun deleteUseraddress(id: String?): Observable<ResponseBody> {
         map.clear()
         map["id"] = id
         return ApiServices.getInstance().create(SectionUserService::class.java).deleteUseraddress(map)//删除一个地址
@@ -41,11 +42,11 @@ class SectionUserModel {
     }
 
 
-    fun getAllUserAddress(isDefault: String?, pageIndex: String, pageSize: String): Observable<ResponseBody> {
+    fun getAllUserAddress(isDefault: String?, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
         map.clear()
         map["isDefault"] = isDefault
-        map["pageIndex"] = pageIndex
-        map["pageSize"] = pageSize
+        map["pageIndex"] = pageIndex.toString()
+        map["pageSize"] = pageSize.toString()
 
         return ApiServices.getInstance().create(SectionUserService::class.java).getAllUserAddress(map)//获取用户存入的所有的地址
     }
@@ -87,38 +88,35 @@ class SectionUserModel {
     }
 
 
-    fun saveuseraddress(
+    fun editByLocation(
         id: String //
-        , province: String
-        , provinceCode: String
-        , city: String
-        , cityCode: String
-        , area: String
-        , areaCode: String
+        , gender: String
+        , name: String
+        , phone: String
         , address: String
+        , no: String
+        , tags: String
         , longitude: String
         , latitude: String
-        , userName: String
-        , userPhone: String
-        , isDef: String
+        , def: String
+
     ): Observable<ResponseBody> {
         map.clear()
         with(map) {
-            put("id", id) //编辑时必传，新增可空
-            put("province", province)//省
-            put("provinceCode", provinceCode)//省/代码（静态数据避免频繁联查，这里尽量带上code，方便后面三级联动绑定）
-            put("city", city)//市
-            put("cityCode", cityCode)//市/代码
-            put("area", area)//区
-            put("areaCode", areaCode)//区/代码
-            put("address", address)//详细地址
-            put("longitude", longitude)//经度
-            put("latitude", latitude)//纬度
-            put("userName", userName)//收货人姓名
-            put("userPhone", userPhone)//收货人电话
-            put("isDef", isDef)//是否默认
+            put("id", id) //
+            put("name", name)//省
+            put("phone", phone)
+            put("gender", gender)//市
+            put("no", no)
+            put("tags", tags)//区
+
+            put("address", address)
+            put("longitude", longitude)
+            put("latitude", latitude)
+            put("def", def)
+
         }
-        return ApiServices.getInstance().create(SectionUserService::class.java).saveuseraddress(map)//新增加一个地址
+        return ApiServices.getInstance().create(SectionUserService::class.java).editByLocation(map)//新增加一个地址
     }
 
 

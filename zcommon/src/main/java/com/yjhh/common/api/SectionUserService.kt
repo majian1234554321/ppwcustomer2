@@ -19,8 +19,8 @@ interface SectionUserService {
 
 
     @FormUrlEncoded
-    @POST("useraddress/save")
-    fun saveuseraddress(@FieldMap map: Map<String, String>): Observable<ResponseBody>//新增用户地址
+    @POST("useraddress/editByLocation")
+    fun editByLocation(@FieldMap map: Map<String, String>): Observable<ResponseBody>//新增用户地址
 
 
     @FormUrlEncoded

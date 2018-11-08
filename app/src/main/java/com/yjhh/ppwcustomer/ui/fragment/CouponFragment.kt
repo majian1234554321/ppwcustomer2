@@ -1,9 +1,11 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
@@ -12,8 +14,8 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
+
 import com.yjhh.ppwcustomer.adapter.CouponFragmentAdapter
-import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.bean.CouponBean
 import com.yjhh.ppwcustomer.present.SectionCouponPresent
 import com.yjhh.ppwcustomer.present.SectionOrderPresent
@@ -27,10 +29,10 @@ class CouponFragment : BaseFragment(), CouponView {
     var status = "-1"//状态，默认null(null/-1 全部 0未生效 1 有效的 2已过期的/失效的)
     override fun onSuccess(main1bean: CouponBean, flag: String) {
         if ("refresh" == flag) {
-            mAdapter.onRefresh(main1bean.items)
+            mAdapter.onRefresh(main1bean.items as ArrayList<CouponBean.ItemsBean>)
 
         } else {
-            mAdapter.onLoad(main1bean.items)
+            mAdapter.onLoad(main1bean.items as ArrayList<CouponBean.ItemsBean>)
             mAdapter.loadMoreComplete()
         }
     }
@@ -62,6 +64,12 @@ class CouponFragment : BaseFragment(), CouponView {
         initAdapter()
         initRefreshLayout()
         swipeLayout.autoRefresh()
+
+        var textview = TextView(context)
+        textview.text = "查看已失效的优惠券"
+        textview.textSize = 25f
+        textview.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary))
+        mAdapter.addFooterView(textview)
 
 
     }

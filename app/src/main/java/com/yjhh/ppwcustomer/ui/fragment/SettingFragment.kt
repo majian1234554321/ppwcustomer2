@@ -4,7 +4,9 @@ import android.view.View
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
+import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.settingfragment.*
 
@@ -44,6 +46,9 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
                     .withString("name", "老王")
                     .withInt("age", 23)
                     .navigation(context)
+
+                RxBus.default.post(LoginBean("", false))
+
                 activity?.finish()
 
             }

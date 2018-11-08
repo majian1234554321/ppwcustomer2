@@ -10,6 +10,7 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SystemBarUtil
 
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.rxbusbean.RxAddressBean
 import com.yjhh.ppwcustomer.ui.fragment.*
 
 import kotlinx.android.synthetic.main.activity_display.*
@@ -25,6 +26,11 @@ class DisplayActivity : BaseActivity() {
     @JvmField
     var age: Int? = 0
 
+
+    @Autowired
+    @JvmField
+    var bean: RxAddressBean? = null
+
     //var fragments: BaseFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
@@ -37,6 +43,7 @@ class DisplayActivity : BaseActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragments: BaseFragment? = null
         when (displayTab) {
+
             "RegistFragment" -> {
                 fragments = RegistFragment()
             }
@@ -75,7 +82,7 @@ class DisplayActivity : BaseActivity() {
             }
 
             "RecentlyBrowseFragment" -> {
-                fragments = CollectionFragment()
+                fragments = RecentlyBrowseFragment()
 
             }
 
@@ -90,8 +97,21 @@ class DisplayActivity : BaseActivity() {
             }
 
 
+            "UserInfoFragment" -> {
+                fragments = UserInfoFragment()
+
+            }
+
+            "AddressADUFragment" -> {
+                fragments = AddressADUFragment.newInstance(bean)
+
+            }
 
 
+            "SelectDistrictFragment" -> {
+                fragments = SelectDistrictFragment()
+
+            }
 
 
             else -> {

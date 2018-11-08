@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_name"
+              android:text="张三"
+    />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_toRightOf="@+id/tv_name"
+              android:id="@+id/tv_phone"
+              android:text="18888888888"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_address"
+              android:layout_below="@+id/tv_name"
+              android:text="万达国际总部"
+    />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_no"
+              android:layout_below="@+id/tv_name"
+              android:layout_toRightOf="@+id/tv_address"
+              android:text="xxx"
+    />
+
+
+    <ImageView
+
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="10dp" android:layout_height="10dp"/>
+
+
+</RelativeLayout>

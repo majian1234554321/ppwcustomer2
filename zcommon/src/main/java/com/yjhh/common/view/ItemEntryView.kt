@@ -13,7 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import com.yjhh.common.R
-import com.yjhh.common.listener.NavigationOnClickListener
+
 import kotlinx.android.synthetic.main.itementryview.view.*
 
 

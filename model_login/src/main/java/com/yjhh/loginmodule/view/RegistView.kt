@@ -1,5 +1,6 @@
 package com.yjhh.loginmodule.view
 
+import com.yjhh.common.base.BaseView
 import com.yjhh.loginmodule.bean.LoginBean
 import java.util.*
 

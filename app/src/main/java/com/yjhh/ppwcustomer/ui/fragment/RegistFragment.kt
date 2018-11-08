@@ -7,7 +7,8 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.listener.NavigationOnClickListener
+import com.yjhh.common.listener.LeftOnClickListener
+
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
@@ -24,12 +25,10 @@ import kotlinx.android.synthetic.main.registfragment.*
 import java.util.concurrent.TimeUnit
 
 
-class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, NavigationOnClickListener {
+class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
     override fun getLayoutRes(): Int = R.layout.registfragment
-    override fun OnNavigation() {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
 
     override fun registSuccess2(date: String?) {
         Toast.makeText(context, "用户注册成功", Toast.LENGTH_SHORT).show()
@@ -95,7 +94,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView, Navigat
 
 
         bt_register.setOnClickListener(this)
-        tbv_title.setOnNavigation(NavigationOnClickListener {
+        tbv_title.setLeftOnClick(LeftOnClickListener {
             activity?.finish()
         })
 

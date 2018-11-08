@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer
 
 
 import android.util.Log
+import com.yjhh.ppwcustomer.common.utils.time.TimeStampUtils
 import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -18,25 +19,14 @@ import org.junit.Test
  */
 class ExampleUnitTest {
 
-    fun addition_isCorrect() :String = runBlocking<String> {
 
-       val job =   launch { // launch new coroutine and keep a reference to its Job
-            delay(5000L)
-            println("World!")
-        }
-
-
-       job.join()
-        "212"
-
-    }
 
 
     @Test
     fun AA(){
 
-        println(addition_isCorrect())
 
+        System.out.println( TimeStampUtils.stampForDate(1576213860))
     }
 
 
