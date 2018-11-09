@@ -19,6 +19,8 @@ import com.yjhh.common.utils.LogUtils;
 import com.yjhh.common.utils.RxCountDown;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import com.yjhh.common.listener.PermissionListener;
+import com.yjhh.ppwcustomer.bean.PhoneBean;
+import com.yjhh.ppwcustomer.common.utils.PhoneUtil;
 import io.reactivex.observers.DisposableObserver;
 
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
 public class SplashActivity extends BaseActivity {
 
     public String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_CONTACTS};
     private TextView tips;
 
     @Override
@@ -40,6 +42,15 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onGranted() {
                 nextStep();
+
+
+
+              /*  PhoneUtil phoneUtil = new PhoneUtil(SplashActivity.this);
+               List<PhoneBean> phoneDtos = phoneUtil.getPhone();
+                for (int i = 0; i < phoneDtos.size(); i++) {
+                    LogUtils.i("SplashActivity", phoneDtos.get(i).name+":"+phoneDtos.get(i).telPhone );
+                }*/
+
             }
 
             @Override
@@ -54,6 +65,11 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void nextStep() {
+
+
+
+
+
         RxCountDown.countdown(3)
                 .subscribe(new DisposableObserver<Integer>() {
                     @Override

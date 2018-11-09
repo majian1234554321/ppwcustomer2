@@ -24,6 +24,8 @@ class RegByAccountModel {
             put("smsCode", smsCode)
             put("refId", refId)
 
+            put("identity", identity)
+
         }
 
         return ApiServices.getInstance().create(LoginService::class.java).regByAccount(map)

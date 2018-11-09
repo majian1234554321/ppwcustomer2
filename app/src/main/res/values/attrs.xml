@@ -23,4 +23,27 @@
             <enum name="Full" value="1" />
         </attr>
     </declare-styleable>
+
+
+    <declare-styleable name="WaveSideBarView">
+        <attr name="sidebarTextColor" format="color|reference"/>
+        <attr name="sidebarBackgroundColor" format="color|reference"/>
+        <attr name="sidebarChooseTextColor" format="color|reference"/>
+        <attr name="sidebarTextSize" format="dimension"/>
+        <attr name="sidebarLargeTextSize" format="dimension"/>
+        <attr name="sidebarRadius" format="dimension"/>
+        <attr name="sidebarBallRadius" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="lib_ui_view_SideBar">
+        <attr name="lib_ui_view_sidebar_type">
+            <enum name="normal" value="0" />
+            <enum name="center" value="1" />
+        </attr>
+        <attr name="lib_ui_view_sidebar_letters" format="string" />
+        <attr name="lib_ui_view_sidebar_maxCount" format="integer" />
+    </declare-styleable>
+
+
 </resources>

@@ -11,4 +11,12 @@ interface SectionUselessService {
     @FormUrlEncoded
     @POST("userhistory")
     fun userhistory(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
+
+
+    @FormUrlEncoded
+    @POST("usermessage")
+    fun usermessage(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
+
+
+
 }

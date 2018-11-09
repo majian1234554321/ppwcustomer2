@@ -30,6 +30,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yjhh.common.Constants
 import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
+import com.yjhh.ppwcustomer.ui.activity.ActivityContact
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
 
@@ -47,11 +48,13 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_location -> {
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "SelectDistrictFragment")
-                    .withInt("age", 23)
-                    .navigation()
+//                ARouter.getInstance()
+//                    .build("/DisplayActivity/Display")
+//                    .withString("displayTab", "SelectDistrictFragment")
+//                    .withInt("age", 23)
+//                    .navigation()
+
+                startActivity(Intent(context,ActivityContact::class.java))
             }
             else -> {
             }
