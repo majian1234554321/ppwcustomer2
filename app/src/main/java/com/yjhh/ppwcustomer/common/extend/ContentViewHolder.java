@@ -12,7 +12,7 @@ public class ContentViewHolder extends BaseViewHolder {
 
     }
 
-    @Override public void bindViewData(Object data) {
+     public void bindViewData(Object data) {
         //imageview.setImageURI(((BannerBean)data).getUrl());
     }
 }

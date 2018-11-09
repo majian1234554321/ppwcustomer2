@@ -30,13 +30,9 @@ class Main2_1Fragment : BaseFragment() {
 
     var startindex = 0
     val pageSize = 10
-
     override fun getLayoutRes(): Int = R.layout.main2_1fragment
 
-
-
     lateinit var present: SectionOrderPresent
-
     override fun initView() {
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))

@@ -100,13 +100,12 @@ android {
         }
     }
 
-
-  /*  lintOptions {
+    lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
         abortOnError false
-    }*/
+    }
 
 }
 
@@ -124,4 +123,7 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.2.1'
     implementation project(':model_login')
     implementation project(':lib-zxing')
+    api 'android.arch.persistence.room:runtime:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
 }

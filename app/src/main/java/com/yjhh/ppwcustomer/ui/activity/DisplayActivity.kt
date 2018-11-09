@@ -77,7 +77,7 @@ class DisplayActivity : BaseActivity() {
             }
 
             "MyMessageFragment" -> {
-                fragments = CollectionFragment()
+                fragments = MyMessageFragment()
 
             }
 

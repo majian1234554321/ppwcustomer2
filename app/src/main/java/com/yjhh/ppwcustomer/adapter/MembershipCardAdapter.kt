@@ -6,15 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import com.yjhh.common.BaseApplication.context
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.MembCardBean
+import kotlinx.android.synthetic.main.membershipcardadapter.view.*
 
-class MembershipCardAdapter(var context: Context, val list: List<String>) :
+class MembershipCardAdapter(var context: Context, var list: List<MembCardBean>) :
     RecyclerView.Adapter<MembershipCardAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(p0: MembershipCardAdapter.ViewHolder, p1: Int) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        with(p0.itemView) {
+            tv_memberName.text = list[p1].typeName
+            tv_Price.text = "￥${list[p1].price}"
+            tv_tips.text = list[p1].remark
+        }
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MembershipCardAdapter.ViewHolder = ViewHolder(
