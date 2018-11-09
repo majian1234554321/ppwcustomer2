@@ -5,14 +5,22 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.yjhh.ppwcustomer.R;
+import com.yjhh.ppwcustomer.bean.MyBuyCardInfoBean;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class MyVpAdater extends PagerAdapter {
-    private List<Integer> list;
+    private List<MyBuyCardInfoBean> list;
     private Context context;
+    private View view;
+    private TextView tv_no, tv_endTime;
+    private ImageView iv_image;
 
-    public MyVpAdater(Context context, List<Integer> list) {
+    public MyVpAdater(Context context, List<MyBuyCardInfoBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -29,11 +37,19 @@ public class MyVpAdater extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView iv = new ImageView(context);
-        iv.setScaleType(ImageView.ScaleType.FIT_XY);
-        iv.setImageResource(list.get(position));
-        container.addView(iv);
-        return iv;
+
+        view = View.inflate(context, R.layout.myvpadater, null);
+        tv_no = view.findViewById(R.id.tv_No);
+
+        iv_image = view.findViewById(R.id.iv_image);
+        tv_endTime = view.findViewById(R.id.tv_endTime);
+        tv_endTime.setText(list.get(position).expiredTime);
+
+
+        Glide.with(context).load(list.get(position).imageUrl).into(iv_image);
+        tv_no.setText(list.get(position).cardNo);
+        container.addView(view);
+        return view;
     }
 
     @Override

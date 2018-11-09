@@ -155,6 +155,8 @@
         </activity>
         <activity android:name=".ui.activity.ActivityContact">
         </activity>
+        <activity android:name=".ui.activity.SearchActivity">
+        </activity>
     </application>
 
 </manifest>

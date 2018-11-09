@@ -101,8 +101,8 @@ class ActivityContact : BaseActivity() {
                 }
 
                 list
-            }.observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            }.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 //   Log.i("ActivityContact", it[0].content)
                 if (it != null && it.size > 0) {
@@ -113,7 +113,7 @@ class ActivityContact : BaseActivity() {
                 }
 
             }, {
-                listView.visibility = View.GONE
+                //listView.visibility = View.GONE
             })
 
 

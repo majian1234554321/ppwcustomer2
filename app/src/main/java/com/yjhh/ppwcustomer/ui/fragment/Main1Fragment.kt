@@ -29,8 +29,10 @@ import kotlinx.android.synthetic.main.main1fragment.*
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yjhh.common.Constants
 import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
+import com.yjhh.ppwcustomer.adapter.SearchAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 import com.yjhh.ppwcustomer.ui.activity.ActivityContact
+import com.yjhh.ppwcustomer.ui.activity.SearchActivity
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
 
@@ -54,7 +56,9 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 //                    .withInt("age", 23)
 //                    .navigation()
 
-                startActivity(Intent(context,ActivityContact::class.java))
+               // startActivity(Intent(context,ActivityContact::class.java))
+
+                startActivity(Intent(context,SearchActivity::class.java))
             }
             else -> {
             }
