@@ -157,6 +157,34 @@
         </activity>
         <activity android:name=".ui.activity.SearchActivity">
         </activity>
+        <activity android:name=".ui.activity.MoreSectionActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.TakeOutActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.FoodActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.ShopCartActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.ProductDetailActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.UseCouponActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.OrderRemarkActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.PayTakeOutActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.PaySuccessActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.OrderSuccessActivity">
+        </activity>
+        <activity android:name=".ui.activity.takeout.OrderDetailActivity">
+        </activity>
+        <activity android:name=".ui.activity.parishfood.ParishReserveActivity">
+        </activity>
+        <activity android:name=".ui.activity.parishfood.ParishBuyActivity">
+        </activity>
+        <activity android:name=".ui.activity.parishfood.ParishPayActivity">
+        </activity>
     </application>
 
 </manifest>

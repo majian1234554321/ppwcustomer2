@@ -13,7 +13,6 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tl="http://schemas.android.com/tools"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_below="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -25,6 +24,7 @@
             <android.support.design.widget.CollapsingToolbarLayout
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:layout_height="wrap_content"
             >
 
@@ -43,24 +43,35 @@
                               android:id="@+id/tv_storeName"
                               android:layout_toRightOf="@+id/iv_homeImage"
                               android:layout_height="wrap_content"
-                              tools:text="外婆家（楚河汉街店)"
+                              android:text="外婆家（楚河汉街店)"
                     />
                     <TextView android:layout_width="match_parent"
                               android:layout_below="@+id/tv_storeName"
+                              android:layout_toRightOf="@+id/iv_homeImage"
                               android:layout_height="wrap_content"
-                              tools:text="评价54元"
+                              android:text="评价54元"
                     />
 
                     <TextView android:layout_width="match_parent"
+                              android:layout_toRightOf="@+id/iv_homeImage"
                               android:layout_height="wrap_content"
-                              tools:text="外婆家（楚河汉街店)"
+                              android:layout_alignBottom="@+id/iv_homeImage"
+                              android:text="公告1121212"
                     />
                     <TextView android:layout_width="match_parent"
                               android:textColor="@color/all_9"
                               android:textSize="@dimen/sp_16"
+                              android:id="@+id/tv_discount"
                               android:layout_below="@+id/iv_homeImage"
                               android:layout_height="wrap_content"
-                              tools:text="外婆家（楚河汉街店)"
+                              android:text="满30减19 （不与美食活动同享）（限在线支付）"
+                    />
+                    <TextView android:layout_width="match_parent"
+                              android:textColor="@color/all_9"
+                              android:textSize="@dimen/sp_16"
+                              android:layout_below="@+id/tv_discount"
+                              android:layout_height="wrap_content"
+                              android:text="特惠1折抢"
                     />
 
 
@@ -103,36 +114,41 @@
                     android:layout_height="wrap_content">
 
 
-        <LinearLayout
+        <RelativeLayout
                 android:id="@+id/shopping_cart_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/shopping_cart_height"
-                android:background="@color/light_black"
+                android:background="@color/all_9"
                 android:orientation="horizontal"
                 android:clickable="true"
                 android:layout_alignParentBottom="true">
             <TextView
                     android:id="@+id/tv_shopping_cart_total"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:text="120"
                     android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textSize="@dimen/shopping_cart_total_price_word_size"
+                    android:gravity="center"
                     android:textStyle="bold"
-
                     android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"/>
 
             <TextView android:layout_width="wrap_content"
                       android:textColor="@color/white"
                       android:layout_gravity="center"
                       android:id="@+id/tv_pay"
+                      android:layout_alignParentRight="true"
                       android:text="去结算"
-                      android:layout_height="wrap_content"/>
+                      android:gravity="center"
+                      android:background="@color/colorPrimary"
+                      android:paddingLeft="24dp"
+                      android:paddingRight="24dp"
+                      android:layout_height="match_parent"/>
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <FrameLayout
                 android:id="@+id/shopping_cart_layout"

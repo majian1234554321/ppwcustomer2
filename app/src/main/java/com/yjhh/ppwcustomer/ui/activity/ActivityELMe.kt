@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer.ui.activity
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -18,6 +19,7 @@ import com.yjhh.ppwcustomer.adapter.Main2ViewPagerAdapter
 import com.yjhh.ppwcustomer.bean.ModelDish
 import com.yjhh.ppwcustomer.bean.ModelDishMenu
 import com.yjhh.ppwcustomer.bean.ModelShopCart
+import com.yjhh.ppwcustomer.ui.activity.takeout.ShopCartActivity
 import com.yjhh.ppwcustomer.ui.customview.RxDialogShopCart
 
 import com.yjhh.ppwcustomer.ui.fragment.Main2_2Fragment
@@ -88,6 +90,9 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
             R.id.tv_pay -> {
                 Toast.makeText(this, "zhifu", Toast.LENGTH_SHORT).show()
+
+                startActivity(Intent(this, ShopCartActivity::class.java))
+
             }
             else -> {
             }

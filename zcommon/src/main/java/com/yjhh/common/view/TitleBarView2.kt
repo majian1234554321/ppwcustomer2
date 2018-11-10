@@ -1,6 +1,5 @@
 package com.yjhh.common.view
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
@@ -20,7 +19,7 @@ import com.yjhh.common.listener.RightOnClickListener
 import kotlinx.android.synthetic.main.titlebarview.view.*
 
 
-class TitleBarView @JvmOverloads constructor(
+class TitleBarView2 @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -30,6 +29,15 @@ class TitleBarView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
+    private lateinit var navigationOnClickListener: LeftOnClickListener
+    private lateinit var rightOnClickListener: RightOnClickListener
+    fun setLeftOnClick(navigationOnClickListener: LeftOnClickListener) {
+        this.navigationOnClickListener = navigationOnClickListener
+    }
+
+    fun setRightOnClick(rightOnClickListener: RightOnClickListener) {
+        this.rightOnClickListener = rightOnClickListener
+    }
 
     fun setTitle(name: String) {
         tv_title.text = name
@@ -68,12 +76,12 @@ class TitleBarView @JvmOverloads constructor(
 
 
         iv_right.setOnClickListener {
-
+            rightOnClickListener.OnRightClick()
         }
 
 
         iv_back.setOnClickListener {
-            (context as Activity).finish()
+            navigationOnClickListener.OnLeftClick()
         }
 
 

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.yjhh.ppwcustomer.R;
 import com.yjhh.ppwcustomer.adapter.AdapterPopupDish;
@@ -23,9 +24,10 @@ import com.yjhh.ppwcustomer.interfaces.ShopCartInterface;
  */
 public class RxDialogShopCart extends Dialog implements View.OnClickListener,ShopCartInterface {
 
-    private LinearLayout linearLayout,bottomLayout,clearLayout;
+    private LinearLayout linearLayout,clearLayout;
     private FrameLayout shopingcartLayout;
     private ModelShopCart mModelShopCart;
+    public RelativeLayout bottomLayout;
     private TextView totalPriceTextView;
     private TextView totalPriceNumTextView;
     private RecyclerView recyclerView;
@@ -44,7 +46,7 @@ public class RxDialogShopCart extends Dialog implements View.OnClickListener,Sho
         linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
         clearLayout = (LinearLayout)findViewById(R.id.clear_layout);
         shopingcartLayout = (FrameLayout)findViewById(R.id.shopping_cart_layout);
-        bottomLayout = (LinearLayout)findViewById(R.id.shopping_cart_bottom);
+        bottomLayout = (RelativeLayout)findViewById(R.id.shopping_cart_bottom);
         totalPriceTextView = (TextView)findViewById(R.id.shopping_cart_total_tv);
         totalPriceNumTextView = (TextView)findViewById(R.id.shopping_cart_total_num);
         recyclerView = (RecyclerView)findViewById(R.id.recycleview);

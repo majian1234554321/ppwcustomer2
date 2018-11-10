@@ -73,24 +73,63 @@
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/tv1"
-                      android:text="堂食买单"
-                      android:layout_height="wrap_content"/>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/rl1"
+                            android:layout_height="50dp">
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/tv_takeout"
+                          android:text="外卖点餐"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_below="@+id/tv_takeout"
+                          android:layout_height="wrap_content"
+                          android:text="¥20起送 | 满30减15，满45减20"
+                />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentRight="true"
+                          android:gravity="center"
+                          android:layout_centerVertical="true"
+                          android:drawableRight="@mipmap/ic_launcher"
+                          android:text="休息中"
+                />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_below="@+id/rl1"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/tv_Parishfood"
+                          android:text="堂食"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/tv2"
+                          android:layout_below="@+id/tv_Parishfood"
+                          android:text="平台会员8折专享"
+                          android:layout_height="wrap_content"/>
+                <TextView
+                        android:text="预订"
+                        android:id="@+id/tv_Reserve"
+                        android:layout_toLeftOf="@+id/tv_buy"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView
+                        android:text="买单"
+                        android:id="@+id/tv_buy"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/tv2"
-                      android:layout_toRightOf="@+id/tv1"
-                      android:text="外卖点餐"
-                      android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
 
         </RelativeLayout>
-
-
-        <com.youth.banner.Banner android:layout_width="match_parent"
-                                 android:id="@+id/banner"
-                                 android:layout_height="150dp"/>
 
 
         <com.flyco.tablayout.SlidingTabLayout

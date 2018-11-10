@@ -66,9 +66,7 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView 
         val regByAccountPresent = RegByAccountPresent(context, this)
         bt_commit.setOnClickListener(this)
 
-        tbv_title.setLeftOnClick(LeftOnClickListener {
-            activity?.finish()
-        })
+
 
 
         val disposable = RxView.clicks(tv_verifyCode)

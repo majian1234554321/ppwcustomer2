@@ -58,9 +58,7 @@ class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
     override fun getLayoutRes(): Int = R.layout.myaddressfragment
 
     override fun initView() {
-        tbv_title.setLeftOnClick(LeftOnClickListener {
-            activity?.finish()
-        })
+
 
 
         val dis = RxBus.default.toFlowable(RxAddressBean::class.java).subscribe {

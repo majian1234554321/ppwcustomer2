@@ -32,6 +32,8 @@ import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.adapter.SearchAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 import com.yjhh.ppwcustomer.ui.activity.ActivityContact
+import com.yjhh.ppwcustomer.ui.activity.ActivityELMe
+import com.yjhh.ppwcustomer.ui.activity.MoreSectionActivity
 import com.yjhh.ppwcustomer.ui.activity.SearchActivity
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
@@ -107,6 +109,17 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         mRecyclerView.addOnItemTouchListener(object : OnItemClickListener() {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
                 Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
+
+                when (position) {
+                    0 -> {
+                        startActivity(Intent(mActivity,MoreSectionActivity::class.java))
+                    }
+                    1 -> {
+                        startActivity(Intent(mActivity,ActivityELMe::class.java))
+                    }
+                    else -> {
+                    }
+                }
             }
         })
     }

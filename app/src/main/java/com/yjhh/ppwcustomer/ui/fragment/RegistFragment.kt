@@ -94,9 +94,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
 
         bt_register.setOnClickListener(this)
-        tbv_title.setLeftOnClick(LeftOnClickListener {
-            activity?.finish()
-        })
+
 
         val disposable = RxView.clicks(tv_verifyCode)
             .throttleFirst(1, TimeUnit.SECONDS)

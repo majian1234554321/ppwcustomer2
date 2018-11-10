@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.takeout.PaySuccessActivity">
+
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       android:id="@+id/tbv_title"
+                                       app:textValue="支付宝"
+                                       app:textColor="@color/white"
+                                       android:layout_height="wrap_content"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_below="@+id/tbv_title"
+                    android:layout_height="wrap_content">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+            <TextView android:layout_width="match_parent"
+                      android:text="支付成功"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:text="29元"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:text="付款信息人生银行..（6666）"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                      android:text="积分奖励获得2积分，现有积分9999积分"
+                      android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

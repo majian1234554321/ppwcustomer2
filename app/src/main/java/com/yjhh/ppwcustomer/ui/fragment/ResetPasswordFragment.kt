@@ -82,9 +82,6 @@ class ResetPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
 
         bt_commit.setOnClickListener(this)
 
-        tbv_title.setLeftOnClick(LeftOnClickListener {
-            activity?.finish()
-        })
 
 
     }
