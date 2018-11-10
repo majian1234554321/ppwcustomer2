@@ -185,6 +185,8 @@
         </activity>
         <activity android:name=".ui.activity.parishfood.ParishPayActivity">
         </activity>
+        <activity android:name=".ui.activity.takeout.ConfirmOrderActivity">
+        </activity>
     </application>
 
 </manifest>

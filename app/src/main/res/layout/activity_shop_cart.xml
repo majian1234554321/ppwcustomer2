@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,4 +7,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.activity.takeout.ShopCartActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textColor="@color/white"
+                                       app:textValue="购物车"
+                                       android:id="@+id/tbv_title"
+                                       android:layout_height="wrap_content">
+
+    </com.yjhh.common.view.TitleBarView>
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@+id/tbv_title"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+        <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                android:id="@+id/recyclerView"
+                                                android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="去结算"
+                  android:id="@+id/tv_commit"
+                  android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

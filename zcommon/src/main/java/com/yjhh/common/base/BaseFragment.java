@@ -23,6 +23,9 @@ import java.util.List;
 public abstract class BaseFragment extends SupportFragment {
 
 
+    public BaseFragment(){}
+
+
     public void loginOut() {
 
 

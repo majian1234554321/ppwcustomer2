@@ -18,7 +18,7 @@ import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.adapter.CouponFragmentAdapter
 import com.yjhh.ppwcustomer.bean.CouponBean
 import com.yjhh.ppwcustomer.present.SectionCouponPresent
-import com.yjhh.ppwcustomer.present.SectionOrderPresent
+
 import com.yjhh.ppwcustomer.view.CouponView
 
 import kotlinx.android.synthetic.main.couponfragment.*
@@ -48,7 +48,7 @@ class CouponFragment : BaseFragment(), CouponView {
 
 
     lateinit var sectionCouponPresent: SectionCouponPresent
-    lateinit var present: SectionOrderPresent
+
 
     var list = ArrayList<CouponBean.ItemsBean>()
 

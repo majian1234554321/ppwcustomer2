@@ -36,6 +36,7 @@ import com.yjhh.ppwcustomer.ui.activity.ActivityContact
 import com.yjhh.ppwcustomer.ui.activity.ActivityELMe
 import com.yjhh.ppwcustomer.ui.activity.MoreSectionActivity
 import com.yjhh.ppwcustomer.ui.activity.SearchActivity
+import com.yjhh.ppwcustomer.ui.activity.takeout.FoodActivity
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
 
@@ -116,7 +117,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
                         startActivity(Intent(mActivity,MoreSectionActivity::class.java))
                     }
                     1 -> {
-                        startActivity(Intent(mActivity,ActivityELMe::class.java))
+                        startActivity(Intent(mActivity,FoodActivity::class.java))
                     }
                     else -> {
                     }

@@ -13,56 +13,115 @@
                                            app:textValue="美食"
                                            android:id="@+id/tbv_title"
                                            app:textColor="@color/white"
-                                           android:layout_height="wrap_content"></com.yjhh.common.view.TitleBarView>
+                                           android:layout_height="wrap_content"/>
 
 
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_below="@+id/tbv_title"
+
                 android:layout_width="match_parent" android:layout_height="match_parent">
 
-            <com.flyco.tablayout.SlidingTabLayout
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:background="@drawable/stroke_search"
+                      android:layout_margin="@dimen/sp_12"
+                      android:id="@+id/tv_search"
+                      android:text="请输入商家、商品名称"
+            />
+
+
+            <com.yjhh.ppwcustomer.ui.customview.EnhanceTabLayout
                     android:id="@+id/mTabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    tl:tl_tab_space_equal="true"
-                    android:background="#F6CE59"
-                    tl:tl_indicator_width="10dp"/>
+                    android:layout_height="wrap_content"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabIndicatorWidth="30dp"
+                    app:tabTextColor="#999999"
+                    app:tab_Mode="mode_scrollable"
+                    app:tabSelectTextColor="@color/colorPrimary"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabTextSize="6sp"
+            >
+
+            </com.yjhh.ppwcustomer.ui.customview.EnhanceTabLayout>
 
 
-            <RadioGroup
+            <LinearLayout
                     android:id="@+id/rg"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                    android:layout_width="match_parent" android:layout_height="25dp">
 
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="智能排序"
-                             android:id="@+id/rb1"
+                <TextView android:layout_width="match_parent"
+                          android:layout_weight="1"
+                          android:gravity="center"
+                          android:layout_height="match_parent"
+                          android:text="智能排序"
+                          android:id="@+id/rb1"
                 />
 
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="销量最高"
-                             android:id="@+id/rb2"
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:text="销量最高"
+                          android:gravity="center"
+                          android:layout_weight="1"
+                          android:id="@+id/rb2"
                 />
 
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="距离最近"
-                             android:id="@+id/rb3"
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:text="距离最近"
+                          android:gravity="center"
+                          android:layout_weight="1"
+                          android:id="@+id/rb3"
                 />
 
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="筛选"
-                             android:id="@+id/rb4"
+                <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:text="筛选"
+                          android:gravity="center"
+                          android:layout_weight="1"
+                          android:id="@+id/rb4"
                 />
 
-            </RadioGroup>
+            </LinearLayout>
+
 
             <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
-                <android.support.v4.view.ViewPager android:layout_width="match_parent"
-                                                   android:id="@+id/viewpager"
-                                                   android:layout_height="match_parent"/>
-                
+
+                <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                        android:id="@+id/recyclerView"
+                                                        android:layout_height="match_parent"/>
+
+                <FrameLayout android:layout_width="match_parent"
+                             android:background="#33000000"
+                             android:id="@+id/lv_FL"
+                             android:visibility="gone"
+                             android:layout_height="match_parent">
+
+
+                    <ListView
+                            android:id="@+id/lv_sort"
+
+                            android:layout_width="match_parent" android:layout_height="wrap_content">
+                    </ListView>
+
+                </FrameLayout>
+
+                <FrameLayout android:layout_width="match_parent"
+                             android:background="#33000000"
+                             android:id="@+id/fl_select"
+                             android:visibility="gone"
+                             android:layout_height="match_parent">
+
+
+                    <ListView
+                            android:id="@+id/lv_select"
+
+                            android:layout_width="match_parent" android:layout_height="wrap_content">
+                    </ListView>
+
+                </FrameLayout>
+
+
             </FrameLayout>
 
 

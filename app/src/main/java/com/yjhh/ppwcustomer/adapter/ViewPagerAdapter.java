@@ -5,18 +5,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.yjhh.common.base.BaseFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Main2ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    public ArrayList<BaseFragment> mFragments;
+    public List<Fragment> mFragments;
 
     public String[] mTitles;
 
+    public ViewPagerAdapter(FragmentManager fm, String[] mTitles) {
+        super(fm);
 
+        this.mTitles = mTitles;
+    }
 
-    public Main2ViewPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> mFragments, String[] mTitles) {
+    public ViewPagerAdapter(FragmentManager fm, List<Fragment> mFragments, String[] mTitles) {
         super(fm);
         this.mFragments = mFragments;
         this.mTitles = mTitles;
@@ -36,4 +39,6 @@ public class Main2ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         return mFragments.get(position);
     }
+
+
 }

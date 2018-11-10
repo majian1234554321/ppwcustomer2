@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:padding="@dimen/sp_16"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_Price"
+              android:layout_centerVertical="true"
+              android:layout_margin="24dp"
+              tools:text="￥5.0"
+    />
+
+
+    <LinearLayout
+            android:layout_toRightOf="@+id/tv_Price"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <TextView android:layout_width="match_parent"
+                  tools:text="新人优惠券"
+                  android:id="@+id/tv_name"
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_marginTop="8dp"
+                  tools:text="新人优惠券"
+                  android:id="@+id/tv_remark1"
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="match_parent"
+                  tools:text="新人优惠券"
+                  android:layout_marginTop="@dimen/dp_4"
+                  android:id="@+id/tv_remark2"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="match_parent"
+                  tools:text="2001-2002"
+                  android:layout_marginTop="@dimen/dp_4"
+                  android:id="@+id/tv_endTime"
+                  android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
