@@ -48,7 +48,8 @@ class ConfirmOrderActivity : BaseActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             10085 -> {
-
+                val value = data?.getStringExtra("address")
+                tv_commit.text = value
             }
 
             10086 -> {
