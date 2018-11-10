@@ -123,13 +123,16 @@ public class MyLocationListener extends BDAbstractLocationListener {
 
         Log.i("BaiduLocationApiDem", sb.toString());
 
-        //现在已经定位成功，可以将定位的数据保存下来，Const就是保存数据的类
-        Constants.LONGITUDE = String.valueOf(location.getLongitude());
-        Constants.LATITUDE = String.valueOf(location.getLatitude());
-        Constants.district = location.getDistrict();
+        if (location.getDistrict()!=null){
+            //现在已经定位成功，可以将定位的数据保存下来，Const就是保存数据的类
+            Constants.LONGITUDE = String.valueOf(location.getLongitude());
+            Constants.LATITUDE = String.valueOf(location.getLatitude());
+            Constants.district = location.getDistrict();
 
-        Constants.addrStr = location.getAddrStr(); //获取详细地址信息
-        Constants.province = location.getProvince();  //获取省份
-        Constants.street = location.getStreet();
+            Constants.addrStr = location.getAddrStr(); //获取详细地址信息
+            Constants.province = location.getProvince();  //获取省份
+            Constants.street = location.getStreet();
+        }
+
     }
 }

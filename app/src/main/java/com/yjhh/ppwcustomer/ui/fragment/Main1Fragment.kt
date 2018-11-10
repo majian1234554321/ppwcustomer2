@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
@@ -188,7 +189,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
 
         if ("refresh" == flag) {
-
+            Log.i("TAG", Constants.district)
             mAdapter.setNewData(main1bean.main1FootBean.items)
 
         } else {
