@@ -24,6 +24,10 @@ import com.yjhh.ppwcustomer.view.MyAddressView
 import com.yjhh.ppwcustomer.view.RecentlyBrowseView
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.myaddressfragment.*
+import android.support.v7.widget.DividerItemDecoration
+import com.yjhh.ppwcustomer.R.id.recyclerView
+
+
 
 
 class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
@@ -96,6 +100,9 @@ class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
         mAdapter = MyAddressAdapter(list, context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         mRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        mRecyclerView.addItemDecoration(DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL))
+
         mRecyclerView.adapter = mAdapter
         mAdapter.setOnLoadMoreListener({
             loadMore()

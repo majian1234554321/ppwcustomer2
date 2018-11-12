@@ -18,10 +18,13 @@
     <declare-styleable name="ItemEntryView">
         <attr name="ievtextColor" format="color"/>
         <attr name="ievtextValue" format="string"/>
+        <attr name="ievtextContentValue" format="string"/>
         <attr name="ievtextSize" format="dimension"/>
         <attr name="ievimageSrc" format="reference"/>
         <attr name="ievbackground" format="color"/>
         <attr name="ievunderline" format="boolean"/>
+        <attr name="ievdisplaytextContent" format="boolean"/>
+        <attr name="ievarrow" format="boolean"/>
     </declare-styleable>
 
 </resources>

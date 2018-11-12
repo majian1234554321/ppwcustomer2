@@ -1,6 +1,8 @@
 package com.yjhh.common.api
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.yjhh.common.base.WaitProgressDialog
@@ -43,7 +45,10 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
                 val jsonString = jsonValue.getString("data")
                 processValue(jsonString)
             } else {
-                onFault(jsonValue.getString("message"))
+
+                    onFault(jsonValue.getString("message"))
+
+
             }
 
 

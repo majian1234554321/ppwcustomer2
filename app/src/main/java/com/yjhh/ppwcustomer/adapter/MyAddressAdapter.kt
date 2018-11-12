@@ -1,6 +1,7 @@
 package com.yjhh.ppwcustomer.adapter
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -50,6 +51,13 @@ class MyAddressAdapter(var data: ArrayList<MyAddressBean.ItemsBean>, var context
             tv_address.text = data[position].address
 
             tv_no.text = data[position].no
+
+            if (!TextUtils.isEmpty(data[position].tags)) {
+                tv_tag.text = data[position].tags
+                tv_tag.visibility = View.VISIBLE
+            }else{
+                tv_tag.visibility = View.GONE
+            }
 
 
             setOnClickListener {

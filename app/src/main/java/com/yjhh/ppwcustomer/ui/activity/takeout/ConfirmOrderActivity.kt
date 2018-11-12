@@ -40,7 +40,10 @@ class ConfirmOrderActivity : BaseActivity(), View.OnClickListener {
             it.setOnClickListener(this)
         }
 
-
+        iev_coupon.setTextContent("无")
+        iev_Cashcoupon.setTextContent("无")
+        iev_arrayTime.setTextContent("19.00")
+        iev_Distribution.setTextContent("￥12")
     }
 
 

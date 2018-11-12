@@ -56,6 +56,7 @@ public class MemCanBuyBean {
             public String index;
             public double price;
             public String time;
+            public String date;
             public String timeText;
         }
     }

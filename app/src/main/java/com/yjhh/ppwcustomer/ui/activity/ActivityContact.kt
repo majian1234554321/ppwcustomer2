@@ -1,6 +1,7 @@
 package com.yjhh.ppwcustomer.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -117,7 +118,14 @@ class ActivityContact : BaseActivity() {
             })
 
 
-        listView.setOnItemClickListener { parent, view, position, id -> }
+        listView.setOnItemClickListener { parent, view, position, id ->
+
+            val intent = Intent()
+          //  intent.putExtra("phone", info.district + info.key)
+            setResult(RESULT_OK, intent)
+            finish()
+
+        }
 
     }
 

@@ -46,7 +46,7 @@ interface SectionUserService {
     fun setAvater(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户头像
 
 
-    @POST("user/info")
+    @POST("user")
     fun getUserinfo(): Observable<ResponseBody>//获取用户信息
 
 

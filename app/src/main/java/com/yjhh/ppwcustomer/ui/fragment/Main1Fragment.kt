@@ -54,15 +54,15 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_location -> {
-//                ARouter.getInstance()
-//                    .build("/DisplayActivity/Display")
-//                    .withString("displayTab", "SelectDistrictFragment")
-//                    .withInt("age", 23)
-//                    .navigation()
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "SelectDistrictFragment")
+                    .withInt("age", 23)
+                    .navigation()
+            }
 
-               // startActivity(Intent(context,ActivityContact::class.java))
-
-                startActivity(Intent(context,SearchActivity::class.java))
+            R.id.tv_search -> {
+                startActivity(Intent(context, SearchActivity::class.java))
             }
             else -> {
             }
@@ -84,6 +84,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         addHeaderView()
         mAdapter.setPreLoadNumber(1)
         tv_location.setOnClickListener(this)
+        tv_search.setOnClickListener(this)
     }
 
 
@@ -114,10 +115,10 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
                 when (position) {
                     0 -> {
-                        startActivity(Intent(mActivity,MoreSectionActivity::class.java))
+                        startActivity(Intent(mActivity, MoreSectionActivity::class.java))
                     }
                     1 -> {
-                        startActivity(Intent(mActivity,FoodActivity::class.java))
+                        startActivity(Intent(mActivity, FoodActivity::class.java))
                     }
                     else -> {
                     }
@@ -139,9 +140,9 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         mAdapter.addHeaderView(headView)
 
-        val bannerParams = banner!!.getLayoutParams()
-        val titleBarParams = toolbar.getLayoutParams()
-        bannerHeight = bannerParams.height - titleBarParams.height
+//        val bannerParams = banner!!.getLayoutParams()
+//        val titleBarParams = toolbar.getLayoutParams()
+//        bannerHeight = bannerParams.height - titleBarParams.height
 
     }
 

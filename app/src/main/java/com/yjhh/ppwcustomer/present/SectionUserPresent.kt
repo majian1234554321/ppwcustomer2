@@ -8,8 +8,10 @@ import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.present.BasePresent
 import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.bean.MyAddressBean
+import com.yjhh.ppwcustomer.bean.UserinfoBean
 import com.yjhh.ppwcustomer.model.SectionUserModel
 import com.yjhh.ppwcustomer.view.MyAddressView
+import com.yjhh.ppwcustomer.view.UserInfoView
 
 
 class SectionUserPresent(context: Context) : BasePresent() {
@@ -17,6 +19,12 @@ class SectionUserPresent(context: Context) : BasePresent() {
     private lateinit var registView: RegistView
 
     private lateinit var addressView: MyAddressView
+
+    private lateinit var  userInfoView: UserInfoView
+
+    constructor(context: Context, userInfoView: UserInfoView) : this(context) {
+        this.userInfoView = userInfoView
+    }
 
     constructor(context: Context, registView: RegistView) : this(context) {
         this.registView = registView
@@ -84,10 +92,13 @@ class SectionUserPresent(context: Context) : BasePresent() {
             override fun processValue(response: String?) {
                 Log.i("getUserinfo", response)
 
+                val  bean = gson.fromJson<UserinfoBean>(response,UserinfoBean::class.java)
+
+                userInfoView.onSuccess(bean)
             }
 
             override fun onFault(message: String) {
-
+                userInfoView.onFault(message)
             }
         })
 
@@ -97,11 +108,12 @@ class SectionUserPresent(context: Context) : BasePresent() {
         toSubscribe2(model.deleteUseraddress(id), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("deleteUseraddress", response)
+                addressView.onSuccess(MyAddressBean(), "")
 
             }
 
             override fun onFault(message: String) {
-
+                addressView.onFault(message)
             }
 
         })
@@ -183,12 +195,12 @@ class SectionUserPresent(context: Context) : BasePresent() {
 
         ), object : ProcessObserver2(context) {
             override fun onFault(message: String) {
-
+                addressView.onFault(message)
             }
 
             override fun processValue(response: String?) {
                 Log.i("editByLocation", response)
-                addressView.onSuccess(MyAddressBean(),"flag")
+                addressView.onSuccess(MyAddressBean(), "flag")
             }
 
         })

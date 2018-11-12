@@ -22,7 +22,7 @@ class MoreSectionActivity : AppCompatActivity() {
 
 
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MoreSectionAdapter(this,list)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = MoreSectionAdapter(this,list)
     }
 }

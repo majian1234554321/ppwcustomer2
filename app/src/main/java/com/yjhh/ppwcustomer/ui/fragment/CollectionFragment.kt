@@ -10,21 +10,45 @@ import kotlinx.android.synthetic.main.collectionfragment.*
 class CollectionFragment : BaseFragment() {
 
 
+    val type1 = arrayListOf<String>("足迹", "收藏")
+    val mTitles = arrayOf("商家", "商品", "内容")
+
     override fun initView() {
-        val mTitles = arrayOf("商家", "商品", "内容")
+
+
+
+        iv_back.setOnClickListener { mActivity.finish() }
 
 
         val mTabEntities = ArrayList<CustomTabEntity>()
         val mFragments = ArrayList<BaseFragment>()
 
-        mFragments.add(Main2_1Fragment())
-        mFragments.add(Main2_2Fragment())
-        mFragments.add(Main2_3Fragment())
+        mFragments.add(Collection1Fragment())
+        mFragments.add(Collection2Fragment())
+        mFragments.add(Collection3Fragment())
 
 
 
         mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, mTitles)
         mTabLayout.setViewPager(mViewPager)
+
+
+        rg.setOnCheckedChangeListener { group, checkedId ->
+
+            when (checkedId) {
+                R.id.rb1 -> {
+                    mViewPager.currentItem= 0
+                }
+
+                R.id.rb2 -> {
+                    mViewPager.currentItem= 0
+                }
+
+                else -> {
+                }
+            }
+        }
+
 
     }
 

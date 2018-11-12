@@ -29,4 +29,34 @@ class SectionUselessModel {
         map["pageSize"] = pageSize.toString()
         return ApiServices.getInstance().create(SectionUselessService::class.java).usermessage(map)
     }
+
+
+
+
+    fun usercollect(type: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
+        map.clear()
+        map["type"] = type
+        map["pageIndex"] = pageIndex.toString()
+        map["pageSize"] = pageSize.toString()
+        return ApiServices.getInstance().create(SectionUselessService::class.java).usercollect(map)
+    }
+
+
+
+    fun useraccount(type: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
+        map.clear()
+        map["type"] = type
+        map["pageIndex"] = pageIndex.toString()
+        map["pageSize"] = pageSize.toString()
+        return ApiServices.getInstance().create(SectionUselessService::class.java).useraccount(map)
+    }
+
+
+
+    fun useraccountindex(): Observable<ResponseBody> {
+
+        return ApiServices.getInstance().create(SectionUselessService::class.java).useraccountindex()
+    }
+
+
 }

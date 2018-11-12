@@ -5,21 +5,22 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import com.yjhh.ppwcustomer.R;
+import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.List;
 
-public class SearchAdapter extends TagAdapter<String> {
+public class SearchAdapter extends TagAdapter<HistoricalModel> {
 
     public Activity activity;
     public TagFlowLayout mFlowLayout;
 
 
-    public List<String> data;
+    public List<HistoricalModel> data;
 
-    public SearchAdapter(Activity activity, List<String> data, TagFlowLayout mFlowLayout ) {
+    public SearchAdapter(Activity activity, List<HistoricalModel> data, TagFlowLayout mFlowLayout) {
         super(data);
         this.data = data;
         this.activity = activity;
@@ -27,15 +28,15 @@ public class SearchAdapter extends TagAdapter<String> {
     }
 
     @Override
-    public View getView(FlowLayout parent, int position, String s) {
+    public View getView(FlowLayout parent, int position, HistoricalModel s) {
 
         TextView tv = (TextView) activity.getLayoutInflater().inflate(R.layout.tv_single,
                 mFlowLayout, false);
-        tv.setText(s);
+        tv.setText(s.keyword);
         return tv;
     }
 
-    public void clear(){
+    public void clear() {
         data.clear();
         notifyDataChanged();
     }

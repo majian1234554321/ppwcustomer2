@@ -17,6 +17,7 @@ import com.yjhh.ppwcustomer.bean.MyAddressBean
 import com.yjhh.ppwcustomer.bean.rxbusbean.RxAddressBean
 import com.yjhh.ppwcustomer.present.SectionUselessPresent
 import com.yjhh.ppwcustomer.present.SectionUserPresent
+import com.yjhh.ppwcustomer.ui.activity.ActivityContact
 import com.yjhh.ppwcustomer.ui.activity.SelectAddressByMapActivity
 import com.yjhh.ppwcustomer.view.MyAddressView
 import kotlinx.android.synthetic.main.addressaddfragment.*
@@ -38,7 +39,7 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
     }
 
     var genderArg = "0"
-    var tagsArg = "家"
+    var tagsArg = ""
     var idArg = ""
     var longitude = Constants.LONGITUDE
 
@@ -67,16 +68,20 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
             }
 
             else -> {
+                tagsArg = ""
             }
         }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.et_address -> {
-                startActivityForResult(Intent(mActivity, SelectAddressByMapActivity::class.java), 10086)
+            R.id.tv_contact -> {
+                startActivityForResult(Intent(mActivity, ActivityContact::class.java), 10085)
             }
 
+            R.id.iv_location -> {
+                startActivityForResult(Intent(mActivity, SelectAddressByMapActivity::class.java), 10086)
+            }
 
             R.id.tv_commit -> {
 
@@ -132,14 +137,14 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
                     }
 
                     "公司" -> {
-                        R.id.rb_label1
+                        R.id.rb_label2
                     }
 
                     "学校" -> {
-                        R.id.rb_label1
+                        R.id.rb_label3
                     }
                     else -> {
-                        R.id.rb_label1
+                        -1
                     }
                 }
 
@@ -148,7 +153,7 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
 
         }
 
-        val view = arrayOf(et_address, tv_commit)
+        val view = arrayOf(iv_location, tv_commit, tv_contact)
         view.forEach {
             it.setOnClickListener(this)
         }
@@ -183,6 +188,11 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
                     latitude = data?.getStringExtra("latitude")
                     et_address.setText(address)
                 }
+
+                10085 -> {
+
+                }
+
                 else -> {
                 }
             }

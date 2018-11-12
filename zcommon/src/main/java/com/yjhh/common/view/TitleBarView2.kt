@@ -60,7 +60,7 @@ class TitleBarView2 @JvmOverloads constructor(
 
         type.recycle()
 
-        val view = View.inflate(context, R.layout.titlebarview, this)
+        val view = View.inflate(context, R.layout.titlebarview2, this)
         val tv_title = view.findViewById<TextView>(R.id.tv_title)
 
 

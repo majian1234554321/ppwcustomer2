@@ -14,67 +14,98 @@
                                        android:layout_height="wrap_content"/>
 
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
-                  android:layout_below="@+id/tbv_title"
-                  android:layout_height="wrap_content">
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+                                                android:layout_below="@+id/tbv_title"
+                                                android:layout_above="@+id/rl_pay"
+                                                android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+
+                      android:layout_height="wrap_content">
 
 
-        <TextView android:layout_width="match_parent"
-                  android:text="请选择收货地址"
-                  android:gravity="center_vertical"
-                  android:drawableRight="@mipmap/ic_launcher"
-                  android:layout_height="wrap_content"/>
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_selectAddress"
+                    app:ievtextValue="请选择收货地址"
+                    app:ievtextColor="@color/all_9"
+                    app:ievbackground="@color/white"
+                    android:layout_height="wrap_content"/>
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:text="送达时间"
+
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_arrayTime"
+                    app:ievtextValue="送达时间"
+                    app:ievarrow="false"
+                    app:ievtextColor="@color/all_9"
+                    app:ievbackground="@color/white"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:text="xxx店家"
             />
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_alignParentRight="true"
-                      android:text="预计11:45送达"
-            />
+
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recyclerView"
+                    android:layout_height="wrap_content"/>
 
 
-        </RelativeLayout>
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_Distribution"
+                    app:ievtextValue="配送费"
+                    app:ievtextColor="@color/all_9"
+                    app:ievarrow="false"
+                    app:ievbackground="@color/white"
+                    android:layout_height="wrap_content"/>
 
 
-        <com.yjhh.common.view.ItemEntryView
-                android:layout_width="match_parent"
-                android:id="@+id/iev_coupon"
-                app:ievtextValue="优惠券"
-                app:ievtextColor="@color/all_9"
-                app:ievbackground="@color/white"
-                android:layout_height="wrap_content"/>
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_coupon"
+                    app:ievtextValue="优惠券"
+                    app:ievtextColor="@color/all_9"
+                    app:ievbackground="@color/white"
+                    android:layout_height="wrap_content"/>
 
 
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-
-                  android:text="商家代金券"
-        />
-
-
-        <TextView android:layout_width="wrap_content"
-                  android:layout_gravity="right"
-                  android:text="小计 ￥57"
-                  android:layout_height="wrap_content"/>
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_Cashcoupon"
+                    app:ievtextValue="商家代金券"
+                    app:ievtextColor="@color/all_9"
+                    app:ievbackground="@color/white"
+                    app:ievarrow="false"
+                    android:layout_height="wrap_content"/>
 
 
-        <com.yjhh.common.view.ItemEntryView
-                android:layout_width="match_parent"
-                android:id="@+id/iev_remark"
-                app:ievtextValue="备注"
-                app:ievtextColor="@color/all_9"
-                app:ievbackground="@color/white"
-                android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_gravity="right"
+                      android:text="小计 ￥57"
+                      android:gravity="center"
+                      android:layout_height="48dp"/>
 
 
-    </LinearLayout>
+            <com.yjhh.common.view.ItemEntryView
+                    android:layout_width="match_parent"
+                    android:id="@+id/iev_remark"
+                    app:ievtextValue="备注"
+                    app:ievtextColor="@color/all_9"
+                    app:ievbackground="@color/white"
+                    android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_pay"
                     android:layout_alignParentRight="true"
                     android:layout_height="50dp">
 

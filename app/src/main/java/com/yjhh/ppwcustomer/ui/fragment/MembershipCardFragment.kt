@@ -15,6 +15,8 @@ import com.yjhh.ppwcustomer.adapter.MembershipCardAdapter
 import com.yjhh.ppwcustomer.adapter.MyVpAdater
 import com.yjhh.ppwcustomer.bean.MembCardBean
 import com.yjhh.ppwcustomer.bean.MyBuyCardInfoBean
+import com.yjhh.ppwcustomer.common.SpacesItemDecoration
+import com.yjhh.ppwcustomer.common.utils.Util
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function3
@@ -33,7 +35,7 @@ class MembershipCardFragment : BaseFragment() {
     override fun initView() {
 
         mRecyclerView.layoutManager = LinearLayoutManager(context)
-
+        mRecyclerView.addItemDecoration( SpacesItemDecoration(Util.dip2px(mActivity,16f)))
 
         val observable1 = ApiServices.getInstance().create(SectionMembershipService::class.java)
             .membershipcardtypes()
@@ -54,22 +56,19 @@ class MembershipCardFragment : BaseFragment() {
             observable1,
             observable2,
             observable3,
-            object : Function3<ResponseBody, ResponseBody, ResponseBody, List<String>> {
-                override fun apply(t1: ResponseBody, t2: ResponseBody, t3: ResponseBody): List<String> {
-                    // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            Function3<ResponseBody, ResponseBody, ResponseBody, List<String>> { t1, t2, t3 ->
+                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
-                    val list = ArrayList<String>()
+                val list = ArrayList<String>()
 
-                    val response1 = t1.string()
-                    val response2 = t2.string()
-                    val response3 = t3.string()
-                    list.add(response1)
-                    list.add(response2)
-                    list.add(response3)
+                val response1 = t1.string()
+                val response2 = t2.string()
+                val response3 = t3.string()
+                list.add(response1)
+                list.add(response2)
+                list.add(response3)
 
-                    return list
-                }
-
+                list
             }).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -115,14 +114,14 @@ class MembershipCardFragment : BaseFragment() {
                         ).append(jsonString).append("}")
 
 
-                        val lists = ArrayList<MembCardBean>()
+
 
                         val gson = Gson()
 
 
                         val bean = gson.fromJson<MemCanBuyBean>(sb.toString(), MemCanBuyBean::class.java)
 
-                        if (bean?.items != null) {
+                       /* if (bean?.items != null) {
 
                             bean?.items.forEach { aValue ->
                                 var model = MembCardBean()
@@ -142,7 +141,10 @@ class MembershipCardFragment : BaseFragment() {
                             }
                             mRecyclerView.adapter = MembershipCardAdapter(context, lists)
 
-                        }
+                        }*/
+
+                        mRecyclerView.adapter = MembershipCardAdapter(context, bean.items)
+
 
 
                     } else {

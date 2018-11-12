@@ -14,23 +14,28 @@
             android:layout_width="match_parent" android:layout_height="wrap_content">
 
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:padding="@dimen/sp_12"
+                        android:layout_height="wrap_content">
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="头像"
+
                       android:layout_centerVertical="true"
             />
-            <de.hdodenhof.circleimageview.CircleImageView android:layout_width="wrap_content"
-                                                          android:layout_marginRight="12dp"
-                                                          android:layout_toLeftOf="@+id/iv_arrow"
-                                                          android:src="@mipmap/ic_launcher"
-                                                          android:layout_height="wrap_content"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_marginRight="12dp"
+                    android:id="@+id/iv_image"
+                    android:layout_toLeftOf="@+id/iv_arrow"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_height="50dp"/>
 
             <ImageView android:layout_width="30dp" android:layout_height="30dp"
                        android:layout_alignParentRight="true"
                        android:layout_centerVertical="true"
                        android:id="@+id/iv_arrow"
-                       android:src="@mipmap/ic_launcher"
+                       android:src="@drawable/arrow_right_48"
             />
 
 
@@ -39,18 +44,25 @@
 
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="昵称"
+                                            android:paddingRight="@dimen/sp_12"
+                                            android:paddingLeft="@dimen/sp_12"
                                             android:id="@+id/iev_nickName"
                                             app:ievtextColor="@color/all_9"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="生日"
+                                            android:paddingRight="@dimen/sp_12"
+                                            android:paddingLeft="@dimen/sp_12"
                                             android:id="@+id/iev_birthday"
+                                            app:ievdisplaytextContent="true"
                                             app:ievbackground="@color/white"
                                             app:ievtextColor="@color/all_9"
                                             android:layout_height="wrap_content"/>
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             android:id="@+id/iev_address"
+                                            android:paddingRight="@dimen/sp_12"
+                                            android:paddingLeft="@dimen/sp_12"
                                             app:ievtextValue="我的收货地址"
                                             app:ievtextColor="@color/all_9"
                                             app:ievbackground="@color/white"

@@ -25,6 +25,12 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
             }
             R.id.iev_resetPhone -> {
 
+
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "ChangeMobileFragment")
+                    .withInt("age", 23)
+                    .navigation()
             }
 
             R.id.iev_resetMessage -> {

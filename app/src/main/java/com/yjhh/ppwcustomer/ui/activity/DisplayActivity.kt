@@ -113,6 +113,16 @@ class DisplayActivity : BaseActivity() {
 
             }
 
+            "ChangeMobileFragment" -> {
+                fragments = ChangeMobileFragment()
+
+            }
+
+
+            "IntegralFragment" -> {
+                fragments = IntegralFragment()
+
+            }
 
             else -> {
 

@@ -38,7 +38,7 @@
 
             </TextView>
 
-            <EditText
+            <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
@@ -46,11 +46,12 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_seek"
+                    android:background="@drawable/stroke_search"
                     android:cursorVisible="false"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="12dp"
                     android:drawableStart="@mipmap/seek"
-                    android:hint="搜一搜"
+                    android:id="@+id/tv_search"
+                    android:hint="输入商家、商品名称"
                     android:padding="10dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"

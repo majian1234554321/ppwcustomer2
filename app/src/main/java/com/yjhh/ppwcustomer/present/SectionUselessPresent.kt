@@ -12,6 +12,15 @@ import com.yjhh.ppwcustomer.model.SectionUselessModel
 import com.yjhh.ppwcustomer.view.CouponView
 import com.yjhh.ppwcustomer.view.MyMessageView
 import com.yjhh.ppwcustomer.view.RecentlyBrowseView
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.BiFunction
+import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import java.util.*
+import java.util.function.Function
+import kotlin.collections.ArrayList
 
 class SectionUselessPresent(var context: Context) : BasePresent() {
     lateinit var recentlyBrowseView: RecentlyBrowseView
@@ -48,6 +57,113 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
             }
 
         })
+    }
+
+
+    fun usercollect(status: String, pageIndex: Int, pageSize: Int, flag: String) {
+
+        toSubscribe2(model.usercollect(status, pageIndex, pageSize), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("coupon", response)
+
+                val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
+
+                recentlyBrowseView.onSuccess(recentlyBrowseBean, flag)
+            }
+
+            override fun onFault(message: String) {
+                Log.i("coupon", message)
+                recentlyBrowseView.onFault(message)
+            }
+
+        })
+    }
+
+
+    fun useraccount(status: String, pageIndex: Int, pageSize: Int, flag: String) {
+
+        toSubscribe2(model.useraccount(status, pageIndex, pageSize), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("coupon", response)
+
+                val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
+
+                recentlyBrowseView.onSuccess(recentlyBrowseBean, flag)
+            }
+
+            override fun onFault(message: String) {
+                Log.i("coupon", message)
+                recentlyBrowseView.onFault(message)
+            }
+
+        })
+    }
+
+
+    fun useraccountindex() {
+        toSubscribe2(model.useraccountindex(), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("coupon", response)
+                val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
+                // recentlyBrowseView.onSuccess(recentlyBrowseBean)
+            }
+
+            override fun onFault(message: String) {
+                Log.i("coupon", message)
+                //  recentlyBrowseView.onFault(message)
+            }
+
+        })
+    }
+
+
+    fun useraccountjoin(status: String, pageIndex: Int, pageSize: Int, flag: String) {
+
+        val useraccount = model.useraccount(status, pageIndex, pageSize)
+
+        val useraccountindex = model.useraccountindex()
+
+
+        val dis = Observable.zip(useraccountindex, useraccount,
+            BiFunction<ResponseBody, ResponseBody, List<String>> { t1, t2 ->
+
+                val list = ArrayList<String>()
+                Log.i("useraccountjoin", t1.string())
+                Log.i("useraccountjoin", t2.string())
+
+                val value1 = t1.string()
+                val value2 = t2.string()
+                val jsonObject1 = JSONObject(value1)
+                val jsonObject2 = JSONObject(value2)
+
+                if (t1.string() != null && jsonObject1.getBoolean("success")) {
+
+
+                    list.add(jsonObject1.getString("data"))
+
+                } else {
+                    list.add("null")
+                }
+
+
+                if (t2.string() != null && jsonObject2.getBoolean("success")) {
+                    list.add(jsonObject2.getString("data"))
+
+                } else {
+                    list.add("null")
+                }
+
+                list
+
+            }).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+
+            }, {
+
+            })
+
     }
 
 

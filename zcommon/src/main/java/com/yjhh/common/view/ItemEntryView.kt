@@ -17,6 +17,7 @@ import com.yjhh.common.R
 import kotlinx.android.synthetic.main.itementryview.view.*
 
 
+
 class ItemEntryView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -27,7 +28,9 @@ class ItemEntryView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-
+    fun setTextContent(name: String) {
+        tv_content.text = name
+    }
 
 
     init {
@@ -37,6 +40,14 @@ class ItemEntryView @JvmOverloads constructor(
         val textValue = type.getString(R.styleable.ItemEntryView_ievtextValue)
         val textColor =
             type.getColor(R.styleable.ItemEntryView_ievtextColor, ContextCompat.getColor(context, R.color.colorPrimary))
+
+
+        val textContentValue =
+            type.getColor(R.styleable.ItemEntryView_ievtextContentValue, ContextCompat.getColor(context, R.color.colorPrimary))
+
+
+
+
         val textSize = type.getDimension(R.styleable.ItemEntryView_ievtextSize, 18f)
 
         val titleBarBackground = type.getColor(
@@ -44,9 +55,25 @@ class ItemEntryView @JvmOverloads constructor(
             ContextCompat.getColor(context, R.color.colorPrimary)
         )
 
+
+
+        val ievdisplaytextContent = type.getBoolean(
+            R.styleable.ItemEntryView_ievdisplaytextContent,
+            false
+        )
+
+
+
         val ievunderline = type.getBoolean(
             R.styleable.ItemEntryView_ievunderline,
             false
+        )
+
+
+
+        val ievarrow = type.getBoolean(
+            R.styleable.ItemEntryView_ievarrow,
+            true
         )
 
 
@@ -67,10 +94,18 @@ class ItemEntryView @JvmOverloads constructor(
             line.visibility = View.GONE
         }
 
-        val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
+        if (ievarrow){
+            iv_arrow.visibility= View.VISIBLE
+        }else{
+            iv_arrow.visibility= View.GONE
+        }
+
+       val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
 
 
         rl_background.setBackgroundColor(titleBarBackground)
+
+
 
 
     }
