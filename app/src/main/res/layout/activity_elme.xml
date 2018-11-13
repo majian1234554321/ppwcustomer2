@@ -127,10 +127,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:text="120"
                     android:textColor="@color/white"
                     android:textAlignment="center"
-                    android:textSize="@dimen/shopping_cart_total_price_word_size"
+                    android:textSize="@dimen/sp_14"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"/>

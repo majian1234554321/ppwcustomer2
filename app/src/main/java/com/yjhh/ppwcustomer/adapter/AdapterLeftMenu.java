@@ -20,30 +20,30 @@ import java.util.List;
  */
 public class AdapterLeftMenu extends RecyclerView.Adapter {
     private Context mContext;
-    private ArrayList<ModelDishMenu> mMenuList;
+    private ArrayList<String> mMenuList;
     private int mSelectedNum;
     private List<onItemSelectedListener> mSelectedListenerList;
 
-    public interface onItemSelectedListener{
-        public void onLeftItemSelected(int postion, ModelDishMenu menu);
+    public interface onItemSelectedListener {
+        public void onLeftItemSelected(int postion, String menu);
     }
 
-    public void addItemSelectedListener(onItemSelectedListener listener){
-        if(mSelectedListenerList!=null)
+    public void addItemSelectedListener(onItemSelectedListener listener) {
+        if (mSelectedListenerList != null)
             mSelectedListenerList.add(listener);
     }
 
-    public void removeItemSelectedListener(onItemSelectedListener listener){
-        if(mSelectedListenerList!=null && !mSelectedListenerList.isEmpty())
+    public void removeItemSelectedListener(onItemSelectedListener listener) {
+        if (mSelectedListenerList != null && !mSelectedListenerList.isEmpty())
             mSelectedListenerList.remove(listener);
     }
 
-    public AdapterLeftMenu(Context mContext, ArrayList<ModelDishMenu> mMenuList){
+    public AdapterLeftMenu(Context mContext, ArrayList<String> mMenuList) {
         this.mContext = mContext;
         this.mMenuList = mMenuList;
         this.mSelectedNum = -1;
         this.mSelectedListenerList = new ArrayList<>();
-        if(mMenuList.size()>0)
+        if (mMenuList.size() > 0)
             mSelectedNum = 0;
     }
 
@@ -56,15 +56,32 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ModelDishMenu modelDishMenu = mMenuList.get(position);
-        LeftMenuViewHolder viewHolder = (LeftMenuViewHolder)holder;
-        viewHolder.menuName.setText(modelDishMenu.getMenuName());
-        if(mSelectedNum==position){
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+
+        final LeftMenuViewHolder viewHolder = (LeftMenuViewHolder) holder;
+        viewHolder.menuName.setText(mMenuList.get(position));
+        if (mSelectedNum == position) {
             viewHolder.menuLayout.setSelected(true);
-        }else{
+        } else {
             viewHolder.menuLayout.setSelected(false);
         }
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                int clickPosition = position;
+                setSelectPosition(clickPosition);
+                notifyItemSelected(clickPosition);
+
+
+
+            }
+        });
+
+
     }
 
     @Override
@@ -72,41 +89,35 @@ public class AdapterLeftMenu extends RecyclerView.Adapter {
         return mMenuList.size();
     }
 
-    public void setSelectedNum(int selectedNum) {
-        if(selectedNum<getItemCount() && selectedNum>=0 ) {
-            this.mSelectedNum = selectedNum;
-            notifyDataSetChanged();
-        }
-    }
 
-    public int getSelectedNum() {
+    public int getSelectPosition() {
         return mSelectedNum;
     }
 
-    private class LeftMenuViewHolder extends RecyclerView.ViewHolder{
+    public void setSelectPosition(int mSelectedNum) {
+        this.mSelectedNum = mSelectedNum;
+        notifyDataSetChanged();
+
+    }
+
+
+    private class LeftMenuViewHolder extends RecyclerView.ViewHolder {
 
         TextView menuName;
         LinearLayout menuLayout;
 
         public LeftMenuViewHolder(final View itemView) {
             super(itemView);
-            menuName = (TextView)itemView.findViewById(R.id.left_menu_textview);
-            menuLayout = (LinearLayout)itemView.findViewById(R.id.left_menu_item);
-            menuLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int clickPosition = getAdapterPosition();
-//                    setSelectedNum(clickPosition);
-                    notifyItemSelected(clickPosition);
-                }
-            });
+            menuName = (TextView) itemView.findViewById(R.id.left_menu_textview);
+            menuLayout = (LinearLayout) itemView.findViewById(R.id.left_menu_item);
+
         }
     }
 
     private void notifyItemSelected(int position) {
-        if(mSelectedListenerList!=null && !mSelectedListenerList.isEmpty()){
-            for(onItemSelectedListener listener:mSelectedListenerList){
-                listener.onLeftItemSelected(position,mMenuList.get(position));
+        if (mSelectedListenerList != null && !mSelectedListenerList.isEmpty()) {
+            for (onItemSelectedListener listener : mSelectedListenerList) {
+                listener.onLeftItemSelected(position, mMenuList.get(position));
             }
         }
     }

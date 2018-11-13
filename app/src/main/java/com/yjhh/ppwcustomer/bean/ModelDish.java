@@ -9,14 +9,19 @@ public class ModelDish {
     private double dishPrice;
     private int dishAmount;
     private int dishRemain;
+    public String dishid;
 
-    public ModelDish(String dishName, double dishPrice, int dishAmount){
+    public ModelDish(String dishName, double dishPrice, int dishAmount, String tyee) {
         this.dishName = dishName;
         this.dishPrice = dishPrice;
         this.dishAmount = dishAmount;
         this.dishRemain = dishAmount;
+        this.tyee = tyee;
+
     }
 
+
+    public String tyee;
 
     public String getDishName() {
         return dishName;
@@ -50,19 +55,19 @@ public class ModelDish {
         this.dishRemain = dishRemain;
     }
 
-    public int hashCode(){
-        int code = this.dishName.hashCode()+(int)this.dishPrice;
+    public int hashCode() {
+        int code = this.dishName.hashCode() + (int) this.dishPrice;
         return code;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj==this)return true;
+        if (obj == this) return true;
 
         return obj instanceof ModelDish &&
-                this.dishName.equals(((ModelDish)obj).dishName) &&
-                this.dishPrice ==  ((ModelDish)obj).dishPrice &&
-                this.dishAmount == ((ModelDish)obj).dishAmount &&
-                this.dishRemain == ((ModelDish)obj).dishRemain;
+                this.dishName.equals(((ModelDish) obj).dishName) &&
+                this.dishPrice == ((ModelDish) obj).dishPrice &&
+                this.dishAmount == ((ModelDish) obj).dishAmount &&
+                this.dishRemain == ((ModelDish) obj).dishRemain;
     }
 }

@@ -4,10 +4,12 @@ package com.yjhh.ppwcustomer.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.util.ArrayMap
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.baidu.mapapi.map.MarkerOptions
 
 
 import com.yjhh.common.base.BaseActivity
@@ -19,6 +21,7 @@ import com.yjhh.ppwcustomer.adapter.Main2ViewPagerAdapter
 import com.yjhh.ppwcustomer.bean.ModelDish
 import com.yjhh.ppwcustomer.bean.ModelDishMenu
 import com.yjhh.ppwcustomer.bean.ModelShopCart
+import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel
 import com.yjhh.ppwcustomer.ui.activity.takeout.ShopCartActivity
 import com.yjhh.ppwcustomer.ui.customview.RxDialogShopCart
 
@@ -31,7 +34,8 @@ import java.util.ArrayList
 
 class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.ShopCartDialogImp,
     OrderDishesFragment.ActionListener {
-
+    var mModelShopCart = ModelShopCart()
+    var mModelDishMenuList = ArrayList<ModelDish>()
     override fun actionEvent(username: String?, password: String?) {
 
 
@@ -44,7 +48,7 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
             tv_shopping_cart_total.visibility = View.VISIBLE
         } else {
-            tv_shopping_cart_total.visibility = View.GONE
+            tv_shopping_cart_total.text = "购物车为空"
             shopping_cart_total_num.visibility = View.GONE
         }
 
@@ -63,7 +67,7 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
             tv_shopping_cart_total.visibility = View.VISIBLE
         } else {
-            tv_shopping_cart_total.visibility = View.GONE
+            tv_shopping_cart_total.text = "购物车为空"
             shopping_cart_total_num.visibility = View.GONE
         }
 
@@ -89,7 +93,7 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
             }
 
             R.id.tv_pay -> {
-                Toast.makeText(this, "zhifu", Toast.LENGTH_SHORT).show()
+                mModelShopCart.dishAccount
 
                 startActivity(Intent(this, ShopCartActivity::class.java))
 
@@ -106,7 +110,53 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
         setContentView(R.layout.activity_elme)
 
         val mTitles = arrayOf("点菜", "评价", "商家")
+
+
         initDatas()
+
+
+//public TakeoutOrderModel( String restaurantid, String restauranttype, String dishesname, String dishesid, String dishesprice, String dishescount) {
+        val model = TakeoutOrderModel("0", "restauranttype", "面包", "dishesid", "dishesprice", 2)
+        val model2 = TakeoutOrderModel("0", "restauranttype", "牛奶", "dishesid", "dishesprice", 3)
+        val listdb = ArrayList<TakeoutOrderModel>()
+
+        listdb.add(model)
+        listdb.add(model2)
+
+
+        //如果已经存在了 减少相应的库存
+        dishs1.forEach { amodel ->
+
+            listdb.forEach { bmodel ->
+                {
+                    if (amodel.dishName == bmodel.dishesname) {
+                        amodel.dishAmount = bmodel.dishAmount - model.dishescount
+                        amodel.dishRemain = bmodel.dishRemain - model.dishescount
+
+
+                        mModelShopCart.addShoppingSingle2(ModelDish("面包", 1.0, 8, "早点"))
+
+                        mModelShopCart.addShoppingSingle2(ModelDish("面包", 1.0, 8, "早点"))
+
+                    }
+                }
+            }
+
+
+
+
+        }
+
+
+        //   listdb.add(model)
+
+        //如果所有的商品中包含 之前添加的（存在数据库中） 那么就要将当前的库存 数量减少
+
+
+        dishs1.forEach { amodel ->
+
+        }
+
 
         val mFragments = ArrayList<BaseFragment>()
 
@@ -127,64 +177,70 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
         tv_pay.setOnClickListener(this)
 
+
+
+        if (mModelShopCart.shoppingAccount > 0) {
+
+        } else {
+            tv_shopping_cart_total.text = "购物车为空"
+        }
+
+
     }
 
-    var mModelShopCart = ModelShopCart()
-    var mModelDishMenuList = ArrayList<ModelDishMenu>()
-
-
+    val dishs1 = ArrayList<ModelDish>()
     fun initDatas() {
 
-        val dishs1 = ArrayList<ModelDish>()
-        dishs1.add(ModelDish("面包", 1.0, 10))
-        dishs1.add(ModelDish("蛋挞", 1.0, 10))
-        dishs1.add(ModelDish("牛奶", 1.0, 10))
-        dishs1.add(ModelDish("肠粉", 1.0, 10))
-        dishs1.add(ModelDish("绿茶饼", 1.0, 10))
-        dishs1.add(ModelDish("花卷", 1.0, 10))
-        dishs1.add(ModelDish("包子", 1.0, 10))
-        val breakfast = ModelDishMenu("早点", dishs1)
+        dishs1.clear()
+        dishs1.add(ModelDish("面包", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("蛋挞", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("牛奶", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("肠粉", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("绿茶饼", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("花卷", 1.0, 10, "早点"))
+        dishs1.add(ModelDish("包子", 1.0, 10, "早点"))
+        // val breakfast = ModelDishMenu("早点", dishs1)
 
-        val dishs2 = ArrayList<ModelDish>()
-        dishs2.add(ModelDish("粥", 1.0, 10))
-        dishs2.add(ModelDish("炒饭", 1.0, 10))
-        dishs2.add(ModelDish("炒米粉", 1.0, 10))
-        dishs2.add(ModelDish("炒粿条", 1.0, 10))
-        dishs2.add(ModelDish("炒牛河", 1.0, 10))
-        dishs2.add(ModelDish("炒菜", 1.0, 10))
-        val launch = ModelDishMenu("午餐", dishs2)
+        // val dishs2 = ArrayList<ModelDish>()
+        dishs1.add(ModelDish("粥", 1.0, 10, "午餐"))
+        dishs1.add(ModelDish("炒饭", 1.0, 10, "午餐"))
+        dishs1.add(ModelDish("炒米粉", 1.0, 10, "午餐"))
+        dishs1.add(ModelDish("炒粿条", 1.0, 10, "午餐"))
+        dishs1.add(ModelDish("炒牛河", 1.0, 10, "午餐"))
+        dishs1.add(ModelDish("炒菜", 1.0, 10, "午餐"))
+        //  val launch = ModelDishMenu("午餐", dishs2)
 
-        val dishs3 = ArrayList<ModelDish>()
-        dishs3.add(ModelDish("淋菜", 1.0, 10))
-        dishs3.add(ModelDish("川菜", 1.0, 10))
-        dishs3.add(ModelDish("湘菜", 1.0, 10))
-        dishs3.add(ModelDish("粤菜", 1.0, 10))
-        dishs3.add(ModelDish("赣菜", 1.0, 10))
-        dishs3.add(ModelDish("东北菜", 1.0, 10))
-        val evening = ModelDishMenu("晚餐", dishs3)
-
-        val dishs4 = ArrayList<ModelDish>()
-        dishs4.add(ModelDish("淋菜", 1.0, 10))
-        dishs4.add(ModelDish("川菜", 1.0, 10))
-        dishs4.add(ModelDish("湘菜", 1.0, 10))
-        dishs4.add(ModelDish("湘菜", 1.0, 10))
-        dishs4.add(ModelDish("湘菜1", 1.0, 10))
-        dishs4.add(ModelDish("湘菜2", 1.0, 10))
-        dishs4.add(ModelDish("湘菜3", 1.0, 10))
-        dishs4.add(ModelDish("湘菜4", 1.0, 10))
-        dishs4.add(ModelDish("湘菜5", 1.0, 10))
-        dishs4.add(ModelDish("湘菜6", 1.0, 10))
-        dishs4.add(ModelDish("湘菜7", 1.0, 10))
-        dishs4.add(ModelDish("湘菜8", 1.0, 10))
-        dishs4.add(ModelDish("粤菜", 1.0, 10))
-        dishs4.add(ModelDish("赣菜", 1.0, 10))
-        dishs4.add(ModelDish("东北菜", 1.0, 10))
-        val menu1 = ModelDishMenu("夜宵", dishs4)
-
-        mModelDishMenuList.add(breakfast)
-        mModelDishMenuList.add(launch)
-        mModelDishMenuList.add(evening)
-        mModelDishMenuList.add(menu1)
+//        val dishs3 = ArrayList<ModelDish>()
+        dishs1.add(ModelDish("淋菜", 1.0, 10, "晚餐"))
+        dishs1.add(ModelDish("川菜", 1.0, 10, "晚餐"))
+        dishs1.add(ModelDish("湘菜", 1.0, 10, "晚餐"))
+        dishs1.add(ModelDish("粤菜", 1.0, 10, "晚餐"))
+        dishs1.add(ModelDish("赣菜", 1.0, 1, "晚餐"))
+        dishs1.add(ModelDish("东北菜", 1.0, 10, "晚餐"))
+//        val evening = ModelDishMenu("晚餐", dishs3)
+//
+//        val dishs4 = ArrayList<ModelDish>()
+        dishs1.add(ModelDish("淋菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("川菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜1", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜2", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜3", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜4", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜5", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜6", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜7", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("湘菜8", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("粤菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("赣菜", 1.0, 10, "夜宵"))
+        dishs1.add(ModelDish("东北菜", 1.0, 10, "夜宵"))
+//        val menu1 = ModelDishMenu("夜宵", dishs4)
+        mModelDishMenuList.addAll(dishs1)
+//        mModelDishMenuList.add(breakfast)
+//        mModelDishMenuList.add(launch)
+//        mModelDishMenuList.add(evening)
+//        mModelDishMenuList.add(menu1)
     }
 
 

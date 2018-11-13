@@ -35,6 +35,7 @@
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/tv_desc"
                   android:layout_marginLeft="@dimen/item_dish_horizontal_margin"
+                  android:visibility="visible"
                   android:layout_marginRight="@dimen/activity_horizontal_margin"
                   android:text="1212121212111111111111111211111111111111111111"
         />

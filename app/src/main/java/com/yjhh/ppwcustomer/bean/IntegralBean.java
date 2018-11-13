@@ -11,7 +11,9 @@ public class IntegralBean {
      * queryModel : {"pageIndex":0,"pageSize":10}
      * recordCount : 3
      */
-
+    public String balance;
+    public String integral;
+    public String userId;
     public int pageCount;
     public QueryModelBean queryModel;
     public int recordCount;

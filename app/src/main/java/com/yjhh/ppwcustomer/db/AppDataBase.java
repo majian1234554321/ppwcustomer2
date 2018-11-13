@@ -6,8 +6,9 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import com.yjhh.ppwcustomer.db.dao.HistoricalDao;
 import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
+import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel;
 
-@Database(entities = {HistoricalModel.class}, version = 1, exportSchema = false)
+@Database(entities = {HistoricalModel.class, TakeoutOrderModel.class}, version = 1, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static final String DB_NAME = "UserDatabase.db";

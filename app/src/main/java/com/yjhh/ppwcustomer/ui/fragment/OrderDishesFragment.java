@@ -5,10 +5,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.PointF;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 
 
@@ -19,24 +19,42 @@ import com.yjhh.ppwcustomer.R;
 import com.yjhh.ppwcustomer.adapter.AdapterLeftMenu;
 import com.yjhh.ppwcustomer.adapter.AdapterRightDish;
 
+import com.yjhh.ppwcustomer.bean.ModelDish;
 import com.yjhh.ppwcustomer.bean.ModelDishMenu;
 import com.yjhh.ppwcustomer.bean.ModelShopCart;
+import com.yjhh.ppwcustomer.bean.NameBean;
+import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel;
+import com.yjhh.ppwcustomer.interfaces.DecorationCallback;
+import com.yjhh.ppwcustomer.interfaces.SectionDecoration;
 import com.yjhh.ppwcustomer.interfaces.ShopCartInterface;
 
+import com.yjhh.ppwcustomer.ui.MeiTuanItem;
 import com.yjhh.ppwcustomer.ui.customview.RxFakeAddImageView;
 import com.yjhh.ppwcustomer.ui.customview.RxPointFTypeEvaluator;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 import java.util.ArrayList;
+import java.util.List;
+
+
 @SuppressLint("ValidFragment")
-public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMenu.onItemSelectedListener, ShopCartInterface {
+public class OrderDishesFragment extends BaseFragment implements AdapterLeftMenu.onItemSelectedListener, ShopCartInterface {
+
+    private ArrayList<String> list;
+
     @Override
     protected int getLayoutRes() {
         return R.layout.orderdishesfragment;
     }
 
 
-
-    public OrderDishesFragment(ModelShopCart mModelShopCart,ArrayList<ModelDishMenu> mModelDishMenuList){
+    public OrderDishesFragment(ModelShopCart mModelShopCart, ArrayList<ModelDish> mModelDishMenuList) {
         this.mModelShopCart = mModelShopCart;
         this.mModelDishMenuList = mModelDishMenuList;
     }
@@ -50,43 +68,36 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
 
     RecyclerView mRightMenu;//右侧菜单栏
 
-    TextView headerView;
 
-    LinearLayout headerLayout;//右侧菜单栏最上面的菜单
     ImageView mShoppingCart;
     FrameLayout mShoppingCartLayout;
     TextView totalPriceNumTextView;
 
     RelativeLayout mMainLayout;
-    private ModelDishMenu headMenu;
+
     private AdapterLeftMenu leftAdapter;
     private AdapterRightDish rightAdapter;
-    private ArrayList<ModelDishMenu> mModelDishMenuList;//数据源
-    private boolean leftClickType = false;//左侧菜单点击引发的右侧联动
-    private ModelShopCart mModelShopCart;
+    private ArrayList<ModelDish> mModelDishMenuList;//数据源
 
+    private ModelShopCart mModelShopCart;
 
 
     @Override
     protected void initView() {
 
 
-
-        mMainLayout =  findActivityViewById(R.id.main_layout);
-        totalPriceTextView =  findActivityViewById(R.id.shopping_cart_total_tv);
-        mShoppingCartBottom =  findActivityViewById(R.id.shopping_cart_bottom);
-        mLeftMenu =  findActivityViewById(R.id.left_menu);
-        mRightMenu =  findActivityViewById(R.id.right_menu);
-        headerView =  findActivityViewById(R.id.right_menu_tv);
-        headerLayout =  findActivityViewById(R.id.right_menu_item);
-
-        mShoppingCart =  findActivityViewById(R.id.shopping_cart);
-
-        mShoppingCartLayout =  findActivityViewById(R.id.shopping_cart_layout);
-
-        totalPriceNumTextView =  findActivityViewById(R.id.shopping_cart_total_num);
+        mMainLayout = findActivityViewById(R.id.main_layout);
+        totalPriceTextView = findActivityViewById(R.id.shopping_cart_total_tv);
+        mShoppingCartBottom = findActivityViewById(R.id.shopping_cart_bottom);
+        mLeftMenu = findActivityViewById(R.id.left_menu);
+        mRightMenu = findActivityViewById(R.id.right_menu);
 
 
+        mShoppingCart = findActivityViewById(R.id.shopping_cart);
+
+        mShoppingCartLayout = findActivityViewById(R.id.shopping_cart_layout);
+
+        totalPriceNumTextView = findActivityViewById(R.id.shopping_cart_total_num);
 
 
         initData();
@@ -97,84 +108,81 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
     }
 
 
-
-
     private void initView2() {
         mLeftMenu.setLayoutManager(new LinearLayoutManager(context));
         mRightMenu.setLayoutManager(new LinearLayoutManager(context));
 
+
         mRightMenu.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (recyclerView.canScrollVertically(1) == false) {//无法下滑
-                    showHeadView();
-                    return;
-                }
-                View underView = null;
-                if (dy > 0)
-                    underView = mRightMenu.findChildViewUnder(headerLayout.getX(), headerLayout.getMeasuredHeight() + 1);
-                else
-                    underView = mRightMenu.findChildViewUnder(headerLayout.getX(), 0);
-                if (underView != null && underView.getContentDescription() != null) {
-                    int position = Integer.parseInt(underView.getContentDescription().toString());
-                    ModelDishMenu menu = rightAdapter.getMenuOfMenuByPosition(position);
-
-                    if (leftClickType || !menu.getMenuName().equals(headMenu.getMenuName())) {
-                        if (dy > 0 && headerLayout.getTranslationY() <= 1 && headerLayout.getTranslationY() >= -1 * headerLayout.getMeasuredHeight() * 4 / 5 && !leftClickType) {// underView.getTop()>9
-                            int dealtY = underView.getTop() - headerLayout.getMeasuredHeight();
-                            headerLayout.setTranslationY(dealtY);
-//                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
-                        } else if (dy < 0 && headerLayout.getTranslationY() <= 0 && !leftClickType) {
-                            headerView.setText(menu.getMenuName());
-                            int dealtY = underView.getBottom() - headerLayout.getMeasuredHeight();
-                            headerLayout.setTranslationY(dealtY);
-//                            Log.e(TAG, "onScrolled: "+headerLayout.getTranslationY()+"   "+headerLayout.getBottom()+"  -  "+headerLayout.getMeasuredHeight() );
+                int position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                //Log.e("dy:","dy:"+dy);
+                Log.e("position:", "position:" + position);
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+                Log.e("lastPosition:", "lastPosition:" + lastPosition);
+                if (dy > 0) {
+                    if (position + 1 < mModelDishMenuList.size()) {
+                        if (position == 0) {
+                            leftAdapter.setSelectPosition(0);
                         } else {
-                            headerLayout.setTranslationY(0);
-                            headMenu = menu;
-                            headerView.setText(headMenu.getMenuName());
-                            for (int i = 0; i < mModelDishMenuList.size(); i++) {
-                                if (mModelDishMenuList.get(i) == headMenu) {
-                                    leftAdapter.setSelectedNum(i);
-                                    break;
-                                }
+
+                            if (isTopNotEqualsNext(position)) {
+
+                                leftAdapter.setSelectPosition(rightBoundLeftPosition(position));
+                                mLeftMenu.scrollToPosition(rightBoundLeftPosition(position));
+                                Log.e("rightBoundLeftPosition:", "rightBoundLeftPosition:" + rightBoundLeftPosition(position));
+                                // ((LinearLayoutManager) leftView.getLayoutManager()).smoothScrollToPosition(leftView,null,data.rightBoundLeftPosition(data.getRightData().get(position),data.getLeftData()));
                             }
-                            if (leftClickType) leftClickType = false;
-                          //  Log.e(TAG, "onScrolled: " + menu.getMenuName());
                         }
                     }
+
+                } else {
+                    if (position + 1 < mModelDishMenuList.size()) {
+                        if (position == 0) {
+                            leftAdapter.setSelectPosition(0);
+                        } else {
+                            if (isTopNotEqualsBefore(position)) {
+                                leftAdapter.setSelectPosition(rightBoundLeftPosition(position));
+                                mLeftMenu.scrollToPosition(rightBoundLeftPosition(position));
+
+                                //   ((LinearLayoutManager) leftView.getLayoutManager()).smoothScrollToPosition(leftView,null,data.rightBoundLeftPosition(data.getRightData().get(position),data.getLeftData()));
+                            }
+                        }
+                    }
+
                 }
             }
         });
 
-
     }
 
 
-
     private void initAdapter() {
-        leftAdapter = new AdapterLeftMenu(context, mModelDishMenuList);
+
+
+        list = new ArrayList<>();
+
+        list.add("早点");
+        list.add("午餐");
+        list.add("晚餐");
+        list.add("夜宵");
+
+
+        leftAdapter = new AdapterLeftMenu(context, list);
         rightAdapter = new AdapterRightDish(context, mModelDishMenuList, mModelShopCart);
+        // MeiTuanItem
+        mRightMenu.addItemDecoration(new MeiTuanItem(mActivity, mModelDishMenuList));
+
+
         mRightMenu.setAdapter(rightAdapter);
         mLeftMenu.setAdapter(leftAdapter);
         leftAdapter.addItemSelectedListener(this);
         rightAdapter.setShopCartInterface(this);
-        initHeadView();
+
     }
-
-    private void initHeadView() {
-        headMenu = rightAdapter.getMenuOfMenuByPosition(0);
-        headerLayout.setContentDescription("0");
-        headerView.setText(headMenu.getMenuName());
-    }
-
-
 
 
     @Override
@@ -183,33 +191,28 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
         leftAdapter.removeItemSelectedListener(this);
     }
 
-    private void showHeadView() {
-        headerLayout.setTranslationY(0);
-        View underView = mRightMenu.findChildViewUnder(headerView.getX(), 0);
-        if (underView != null && underView.getContentDescription() != null) {
-            int position = Integer.parseInt(underView.getContentDescription().toString());
-            ModelDishMenu menu = rightAdapter.getMenuOfMenuByPosition(position + 1);
-            headMenu = menu;
-            headerView.setText(headMenu.getMenuName());
-            for (int i = 0; i < mModelDishMenuList.size(); i++) {
-                if (mModelDishMenuList.get(i) == headMenu) {
-                    leftAdapter.setSelectedNum(i);
-                    break;
-                }
-            }
-        }
-    }
 
     @Override
-    public void onLeftItemSelected(int position, ModelDishMenu menu) {
-        int sum = 0;
-        for (int i = 0; i < position; i++) {
-            sum += mModelDishMenuList.get(i).getModelDishList().size() + 1;
-        }
-        LinearLayoutManager layoutManager = (LinearLayoutManager) mRightMenu.getLayoutManager();
-        layoutManager.scrollToPositionWithOffset(sum, 0);
-        leftClickType = true;
+    public void onLeftItemSelected(int position, String menu) {
+
+
+        ((LinearLayoutManager) mRightMenu.getLayoutManager()).scrollToPositionWithOffset(leftBoundRightPosition(position), 0);
+
     }
+
+    public int leftBoundRightPosition(int position) {
+
+        for (int i = 0; i < mModelDishMenuList.size(); i++) {
+
+            if (mModelDishMenuList.get(i).tyee.equals(list.get(position))) {
+                return i;
+            } else {
+                continue;
+            }
+        }
+        return 0;
+    }
+
 
     @Override
     public void add(View view, int position) {
@@ -275,10 +278,27 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
 
 
         ActionListener listener = (ActionListener) getActivity();
-        listener.actionEvent("A","B");
+        listener.actionEvent("A", "B");
 
 
+       /* Observable dis = Observable.create(new ObservableOnSubscribe<TakeoutOrderModel>() {
 
+            @Override
+            public void subscribe(ObservableEmitter<TakeoutOrderModel> emitter) throws Exception {
+
+                TakeoutOrderModel model = new TakeoutOrderModel();
+
+                emitter.onNext(model);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<TakeoutOrderModel>() {
+                    @Override
+                    public void accept(TakeoutOrderModel takeoutOrderModel) throws Exception {
+
+                    }
+                });
+*/
 
     }
 
@@ -286,7 +306,7 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
     public void remove(View view, int position) {
 
         ActionListener listener = (ActionListener) getActivity();
-        listener.actionEvent("A","B");
+        listener.actionEvent("A", "B");
 
         showTotalPrice();
     }
@@ -305,19 +325,40 @@ public class OrderDishesFragment extends BaseFragment  implements AdapterLeftMen
     }
 
 
-
-
-    public interface ActionListener
-    {
+    public interface ActionListener {
         void actionEvent(String username, String password);
     }
 
 
+    public boolean isTopNotEqualsBefore(int position) {
 
 
+        return mModelDishMenuList.get(position).tyee.equals(mModelDishMenuList.get(position - 1).tyee);
 
+
+    }
+
+    public boolean isTopNotEqualsNext(int position) {
+        return mModelDishMenuList.get(position).tyee.equals(mModelDishMenuList.get(position + 1).tyee);
+    }
+
+    public int rightBoundLeftPosition(int position) {
+
+        for (int i = 0; i < list.size(); i++) {
+
+            if (mModelDishMenuList.get(position).tyee.equals(list.get(i))) {
+                return i;
+            } else {
+                continue;
+            }
+        }
+        return 0;
+    }
 
 }
+
+
+
 
 
 
