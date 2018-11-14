@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -134,10 +135,15 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
     private fun addHeaderView() {
 
-        val headView = View.inflate(context, R.layout.mainhead, null);
+
+
+        val headView: View = layoutInflater.inflate(R.layout.mainhead, mRecyclerView.parent as ViewGroup, false)
+
+
         banner = headView.findViewById<Banner>(R.id.banner)
 
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
+
         mAdapter.addHeaderView(headView)
 
 //        val bannerParams = banner!!.getLayoutParams()

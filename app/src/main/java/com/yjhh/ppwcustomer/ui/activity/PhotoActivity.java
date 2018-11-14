@@ -1,3 +1,4 @@
+/*
 package com.yjhh.ppwcustomer.ui.activity;
 
 import android.Manifest;
@@ -145,19 +146,23 @@ public class PhotoActivity extends BaseActivity {
         galleryAddPic(mPublicPhotoPath, this);
     }
 
-    /**
+    */
+/**
      * 获取相册中的图片
-     */
+     *//*
+
     public void getImageFromAlbum() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");//相片类型
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
     }
-    /**
+    */
+/**
      * 创建临时图片文件
      * @return
      * @throws IOException
-     */
+     *//*
+
     private File createPublicImageFile() throws IOException {
         File path = null;
         if (hasSdcard()) {
@@ -171,10 +176,12 @@ public class PhotoActivity extends BaseActivity {
         mPublicPhotoPath = image.getAbsolutePath();
         return image;
     }
-    /**
+    */
+/**
      * 判断sdcard是否被挂载
      * @return
-     */
+     *//*
+
     public static boolean hasSdcard() {
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
@@ -184,20 +191,24 @@ public class PhotoActivity extends BaseActivity {
         }
     }
 
-    /**
+    */
+/**
      * 获取时间的方法
      * @param date
      * @param mode
      * @param locale
      * @return
-     */
+     *//*
+
     private String getTime(Date date, String mode, Locale locale) {
         SimpleDateFormat format = new SimpleDateFormat(mode, locale);
         return format.format(date);
     }
-    /**
+    */
+/**
      * 将照片添加到相册中
-     */
+     *//*
+
     public static void galleryAddPic(String mPublicPhotoPath, Context context) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mPublicPhotoPath);
@@ -206,12 +217,14 @@ public class PhotoActivity extends BaseActivity {
         context.sendBroadcast(mediaScanIntent);
     }
 
-    /**
+    */
+/**
      * 拍照之后获取结果的方法
      * @param requestCode
      * @param resultCode
      * @param data
-     */
+     *//*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -243,12 +256,14 @@ public class PhotoActivity extends BaseActivity {
 
     }
 
-    /**
+    */
+/**
      * 获取小于api19时获取相册中图片真正的uri
      * @param context
      * @param uri
      * @return
-     */
+     *//*
+
     public static String getFilePath_below19(Context context,Uri uri) {
         //这里开始的第二部分，获取图片的路径：低版本的是没问题的，但是sdk>19会获取不到
         String[] proj = {MediaStore.Images.Media.DATA};
@@ -265,12 +280,14 @@ public class PhotoActivity extends BaseActivity {
         return path;
     }
 
-    /**
+    */
+/**
      * 获取大于api19时获取相册中图片真正的uri
      * @param context
      * @param uri
      * @return
-     */
+     *//*
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public  static String getPath_above19(final Context context, final Uri uri) {
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
@@ -360,13 +377,15 @@ public class PhotoActivity extends BaseActivity {
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
-    /**
+    */
+/**
      * 图片的压缩
      * @param options
      * @param reqWidth
      * @param reqHeight
      * @return
-     */
+     *//*
+
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;
         final int width = options.outWidth;
@@ -379,11 +398,13 @@ public class PhotoActivity extends BaseActivity {
         }
         return inSampleSize;
     }
-    /**
+    */
+/**
      * 根据路径获得突破并压缩返回bitmap用于显示
      * @param filePath
      * @return
-     */
+     *//*
+
     public static Bitmap getSmallBitmap(String filePath, int reqWidth, int reqHeight) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         //只返回图片的大小信息
@@ -404,3 +425,4 @@ public class PhotoActivity extends BaseActivity {
 
 
 }
+*/

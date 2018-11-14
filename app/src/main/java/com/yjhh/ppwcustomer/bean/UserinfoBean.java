@@ -22,6 +22,7 @@ public class UserinfoBean {
     public String avaterUrl;
     public int bindWeChat;
     public int garde;
+    public String birthday;
     public int id;
     public int identity;
     public String identityName;

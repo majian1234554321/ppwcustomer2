@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -43,6 +44,7 @@ public class BaseActivity extends SupportActivity {
         SystemBarUtil.immersiveStatusBar(this, 0f);
         // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
         super.onCreate(savedInstanceState);
+
         ActivityCollector.addActivity(this);
 
 

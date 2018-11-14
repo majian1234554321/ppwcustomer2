@@ -1,6 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -10,23 +11,25 @@ import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.present.SectionUserPresent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.changemobilefragment.*
 import java.util.concurrent.TimeUnit
 
-class ChangeMobileFragment : BaseFragment(), RegistView {
+class ChangeMobileFragment : BaseFragment(), RegistView, View.OnClickListener {
     override fun registSuccess(date: LoginBean?) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun registSuccess2(date: String?) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        loginOut()
+        mActivity.finish()
     }
 
     override fun registFault(registFaultMessage: String) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(mActivity, registFaultMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun sendSMSSuccess(date: LoginBean?) {
@@ -50,8 +53,12 @@ class ChangeMobileFragment : BaseFragment(), RegistView {
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribeOn(AndroidSchedulers.mainThread())
             .flatMap {
-                val phone = et_phone.text.toString()
-                if (!TextUtils.isEmpty(phone) && phone.length == 11) {
+                val et_beforePhone = et_beforePhone.text.toString()
+
+                val et_newPhone = et_newPhone.text.toString()
+
+
+                if (!TextUtils.isEmpty(et_beforePhone) && et_beforePhone.length == 11 && !TextUtils.isEmpty(et_newPhone) && et_newPhone.length == 11) {
                     Observable.just(true)
                 } else {
                     Toast.makeText(activity, "手机号码不符合要求", Toast.LENGTH_SHORT).show()
@@ -62,7 +69,7 @@ class ChangeMobileFragment : BaseFragment(), RegistView {
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
-                    regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                    regByAccountPresent.sendSms(TYPE, et_newPhone.text.toString())
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
@@ -94,6 +101,31 @@ class ChangeMobileFragment : BaseFragment(), RegistView {
 
         compositeDisposable.add(disposable)
 
-
+        bt_register.setOnClickListener(this)
     }
+
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+
+            R.id.bt_register -> {
+                if (et_beforePhone.text.length == 11 && et_newPhone.text.length == 11 && et_verifyCode.text != null) {
+                    val present = SectionUserPresent(mActivity, this)
+
+                    present.setMobile(
+                        et_beforePhone.text.toString()
+                        , et_newPhone.text.toString()
+                        , et_verifyCode.text.toString()
+                    )
+                } else {
+                    Toast.makeText(context, "用户名、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            else -> {
+            }
+        }
+    }
+
 }

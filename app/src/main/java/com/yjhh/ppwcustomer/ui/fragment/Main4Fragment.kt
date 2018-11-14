@@ -1,6 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 
+import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
@@ -11,6 +12,7 @@ import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.ui.activity.UserInfoActivity
 
 import kotlinx.android.synthetic.main.main4fragment.*
 
@@ -103,11 +105,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             R.id.tv_name -> {
 
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                    ARouter.getInstance()
-                        .build("/DisplayActivity/Display")
-                        .withString("displayTab", "UserInfoFragment")
-                        .withInt("age", 23)
-                        .navigation()
+                   startActivity(Intent(mActivity,UserInfoActivity::class.java))
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
@@ -121,11 +119,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.profile_image -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                    ARouter.getInstance()
-                        .build("/DisplayActivity/Display")
-                        .withString("displayTab", "UserInfoFragment")
-                        .withInt("age", 23)
-                        .navigation()
+                    startActivity(Intent(mActivity,UserInfoActivity::class.java))
 
                 } else {
                     ARouter.getInstance()

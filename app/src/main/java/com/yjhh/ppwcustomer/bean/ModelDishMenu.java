@@ -1,11 +1,12 @@
 package com.yjhh.ppwcustomer.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by cheng on 16-11-10.
  */
-public class ModelDishMenu {
+public class ModelDishMenu implements Serializable {
     private String menuName;
     private ArrayList<ModelDish> mModelDishList;
 

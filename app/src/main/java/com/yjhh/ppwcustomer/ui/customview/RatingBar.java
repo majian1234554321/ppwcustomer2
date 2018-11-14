@@ -155,9 +155,12 @@ public class RatingBar extends LinearLayout implements View.OnClickListener {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         View root = getRootView();
-        if (root == null || !(root instanceof ViewGroup)) {
+        if (root == null || !(root instanceof ViewGroup)||!mClickable) {
             return false;
         }
+
+
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.i("leeTest-------->", "ACTION_DOWN x = " + event.getX() + ",  y = " + event.getRawY());

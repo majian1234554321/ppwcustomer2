@@ -16,7 +16,7 @@
     </com.yjhh.common.view.TitleBarView>
 
 
-    <LinearLayout
+    <RelativeLayout
             android:orientation="vertical"
             android:layout_below="@+id/tbv_title"
             android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -29,10 +29,24 @@
 
         <TextView android:layout_width="wrap_content"
                   android:text="去结算"
+                  android:layout_below="@+id/recyclerView"
                   android:id="@+id/tv_commit"
+                  android:layout_alignParentRight="true"
+                  android:background="@drawable/stroke_search"
                   android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_marginRight="@dimen/sp_16"
+                  android:layout_toLeftOf="@+id/tv_commit"
+
+                  android:layout_below="@+id/recyclerView"
+                  android:id="@+id/tv_count"
+
+                  android:background="@drawable/stroke_search"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

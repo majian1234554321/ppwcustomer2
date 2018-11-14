@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.baidu.mapapi.map.MarkerOptions
 
 
@@ -93,9 +94,16 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
             }
 
             R.id.tv_pay -> {
-                mModelShopCart.dishAccount
 
-                startActivity(Intent(this, ShopCartActivity::class.java))
+
+                ARouter.getInstance()
+                    .build("/ShopCartActivity/ShopCart")
+
+                    .withSerializable("bean", mModelShopCart)
+                    .navigation()
+
+
+
 
             }
             else -> {
@@ -114,7 +122,7 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
         initDatas()
 
-
+        /******************************************************模拟从数据库中获取数据并显示***************************************************************/
 //public TakeoutOrderModel( String restaurantid, String restauranttype, String dishesname, String dishesid, String dishesprice, String dishescount) {
         val model = TakeoutOrderModel("0", "restauranttype", "面包", "dishesid", "dishesprice", 2)
         val model2 = TakeoutOrderModel("0", "restauranttype", "牛奶", "dishesid", "dishesprice", 3)
@@ -125,21 +133,18 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
 
 
         //如果已经存在了 减少相应的库存
-        dishs1.forEach { amodel ->
+        mModelDishMenuList.forEach { amodel ->
 
             listdb.forEach { bmodel ->
-                {
-                    if (amodel.dishName == bmodel.dishesname) {
-                        amodel.dishAmount = bmodel.dishAmount - model.dishescount
-                        amodel.dishRemain = bmodel.dishRemain - model.dishescount
+              if (amodel.dishName==bmodel.dishesname){
+                  amodel.dishAmount-=bmodel.dishescount
+                  amodel.dishRemain-=bmodel.dishescount
 
+                  for(i in 0 until  bmodel.dishescount ){
+                      mModelShopCart.addShoppingSingle2(amodel)
+                  }
 
-                        mModelShopCart.addShoppingSingle2(ModelDish("面包", 1.0, 8, "早点"))
-
-                        mModelShopCart.addShoppingSingle2(ModelDish("面包", 1.0, 8, "早点"))
-
-                    }
-                }
+              }
             }
 
 
@@ -148,14 +153,9 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
         }
 
 
-        //   listdb.add(model)
-
-        //如果所有的商品中包含 之前添加的（存在数据库中） 那么就要将当前的库存 数量减少
+        /*********************************************************模拟从数据库中获取数据并显示************************************************************/
 
 
-        dishs1.forEach { amodel ->
-
-        }
 
 
         val mFragments = ArrayList<BaseFragment>()

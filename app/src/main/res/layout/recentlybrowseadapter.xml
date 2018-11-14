@@ -32,6 +32,7 @@
             app:starHalf="@drawable/star_half_full"
             app:starImageSize="15dp"
             app:starPadding="5dp"
+            app:clickable="false"
             app:stepSize="Half"/>
     <TextView android:layout_width="wrap_content"
               android:layout_toRightOf="@+id/id_ratingbar"

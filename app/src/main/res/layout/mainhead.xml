@@ -11,7 +11,8 @@
 
         <com.yjhh.ppwcustomer.ui.customview.GridViewPager
                 android:id="@+id/mGridViewPager"
-                android:layout_height="180dp"
+                android:layout_height="wrap_content"
+                android:minHeight="90dp"
                 android:background="#FFFFFF"
                 android:layout_width="match_parent"/>
 

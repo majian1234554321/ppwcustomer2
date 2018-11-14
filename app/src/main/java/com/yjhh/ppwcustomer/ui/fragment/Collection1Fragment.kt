@@ -17,15 +17,15 @@ import kotlinx.android.synthetic.main.collectionmain123.*
 class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     var startindex = 0
     val pageSize = 10
-    val type = "0"    //类型,默认null( -1全部 null/0 店铺 1商品 2 文章)
-
+    val type = "0"    //默认null（null/0收藏 1足迹）
+    val itemType = "0"//默认null( null/0 店铺 1商品 2 文章)
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
     private lateinit var mAdapter: Collection123Adapter
     lateinit var sectionUselessPresent: SectionUselessPresent
 
-    val  lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
+    val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
     override fun initView() {
 
         sectionUselessPresent = SectionUselessPresent(context, this)
@@ -55,10 +55,9 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     }
 
 
-
     private fun refresh() {
         startindex = 0
-        sectionUselessPresent.usercollect(type, startindex, pageSize, "refresh")
+        sectionUselessPresent.usercollect(type, itemType, startindex, pageSize, "refresh")
 
     }
 
@@ -66,16 +65,14 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     private fun loadMore() {
         Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
         startindex++
-        sectionUselessPresent.usercollect(type, startindex, pageSize, "load")
+        sectionUselessPresent.usercollect(type, itemType, startindex, pageSize, "load")
 
     }
 
 
-
-
     override fun onSuccess(main1bean: RecentlyBrowseBean, flag: String) {
         if ("refresh" == flag) {
-           // mAdapter.onRefresh(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
+            // mAdapter.onRefresh(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
 //            lists.clear()
 //            lists.addAll(main1bean.items)
             mAdapter.setNewData(main1bean.items)
@@ -84,12 +81,12 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
             //mAdapter.notifyDataSetChanged()
 
         } else {
-          //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
-           if(main1bean.items.size<pageSize){
-               mAdapter.loadMoreEnd()
-           }else{
-               mAdapter.loadMoreEnd()
-           }
+            //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
+            if (main1bean.items.size < pageSize) {
+                mAdapter.loadMoreEnd()
+            } else {
+                mAdapter.loadMoreEnd()
+            }
 
         }
     }
@@ -100,7 +97,6 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
 
 
     fun updataContent() {
-
 
 
     }

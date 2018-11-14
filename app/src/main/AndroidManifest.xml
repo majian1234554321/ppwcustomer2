@@ -72,13 +72,13 @@
         </provider>
         <provider
                 android:name=".common.BuglyFileProvider"
-                android:authorities="${applicationId}.fileProvider"
+                android:authorities="${applicationId}.camera.fileProvider"
                 android:exported="false"
                 android:grantUriPermissions="true"
                 tools:replace="name,authorities,exported,grantUriPermissions">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths"
+                    android:resource="@xml/cameras"
                     tools:replace="name,resource"/>
         </provider>
         <provider
@@ -147,7 +147,7 @@
         </activity>
         <activity android:name=".ui.activity.SelectAddressByMapActivity">
         </activity>
-        <activity android:name=".ui.activity.Main22Activity">
+        <activity android:name=".ui.activity.UserInfoActivity">
         </activity>
         <activity android:name=".ui.activity.BusinessHomeActivity">
         </activity>
@@ -186,6 +186,8 @@
         <activity android:name=".ui.activity.parishfood.ParishPayActivity">
         </activity>
         <activity android:name=".ui.activity.takeout.ConfirmOrderActivity">
+        </activity>
+        <activity android:name=".ui.activity.SetNickNameActivity">
         </activity>
     </application>
 

@@ -71,9 +71,9 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
     }
 
 
-    fun usercollect(status: String, pageIndex: Int, pageSize: Int, flag: String) {
+    fun usercollect(status: String, itemType:String,pageIndex: Int, pageSize: Int, flag: String) {
 
-        toSubscribe2(model.usercollect(status, pageIndex, pageSize), object : ProcessObserver2(context) {
+        toSubscribe2(model.usercollect(status,itemType ,pageIndex, pageSize), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("coupon", response)
 

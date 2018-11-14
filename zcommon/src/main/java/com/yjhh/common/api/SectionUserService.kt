@@ -59,7 +59,14 @@ interface SectionUserService {
     @POST("user/setNickName")
     fun setNickName(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户昵称
 
+    @FormUrlEncoded
+    @POST("user/setBirthday")
+    fun setBirthday(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置生日
 
+
+    @FormUrlEncoded
+    @POST("user/setMobile")
+    fun setMobile(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置生日
 
 
 }

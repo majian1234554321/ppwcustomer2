@@ -17,6 +17,27 @@ class SectionUserModel {
         return ApiServices.getInstance().create(SectionUserService::class.java).setAvater(map)
     }
 
+
+    fun setBirthday(birthday:String): Observable<ResponseBody>{
+        map.clear()
+        map["birthday"] = birthday
+        return ApiServices.getInstance().create(SectionUserService::class.java).setBirthday(map)
+    }
+
+
+
+
+    fun setMobile(mobile:String,phone:String,smsCode:String): Observable<ResponseBody>{
+        map.clear()
+        map["mobile"] = mobile
+        map["phone"] = phone
+        map["smsCode"] = smsCode
+
+        return ApiServices.getInstance().create(SectionUserService::class.java).setMobile(map)
+    }
+
+
+
     fun getUserinfo(): Observable<ResponseBody> {
         return ApiServices.getInstance().create(SectionUserService::class.java).getUserinfo()
     }

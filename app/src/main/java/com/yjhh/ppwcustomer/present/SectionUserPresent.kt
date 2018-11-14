@@ -12,6 +12,7 @@ import com.yjhh.ppwcustomer.bean.UserinfoBean
 import com.yjhh.ppwcustomer.model.SectionUserModel
 import com.yjhh.ppwcustomer.view.MyAddressView
 import com.yjhh.ppwcustomer.view.UserInfoView
+import okhttp3.ResponseBody
 
 
 class SectionUserPresent(context: Context) : BasePresent() {
@@ -20,7 +21,7 @@ class SectionUserPresent(context: Context) : BasePresent() {
 
     private lateinit var addressView: MyAddressView
 
-    private lateinit var  userInfoView: UserInfoView
+    private lateinit var userInfoView: UserInfoView
 
     constructor(context: Context, userInfoView: UserInfoView) : this(context) {
         this.userInfoView = userInfoView
@@ -78,6 +79,38 @@ class SectionUserPresent(context: Context) : BasePresent() {
         toSubscribe2(model.setNickName(nickName), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("setNickName", response)
+                userInfoView.onSuccess(UserinfoBean())
+
+            }
+
+            override fun onFault(message: String) {
+                userInfoView.onFault(message)
+            }
+        })
+    }
+
+
+
+    fun setMobile(mobile:String,phone:String,smsCode:String){
+        toSubscribe2(model.setMobile(mobile,phone,smsCode), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("setNickName", response)
+                registView.registSuccess2(response)
+
+            }
+
+            override fun onFault(message: String) {
+                registView.registFault(message)
+            }
+        })
+    }
+
+
+
+    fun setBirthday(birthday: String) {
+        toSubscribe2(model.setBirthday(birthday), object : ProcessObserver2(context) {
+            override fun processValue(response: String?) {
+                Log.i("setNickName", response)
 
             }
 
@@ -87,12 +120,13 @@ class SectionUserPresent(context: Context) : BasePresent() {
         })
     }
 
+
     fun getUserinfo() {
         toSubscribe2(model.getUserinfo(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("getUserinfo", response)
 
-                val  bean = gson.fromJson<UserinfoBean>(response,UserinfoBean::class.java)
+                val bean = gson.fromJson<UserinfoBean>(response, UserinfoBean::class.java)
 
                 userInfoView.onSuccess(bean)
             }

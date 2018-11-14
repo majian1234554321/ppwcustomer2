@@ -1,9 +1,11 @@
 package com.yjhh.ppwcustomer.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by cheng on 16-11-10.
  */
-public class ModelDish {
+public class ModelDish implements Serializable {
 
     private String dishName;
     private double dishPrice;
@@ -22,6 +24,9 @@ public class ModelDish {
 
 
     public String tyee;
+
+    public ModelDish() {
+    }
 
     public String getDishName() {
         return dishName;

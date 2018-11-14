@@ -19,13 +19,11 @@
 
 
         <EditText android:layout_width="match_parent" android:layout_height="50dp"
-                  android:layout_below="@+id/et_password"
-                  android:id="@+id/et_phone"
-                  android:background="@null"
 
+                  android:id="@+id/et_beforePhone"
+                  android:background="@null"
                   android:hint="请输入原手机号"
-                  android:layout_toLeftOf="@+id/tv_verifyCode"
-                  android:layout_toRightOf="@+id/tv_verifyCode1"
+
         />
 
 
@@ -36,12 +34,12 @@
 
 
         <EditText
-                android:id="@+id/et_password"
+                android:id="@+id/et_newPhone"
                 android:layout_width="match_parent" android:layout_height="50dp"
-                android:layout_below="@+id/et_phone"
+                android:layout_below="@+id/et_beforePhone"
                 android:background="@null"
                 android:hint="请输入新手机号码"
-                android:layout_toRightOf="@+id/tv_password"
+
         />
 
         <View android:layout_width="match_parent"

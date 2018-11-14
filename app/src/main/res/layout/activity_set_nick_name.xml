@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="修改昵称"
+                                       app:textColor="@color/white"
+                                       android:layout_height="wrap_content"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/sp_16"
+            android:id="@+id/et_nickName"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_search"
+    />
+
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:gravity="center"
+              android:textSize="@dimen/sp_12"
+              android:layout_marginTop="@dimen/sp_16"
+              android:text="以英文字母或者汉字开头，限4-16个字符，一个汉字为2个字符"
+    />
+
+
+    <TextView android:layout_width="100dp"
+              android:text="确定"
+              android:id="@+id/tv_commit"
+              android:background="@drawable/stroke_search"
+              android:layout_marginTop="20dp"
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:layout_height="40dp"/>
+
+
+</LinearLayout>

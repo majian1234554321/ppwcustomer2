@@ -167,6 +167,22 @@ public class GridViewPager extends RelativeLayout {
         return this;
     }
 
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int height = 0;
+        for (int i = 0; mPagerList != null && i < mPagerList.size(); i++) {
+            View child = mPagerList.get(i);
+            child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            int h = child.getMeasuredHeight() + mLlDot.getHeight();
+            if (h > height)
+                height = h;
+        }
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height + getPaddingBottom() + getPaddingTop(), MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+
     /**
      * optional 设置单元长按事件
      *

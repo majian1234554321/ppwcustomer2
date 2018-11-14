@@ -17,7 +17,6 @@ import com.yjhh.common.R
 import kotlinx.android.synthetic.main.itementryview.view.*
 
 
-
 class ItemEntryView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
@@ -32,6 +31,10 @@ class ItemEntryView @JvmOverloads constructor(
         tv_content.text = name
     }
 
+    fun getTextContent(): String {
+        return tv_content.text.toString()
+    }
+
 
     init {
 
@@ -43,9 +46,10 @@ class ItemEntryView @JvmOverloads constructor(
 
 
         val textContentValue =
-            type.getColor(R.styleable.ItemEntryView_ievtextContentValue, ContextCompat.getColor(context, R.color.colorPrimary))
-
-
+            type.getColor(
+                R.styleable.ItemEntryView_ievtextContentValue,
+                ContextCompat.getColor(context, R.color.colorPrimary)
+            )
 
 
         val textSize = type.getDimension(R.styleable.ItemEntryView_ievtextSize, 18f)
@@ -56,19 +60,16 @@ class ItemEntryView @JvmOverloads constructor(
         )
 
 
-
         val ievdisplaytextContent = type.getBoolean(
             R.styleable.ItemEntryView_ievdisplaytextContent,
             false
         )
 
 
-
         val ievunderline = type.getBoolean(
             R.styleable.ItemEntryView_ievunderline,
             false
         )
-
 
 
         val ievarrow = type.getBoolean(
@@ -94,18 +95,16 @@ class ItemEntryView @JvmOverloads constructor(
             line.visibility = View.GONE
         }
 
-        if (ievarrow){
-            iv_arrow.visibility= View.VISIBLE
-        }else{
-            iv_arrow.visibility= View.GONE
+        if (ievarrow) {
+            iv_arrow.visibility = View.VISIBLE
+        } else {
+            iv_arrow.visibility = View.GONE
         }
 
-       val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
+        val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
 
 
         rl_background.setBackgroundColor(titleBarBackground)
-
-
 
 
     }

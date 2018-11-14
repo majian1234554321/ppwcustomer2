@@ -16,6 +16,8 @@
 
         <RelativeLayout android:layout_width="match_parent"
                         android:padding="@dimen/sp_12"
+                        android:id="@+id/rl_head"
+                        android:background="@color/white"
                         android:layout_height="wrap_content">
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -40,7 +42,11 @@
 
 
         </RelativeLayout>
-
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+              android:background="@color/gray"
+              android:layout_marginLeft="@dimen/sp_12"
+              android:layout_marginRight="@dimen/sp_12"
+        />
 
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="昵称"
@@ -50,6 +56,12 @@
                                             app:ievtextColor="@color/all_9"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+              android:background="@color/gray"
+              android:layout_marginLeft="@dimen/sp_12"
+              android:layout_marginRight="@dimen/sp_12"
+        />
+
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="生日"
                                             android:paddingRight="@dimen/sp_12"
@@ -57,9 +69,11 @@
                                             android:id="@+id/iev_birthday"
                                             app:ievdisplaytextContent="true"
                                             app:ievbackground="@color/white"
+
                                             app:ievtextColor="@color/all_9"
                                             android:layout_height="wrap_content"/>
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
+                                            android:layout_marginTop="@dimen/sp_12"
                                             android:id="@+id/iev_address"
                                             android:paddingRight="@dimen/sp_12"
                                             android:paddingLeft="@dimen/sp_12"

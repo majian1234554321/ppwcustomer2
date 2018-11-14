@@ -9,5 +9,5 @@ interface SectionCommonService {
 
     @Multipart
     @POST("common/upload")
-    fun uploadFile(@Header("JSESSIONID") contentRange: String, @Part file: MultipartBody.Part): Observable<ResponseBody>// 文件上传
+    fun uploadFile( @Part file: MultipartBody.Part): Observable<ResponseBody>// 文件上传
 }

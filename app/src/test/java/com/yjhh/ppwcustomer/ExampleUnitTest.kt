@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer
 
 
 import android.util.Log
+import com.yjhh.ppwcustomer.common.utils.TimeUtil
 import com.yjhh.ppwcustomer.common.utils.time.TimeStampUtils
 import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope
@@ -26,7 +27,7 @@ class ExampleUnitTest {
     fun AA(){
 
 
-        System.out.println( TimeStampUtils.stampForDate(1576213860))
+        System.out.println( TimeUtil.dateToStamp("2018-11-14"))
     }
 
 

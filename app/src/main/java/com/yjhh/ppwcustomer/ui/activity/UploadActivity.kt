@@ -92,7 +92,7 @@ class UploadActivity : BaseActivity() {
 
             val sessionId = SharedPreferencesUtils.getParam(this, "sessionId", "String")
 
-            val dis = ApiServices.getInstance().create(SectionCommonService::class.java)
+          /*  val dis = ApiServices.getInstance().create(SectionCommonService::class.java)
                 .uploadFile(sessionId as String, body)
                 .flatMap {
                     val response = it.string()
@@ -116,8 +116,8 @@ class UploadActivity : BaseActivity() {
                 }, {
                     LogUtils.i("UploadActivity", it.toString())
                 }
-                )
-            compositeDisposable.add(dis)
+                )*/
+            //compositeDisposable.add(dis)
         }
 
 

@@ -72,7 +72,7 @@ class DisplayActivity : BaseActivity() {
             }
 
             "CollectionFragment" -> {
-                fragments = CollectionFragment()
+                fragments = CollFootFragment()
 
             }
 
@@ -97,10 +97,6 @@ class DisplayActivity : BaseActivity() {
             }
 
 
-            "UserInfoFragment" -> {
-                fragments = UserInfoFragment()
-
-            }
 
             "AddressADUFragment" -> {
                 fragments = AddressADUFragment.newInstance(bean)

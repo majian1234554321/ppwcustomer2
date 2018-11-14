@@ -2,6 +2,7 @@ package com.yjhh.ppwcustomer.bean;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,10 @@ import java.util.Map;
 /**
  * Created by cheng on 16-11-12.
  */
-public class ModelShopCart {
+public class ModelShopCart implements Serializable {
+
+
+
     private int shoppingAccount;//商品总数
     private double shoppingTotalPrice;//商品总价钱
     private Map<ModelDish, Integer> shoppingSingle;//单个物品的总价价钱
@@ -22,7 +26,7 @@ public class ModelShopCart {
     }
 
 
-    public class ModelShopCartItem {
+    public class ModelShopCartItem implements Serializable{
         public String dishName;
         public int dishCount;
         public  String dishId;
