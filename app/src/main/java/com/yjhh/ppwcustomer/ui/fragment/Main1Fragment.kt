@@ -29,6 +29,7 @@ import com.yjhh.ppwcustomer.present.SectionMain1Present
 import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
 import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.uuzuche.lib_zxing.activity.CaptureActivity
 import com.yjhh.common.Constants
 import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.adapter.SearchAdapter
@@ -63,7 +64,14 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
             }
 
             R.id.tv_search -> {
-                startActivity(Intent(context, SearchActivity::class.java))
+               startActivity(Intent(context, SearchActivity::class.java))
+            }
+
+            R.id.iv_scan -> {
+               val intent =  Intent(context, CaptureActivity::class.java)
+
+                this@Main1Fragment.startActivityForResult(intent, 10086)
+
             }
             else -> {
             }
@@ -86,6 +94,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         mAdapter.setPreLoadNumber(1)
         tv_location.setOnClickListener(this)
         tv_search.setOnClickListener(this)
+        iv_scan.setOnClickListener(this)
     }
 
 
@@ -97,6 +106,18 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         }
 
 
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 10086 && resultCode == RESULT_OK) {
+            if (data != null) {
+
+                val  content = data?.getStringExtra("result_string");
+                tv_search.text = content
+            }
+        }
     }
 
 
@@ -134,7 +155,6 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     var mGridViewPager: GridViewPager? = null
 
     private fun addHeaderView() {
-
 
 
         val headView: View = layoutInflater.inflate(R.layout.mainhead, mRecyclerView.parent as ViewGroup, false)
