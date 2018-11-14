@@ -230,36 +230,11 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
 
             val file = File(list[0])
 
-            val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-            val body = MultipartBody.Part.createFormData("multipartFile", file.name, requestFile)
+            val dis = present?.setAvaterUpLoadJoin(file)
 
-
-            val dis = ApiServices.getInstance().create(SectionCommonService::class.java)
-                .uploadFile(body)
-                .flatMap {
-                    val response = it.string()
-                    val value = JSONObject(response)
-                    val map = ArrayMap<String, String>()
-                    if (value.getBoolean("success")) {
-
-                        val jsonObject = value.getString("data")
-                        val jsonObject1 = JSONArray(jsonObject)
-                        val js = jsonObject1.get(0) as JSONObject
-                        val id = js.getString("id")
-                        map["avaterId"] = id
-                    }
-                    ApiServices.getInstance().create(SectionUserService::class.java)
-                        .setAvater(map)
-                }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    LogUtils.i("UploadActivity", it.string())
-                }, {
-                    LogUtils.i("UploadActivity", it.toString())
-                }
-                )
-            compositeDisposable.add(dis)
+            if (dis != null) {
+                compositeDisposable.add(dis)
+            }
         }
 
 
@@ -268,6 +243,11 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
             if (resultCode != Activity.RESULT_OK) return
             val uri = Uri.parse(mPublicPhotoPath)
             val path = uri.getPath()
+            val file = File(path)
+            val dis = present?.setAvaterUpLoadJoin(file)
+            if (dis != null) {
+                compositeDisposable.add(dis)
+            }
         }
 
 
@@ -339,7 +319,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
             }
         }
         //将照片添加到相册中
-        if(mPublicPhotoPath!=null){
+        if (mPublicPhotoPath != null) {
             galleryAddPic(mPublicPhotoPath!!, this)
         }
 
