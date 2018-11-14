@@ -34,10 +34,7 @@ import com.yjhh.common.Constants
 import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 import com.yjhh.ppwcustomer.adapter.SearchAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
-import com.yjhh.ppwcustomer.ui.activity.ActivityContact
-import com.yjhh.ppwcustomer.ui.activity.ActivityELMe
-import com.yjhh.ppwcustomer.ui.activity.MoreSectionActivity
-import com.yjhh.ppwcustomer.ui.activity.SearchActivity
+import com.yjhh.ppwcustomer.ui.activity.*
 import com.yjhh.ppwcustomer.ui.activity.takeout.FoodActivity
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
@@ -56,11 +53,21 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_location -> {
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "SelectDistrictFragment")
-                    .withInt("age", 23)
-                    .navigation()
+//                ARouter.getInstance()
+//                    .build("/DisplayActivity/Display")
+//                    .withString("displayTab", "SelectDistrictFragment")
+//                    .withInt("age", 23)
+//                    .navigation(mActivity,10085)
+
+
+                val intent =  Intent(context, DisplayActivity::class.java)
+
+                intent.putExtra("displayTab","SelectDistrictFragment")
+
+                this@Main1Fragment.startActivityForResult(intent, 10085)
+
+
+
             }
 
             R.id.tv_search -> {
@@ -111,11 +118,21 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 10086 && resultCode == RESULT_OK) {
-            if (data != null) {
 
-                val  content = data?.getStringExtra("result_string");
-                tv_search.text = content
+
+
+        when (requestCode) {
+            10086 -> {
+                if (data != null) {
+
+                    val  content = data?.getStringExtra("result_string");
+                    tv_search.text = content
+                }
+            }
+            else -> {
+
+              val location =  data?.getStringExtra("location")
+                tv_search.text = location
             }
         }
     }

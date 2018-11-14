@@ -40,6 +40,8 @@ class DisplayActivity : BaseActivity() {
         frameLayout.setPadding(0, getStatusBarHeight(this), 0, 0)
 
 
+        displayTab =   intent.getStringExtra("displayTab")
+
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragments: BaseFragment? = null
         when (displayTab) {
