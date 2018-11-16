@@ -23,6 +23,7 @@
         <attr name="ievimageSrc" format="reference"/>
         <attr name="ievbackground" format="color"/>
         <attr name="ievunderline" format="boolean"/>
+        <attr name="ievtextpadding" format="dimension"/>
         <attr name="ievdisplaytextContent" format="boolean"/>
         <attr name="ievarrow" format="boolean"/>
     </declare-styleable>

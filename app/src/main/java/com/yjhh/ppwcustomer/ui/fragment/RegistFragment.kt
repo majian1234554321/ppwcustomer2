@@ -1,6 +1,10 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
+import android.support.v4.content.ContextCompat
+import android.text.TextPaint
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -13,6 +17,7 @@ import com.yjhh.loginmodule.bean.LoginBean
 import com.yjhh.loginmodule.present.RegByAccountPresent
 import com.yjhh.loginmodule.view.RegistView
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.common.utils.SpannableStringUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -63,17 +68,24 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
             R.id.bt_register -> {
 
-                if (et_phone.text.length == 11 && et_password.text.length >= 6 && et_verifyCode.text != null) {
-                    regByAccountPresent.regByAccount2(
-                        et_phone.text.toString()
-                        , et_password.text.toString()
-                        , et_verifyCode.text.toString()
-                        , identity
-                        , refId
-                    )
+
+                if (checkbox.isChecked) {
+                    if (et_phone.text.length == 11 && et_password.text.length >= 6 && et_verifyCode.text != null) {
+                        regByAccountPresent.regByAccount2(
+                            et_phone.text.toString()
+                            , et_password.text.toString()
+                            , et_verifyCode.text.toString()
+                            , identity
+                            , refId
+                        )
+                    } else {
+                        Toast.makeText(context, "用户名、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
+                    }
+
                 } else {
-                    Toast.makeText(context, "用户名、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity, "请同意协议", Toast.LENGTH_SHORT).show()
                 }
+
 
             }
 
@@ -83,19 +95,13 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
     }
 
 
-
-
     val MAX_COUNT_TIME = 5L
     private lateinit var regByAccountPresent: RegByAccountPresent
     override fun initView() {
 
-
         regByAccountPresent = RegByAccountPresent(context, this)
 
-
         bt_register.setOnClickListener(this)
-
-
         val disposable = RxView.clicks(tv_verifyCode)
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribeOn(AndroidSchedulers.mainThread())
@@ -108,7 +114,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
                     Observable.empty()
                 }
             }
-
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
@@ -141,8 +146,51 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
                 }
                 Log.i("TAG", it.toString())
             }
-
         compositeDisposable.add(disposable)
+
+
+        var clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
+
+                Toast.makeText(mActivity, "事件触发了1", Toast.LENGTH_SHORT).show()
+
+
+                checkbox.isChecked = false
+
+
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                ds.color = ContextCompat.getColor(mActivity, R.color.colorPrimary)
+                ds.isUnderlineText = true
+
+            }
+        }
+
+        var clickableSpan2: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
+
+                Toast.makeText(mActivity, "事件触发了2", Toast.LENGTH_SHORT).show()
+
+                checkbox.isChecked = false
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                ds.color = ContextCompat.getColor(mActivity, R.color.colorPrimary)
+                ds.isUnderlineText = true
+            }
+        }
+
+
+        val textvalue = "我已阅读并同意 "
+
+        checkbox.text = SpannableStringUtils.getBuilder(textvalue).append("服务条款").setClickSpan(clickableSpan)
+            .append(" 和 ").append("隐私政策").setClickSpan(clickableSpan2)
+            .create()
+
+        checkbox.movementMethod = LinkMovementMethod.getInstance()
 
 
     }

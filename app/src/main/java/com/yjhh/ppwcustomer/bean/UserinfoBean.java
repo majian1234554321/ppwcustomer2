@@ -19,7 +19,7 @@ public class UserinfoBean {
 
     public AccountBean account;
     public int authStatus;
-    public String avaterUrl;
+    public String avatarUrl;
     public int bindWeChat;
     public int garde;
     public String birthday;
@@ -51,7 +51,7 @@ public class UserinfoBean {
          * userId : 1018
          */
 
-        public String avaterUrl;
+        public String avatarUrl;
         public String mobile;
         public String nickName;
         public int userId;

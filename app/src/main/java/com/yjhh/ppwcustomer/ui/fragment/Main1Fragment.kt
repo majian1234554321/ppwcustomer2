@@ -1,27 +1,16 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Rect
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
-import android.os.Handler
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.ColorUtils
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.adapter.Main1FragmentAdapter
-import com.yjhh.ppwcustomer.bean.Main1FootBean
 import com.yjhh.ppwcustomer.bean.MainFinalDataBean
 import com.yjhh.ppwcustomer.common.utils.GlideImageLoader
 
@@ -29,12 +18,10 @@ import com.yjhh.ppwcustomer.present.SectionMain1Present
 import com.yjhh.ppwcustomer.view.Main1View
 import kotlinx.android.synthetic.main.main1fragment.*
 import com.chad.library.adapter.base.listener.OnItemClickListener
-import com.uuzuche.lib_zxing.activity.CaptureActivity
 import com.yjhh.common.Constants
-import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
-import com.yjhh.ppwcustomer.adapter.SearchAdapter
 import com.yjhh.ppwcustomer.bean.Main1HeadBean
 import com.yjhh.ppwcustomer.ui.activity.*
+import com.yjhh.ppwcustomer.ui.activity.parishfood.BusinessHomeActivity
 import com.yjhh.ppwcustomer.ui.activity.takeout.FoodActivity
 import com.yjhh.ppwcustomer.ui.customview.GridViewPager
 import com.youth.banner.Banner
@@ -60,24 +47,26 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 //                    .navigation(mActivity,10085)
 
 
-                val intent =  Intent(context, DisplayActivity::class.java)
+                val intent = Intent(context, DisplayActivity::class.java)
 
-                intent.putExtra("displayTab","SelectDistrictFragment")
+                intent.putExtra("displayTab", "SelectDistrictFragment")
 
                 this@Main1Fragment.startActivityForResult(intent, 10085)
-
 
 
             }
 
             R.id.tv_search -> {
-               startActivity(Intent(context, SearchActivity::class.java))
+                startActivity(Intent(context, SearchActivity::class.java))
             }
 
             R.id.iv_scan -> {
-               val intent =  Intent(context, CaptureActivity::class.java)
+//                val intent = Intent(context, CaptureActivity::class.java)
+//
+//                this@Main1Fragment.startActivityForResult(intent, 10086)
 
-                this@Main1Fragment.startActivityForResult(intent, 10086)
+
+                startActivity(Intent(mActivity, BusinessHomeActivity::class.java))
 
             }
             else -> {
@@ -109,7 +98,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
         swipeLayout.setOnRefreshListener { refreshLayout ->
             refresh("refresh")
-            refreshLayout.finishRefresh()
+
         }
 
 
@@ -125,13 +114,13 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
             10086 -> {
                 if (data != null) {
 
-                    val  content = data?.getStringExtra("result_string");
+                    val content = data?.getStringExtra("result_string");
                     tv_search.text = content
                 }
             }
             else -> {
 
-              val location =  data?.getStringExtra("location")
+                val location = data?.getStringExtra("location")
                 tv_search.text = location
             }
         }
@@ -152,7 +141,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
                 Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
 
-                when (position) {
+               /* when (position) {
                     0 -> {
                         startActivity(Intent(mActivity, MoreSectionActivity::class.java))
                     }
@@ -161,7 +150,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
                     }
                     else -> {
                     }
-                }
+                }*/
             }
         })
     }
@@ -183,9 +172,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
         mAdapter.addHeaderView(headView)
 
-//        val bannerParams = banner!!.getLayoutParams()
-//        val titleBarParams = toolbar.getLayoutParams()
-//        bannerHeight = bannerParams.height - titleBarParams.height
+
 
     }
 
@@ -219,6 +206,31 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
                     .setPageSize(10)
                     .setGridItemClickListener { pos, position, str ->
 
+                        Toast.makeText(
+                            mActivity,
+                            "pos" + pos + ":position" + position + ":str" + str,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+
+                        when (position) {
+                            0 -> {
+                                startActivity(Intent(mActivity, FoodActivity::class.java))
+                            }
+
+                            1 -> {
+                                startActivity(Intent(mActivity, BusinessHomeActivity::class.java))
+                            }
+
+                            2 -> {
+                            }
+
+                            else -> {
+                                startActivity(Intent(mActivity, MoreSectionActivity::class.java))
+                            }
+                        }
+
+
                     }
                     .setGridItemLongClickListener { pos, position, str ->
 
@@ -235,6 +247,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
         if ("refresh" == flag) {
             Log.i("TAG", Constants.district)
+            swipeLayout.finishRefresh()
             mAdapter.setNewData(main1bean.main1FootBean.items)
 
         } else {

@@ -43,7 +43,7 @@ public class ApiServices {
                                 .header("X-Requested-With", "XMLHttpRequest")
                                 .header("PPW-TERMINAL", "1") //（1 用户端 2 骑手端 3 商户端）
                                 .header("PPW-APP-VERSION", "1.0")
-                              //  .header("PPW-SIGN", "XMLHttpRequest")
+                                //  .header("PPW-SIGN", "XMLHttpRequest")
 
                                 .header("PPW-TIMESTAMP", String.valueOf((int) (System.currentTimeMillis() / 1000)))
                                 .header("PPW-API-VERSION", "1.0")

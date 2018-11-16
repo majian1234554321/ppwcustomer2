@@ -58,7 +58,7 @@ class ItemEntryView @JvmOverloads constructor(
             R.styleable.ItemEntryView_ievbackground,
             ContextCompat.getColor(context, R.color.colorPrimary)
         )
-
+        val paddingValue = type.getDimension(R.styleable.ItemEntryView_ievtextpadding, 0f)
 
         val ievdisplaytextContent = type.getBoolean(
             R.styleable.ItemEntryView_ievdisplaytextContent,
@@ -86,6 +86,7 @@ class ItemEntryView @JvmOverloads constructor(
         tv_name.text = textValue
         tv_name.setTextColor(textColor)
         tv_name.textSize = textSize
+        tv_name.setPadding( paddingValue.toInt(), 0, 0, 0)
 
         val line = view.findViewById<View>(R.id.line)
 

@@ -58,6 +58,21 @@
               android:layout_height="1dp"/>
 
 
+        <EditText android:layout_width="match_parent" android:layout_height="50dp"
+                  android:layout_below="@+id/et_password"
+                  android:id="@+id/et_verifyCode"
+                  android:background="@null"
+                  android:hint="请输入验证码"
+                  android:layout_toLeftOf="@+id/tv_verifyCode"
+                  android:layout_toRightOf="@+id/tv_verifyCode1"
+        />
+
+
+        <View android:layout_width="match_parent"
+              android:background="@color/all_6"
+
+              android:layout_height="1dp"/>
+
         <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent" android:layout_height="50dp"
@@ -72,22 +87,11 @@
 
               android:layout_height="1dp"/>
 
-        <EditText android:layout_width="match_parent" android:layout_height="50dp"
-                  android:layout_below="@+id/et_password"
-                  android:id="@+id/et_verifyCode"
-                  android:background="@null"
-                  android:hint="请输入验证码"
-                  android:layout_toLeftOf="@+id/tv_verifyCode"
-                  android:layout_toRightOf="@+id/tv_verifyCode1"
-        />
-
-        <View android:layout_width="match_parent"
-              android:background="@color/all_6"
-
-              android:layout_height="1dp"/>
-
         <CheckBox android:layout_width="match_parent" android:layout_height="wrap_content"
-
+                  android:id="@+id/checkbox"
+                  android:checked="true"
+                  android:layout_marginTop="@dimen/sp_16"
+                  android:layout_marginBottom="@dimen/sp_16"
                   android:text="我已阅读并同意 服务条款 和 隐私政策"
         />
 
@@ -95,6 +99,7 @@
                 android:layout_below="@+id/et_verifyCode"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
+                android:textSize="14dp"
                 android:layout_gravity="center"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/white"

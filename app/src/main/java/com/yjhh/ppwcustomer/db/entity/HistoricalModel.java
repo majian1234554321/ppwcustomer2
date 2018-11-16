@@ -6,7 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class HistoricalModel {
-
     @PrimaryKey(autoGenerate=true)
     public int uid;
 

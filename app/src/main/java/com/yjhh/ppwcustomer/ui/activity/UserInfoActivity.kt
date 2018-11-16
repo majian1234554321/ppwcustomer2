@@ -67,7 +67,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
     override fun onSuccess(main1bean: UserinfoBean) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         iev_nickName.setTextContent(main1bean.nickName)
-        Glide.with(this).load(main1bean.avaterUrl).into(iv_image)
+        Glide.with(this).load(main1bean.avatarUrl).into(iv_image)
 
 
         iev_birthday.setTextContent(TimeUtil.stampToDate2(main1bean.birthday))
@@ -230,7 +230,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
 
             val file = File(list[0])
 
-            val dis = present?.setAvaterUpLoadJoin(file)
+            val dis = present?.setAvatarUpLoadJoin(file)
 
             if (dis != null) {
                 compositeDisposable.add(dis)
@@ -244,7 +244,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
             val uri = Uri.parse(mPublicPhotoPath)
             val path = uri.getPath()
             val file = File(path)
-            val dis = present?.setAvaterUpLoadJoin(file)
+            val dis = present?.setAvatarUpLoadJoin(file)
             if (dis != null) {
                 compositeDisposable.add(dis)
             }

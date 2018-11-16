@@ -42,8 +42,8 @@ interface SectionUserService {
     fun getUseraddressDetail(@FieldMap map: Map<String, String>): Observable<ResponseBody>//获取用户地址详情
 
     @FormUrlEncoded
-    @POST("user/setAvater")
-    fun setAvater(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户头像
+    @POST("user/setAvatar")
+    fun setAvatar(@FieldMap map: Map<String, String>): Observable<ResponseBody>//设置用户头像
 
 
     @POST("user")

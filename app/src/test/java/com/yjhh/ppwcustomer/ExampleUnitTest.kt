@@ -2,6 +2,8 @@ package com.yjhh.ppwcustomer
 
 
 import android.util.Log
+import com.yjhh.ppwcustomer.common.utils.DateUtil
+import com.yjhh.ppwcustomer.common.utils.DateUtil.getFetureDate
 import com.yjhh.ppwcustomer.common.utils.TimeUtil
 import com.yjhh.ppwcustomer.common.utils.time.TimeStampUtils
 import kotlinx.coroutines.*
@@ -21,13 +23,18 @@ import org.junit.Test
 class ExampleUnitTest {
 
 
-
-
     @Test
-    fun AA(){
+    fun AA() {
 
 
-        System.out.println( TimeUtil.dateToStamp("2018-11-14"))
+
+
+
+        for ( i in 0 until  7 ) {
+           // System.out.println(DateUtil.dayForWeek(DateUtil.getFetureDate(i)))
+        }
+
+
     }
 
 

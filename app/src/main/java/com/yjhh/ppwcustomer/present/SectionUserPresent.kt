@@ -52,7 +52,7 @@ class SectionUserPresent(context: Context) : BasePresent() {
 
     val model = SectionUserModel()
 
-    fun setAvaterUpLoadJoin(file: File): Disposable {
+    fun setAvatarUpLoadJoin(file: File): Disposable {
 
         val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val body = MultipartBody.Part.createFormData("multipartFile", file.name, requestFile)
@@ -70,10 +70,10 @@ class SectionUserPresent(context: Context) : BasePresent() {
                     val jsonObject1 = JSONArray(jsonObject)
                     val js = jsonObject1.get(0) as JSONObject
                     val id = js.getString("id")
-                    map["avaterId"] = id
+                    map["avatarId"] = id
                 }
                 ApiServices.getInstance().create(SectionUserService::class.java)
-                    .setAvater(map)
+                    .setAvatar(map)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

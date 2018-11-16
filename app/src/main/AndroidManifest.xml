@@ -149,7 +149,7 @@
         </activity>
         <activity android:name=".ui.activity.UserInfoActivity">
         </activity>
-        <activity android:name=".ui.activity.BusinessHomeActivity">
+        <activity android:name=".ui.activity.parishfood.BusinessHomeActivity">
         </activity>
         <activity android:name=".ui.activity.ActivityELMe">
         </activity>

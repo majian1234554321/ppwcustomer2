@@ -2,13 +2,14 @@ package com.yjhh.ppwcustomer.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class TakeoutOrderModel {
 
     @PrimaryKey(autoGenerate = true)
-    public int uid;
+    public int uid2;
 
     @ColumnInfo(name = "restaurantid") //id餐厅
     public String restaurantid;
@@ -31,7 +32,7 @@ public class TakeoutOrderModel {
     @ColumnInfo(name = "dishescount")//菜品数量
     public int dishescount;//
 
-
+    @Ignore
     public TakeoutOrderModel( String restaurantid, String restauranttype, String dishesname, String dishesid, String dishesprice, int dishescount) {
 
         this.restaurantid = restaurantid;

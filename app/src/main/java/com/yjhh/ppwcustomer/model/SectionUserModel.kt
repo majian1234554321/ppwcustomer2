@@ -1,7 +1,8 @@
 package com.yjhh.ppwcustomer.model
 
 
-import android.util.ArrayMap
+
+import android.support.v4.util.ArrayMap
 import com.yjhh.common.Constants.province
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionUserService
@@ -11,10 +12,10 @@ import okhttp3.ResponseBody
 class SectionUserModel {
 
     val map = ArrayMap<String, String>()
-    fun setAvater(avaterId: String): Observable<ResponseBody> {
+    fun setAvatar(avatarId: String): Observable<ResponseBody> {
         map.clear()
-        map["avaterId"] = avaterId
-        return ApiServices.getInstance().create(SectionUserService::class.java).setAvater(map)
+        map["avatarId"] = avatarId
+        return ApiServices.getInstance().create(SectionUserService::class.java).setAvatar(map)
     }
 
 

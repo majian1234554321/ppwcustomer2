@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp">
+                android:layout_height="30dp">
     <TextView android:layout_width="40dp"
               android:id="@+id/tv_reduce"
               android:text="-"
               android:gravity="center"
-              android:layout_height="40dp"/>
+              android:layout_height="30dp"/>
 
     <TextView
             android:text="1"
             android:layout_toRightOf="@+id/tv_reduce"
             android:id="@+id/tv_count"
-            android:padding="8dp"
+            android:padding="4dp"
             android:gravity="center"
+            android:background="@drawable/stroke_frame"
             android:textSize="@dimen/sp_14"
             android:textColor="@color/all_9"
-            android:layout_width="60dp" android:layout_height="40dp"/>
+            android:layout_width="80dp" android:layout_height="30dp"/>
 
 
     <TextView android:layout_width="40dp"
@@ -25,6 +26,6 @@
               android:gravity="center"
               android:layout_centerVertical="true"
               android:layout_toRightOf="@+id/tv_count"
-              android:layout_height="40dp"/>
+              android:layout_height="30dp"/>
 
 </RelativeLayout>

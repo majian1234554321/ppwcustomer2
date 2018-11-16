@@ -6,142 +6,236 @@
         xmlns:tl="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activity.BusinessHomeActivity">
+        tools:context=".ui.activity.parishfood.BusinessHomeActivity">
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
                                        android:layout_height="wrap_content"/>
 
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_below="@+id/tbv_title"
-                  android:orientation="vertical"
-                  android:layout_height="match_parent">
+    <android.support.design.widget.CoordinatorLayout
+            android:layout_below="@+id/tbv_title" android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <RelativeLayout android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content">
-
-
-            <ImageView android:layout_width="60dp" android:layout_height="60dp"
-                       android:src="@mipmap/ic_launcher"
-                       android:id="@+id/iv_homeImage"
-            />
-
-            <com.yjhh.ppwcustomer.ui.customview.RatingBar
-                    android:id="@+id/id_ratingbar"
-                    android:layout_width="100dp"
-                    android:layout_height="25dp"
-                    android:gravity="center"
-                    app:allStarsCount="5"
-                    app:curSelectValue="1.5"
-                    android:layout_toRightOf="@+id/iv_homeImage"
-                    app:starEmpty="@drawable/star_empty"
-                    app:starFill="@drawable/star_full"
-                    app:starHalf="@drawable/star_half_full"
-                    app:starImageSize="15dp"
-                    app:starPadding="5dp"
-                    app:stepSize="Half"/>
-
-            <TextView android:layout_width="wrap_content"
-                      tools:text="人均54元"
-                      android:gravity="center"
-                      android:id="@+id/tv_avgPrice"
-                      android:layout_toRightOf="@+id/id_ratingbar"
-                      android:layout_height="25dp"/>
-
-            <TextView android:layout_width="wrap_content"
-                      tools:text="江浙菜"
-                      android:gravity="center"
-                      android:layout_toRightOf="@+id/tv_avgPrice"
-                      android:layout_height="25dp"/>
-
-            <TextView android:layout_width="wrap_content"
-                      android:layout_below="@+id/id_ratingbar"
-                      android:layout_toRightOf="@+id/iv_homeImage"
-                      tools:text="营业时间：10:30-15：00，16.30-21:00"
-                      android:layout_height="wrap_content"/>
-
-
-        </RelativeLayout>
-
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                  android:text="武昌区松竹路楚河汉街第一街区"
-                  android:id="@+id/tv_address"
-        />
-
-
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-
-
-            <RelativeLayout android:layout_width="match_parent"
-                            android:id="@+id/rl1"
-                            android:layout_height="50dp">
-
-                <TextView android:layout_width="wrap_content"
-                          android:id="@+id/tv_takeout"
-                          android:text="外卖点餐"
-                          android:layout_height="wrap_content"/>
-
-                <TextView android:layout_width="wrap_content"
-                          android:layout_below="@+id/tv_takeout"
-                          android:layout_height="wrap_content"
-                          android:text="¥20起送 | 满30减15，满45减20"
-                />
-
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_alignParentRight="true"
-                          android:gravity="center"
-                          android:layout_centerVertical="true"
-                          android:drawableRight="@mipmap/ic_launcher"
-                          android:text="休息中"
-                />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:id="@+id/rl2"
-                    android:layout_below="@+id/rl1"
-                    android:layout_width="match_parent" android:layout_height="wrap_content">
-
-                <TextView android:layout_width="wrap_content"
-                          android:id="@+id/tv_Parishfood"
-                          android:text="堂食"
-                          android:layout_height="wrap_content"/>
-
-                <TextView android:layout_width="wrap_content"
-                          android:id="@+id/tv2"
-                          android:layout_below="@+id/tv_Parishfood"
-                          android:text="平台会员8折专享"
-                          android:layout_height="wrap_content"/>
-                <TextView
-                        android:text="预订"
-                        android:id="@+id/tv_Reserve"
-                        android:layout_toLeftOf="@+id/tv_buy"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                <TextView
-                        android:text="买单"
-                        android:id="@+id/tv_buy"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
-
-            </RelativeLayout>
-
-
-        </RelativeLayout>
-
-
-        <com.flyco.tablayout.SlidingTabLayout
-                android:id="@+id/mTabLayout"
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/common_index_activity_tb_title"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                tl:tl_tab_space_equal="true"
-                android:background="#F6CE59"
-                tl:tl_indicator_width="10dp"/>
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/actionBarSize"
+                android:visibility="visible"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+            <include
+                    layout="@layout/igame_common_tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbarlayout"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@color/all_6"
+                    app:expandedTitleMarginEnd="10dp"
+                    app:expandedTitleMarginStart="10dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout android:layout_width="match_parent"
+
+                                  android:orientation="vertical"
+                                  android:padding="@dimen/sp_12"
+                                  android:id="@+id/ll"
+                                  android:layout_height="wrap_content">
+
+                        <RelativeLayout android:layout_width="match_parent"
+
+                                        android:layout_height="wrap_content">
 
 
-    </LinearLayout>
+                            <ImageView android:layout_width="60dp" android:layout_height="60dp"
+                                       android:src="@mipmap/ic_launcher"
+                                       android:id="@+id/iv_homeImage"
+                            />
+
+                            <com.yjhh.ppwcustomer.ui.customview.RatingBar
+                                    android:id="@+id/id_ratingbar"
+                                    android:layout_width="100dp"
+                                    android:layout_height="25dp"
+                                    android:gravity="center"
+                                    app:allStarsCount="5"
+                                    app:curSelectValue="1.5"
+                                    app:clickable="false"
+                                    android:layout_toRightOf="@+id/iv_homeImage"
+                                    app:starEmpty="@drawable/star_empty"
+                                    app:starFill="@drawable/star_full"
+                                    app:starHalf="@drawable/star_half_full"
+                                    app:starImageSize="15dp"
+                                    app:starPadding="5dp"
+                                    app:stepSize="Half"/>
+
+                            <TextView android:layout_width="wrap_content"
+                                      tools:text="人均54元"
+                                      android:gravity="center"
+                                      android:id="@+id/tv_avgPrice"
+                                      android:layout_toRightOf="@+id/id_ratingbar"
+                                      android:layout_height="25dp"/>
+
+                            <TextView android:layout_width="wrap_content"
+                                      tools:text="江浙菜"
+                                      android:gravity="center"
+                                      android:layout_toRightOf="@+id/tv_avgPrice"
+                                      android:layout_height="25dp"/>
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_below="@+id/id_ratingbar"
+                                      android:layout_toRightOf="@+id/iv_homeImage"
+                                      tools:text="营业时间：10:30-15：00，16.30-21:00"
+                                      android:layout_height="wrap_content"/>
+
+
+                        </RelativeLayout>
+
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:text="武昌区松竹路楚河汉街第一街区"
+                                  android:id="@+id/tv_address"
+                        />
+
+
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:orientation="vertical"
+                                      android:background="@drawable/stroke_frame_all6"
+                                      android:layout_height="wrap_content">
+
+
+                            <RelativeLayout android:layout_width="match_parent"
+                                            android:id="@+id/rl1"
+                                            android:padding="@dimen/sp_12"
+                                            android:layout_height="wrap_content">
+
+                                <TextView android:layout_width="wrap_content"
+                                          android:id="@+id/tv_takeout"
+                                          android:text="外卖点餐"
+                                          android:layout_height="wrap_content"/>
+
+                                <TextView android:layout_width="wrap_content"
+                                          android:layout_below="@+id/tv_takeout"
+                                          android:layout_height="wrap_content"
+                                          android:text="¥20起送 | 满30减15，满45减20"
+                                />
+
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:layout_alignParentRight="true"
+                                          android:gravity="center"
+                                          android:layout_centerVertical="true"
+                                          android:drawableRight="@drawable/arrow_right_48"
+                                          android:text="休息中"
+                                />
+
+                            </RelativeLayout>
+
+                            <View android:layout_width="match_parent" android:layout_height="1dp"
+                                  android:background="@color/all_6"
+                            />
+
+                            <RelativeLayout
+                                    android:id="@+id/rl2"
+                                    android:padding="@dimen/sp_12"
+                                    android:layout_below="@+id/rl1"
+                                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                                <TextView android:layout_width="wrap_content"
+                                          android:id="@+id/tv_Parishfood"
+                                          android:text="堂食"
+
+                                          android:layout_height="wrap_content"/>
+
+                                <TextView android:layout_width="wrap_content"
+                                          android:id="@+id/tv2"
+                                          android:layout_below="@+id/tv_Parishfood"
+                                          android:text="平台会员8折专享"
+                                          android:layout_height="wrap_content"/>
+                                <TextView
+                                        android:text="预订"
+                                        android:id="@+id/tv_Reserve"
+                                        android:textSize="@dimen/sp_16"
+                                        android:layout_centerVertical="true"
+                                        android:padding="@dimen/sp_12"
+                                        android:layout_toLeftOf="@+id/view"
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                                <View android:layout_width="1dp"
+                                      android:id="@+id/view"
+                                      android:background="@color/all_e"
+                                      android:layout_centerVertical="true"
+                                      android:layout_toLeftOf="@+id/tv_buy"
+                                      android:layout_height="@dimen/sp_16"/>
+
+                                <TextView
+                                        android:text="买单"
+                                        android:id="@+id/tv_buy"
+                                        android:layout_centerVertical="true"
+                                        android:padding="@dimen/sp_12"
+                                        android:textSize="@dimen/sp_16"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <com.flyco.tablayout.SlidingTabLayout
+                    android:id="@+id/mTabLayout"
+                    android:layout_marginTop="@dimen/sp_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    tl:tl_tab_space_equal="true"
+                    android:background="#F6CE59"
+                    tl:tl_indicator_width="10dp"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:id="@+id/viewPager"
+                android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+
+
 
 
 </RelativeLayout>
