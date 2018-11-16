@@ -1,9 +1,6 @@
 package com.yjhh.ppwcustomer.db.dao;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
+import android.arch.persistence.room.*;
 import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
 
 
@@ -12,7 +9,7 @@ import java.util.List;
 @Dao
 public interface HistoricalDao {
 
-    @Query("SELECT * FROM historicalmodel ORDER BY keyword DESC   LIMIT 0,10")
+    @Query("SELECT *  FROM historicalmodel ORDER BY uid DESC  ")
     List<HistoricalModel> getAll();
 
 //    @Query("SELECT * FROM historicalmodel WHERE uid IN (:userIds)")

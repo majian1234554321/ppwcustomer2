@@ -29,7 +29,7 @@ import kotlin.collections.ArrayList
 class SearchActivity : BaseActivity() {
 
 
-   lateinit  var mAdapter: SearchContentAdapter
+    lateinit var mAdapter: SearchContentAdapter
     var historyadapter: SearchAdapter? = null
 
     var lists = ArrayList<HistoricalModel>()
@@ -101,26 +101,24 @@ class SearchActivity : BaseActivity() {
                             .doOnNext {
                                 val all = AppDataBase
                                     .getInstance(this)
-                                    .historicalDao.all
-                                val historicalModel = HistoricalModel(it, it)
-                                if (all != null && !all.contains(historicalModel)) {
+                                    .historicalDao.findByName(it, it)
 
-                                    var flag = false
+                                if (all != null) {
 
-                                    all.forEach {
-                                        flag = it.keyword != historicalModel.keyword
-                                    }
-
-
-                                    if (flag){
-                                        AppDataBase
-                                            .getInstance(this)
-                                            .historicalDao
-                                            .insertAll(historicalModel)
-                                    }
-
+                                    AppDataBase
+                                        .getInstance(this)
+                                        .historicalDao
+                                        .delete(all)
 
                                 }
+                                val historicalModel = HistoricalModel(it, it)
+
+                                AppDataBase
+                                    .getInstance(this)
+                                    .historicalDao
+                                    .insertAll(historicalModel)
+
+
                             }.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
@@ -155,8 +153,6 @@ class SearchActivity : BaseActivity() {
                     ll0.visibility = View.GONE
                 })
         }
-
-
 
 
     }

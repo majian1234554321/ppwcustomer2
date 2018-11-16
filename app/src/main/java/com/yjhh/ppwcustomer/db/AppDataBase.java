@@ -8,7 +8,7 @@ import com.yjhh.ppwcustomer.db.dao.HistoricalDao;
 import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
 import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel;
 
-@Database(entities = {HistoricalModel.class, TakeoutOrderModel.class}, version = 1, exportSchema = false)
+@Database(entities = {HistoricalModel.class, TakeoutOrderModel.class}, version = 2, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static final String DB_NAME = "UserDatabase.db";
