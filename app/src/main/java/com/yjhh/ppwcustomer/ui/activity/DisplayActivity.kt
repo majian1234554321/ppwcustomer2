@@ -22,6 +22,7 @@ class DisplayActivity : BaseActivity() {
     @Autowired
     @JvmField
     var displayTab: String? = null
+
     @Autowired
     @JvmField
     var age: Int? = 0

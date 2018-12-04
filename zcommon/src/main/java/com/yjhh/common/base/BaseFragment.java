@@ -16,11 +16,21 @@ import android.view.ViewGroup;
 import com.yjhh.common.utils.LogUtils;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import io.reactivex.disposables.CompositeDisposable;
+import me.jessyan.autosize.internal.CustomAdapt;
 import me.yokeyword.fragmentation.SupportFragment;
 
 import java.util.List;
 
-public abstract class BaseFragment extends SupportFragment {
+public abstract class BaseFragment extends SupportFragment implements CustomAdapt {
+    @Override
+    public boolean isBaseOnWidth() {
+        return true;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 375;
+    }
 
 
     public BaseFragment(){}

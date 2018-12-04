@@ -19,18 +19,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import android.widget.Toast;
 import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
 import com.yjhh.common.utils.BDLocationUtils;
 import com.yjhh.common.utils.SystemBarUtil;
 import io.reactivex.disposables.CompositeDisposable;
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.internal.CustomAdapt;
 import me.yokeyword.fragmentation.SupportActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseActivity extends SupportActivity {
+public class BaseActivity extends SupportActivity implements CustomAdapt {
 
     public static PermissionListener mListener;
     public static final int REQUEST_CODE = 1;
@@ -59,6 +62,34 @@ public class BaseActivity extends SupportActivity {
         bdLocationUtils.doLocation();//开启定位
         bdLocationUtils.mLocationClient.start();//开始定位
 
+    }
+
+
+    @Override
+    public boolean isBaseOnWidth() {
+        return true;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 375;
+    }
+
+
+    public void stop(View view) {
+        Toast.makeText(getApplicationContext(), "AndroidAutoSize stops working!", Toast.LENGTH_SHORT).show();
+        AutoSizeConfig.getInstance().stop(this);
+    }
+
+    /**
+     * 需要注意的是重新启动 AndroidAutoSize 后, AndroidAutoSize 只是重新开始了对后续还没有启动的 {@link Activity} 进行适配的工作
+     * 但对已经启动且在 stop 期间未适配的 {@link Activity} 不会有任何影响
+     *
+     * @param view {@link View}
+     */
+    public void restart(View view) {
+        Toast.makeText(getApplicationContext(), "AndroidAutoSize continues to work", Toast.LENGTH_SHORT).show();
+        AutoSizeConfig.getInstance().restart();
     }
 
 

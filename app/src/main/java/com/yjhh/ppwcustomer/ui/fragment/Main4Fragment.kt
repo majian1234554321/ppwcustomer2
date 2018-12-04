@@ -24,11 +24,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "AboutFragment")
-                    .withInt("age", 23)
-                    .navigation()
+                (preFragment as MainFragment) .startBrotherFragment(AboutFragment())
             }
 
             R.id.iev_browse -> {

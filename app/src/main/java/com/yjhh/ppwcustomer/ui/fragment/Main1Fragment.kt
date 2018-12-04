@@ -166,7 +166,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
         val headView: View = layoutInflater.inflate(R.layout.mainhead, mRecyclerView.parent as ViewGroup, false)
 
 
-        banner = headView.findViewById<Banner>(R.id.banner)
+        banner = headView.findViewById(R.id.banner)
 
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
 
