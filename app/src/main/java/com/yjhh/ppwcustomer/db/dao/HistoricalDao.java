@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.db.dao;
 
-import android.arch.persistence.room.*;
+import androidx.room.*;
 import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
 
 

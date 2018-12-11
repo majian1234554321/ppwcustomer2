@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.RadioGroup;
 import com.yjhh.ppwcustomer.R;
 
-public class ToggleRadioButton extends android.support.v7.widget.AppCompatRadioButton {
+public class ToggleRadioButton extends androidx.appcompat.widget.AppCompatRadioButton {
 
     public ToggleRadioButton(Context context) {
         this(context, null);

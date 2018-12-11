@@ -4,7 +4,7 @@ package com.yjhh.ppwcustomer.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.util.ArrayMap
+import androidx.collection.ArrayMap
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager

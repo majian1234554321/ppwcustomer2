@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
@@ -20,13 +20,13 @@ import kotlinx.android.synthetic.main.main2fragment.view.*
 import java.util.*
 
 
-class Main2Fragment : BaseFragment() {
+class Main2Fragment : BaseMainFragment() {
 
     private val headers = arrayOf("订单")
     private val constellations =
         arrayOf("全部订单", "美食", "外卖", "酒店", "休闲娱乐", "运动健身", "会员服务")
     private val popupViews = ArrayList<View>()
-    override fun initView() {
+  /*  override fun initView() {
         val mTitles = arrayOf("全部", "进行中", "待评价")
 
 
@@ -39,18 +39,11 @@ class Main2Fragment : BaseFragment() {
         constellation.adapter = constellationAdapter
 
 
-
-
         constellation.setOnItemClickListener { parent, view, position, id ->
             constellationAdapter.setCheckItem(position)
             dropDownMenu.setTabText(if (position == 0) headers[0] else constellations[position])
             dropDownMenu.closeMenu()
         }
-
-
-
-
-
 
         popupViews.add(constellationView)
 
@@ -65,7 +58,7 @@ class Main2Fragment : BaseFragment() {
         val contentView = View.inflate(context, R.layout.main2fragmentcontent, null)
 
         val mTabLayout = contentView.findViewById<SlidingTabLayout>(R.id.mTabLayout)
-        val mViewPager = contentView.findViewById<ViewPager>(R.id.mViewPager)
+        val mViewPager = contentView.findViewById<androidx.viewpager.widget.ViewPager>(R.id.mViewPager)
 
 
         dropDownMenu.setDropDownMenu(Arrays.asList(*headers), popupViews, contentView)
@@ -74,7 +67,7 @@ class Main2Fragment : BaseFragment() {
         mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, mTitles)
         mTabLayout.setViewPager(mViewPager)
 
-    }
+    }*/
 
     override fun getLayoutRes(): Int = R.layout.main2fragment
 }

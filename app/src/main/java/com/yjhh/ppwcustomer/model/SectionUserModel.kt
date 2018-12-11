@@ -2,7 +2,7 @@ package com.yjhh.ppwcustomer.model
 
 
 
-import android.support.v4.util.ArrayMap
+import androidx.collection.ArrayMap
 import com.yjhh.common.Constants.province
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionUserService
@@ -11,7 +11,7 @@ import okhttp3.ResponseBody
 
 class SectionUserModel {
 
-    val map = ArrayMap<String, String>()
+    val map = androidx.collection.ArrayMap<String, String>()
     fun setAvatar(avatarId: String): Observable<ResponseBody> {
         map.clear()
         map["avatarId"] = avatarId

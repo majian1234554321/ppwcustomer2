@@ -5,9 +5,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.PointF;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -20,27 +20,14 @@ import com.yjhh.ppwcustomer.adapter.AdapterLeftMenu;
 import com.yjhh.ppwcustomer.adapter.AdapterRightDish;
 
 import com.yjhh.ppwcustomer.bean.ModelDish;
-import com.yjhh.ppwcustomer.bean.ModelDishMenu;
 import com.yjhh.ppwcustomer.bean.ModelShopCart;
-import com.yjhh.ppwcustomer.bean.NameBean;
-import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel;
-import com.yjhh.ppwcustomer.interfaces.DecorationCallback;
-import com.yjhh.ppwcustomer.interfaces.SectionDecoration;
 import com.yjhh.ppwcustomer.interfaces.ShopCartInterface;
 
 import com.yjhh.ppwcustomer.ui.MeiTuanItem;
 import com.yjhh.ppwcustomer.ui.customview.RxFakeAddImageView;
 import com.yjhh.ppwcustomer.ui.customview.RxPointFTypeEvaluator;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @SuppressLint("ValidFragment")

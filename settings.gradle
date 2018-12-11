@@ -1,1 +1,1 @@
-include ':app', ':zcommon', ':model_login', ':lib-zxing', ':module_restaurant'
+include ':app', ':zcommon', ':lib-zxing', ':module_restaurant'

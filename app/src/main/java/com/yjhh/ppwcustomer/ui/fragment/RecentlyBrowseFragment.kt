@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -31,7 +31,7 @@ class RecentlyBrowseFragment : BaseFragment(), RecentlyBrowseView {
         sectionUselessPresent =  SectionUselessPresent(context,this)
         mAdapter = RecentlyBrowseAdapter(list, context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
         mAdapter.setOnLoadMoreListener({
             loadMore()

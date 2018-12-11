@@ -1,10 +1,9 @@
 package com.yjhh.ppwcustomer.db.dao;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import com.yjhh.ppwcustomer.db.entity.HistoricalModel;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
 import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel;
 
 import java.util.List;

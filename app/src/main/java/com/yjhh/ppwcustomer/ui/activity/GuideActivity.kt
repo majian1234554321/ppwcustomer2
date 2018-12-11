@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.activity
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -65,7 +65,7 @@ class GuideActivity : BaseActivity() {
                     .removeOnGlobalLayoutListener(this)
             }
         })
-        in_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        in_viewpager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
                 val leftMargin = mDistance * (position + positionOffset)

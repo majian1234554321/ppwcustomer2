@@ -2,7 +2,7 @@ package com.yjhh.ppwcustomer.ui.activity.takeout
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -28,7 +28,7 @@ class ShopCartActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_cart)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
 
         var list  =   ArrayList<DishBean>()

@@ -4,7 +4,7 @@ import android.view.View
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
 
-class Main3Fragment:BaseFragment() {
+class Main3Fragment:BaseMainFragment() {
 
 
     override fun initView()  {}

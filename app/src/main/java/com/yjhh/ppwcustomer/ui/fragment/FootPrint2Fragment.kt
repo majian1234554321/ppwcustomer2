@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -38,7 +38,7 @@ class FootPrint2Fragment : BaseFragment(), RecentlyBrowseView {
             loadMore()
         }, mRecyclerView)
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
 
         mRecyclerView.adapter = mAdapter

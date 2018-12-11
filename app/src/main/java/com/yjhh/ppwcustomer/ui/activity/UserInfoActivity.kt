@@ -11,9 +11,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.FileProvider
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import android.util.ArrayMap
 import android.util.Log
 import android.view.Gravity
@@ -37,8 +37,9 @@ import com.yjhh.common.utils.Glide4Engine
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.loginmodule.bean.LoginBean
+
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.LoginBean
 import com.yjhh.ppwcustomer.bean.UserinfoBean
 import com.yjhh.ppwcustomer.common.utils.TimeUtil
 import com.yjhh.ppwcustomer.present.SectionUserPresent

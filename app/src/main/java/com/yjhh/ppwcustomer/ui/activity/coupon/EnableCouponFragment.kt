@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.activity.coupon
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
@@ -31,7 +31,7 @@ class EnableCouponFragment : BaseFragment(), CouponView {
     override fun getLayoutRes(): Int = R.layout.enablecouponfragment
 
     override fun initView() {
-        recyclerView.layoutManager = LinearLayoutManager(mActivity)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
 
 
         sectionCouponPresent = SectionCouponPresent(context, this)

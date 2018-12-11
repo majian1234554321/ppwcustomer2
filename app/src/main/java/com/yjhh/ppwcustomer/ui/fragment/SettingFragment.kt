@@ -6,8 +6,9 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.loginmodule.bean.LoginBean
+
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.LoginBean
 import kotlinx.android.synthetic.main.settingfragment.*
 
 class SettingFragment : BaseFragment(), View.OnClickListener {

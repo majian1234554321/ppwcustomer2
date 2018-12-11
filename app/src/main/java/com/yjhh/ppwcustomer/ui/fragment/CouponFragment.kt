@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 
 import android.view.View
@@ -59,7 +59,7 @@ class CouponFragment : BaseFragment(), CouponView {
 
         mAdapter = CouponFragmentAdapter(list, context)
         sectionCouponPresent = SectionCouponPresent(context, this)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()

@@ -12,7 +12,7 @@
             tl:tl_tab_space_equal="true"
             android:background="#F6CE59"
             tl:tl_indicator_width="10dp"/>
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:id="@+id/mViewPager"
             android:layout_below="@+id/mTabLayout"

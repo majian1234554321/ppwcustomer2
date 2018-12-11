@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -58,7 +58,7 @@ class MyMessageFragment : BaseFragment(), MyMessageView {
 
         mAdapter = MyMessageFragmentAdapter(list, context)
         sectionCouponPresent = SectionUselessPresent(context, this)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()

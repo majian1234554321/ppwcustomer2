@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.activity
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import android.text.TextUtils
 import android.view.View
@@ -46,7 +46,7 @@ class SearchActivity : BaseActivity() {
         list.add("EEEEE")
         list.add("AFFFF")
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAdapter = SearchContentAdapter(list)
 
 

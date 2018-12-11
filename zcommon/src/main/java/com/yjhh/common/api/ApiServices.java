@@ -1,7 +1,7 @@
 package com.yjhh.common.api;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.yjhh.common.Constants;
 
 import com.yjhh.common.BaseApplication;

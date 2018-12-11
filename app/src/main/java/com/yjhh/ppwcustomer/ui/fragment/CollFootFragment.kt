@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.View
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.yjhh.common.base.BaseFragment
@@ -49,7 +49,7 @@ class CollFootFragment : BaseFragment() {
         }
 
 
-        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        mViewPager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
 
             }

@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.text.TextPaint
 import android.text.TextUtils
 import android.text.method.LinkMovementMethod
@@ -11,19 +11,15 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.listener.LeftOnClickListener
 
-import com.yjhh.loginmodule.bean.LoginBean
-import com.yjhh.loginmodule.present.RegByAccountPresent
-import com.yjhh.loginmodule.view.RegistView
+
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.LoginBean
 import com.yjhh.ppwcustomer.common.utils.SpannableStringUtils
+import com.yjhh.ppwcustomer.present.RegByAccountPresent
+import com.yjhh.ppwcustomer.view.RegistView
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.registfragment.*
 

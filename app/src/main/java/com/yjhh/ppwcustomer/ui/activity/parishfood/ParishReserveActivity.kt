@@ -1,9 +1,9 @@
 package com.yjhh.ppwcustomer.ui.activity.parishfood
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import com.yjhh.ppwcustomer.R

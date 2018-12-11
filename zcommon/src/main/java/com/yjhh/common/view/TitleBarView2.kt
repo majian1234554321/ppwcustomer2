@@ -3,9 +3,9 @@ package com.yjhh.common.view
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout

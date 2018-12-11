@@ -4,7 +4,7 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.membershipcardfragment.*
 import com.yjhh.ppwcustomer.common.ScaleTransformer
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.ArrayMap
 import android.util.Log
 import com.google.gson.Gson
@@ -34,7 +34,7 @@ class MembershipCardFragment : BaseFragment() {
 
     override fun initView() {
 
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mRecyclerView.addItemDecoration( SpacesItemDecoration(Util.dip2px(mActivity,16f)))
 
         val observable1 = ApiServices.getInstance().create(SectionMembershipService::class.java)

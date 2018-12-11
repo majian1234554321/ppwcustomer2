@@ -1,8 +1,8 @@
 package com.yjhh.ppwcustomer.ui.activity.takeout
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseFragment
@@ -46,7 +46,7 @@ class UseCouponActivity : BaseActivity() {
 
 
 
-        viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewpager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }

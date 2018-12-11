@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -77,7 +77,7 @@ class IntegralFragment : BaseFragment(), IntegralView {
     override fun initView() {
         present = SectionUselessPresent(mActivity, this)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
         mAdapter = IntegralAdapter()
 

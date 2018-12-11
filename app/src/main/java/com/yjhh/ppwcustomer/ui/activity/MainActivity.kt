@@ -3,7 +3,7 @@ package com.yjhh.ppwcustomer.ui.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.View
@@ -13,9 +13,10 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.utils.ActivityCollector
-import com.yjhh.loginmodule.ui.LoginActivity
+
 import com.yjhh.ppwcustomer.CurrentApplication
 import com.yjhh.ppwcustomer.R
+
 
 import com.yjhh.ppwcustomer.ui.fragment.*
 import me.yokeyword.fragmentation.SupportFragment
@@ -27,6 +28,7 @@ import kotlin.collections.ArrayList
 
 @Route(path = "/mainActivity/main")
 class MainActivity : BaseActivity() {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,20 +52,20 @@ class MainActivity : BaseActivity() {
 
 
 
-    private var firstTime: Long = 0L
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
-            val secondTime = System.currentTimeMillis()
-            if (secondTime - firstTime > 2000) {
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
-                firstTime = secondTime
-                return true
-            } else {
-                finish()
-            }
-        }
-        return super.onKeyDown(keyCode, event)
-    }
+//    private var firstTime: Long = 0L
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+//        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
+//            val secondTime = System.currentTimeMillis()
+//            if (secondTime - firstTime > 2000) {
+//                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
+//                firstTime = secondTime
+//                return true
+//            } else {
+//                finish()
+//            }
+//        }
+//        return super.onKeyDown(keyCode, event)
+//    }
 
 
 }

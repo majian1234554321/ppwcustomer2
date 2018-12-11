@@ -13,11 +13,11 @@
                                        android:layout_height="wrap_content"/>
 
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_below="@+id/tbv_title" android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                 android:id="@+id/common_index_activity_tb_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,16 +32,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbarlayout"
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/collapsing_tool_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     app:expandedTitleMarginStart="10dp"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -203,12 +203,12 @@
                     </LinearLayout>
 
 
-                </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <com.flyco.tablayout.SlidingTabLayout
                     android:id="@+id/mTabLayout"
@@ -219,18 +219,18 @@
                     android:background="#F6CE59"
                     tl:tl_indicator_width="10dp"/>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_width="match_parent"
                 android:id="@+id/viewPager"
                 android:layout_height="match_parent">
 
-        </android.support.v4.view.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

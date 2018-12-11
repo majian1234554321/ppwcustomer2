@@ -1,8 +1,8 @@
 package com.yjhh.ppwcustomer.ui.activity.takeout
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.ppwcustomer.R
 import kotlinx.android.synthetic.main.activity_take_out.*
@@ -13,7 +13,7 @@ class TakeOutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_take_out)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
     }
 }

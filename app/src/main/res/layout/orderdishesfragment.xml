@@ -43,13 +43,13 @@
                 android:layout_above="@+id/shopping_cart_bottom"
                 android:orientation="horizontal">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/left_menu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#E4e4e4">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <View android:layout_width="@dimen/sp_12"
                   android:background="#E4e4e4"
@@ -60,12 +60,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3">
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/right_menu"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/white">
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
 
             </RelativeLayout>

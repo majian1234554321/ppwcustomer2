@@ -1,9 +1,9 @@
 package com.yjhh.ppwcustomer.ui.activity.takeout
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat.startActivityForResult
+import androidx.core.app.ActivityCompat.startActivityForResult
 import android.view.View
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.ppwcustomer.R

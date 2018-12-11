@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.model
 
-import android.support.v4.util.ArrayMap
+import androidx.collection.ArrayMap
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionCouponService
 import com.yjhh.common.api.SectionMainService
@@ -10,7 +10,7 @@ import okhttp3.ResponseBody
 
 class SectionUselessModel {
 
-    val map = ArrayMap<String, String>()
+    val map = androidx.collection.ArrayMap<String, String>()
 
 
     fun userhistory(type: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {

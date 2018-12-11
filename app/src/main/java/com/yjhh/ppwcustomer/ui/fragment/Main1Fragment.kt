@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.ui.fragment
 
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +29,7 @@ import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.main1title.*
 
 
-class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
+class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
     var startindex = 0
@@ -81,7 +81,7 @@ class Main1Fragment : BaseFragment(), Main1View, View.OnClickListener {
 
         tv_location.text = Constants.district
         sectionMain1Present = SectionMain1Present(context, this)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()

@@ -1,8 +1,7 @@
 package com.yjhh.ppwcustomer.ui.activity;
 
-import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.appbar.AppBarLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;

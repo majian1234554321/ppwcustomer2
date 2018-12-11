@@ -7,10 +7,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.tinker.TinkerManager;
 import com.tencent.tinker.entry.DefaultApplicationLike;
 
 

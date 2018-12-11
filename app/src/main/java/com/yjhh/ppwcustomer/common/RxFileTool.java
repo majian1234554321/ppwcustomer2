@@ -21,7 +21,7 @@ import android.os.StatFs;
 import android.os.Build.VERSION;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore.Images.Media;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 import java.io.BufferedInputStream;

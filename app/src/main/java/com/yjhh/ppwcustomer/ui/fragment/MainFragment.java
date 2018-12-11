@@ -1,8 +1,8 @@
 package com.yjhh.ppwcustomer.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +27,6 @@ public class MainFragment extends SupportFragment {
     public static MainFragment newInstance() {
 
         Bundle args = new Bundle();
-
         MainFragment fragment = new MainFragment();
         fragment.setArguments(args);
         return fragment;

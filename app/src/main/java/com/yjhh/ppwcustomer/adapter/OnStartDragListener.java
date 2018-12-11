@@ -1,6 +1,6 @@
 package com.yjhh.ppwcustomer.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface OnStartDragListener {
 

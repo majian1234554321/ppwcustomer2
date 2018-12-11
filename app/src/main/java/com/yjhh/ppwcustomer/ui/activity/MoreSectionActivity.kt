@@ -1,8 +1,8 @@
 package com.yjhh.ppwcustomer.ui.activity
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.adapter.MoreSectionAdapter
 import kotlinx.android.synthetic.main.activity_more_section.*

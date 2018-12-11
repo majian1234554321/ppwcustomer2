@@ -2,18 +2,10 @@ package com.yjhh.ppwcustomer.ui.customview;
 
 
 
-import android.animation.ValueAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.*;
-import android.graphics.Paint.Align;
-import android.graphics.Paint.FontMetrics;
-import android.graphics.Paint.Style;
-import android.graphics.Path.Direction;
-import android.graphics.Path.Op;
-import android.os.Build.VERSION;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -23,7 +15,6 @@ import com.yjhh.ppwcustomer.R;
 
 import com.yjhh.ppwcustomer.common.utils.Util;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class SideBar extends View {

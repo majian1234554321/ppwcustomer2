@@ -6,15 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import com.yjhh.ppwcustomer.R;
 import com.yjhh.ppwcustomer.bean.ModelDish;
-import com.yjhh.ppwcustomer.bean.ModelDishMenu;
-import com.yjhh.ppwcustomer.bean.NameBean;
 
 import java.util.List;
 

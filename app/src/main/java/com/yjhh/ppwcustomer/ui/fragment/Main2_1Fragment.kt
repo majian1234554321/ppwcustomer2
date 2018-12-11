@@ -2,7 +2,7 @@ package com.yjhh.ppwcustomer.ui.fragment
 
 import android.nfc.tech.MifareUltralight
 import android.nfc.tech.MifareUltralight.PAGE_SIZE
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -34,7 +34,7 @@ class Main2_1Fragment : BaseFragment() {
 
     lateinit var present: SectionOrderPresent
     override fun initView() {
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()

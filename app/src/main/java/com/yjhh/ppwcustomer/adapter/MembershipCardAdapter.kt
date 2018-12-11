@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -12,8 +12,8 @@ import com.yjhh.ppwcustomer.bean.MembCardBean
 import kotlinx.android.synthetic.main.membershipcardadapter.view.*
 
 class MembershipCardAdapter(var context: Context, var list: List<MemCanBuyBean.ItemsBeanX>) :
-    RecyclerView.Adapter<MembershipCardAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    androidx.recyclerview.widget.RecyclerView.Adapter<MembershipCardAdapter.ViewHolder>() {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
 
     override fun getItemCount(): Int = list.size

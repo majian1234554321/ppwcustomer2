@@ -1,6 +1,6 @@
 package com.ppwc.restaurant.views
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ppwc.restaurant.R
 import com.yjhh.common.base.BaseActivity

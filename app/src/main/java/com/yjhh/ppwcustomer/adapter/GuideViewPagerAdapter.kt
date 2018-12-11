@@ -1,11 +1,11 @@
 package com.yjhh.ppwcustomer.adapter
 
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 
 
-class GuideViewPagerAdapter(private val mViewList: List<View>) : PagerAdapter() {
+class GuideViewPagerAdapter(private val mViewList: List<View>) : androidx.viewpager.widget.PagerAdapter() {
 
     override fun getCount(): Int {
         return mViewList.size

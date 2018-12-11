@@ -2,10 +2,10 @@ package com.yjhh.ppwcustomer.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import com.google.gson.Gson
@@ -43,7 +43,7 @@ class ActivityContact : BaseActivity() {
 
 
         val sortUtil = SortUtil()
-        rvList.layoutManager = LinearLayoutManager(this)
+        rvList.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
 
 
@@ -74,12 +74,12 @@ class ActivityContact : BaseActivity() {
 
 
 
-        rvList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        rvList.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
             }
 
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 sortUtil.onScrolled(recyclerView, llytTin, tvTinLetter)
             }

@@ -11,11 +11,12 @@ import com.yjhh.common.api.SectionCommonService
 import com.yjhh.common.api.SectionUserService
 import com.yjhh.common.present.BasePresent
 import com.yjhh.common.utils.LogUtils
-import com.yjhh.loginmodule.view.RegistView
+
 import com.yjhh.ppwcustomer.bean.MyAddressBean
 import com.yjhh.ppwcustomer.bean.UserinfoBean
 import com.yjhh.ppwcustomer.model.SectionUserModel
 import com.yjhh.ppwcustomer.view.MyAddressView
+import com.yjhh.ppwcustomer.view.RegistView
 import com.yjhh.ppwcustomer.view.UserInfoView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

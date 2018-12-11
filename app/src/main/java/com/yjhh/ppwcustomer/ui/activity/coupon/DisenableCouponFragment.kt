@@ -1,8 +1,8 @@
 package com.yjhh.ppwcustomer.ui.activity.coupon
 
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -39,7 +39,7 @@ class DisenableCouponFragment : BaseFragment(), CouponView {
     override fun getLayoutRes(): Int = R.layout.enablecouponfragment
 
     override fun initView() {
-        recyclerView.layoutManager = LinearLayoutManager(mActivity)
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
 
 
         sectionCouponPresent = SectionCouponPresent(context, this)

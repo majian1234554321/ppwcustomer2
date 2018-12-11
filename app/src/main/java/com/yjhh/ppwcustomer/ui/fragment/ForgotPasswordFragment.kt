@@ -7,13 +7,14 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.common.listener.LeftOnClickListener
 
-import com.yjhh.loginmodule.bean.LoginBean
-import com.yjhh.loginmodule.present.RegByAccountPresent
-import com.yjhh.loginmodule.view.RegistView
+
+import com.yjhh.ppwcustomer.present.RegByAccountPresent
+
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.LoginBean
 import com.yjhh.ppwcustomer.present.SectionUserPresent
+import com.yjhh.ppwcustomer.view.RegistView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

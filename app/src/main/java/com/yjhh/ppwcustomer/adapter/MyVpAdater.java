@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yjhh.ppwcustomer.R;
 import com.yjhh.ppwcustomer.bean.MyBuyCardInfoBean;
-import org.w3c.dom.Text;
 
 import java.util.List;
 

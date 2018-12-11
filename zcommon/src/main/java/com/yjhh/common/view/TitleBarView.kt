@@ -2,20 +2,16 @@ package com.yjhh.common.view
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
+
+import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import android.util.AttributeSet
 import android.view.View
-import android.widget.RelativeLayout
+
 import android.widget.TextView
-import android.widget.Toast
 
 import com.yjhh.common.R
-import com.yjhh.common.listener.LeftOnClickListener
-import com.yjhh.common.listener.RightOnClickListener
+
 
 import kotlinx.android.synthetic.main.titlebarview.view.*
 
@@ -24,7 +20,7 @@ class TitleBarView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : RelativeLayout(
+) : Toolbar(
     context,
     attributeSet,
     defStyleAttr
@@ -35,6 +31,11 @@ class TitleBarView @JvmOverloads constructor(
         tv_title.text = name
     }
 
+    var onClickListener: OnRightClickListion? = null
+
+    fun setOnRightClickListener(onClickListener: OnRightClickListion) {
+        this.onClickListener = onClickListener
+    }
 
     init {
 
@@ -50,6 +51,11 @@ class TitleBarView @JvmOverloads constructor(
             ContextCompat.getColor(context, R.color.colorPrimary)
         )
 
+
+        val imageSrc = type.getResourceId(R.styleable.TitleBarView_imageSrc, R.drawable.icon_place_pai)
+
+        val imageDis = type.getBoolean(R.styleable.TitleBarView_imageDis, false)
+
         type.recycle()
 
         val view = View.inflate(context, R.layout.titlebarview, this)
@@ -62,22 +68,34 @@ class TitleBarView @JvmOverloads constructor(
         tv_title.textSize = textSize
 
 
-        val rl_background = view.findViewById<RelativeLayout>(R.id.rl_background)
+        val rl_background = view.findViewById<Toolbar>(R.id.rl_background)
 
         rl_background.setBackgroundColor(titleBarBackground)
+        // iv_right.setImageResource(imageSrc)
+
+        if (imageDis) {
+            iv_right.visibility = View.VISIBLE
+            iv_right.setBackgroundResource(imageSrc)
+        } else {
+            iv_right.visibility = View.GONE
+        }
 
 
         iv_right.setOnClickListener {
-
+            onClickListener?.setOnRightClick()
         }
 
 
         iv_back.setOnClickListener {
-            (context as Activity).finish()
+            (context as Activity).onBackPressed()
         }
 
 
     }
 
+
+    interface OnRightClickListion {
+        fun setOnRightClick()
+    }
 
 }

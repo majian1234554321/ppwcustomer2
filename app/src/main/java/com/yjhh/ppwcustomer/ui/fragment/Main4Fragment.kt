@@ -10,21 +10,22 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.loginmodule.bean.LoginBean
+
 import com.yjhh.ppwcustomer.R
+import com.yjhh.ppwcustomer.bean.LoginBean
 import com.yjhh.ppwcustomer.ui.activity.UserInfoActivity
 
 import kotlinx.android.synthetic.main.main4fragment.*
 
 
-class Main4Fragment : BaseFragment(), View.OnClickListener {
+class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
             R.id.iev_about -> {
-                (preFragment as MainFragment) .startBrotherFragment(AboutFragment())
+                (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
             }
 
             R.id.iev_browse -> {
@@ -101,7 +102,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             R.id.tv_name -> {
 
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                   startActivity(Intent(mActivity,UserInfoActivity::class.java))
+                    startActivity(Intent(mActivity, UserInfoActivity::class.java))
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
@@ -115,7 +116,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
 
             R.id.profile_image -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                    startActivity(Intent(mActivity,UserInfoActivity::class.java))
+                    startActivity(Intent(mActivity, UserInfoActivity::class.java))
 
                 } else {
                     ARouter.getInstance()
@@ -158,7 +159,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             }
 
 
-            R.id.rl_buy->{
+            R.id.rl_buy -> {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "MembershipCardFragment")
@@ -206,7 +207,7 @@ class Main4Fragment : BaseFragment(), View.OnClickListener {
             iv_setting,
             tv_name,
             profile_image
-                ,rl_buy
+            , rl_buy
         )
 
         list.forEach {

@@ -1,7 +1,7 @@
 package com.yjhh.ppwcustomer.adapter
 
 import android.app.Activity
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter

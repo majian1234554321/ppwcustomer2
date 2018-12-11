@@ -3,7 +3,7 @@ package com.yjhh.ppwcustomer.common;
 
 
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
@@ -19,7 +19,6 @@ import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Collection;
-import java.util.Locale;
 import java.util.Map;
 
 
