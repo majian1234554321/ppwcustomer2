@@ -113,7 +113,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
-                    regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                   // regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())

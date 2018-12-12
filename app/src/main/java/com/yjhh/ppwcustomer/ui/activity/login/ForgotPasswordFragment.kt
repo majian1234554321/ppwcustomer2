@@ -1,4 +1,4 @@
-package com.yjhh.ppwcustomer.ui.fragment
+package com.yjhh.ppwcustomer.ui.activity.login
 
 import android.text.TextUtils
 import android.util.Log
@@ -6,68 +6,61 @@ import android.view.View
 import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.yjhh.common.BaseApplication
+import com.yjhh.common.Constants.MAX_COUNT_TIME
 import com.yjhh.common.base.BaseFragment
 
-
-import com.yjhh.ppwcustomer.present.RegByAccountPresent
-
+import com.yjhh.ppwbusiness.iview.PasswordView
 import com.yjhh.ppwcustomer.R
-import com.yjhh.ppwcustomer.bean.LoginBean
-import com.yjhh.ppwcustomer.present.SectionUserPresent
-import com.yjhh.ppwcustomer.view.RegistView
+import com.yjhh.ppwcustomer.present.PasswordPresent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.forgotpasswordfragment.*
+import kotlinx.android.synthetic.main.activity_forgot_password.*
 import java.util.concurrent.TimeUnit
 
-class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView {
+class ForgotPasswordFragment: BaseFragment(), View.OnClickListener, PasswordView {
 
-
-    override fun getLayoutRes(): Int = R.layout.forgotpasswordfragment
-    override fun registSuccess(date: LoginBean?) = Unit
-
-    override fun registSuccess2(date: String?) {
-        Toast.makeText(context, "重置密码成功", Toast.LENGTH_SHORT).show()
-        activity?.finish()
-
+    override fun onSuccess(value: String?) {
+        Toast.makeText(BaseApplication.context, "重置密码成功", Toast.LENGTH_SHORT).show()
+        mActivity.finish()
     }
 
-    override fun registFault(registFaultMessage: String) {
-        Toast.makeText(context, "重置密码失败$registFaultMessage", Toast.LENGTH_SHORT).show()
+    override fun onFault(errorMsg: String?) {
+        Toast.makeText(BaseApplication.context, "重置密码失败$errorMsg", Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendSMSSuccess(date: LoginBean?) {
-        Toast.makeText(context, "验证码发送成功", Toast.LENGTH_SHORT).show()
+    override fun onSuccessSMS(value: String?) {
+        Toast.makeText(BaseApplication.context, "验证码发送成功", Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendSMSFault(message: String) {
-        Toast.makeText(context, "验证码发送失败$message", Toast.LENGTH_SHORT).show()
+    override fun onFaultSMS(errorMsg: String?) {
+        Toast.makeText(BaseApplication.context, "验证码发送失败$errorMsg", Toast.LENGTH_SHORT).show()
     }
 
-    val identity = "0"//身份（即客户端类型，0用户 1骑手 2商户）
+
+
     val TYPE = "22"//1登录 2注册 21 重置密码 22找回密码
     val refId = "";//推荐人ID/phone
-    val MAX_COUNT_TIME = 5L
+
+
 
     override fun onClick(v: View?) {
 
         if (et_phone.text.length == 11 && et_password.text.length >= 6 && et_verifyCode.text != null) {
-            val present = SectionUserPresent(context, this)
+            val present = PasswordPresent(BaseApplication.context, this)
             present.forgotPassword(et_phone.text.toString(), et_password.text.toString(), et_verifyCode.text.toString())
         } else {
-            Toast.makeText(context, "手机号、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
+            Toast.makeText(BaseApplication.context, "手机号、密码、验证码不符合要求", Toast.LENGTH_SHORT).show()
         }
 
     }
 
+    override fun getLayoutRes(): Int = R.layout.activity_forgot_password
 
     override fun initView() {
-
-        val regByAccountPresent = RegByAccountPresent(context, this)
+        val regByAccountPresent = PasswordPresent(context, this)
         bt_commit.setOnClickListener(this)
-
-
 
 
         val disposable = RxView.clicks(tv_verifyCode)
@@ -79,7 +72,7 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener, RegistView 
                 if (!TextUtils.isEmpty(phone) && phone.length == 11) {
                     Observable.just(true)
                 } else {
-                    Toast.makeText(activity, "手机号码不符合要求", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity, "手机号码不符合要求", Toast.LENGTH_SHORT).show()
                     Observable.empty()
                 }
             }

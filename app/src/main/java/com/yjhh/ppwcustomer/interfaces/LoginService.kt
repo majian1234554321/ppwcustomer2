@@ -17,14 +17,17 @@ interface LoginService {
     @POST("login/fromAccount")
     fun login(@FieldMap map: Map<String, String>): Observable<BaseResponse<LoginBean>>
 
+
+
+
     @FormUrlEncoded
     @POST("register/regByAccount")
-    fun regByAccount(@FieldMap map: Map<String, String>): Observable<BaseResponse<LoginBean>>
-
+    fun regByAccount(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
     @FormUrlEncoded
     @POST("common/sendSms")
-    fun sendSms(@FieldMap map: Map<String, String>): Observable<BaseResponse<LoginBean>>
+    fun sendSms(@FieldMap map: Map<String, String>): Observable<ResponseBody>
+
 
 
     @FormUrlEncoded
@@ -35,6 +38,10 @@ interface LoginService {
     @FormUrlEncoded
     @POST("register/regByAccount")
     fun regByAccount2(@FieldMap map: Map<String, String>): Observable<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("login/fromSms")
+    fun fromSms(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
 
 }

@@ -11,6 +11,7 @@ import com.yjhh.common.utils.SystemBarUtil
 
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.bean.rxbusbean.RxAddressBean
+import com.yjhh.ppwcustomer.ui.activity.login.ForgotPasswordFragment
 import com.yjhh.ppwcustomer.ui.fragment.*
 
 import kotlinx.android.synthetic.main.activity_display.*
@@ -55,9 +56,6 @@ class DisplayActivity : BaseActivity() {
                 fragments = ResetPasswordFragment()
             }
 
-            "ForgotPasswordFragment" -> {
-                fragments = ForgotPasswordFragment()
-            }
 
             "MyAddressFragment" -> {
                 fragments = MyAddressFragment()

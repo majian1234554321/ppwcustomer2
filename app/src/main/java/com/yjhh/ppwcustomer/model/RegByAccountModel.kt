@@ -16,7 +16,7 @@ class RegByAccountModel {
         smsCode: String,
         identity: String,
         refId: String
-    ): Observable<BaseResponse<LoginBean>> {
+    ): Observable<ResponseBody> {
         map.clear()
         with(map) {
             put("phone", phone)
@@ -60,7 +60,7 @@ class RegByAccountModel {
      * 获取短信验证码
      * type:1登录 2注册 21 重置密码
      */
-    fun sendSms(type: String, phone: String): Observable<BaseResponse<LoginBean>> {
+    fun sendSms(type: String, phone: String): Observable<ResponseBody> {
         map.clear()
         with(map) {
             put("type", type)

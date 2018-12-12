@@ -8,6 +8,7 @@ import com.yjhh.ppwcustomer.bean.LoginBean
 
 import com.yjhh.ppwcustomer.model.RegByAccountModel
 import com.yjhh.ppwcustomer.view.RegistView
+import okhttp3.ResponseBody
 
 
 class RegByAccountPresent(var context: Context, var registView: RegistView) : BasePresent() {
@@ -15,37 +16,8 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
     private val regByAccountModel = RegByAccountModel()
 
 
-    fun sendSms(type: String, phone: String) {
-
-        toSubscribe(regByAccountModel.sendSms(type, phone), object : ProcessObserver<LoginBean>(context) {
 
 
-            override fun onSuccess(data: LoginBean?) {
-                registView.sendSMSSuccess(data)
-            }
-
-            override fun onFault(message: String) {
-                registView.sendSMSFault(message)
-            }
-
-        })
-    }
-
-
-    fun regByAccount(phone: String, password: String, smsCode: String, identity: String, refId: String) {
-        toSubscribe(
-            regByAccountModel.regByAccount(phone, password, smsCode, identity, refId),
-            object : ProcessObserver<LoginBean>(context) {
-                override fun onSuccess(data: LoginBean?) {
-                    registView.registSuccess(data)
-                }
-
-                override fun onFault(message: String) {
-                    registView.registFault(message)
-                }
-
-            })
-    }
 
 
     fun regByAccount2(phone: String, password: String, smsCode: String, identity: String, refId: String) {

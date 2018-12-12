@@ -19,7 +19,7 @@ public class Constants {
     public static String addrStr = "中国湖北省武汉市武昌区中北路88-9";//获取详细地址信息
 
 
-
+    public static Long MAX_COUNT_TIME = 60L;
     public static final String APP_ID_WX = "888888888888";
 
 

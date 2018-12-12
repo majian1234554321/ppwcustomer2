@@ -71,7 +71,7 @@ class ChangeMobileFragment : BaseFragment(), RegistView, View.OnClickListener {
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
-                    regByAccountPresent.sendSms(TYPE, et_newPhone.text.toString())
+                    //regByAccountPresent.sendSms(TYPE, et_newPhone.text.toString())
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
