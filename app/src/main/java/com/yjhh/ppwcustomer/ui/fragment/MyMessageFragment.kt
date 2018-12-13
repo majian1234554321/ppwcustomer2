@@ -73,7 +73,7 @@ class MyMessageFragment : BaseFragment(), MyMessageView {
         mAdapter.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
 
 
         mRecyclerView.adapter = mAdapter

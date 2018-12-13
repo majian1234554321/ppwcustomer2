@@ -25,9 +25,10 @@ import com.yjhh.ppwcustomer.bean.ModelShopCart
 import com.yjhh.ppwcustomer.db.entity.TakeoutOrderModel
 import com.yjhh.ppwcustomer.ui.activity.takeout.ShopCartActivity
 import com.yjhh.ppwcustomer.ui.customview.RxDialogShopCart
+import com.yjhh.ppwcustomer.ui.fragment.Main3_2Fragment
+import com.yjhh.ppwcustomer.ui.fragment.Main3_3Fragment
 
-import com.yjhh.ppwcustomer.ui.fragment.Main2_2Fragment
-import com.yjhh.ppwcustomer.ui.fragment.Main2_3Fragment
+
 import com.yjhh.ppwcustomer.ui.fragment.OrderDishesFragment
 import kotlinx.android.synthetic.main.activity_elme.*
 
@@ -164,8 +165,8 @@ class ActivityELMe : BaseActivity(), View.OnClickListener, RxDialogShopCart.Shop
         orderDishesFragment = OrderDishesFragment(mModelShopCart, mModelDishMenuList)
 
         mFragments.add(orderDishesFragment)
-        mFragments.add(Main2_2Fragment())
-        mFragments.add(Main2_3Fragment())
+        mFragments.add(Main3_2Fragment())
+        mFragments.add(Main3_3Fragment())
 
         mViewPager.adapter = Main2ViewPagerAdapter(supportFragmentManager, mFragments, mTitles)
         mTabLayout.setViewPager(mViewPager)

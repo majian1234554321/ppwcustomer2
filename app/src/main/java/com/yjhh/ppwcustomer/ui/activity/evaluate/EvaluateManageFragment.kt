@@ -120,7 +120,7 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
             }
 
         } else {
-            if (startIndex==0&&swipeLayout!=null){
+            if (startIndex == 0 && swipeLayout != null) {
                 swipeLayout.finishRefresh()
 
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
@@ -199,8 +199,6 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
                 }
 
             })
-
-
 
 
 

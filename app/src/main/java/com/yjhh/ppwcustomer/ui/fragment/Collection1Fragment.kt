@@ -37,7 +37,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
         mAdapter.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
 

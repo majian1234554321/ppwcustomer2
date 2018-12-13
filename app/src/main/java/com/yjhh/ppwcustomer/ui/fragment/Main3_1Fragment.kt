@@ -24,12 +24,12 @@ import kotlinx.android.synthetic.main.main1fragment.view.*
 
 import kotlinx.android.synthetic.main.main2_1fragment.*
 
-class Main2_1Fragment : BaseFragment() {
+class Main3_1Fragment : BaseFragment() {
 
 
 
-    var startindex = 0
-    val pageSize = 10
+    var pageIndex = 0
+    val pageSize = 15
     override fun getLayoutRes(): Int = R.layout.main2_1fragment
 
     lateinit var present: SectionOrderPresent
@@ -50,7 +50,7 @@ class Main2_1Fragment : BaseFragment() {
         mAdapter.setOnLoadMoreListener ({
             loadMore()
         },mRecyclerView)
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
 
 
         mRecyclerView.adapter = mAdapter

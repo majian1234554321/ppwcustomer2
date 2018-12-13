@@ -121,7 +121,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         mAdapter.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
 
 
         mRecyclerView.adapter = mAdapter

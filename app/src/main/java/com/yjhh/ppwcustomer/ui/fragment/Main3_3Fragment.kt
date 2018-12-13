@@ -12,7 +12,7 @@ import com.yjhh.ppwcustomer.R
 
 import kotlinx.android.synthetic.main.main2_3fragment.*
 
-class Main2_3Fragment : BaseFragment(), OnRefreshListener {
+class Main3_3Fragment : BaseFragment(), OnRefreshListener {
     override fun onRefresh(refreshLayout: RefreshLayout) {
 
     }

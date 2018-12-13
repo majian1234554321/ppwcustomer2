@@ -11,7 +11,7 @@ import com.yjhh.ppwcustomer.adapter.PullToRefreshAdapter
 
 import kotlinx.android.synthetic.main.main2_2fragment.*
 
-class Main2_2Fragment :BaseFragment() {
+class Main3_2Fragment :BaseFragment() {
 
 
     override fun initView() {
@@ -26,7 +26,7 @@ class Main2_2Fragment :BaseFragment() {
 
         val  mAdapter = PullToRefreshAdapter()
 
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+
 
         mRecyclerView.adapter = mAdapter
 
