@@ -10,12 +10,18 @@ import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.sina.weibo.sdk.WbSdk
+import com.sina.weibo.sdk.auth.AuthInfo
+import com.sina.weibo.sdk.auth.WbAuthListener
+import com.sina.weibo.sdk.auth.sso.SsoHandler
 import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yjhh.common.Constants
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.sina.SelfWbAuthListener
+import com.yjhh.common.sina.SinaConstants
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.ppwcustomer.R
@@ -35,10 +41,7 @@ import java.util.concurrent.TimeUnit
 class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
 
 
-
     override fun onSuccess(result: LoginBean?) = Unit
-
-
 
 
     override fun onClick(v: View?) {
@@ -61,18 +64,16 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                 start(RegistFragment())
 
 
-
             }
 
             R.id.forget_password -> {
-
 
 
                 start(ForgotPasswordFragment())
             }
 
             R.id.iv_close -> {
-               mActivity. finish()
+                mActivity.finish()
             }
 
 
@@ -83,7 +84,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                 api.registerApp(Constants.APP_ID_WX);
 
 
-                val req =  SendAuth.Req();
+                val req = SendAuth.Req();
                 req.scope = "snsapi_userinfo";//
 //                req.scope = "snsapi_login";//提示 scope参数错误，或者没有scope权限
                 req.state = "wechat_sdk_微信登录";
@@ -94,10 +95,16 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
 
 
             R.id.iv_sina -> {
-                // finish()
+
+                val mAuthInfo =
+                    AuthInfo(mActivity, SinaConstants.APP_KEY, SinaConstants.REDIRECT_URL, SinaConstants.SCOPE)
+                WbSdk.install(mActivity, mAuthInfo);
+
+                mSsoHandler = SsoHandler(mActivity)
+                mSsoHandler?.authorize(SelfWbAuthListener(mActivity))
             }
 
-            R.id.loginSMS->{
+            R.id.loginSMS -> {
                 start(LoginSMSFragment())
             }
 
@@ -107,8 +114,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
         }
     }
 
-
-
+    var mSsoHandler: SsoHandler? = null
 
     override fun onSuccess2(result: String?) {
 
@@ -181,7 +187,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                 }
             }
 
-        val view = arrayOf(iv_show_pwd, regist, forget_password, iv_close, iv_weChat, iv_sina,loginSMS)
+        val view = arrayOf(iv_show_pwd, regist, forget_password, iv_close, iv_weChat, iv_sina, loginSMS)
 
         view.forEach {
             it.setOnClickListener(this)
@@ -210,5 +216,14 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= 6
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (mSsoHandler != null) {
+            mSsoHandler?.authorizeCallBack(requestCode, resultCode, data)
+        }
+    }
+
 
 }

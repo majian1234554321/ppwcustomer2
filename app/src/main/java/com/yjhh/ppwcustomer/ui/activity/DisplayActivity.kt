@@ -38,11 +38,11 @@ class DisplayActivity : BaseActivity() {
         ARouter.getInstance().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
-        SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this, com.yjhh.common.R.color.colorPrimary), 1.0f);
-        frameLayout.setPadding(0, getStatusBarHeight(this), 0, 0)
 
 
-        displayTab =   intent.getStringExtra("displayTab")
+
+
+        displayTab = intent.getStringExtra("displayTab")
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragments: BaseFragment? = null
@@ -96,7 +96,6 @@ class DisplayActivity : BaseActivity() {
                 fragments = MembershipCardFragment()
 
             }
-
 
 
             "AddressADUFragment" -> {

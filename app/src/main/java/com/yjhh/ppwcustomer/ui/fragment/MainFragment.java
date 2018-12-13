@@ -18,8 +18,9 @@ public class MainFragment extends SupportFragment {
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
+    public static final int FOURTH = 3;
 
-    private SupportFragment[] mFragments = new SupportFragment[3];
+    private SupportFragment[] mFragments = new SupportFragment[4];
 
     private BottomBar mBottomBar;
 
@@ -47,19 +48,22 @@ public class MainFragment extends SupportFragment {
         if (firstFragment == null) {
             mFragments[FIRST] = new Main1Fragment();
             mFragments[SECOND] = new Main2Fragment();
-            mFragments[THIRD] = new Main4Fragment();
+            mFragments[THIRD] = new Main3Fragment();
+            mFragments[FOURTH] = new Main4Fragment();
 
             loadMultipleRootFragment(R.id.fl_tab_container, FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
-                    mFragments[THIRD]);
+                    mFragments[THIRD],
+                    mFragments[FOURTH]);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
 
             // 这里我们需要拿到mFragments的引用
             mFragments[FIRST] = firstFragment;
             mFragments[SECOND] = findChildFragment(Main2Fragment.class);
-            mFragments[THIRD] = findChildFragment(Main4Fragment.class);
+            mFragments[THIRD] = findChildFragment(Main3Fragment.class);
+            mFragments[FOURTH] = findChildFragment(Main4Fragment.class);
         }
     }
 
@@ -67,12 +71,13 @@ public class MainFragment extends SupportFragment {
         mBottomBar = (BottomBar) view.findViewById(R.id.bottomBar);
 
         mBottomBar
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.tab_contact_unselect, "A"))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.tab_home_select, "B"))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.tab_speech_select, "C"));
+                .addItem(new BottomBarTab(_mActivity, R.drawable.tab_main1, "首页"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.tab_main2, "附近"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.tab_main3, "订单"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.tab_main4, "我的"));
 
         // 模拟未读消息
-        mBottomBar.getItem(FIRST).setUnreadCount(9);
+        // mBottomBar.getItem(FIRST).setUnreadCount(9);
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
@@ -81,9 +86,9 @@ public class MainFragment extends SupportFragment {
 
                 BottomBarTab tab = mBottomBar.getItem(FIRST);
                 if (position == FIRST) {
-                    tab.setUnreadCount(0);
+                    // tab.setUnreadCount(0);
                 } else {
-                    tab.setUnreadCount(tab.getUnreadCount() + 1);
+                    // tab.setUnreadCount(tab.getUnreadCount() + 1);
                 }
             }
 

@@ -1,10 +1,7 @@
 package com.yjhh.ppwcustomer.model
 
-import androidx.collection.ArrayMap
 import com.yjhh.common.api.ApiServices
-import com.yjhh.common.api.SectionCouponService
-import com.yjhh.common.api.SectionMainService
-import com.yjhh.common.api.SectionUselessService
+import com.yjhh.ppwcustomer.apis.SectionUselessService
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 

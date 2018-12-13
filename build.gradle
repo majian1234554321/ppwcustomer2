@@ -12,6 +12,9 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
@@ -28,6 +31,13 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        flatDir {
+            dirs 'libs'
+
+
+            dirs project(':zcommon').file('libs')
+
+        }
     }
 }
 

@@ -26,12 +26,23 @@ class ItemEntryView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-    fun setTextContent(name: String) {
+    fun setTextContent(name: String): ItemEntryView {
         tv_content.text = name
+        return this
     }
 
     fun getTextContent(): String {
         return tv_content.text.toString()
+    }
+
+    fun setArrow() {
+        iv_arrow.visibility = View.INVISIBLE
+    }
+
+
+    public  fun setLeftTitle(name: String?): ItemEntryView {
+        tv_name.text = name
+        return this
     }
 
 

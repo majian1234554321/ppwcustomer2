@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -85,11 +86,12 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="请输入用户名"
-                    android:inputType="textVisiblePassword"
+                    android:textColor="@color/all_3"
+                    android:inputType="number"
                     android:maxLength="11"
                     android:singleLine="true"
                     android:text=""
-                    android:textColor="@color/_9"
+
                     android:textColorHint="@color/_9"
                     android:textSize="14dp"/>
 
@@ -131,7 +133,7 @@
                     android:maxLength="30"
                     android:singleLine="true"
                     android:text=""
-                    android:textColor="@color/_9"
+                    android:textColor="@color/all_3"
                     android:textColorHint="@color/_9"
                     android:textSize="14dp"/>
 
@@ -145,7 +147,7 @@
 
             <ImageView
                     android:id="@+id/iv_show_pwd"
-                    android:layout_width="40dp"
+                    android:layout_width="40pt"
                     android:layout_height="fill_parent"
                     android:scaleType="centerInside"
                     android:src="@drawable/pass_gone"/>
@@ -156,11 +158,13 @@
                 android:layout_height="1px"
                 android:background="@color/e"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:textColor="#FFFFFFFF"
                 android:textSize="18pt"
+                app:cornerRadius="20pt"
+                app:rippleColor="@color/white"
                 android:padding="8pt"
                 android:gravity="center"
                 android:layout_height="wrap_content"
@@ -200,7 +204,7 @@
                   android:text="登录遇到问题"
                   android:id="@+id/tv_help"
                   android:layout_marginTop="35pt"
-                  android:layout_marginBottom="93.5pt"
+                  android:layout_marginBottom="45pt"
                   android:gravity="center"
         />
 
@@ -239,14 +243,16 @@
 
     <LinearLayout
             android:id="@+id/service"
-            android:layout_below="@+id/rl2"
+
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30pt"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp">
+    >
 
         <ImageView
                 android:layout_width="45pt"
@@ -255,20 +261,16 @@
                 android:src="@drawable/login_wechat"
                 android:id="@+id/iv_weChat"
                 android:textColor="#b0b8b2"
+                android:layout_marginRight="10pt"
                 android:textSize="14dp"/>
 
-        <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-        />
 
         <ImageView
                 android:id="@+id/iv_sina"
                 android:src="@drawable/login_sina"
                 android:layout_width="45pt"
                 android:layout_height="45pt"
+                android:layout_marginLeft="10pt"
                 android:layout_gravity="right"
                 android:textColor="#b0b8b2"
                 android:textSize="14dp"/>

@@ -16,7 +16,9 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
     private val regByAccountModel = PasswordModel()
 
 
-    fun sendSms(type: String, phone: String) {
+    fun sendSms(type: String, phone: String): Boolean? {
+
+        var send = true
 
         toSubscribe2(
             regByAccountModel.sendSms(type, phone)
@@ -24,13 +26,16 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
 
                 override fun processValue(response: String?) {
                     registView.onSuccessSMS(response)
+                    send = true
                 }
 
                 override fun onFault(message: String) {
                     registView.onFaultSMS(message)
+                    send = false
                 }
 
             })
+        return send
     }
 
     fun fromSms(account: String, smsCode: String, identity: String, deviceName: String) {
@@ -85,7 +90,7 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
     }
 
 
-    fun resetPassword(newPassword: String, smsCode: String,type:String) {
+    fun resetPassword(newPassword: String, smsCode: String, type: String) {
         val map = ArrayMap<String, String>()
         map.put("newPassword", newPassword)
         map.put("smsCode", smsCode)
@@ -95,16 +100,16 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
 
         toSubscribe2(
             ApiServices.getInstance().create(SectionUserService::class.java)
-            .resetPassword(map),object :ProcessObserver2(context){
-            override fun processValue(response: String?) {
-                registView. onSuccess(response)
-            }
+                .resetPassword(map), object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+                    registView.onSuccess(response)
+                }
 
-            override fun onFault(message: String) {
-                registView. onSuccess(message)
-            }
+                override fun onFault(message: String) {
+                    registView.onSuccess(message)
+                }
 
-        })
+            })
 
 
     }

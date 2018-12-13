@@ -40,20 +40,9 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_location -> {
-//                ARouter.getInstance()
-//                    .build("/DisplayActivity/Display")
-//                    .withString("displayTab", "SelectDistrictFragment")
-//                    .withInt("age", 23)
-//                    .navigation(mActivity,10085)
-
-
                 val intent = Intent(context, DisplayActivity::class.java)
-
                 intent.putExtra("displayTab", "SelectDistrictFragment")
-
                 this@Main1Fragment.startActivityForResult(intent, 10085)
-
-
             }
 
             R.id.tv_search -> {
@@ -141,16 +130,16 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
                 Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
 
-               /* when (position) {
-                    0 -> {
-                        startActivity(Intent(mActivity, MoreSectionActivity::class.java))
-                    }
-                    1 -> {
-                        startActivity(Intent(mActivity, FoodActivity::class.java))
-                    }
-                    else -> {
-                    }
-                }*/
+                /* when (position) {
+                     0 -> {
+                         startActivity(Intent(mActivity, MoreSectionActivity::class.java))
+                     }
+                     1 -> {
+                         startActivity(Intent(mActivity, FoodActivity::class.java))
+                     }
+                     else -> {
+                     }
+                 }*/
             }
         })
     }
@@ -171,7 +160,6 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
 
         mAdapter.addHeaderView(headView)
-
 
 
     }
@@ -208,7 +196,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
                         Toast.makeText(
                             mActivity,
-                            "pos" + pos + ":position" + position + ":str" + str,
+                            "pos$pos:position$position:str$str",
                             Toast.LENGTH_SHORT
                         ).show()
 
@@ -266,12 +254,9 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     private fun refresh(flag: String) {
         startindex = 0
         sectionMain1Present.joinMain(startindex, pageSize, flag)
-
-
     }
 
     private fun loadMore() {
-        Toast.makeText(context, "12", Toast.LENGTH_SHORT).show()
         startindex++
         sectionMain1Present.joinMain(startindex, pageSize, "load")
     }

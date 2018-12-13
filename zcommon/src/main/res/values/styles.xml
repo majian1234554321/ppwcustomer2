@@ -22,15 +22,6 @@
     </style>
 
 
-
-
-
-
-
-
-
-
-
     <style name="Anim_fade" parent="AppTheme">
         <item name="android:windowAnimationStyle">@style/fade</item>
     </style>

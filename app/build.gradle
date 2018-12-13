@@ -124,4 +124,6 @@ dependencies {
     api 'androidx.room:room-runtime:2.1.0-alpha03'
     kapt 'androidx.room:room-compiler:2.1.0-alpha03'
     implementation project(':module_restaurant')
+
 }
+

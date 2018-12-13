@@ -13,48 +13,43 @@
                                        android:layout_height="wrap_content"/>
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_below="@+id/tbv_title"
-            android:id="@+id/logo"
-            app:civ_border_color="@color/cd"
-            app:civ_border_width="1px"
-
-            android:layout_marginTop="16pt"
-
-            android:layout_width="61.95pt"
-            android:layout_centerHorizontal="true"
-            android:layout_height="61.95pt"
-            android:layout_marginLeft="24dp"
-            android:textSize="24dp"
-            android:layout_gravity="center"
-            android:text="欢迎登录拍拍味"
-
-            android:background="@null"
-            android:scaleType="centerCrop"
-    />
-
-
     <LinearLayout
             android:id="@+id/content"
-            android:layout_marginTop="20.5pt"
+            android:layout_below="@+id/tbv_title"
+
             android:layout_width="277pt"
             android:layout_centerHorizontal="true"
             android:layout_height="match_parent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginLeft="49pt"
+            android:layout_marginRight="49pt"
             android:orientation="vertical">
+
+
+        <TextView
+
+                android:id="@+id/logo"
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22.5pt"
+                android:textStyle="bold"
+                android:textColor="#FF333333"
+                android:textSize="24pt"
+                android:layout_gravity="center"
+                android:text="欢迎登录拍拍味"
+                android:scaleType="centerCrop"
+        />
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="160dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="13dp">
 
             <ImageView
-                    android:layout_width="@dimen/sp_12"
-                    android:layout_height="@dimen/sp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:src="@drawable/ic_mobile_flag"/>
 
@@ -94,13 +89,13 @@
                         android:layout_height="50dp">
 
             <ImageView
-                    android:layout_width="@dimen/sp_12"
-                    android:layout_height="@dimen/sp_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
                     android:layout_marginRight="15dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/iv_image"
-                    android:src="@drawable/ic_password_flag"/>
+                    android:src="@drawable/icon_sms"/>
 
             <EditText android:layout_width="wrap_content"
                       android:layout_height="50dp"

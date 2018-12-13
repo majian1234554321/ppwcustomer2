@@ -26,7 +26,7 @@ class Main2Fragment : BaseMainFragment() {
     private val constellations =
         arrayOf("全部订单", "美食", "外卖", "酒店", "休闲娱乐", "运动健身", "会员服务")
     private val popupViews = ArrayList<View>()
-  /*  override fun initView() {
+    override fun initView() {
         val mTitles = arrayOf("全部", "进行中", "待评价")
 
 
@@ -67,7 +67,7 @@ class Main2Fragment : BaseMainFragment() {
         mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, mTitles)
         mTabLayout.setViewPager(mViewPager)
 
-    }*/
+    }
 
     override fun getLayoutRes(): Int = R.layout.main2fragment
 }

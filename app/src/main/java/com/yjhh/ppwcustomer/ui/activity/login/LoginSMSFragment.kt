@@ -27,6 +27,9 @@ import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
+
+    var sendSMS = true;
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_login -> {
@@ -116,8 +119,10 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
             .doOnNext {
                 Log.i("TAG", "初始化")
                 if (it) {
-                    present?.sendSms(TYPE, et_mobile.text.toString())
+                    sendSMS = present?.sendSms(TYPE, et_mobile.text.toString())!!
                 }
+
+                sendSMS
 
             }
             .observeOn(AndroidSchedulers.mainThread())
@@ -142,7 +147,10 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
                     RxTextView.text(tv_verifyCode).accept("发送验证码")
 
                 } else {
-                    RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
+                    if (tv_verifyCode!=null){
+                        RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
+                    }
+
 
                 }
                 Log.i("TAG", it.toString())
