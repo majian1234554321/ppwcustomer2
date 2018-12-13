@@ -15,7 +15,6 @@ kapt {
 android {
 
 
-
     sourceSets {
         main {
             jniLibs.srcDir 'libs'

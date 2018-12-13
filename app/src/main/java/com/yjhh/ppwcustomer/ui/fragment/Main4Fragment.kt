@@ -10,10 +10,12 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
+import com.yjhh.ppwbusiness.adapter.EvaluateManageAdapter
 
 import com.yjhh.ppwcustomer.R
 import com.yjhh.ppwcustomer.bean.LoginBean
 import com.yjhh.ppwcustomer.ui.activity.UserInfoActivity
+import com.yjhh.ppwcustomer.ui.activity.evaluate.EvaluateManageFragment
 
 import kotlinx.android.synthetic.main.main4fragment.*
 
@@ -139,12 +141,8 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             }
 
             R.id.iev_evaluate -> {
+                (parentFragment as MainFragment).startBrotherFragment(EvaluateManageFragment())
 
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "MyAddressFragment")
-                    .withInt("age", 23)
-                    .navigation()
 
             }
 

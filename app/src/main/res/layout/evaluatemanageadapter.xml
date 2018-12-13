@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+    <RelativeLayout android:layout_width="351pt"
+                    android:paddingTop="12pt"
+                    android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF444444"
+                android:textSize="15pt"
+                android:layout_weight="1"
+                android:text="姓名"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_time"
+
+                  tools:text="12121212"
+                  android:textColor="#FF999999"
+                  android:textSize="13pt"
+                  android:layout_alignParentRight="true"
+        />
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="4.5pt"
+            android:layout_marginBottom="4.5pt"
+            android:layout_width="351pt" android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content"
+                  android:text="商家评分"
+                  android:layout_gravity="center"
+                  android:textColor="#FF666666"
+                  android:textSize="12pt"
+                  android:layout_marginRight="7.15pt"
+                  android:layout_height="wrap_content"/>
+
+        <com.yjhh.ppwbusiness.views.cui.RatingBar
+
+                android:id="@+id/id_ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="9dp"
+                app:allStarsCount="5"
+                android:layout_below="@+id/tv_storeName"
+                android:layout_above="@+id/tv_info"
+                app:curSelectValue="1.5"
+                android:layout_toRightOf="@+id/iv_image"
+                app:starEmpty="@drawable/star_empty"
+                app:starFill="@drawable/star_full"
+                app:starHalf="@drawable/star_half_full"
+                app:starImageSize="11.65pt"
+                app:starPadding="1.35pt"
+                app:clickable="false"
+                app:stepSize="Half"/>
+
+    </LinearLayout>
+
+
+    <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="351pt"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="内容内容内容内容内容内容内容内容内容内121容内容内容内容内容内容内容内容"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="#FF999999"
+            android:textSize="13pt"
+
+    />
+
+    <com.yjhh.ppwbusiness.views.evaluate.ninegrid.NineGridView
+            android:id="@+id/nineGrid"
+            android:layout_width="351pt"
+
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:paddingTop="6dp"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tv_createTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="2015-12-31 12:30"
+                android:textColor="#8e8e8e"
+                android:textSize="10sp"/>
+
+        <TextView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/tv_createTime"
+                android:text="删除"
+                android:textColor="#883A5FCD"
+                android:textSize="12sp"/>
+
+        <ImageView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/feed_more"/>
+    </RelativeLayout>
+
+    <View android:layout_width="351pt"
+          android:layout_gravity="center"
+          android:layout_height="1pt"
+          android:layout_marginTop="8pt"
+          android:background="#FFF2F2F2"
+    />
+
+
+</LinearLayout>
