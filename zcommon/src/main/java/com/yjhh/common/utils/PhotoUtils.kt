@@ -33,7 +33,7 @@ object PhotoUtils {
 //            .countable(true)
 //            .capture(true)
 //            .captureStrategy(
-//                CaptureStrategy(true, "com.yjhh.ppwcustomer.fileProvider")
+//                CaptureStrategy(true, "com.paipaiwei.takeout_personal.fileProvider")
 //            )
 //            .maxSelectable(1)
 //            //.addFilter(GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
@@ -57,7 +57,7 @@ object PhotoUtils {
             .theme(R.style.Matisse_Dracula)
             .countable(false)
 //            .captureStrategy(
-//                CaptureStrategy(true, "com.yjhh.ppwcustomer.fileProvider")
+//                CaptureStrategy(true, "com.paipaiwei.takeout_personal.fileProvider")
 //            )
             // .addFilter(GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
             .maxSelectable(max)
@@ -104,7 +104,7 @@ object PhotoUtils {
                 //这里加入flag
                 takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 val photoURI: Uri
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//7.0及以上   com.yjhh.ppwcustomer.fileProvider
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//7.0及以上   com.paipaiwei.takeout_personal.fileProvider
                     photoURI = FileProvider.getUriForFile(
                         mActivity,
                         "${mActivity.packageName}.camera.fileProvider",

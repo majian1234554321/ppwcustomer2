@@ -121,6 +121,7 @@ dependencies {
     api(name: 'arclayout-release', ext: 'aar')
     api 'com.azhon:appupdate:1.7.3'
     api(name: 'core-4.3.1-openDefaultRelease', ext: 'aar')
+    api(name: 'expand-release', ext: 'aar')
     api 'com.dsiner.lib:xrv:1.1.2'
 }
 

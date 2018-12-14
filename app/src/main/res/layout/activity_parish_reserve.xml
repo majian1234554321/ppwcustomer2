@@ -69,7 +69,7 @@
                           android:textSize="@dimen/sp_16"
                           android:layout_height="wrap_content"/>
 
-                <com.yjhh.ppwcustomer.ui.customview.ARSetupView
+                <com.paipaiwei.takeout_personal.ui.customview.ARSetupView
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:gravity="center"

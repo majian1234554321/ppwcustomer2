@@ -1,87 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:padding="12dp"
-                android:background="@drawable/stroke_search"
-                android:layout_height="wrap_content">
+
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/tv_memberName"
-              android:text="全品类卡"
-    />
+    <ImageView android:layout_width="325pt"
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="有效期至2019年1月1日"
-              android:id="@+id/tv_endTime"
-              android:layout_alignParentRight="true"
-    />
+               android:layout_centerHorizontal="true"
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:layout_below="@+id/tv_Price"
-              android:id="@+id/tv_tips"
-              android:gravity="bottom"
-              android:layout_alignBottom="@+id/mb_pay"
-              android:text="所有入驻商家全部享受会员价"
-    />
-    <TextView android:layout_width="wrap_content" android:layout_height="@dimen/dp_40"
-              android:text="¥ 99.00"
-              android:layout_marginTop="8dp"
-              android:gravity="center"
-              android:layout_marginBottom="8dp"
+               android:id="@+id/iv_head"
+               android:background="@drawable/cheng"
+               android:layout_height="133pt"/>
 
-              android:layout_below="@+id/tv_memberName"
-              android:id="@+id/tv_Price"
-    />
+    <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandable_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_width="325pt"
+            android:layout_below="@+id/iv_head"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            app:el_duration="300"
+            app:el_expanded="false">
+
+        <RelativeLayout android:layout_width="325pt"
+                        android:elevation="4dp"
+                        android:background="@drawable/chengbf"
+                        android:layout_height="wrap_content">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="wrap_content"
-                    android:layout_below="@+id/tv_endTime"
-                    android:layout_marginTop="8dp"
-                    android:id="@+id/rl"
-                    android:layout_marginBottom="8dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="40dp">
-        <TextView android:layout_width="40dp"
-                  android:id="@+id/tv_reduce"
-                  android:text="-"
-                  android:gravity="center"
-                  android:layout_height="40dp"/>
-
-        <TextView
-                android:text="1"
-                android:layout_toRightOf="@+id/tv_reduce"
-                android:id="@+id/tv_count"
-                android:padding="8dp"
-                android:gravity="center"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@color/all_9"
-                android:layout_width="60dp" android:layout_height="40dp"/>
+        </RelativeLayout>
 
 
-        <TextView android:layout_width="40dp"
-                  android:id="@+id/tv_add"
-                  android:text="+"
-                  android:gravity="center"
-                  android:layout_centerVertical="true"
-                  android:layout_toRightOf="@+id/tv_count"
-                  android:layout_height="40dp"/>
-
-    </RelativeLayout>
-
-
-    <TextView
-            android:layout_width="120dp"
-            android:gravity="center"
-            android:background="@drawable/stroke_search"
-            android:layout_alignParentRight="true"
-            android:text="购买"
-            android:id="@+id/mb_pay"
-            android:padding="@dimen/sp_12"
-            android:layout_below="@+id/rl"
-
-            android:layout_height="wrap_content"/>
-
+    </net.cachapa.expandablelayout.ExpandableLayout>
 
 </RelativeLayout>

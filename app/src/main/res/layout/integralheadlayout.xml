@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/f8"
+              android:orientation="vertical"
+              android:layout_height="wrap_content">
 
     <TextView android:layout_width="wrap_content"
               android:id="@+id/tv_count"
+              android:paddingTop="45pt"
               android:layout_centerInParent="true"
+              android:drawableTop="@drawable/icon_jinbi"
+              android:drawablePadding="12pt"
+              android:textColor="#FF333333"
+              android:gravity="center"
 
-              android:textSize="24dp"
+              android:layout_gravity="center"
+              android:textSize="40pt"
               android:layout_height="wrap_content"/>
 
 
     <TextView
-            android:text="金币明细"
-            android:layout_alignParentBottom="true"
+            android:text="金币明细（个）"
+            android:textColor="#FF333333"
+            android:textSize="14pt"
+            android:paddingTop="30pt"
+            android:paddingLeft="15pt"
+            android:paddingBottom="8pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
 
-</RelativeLayout>
+</LinearLayout>

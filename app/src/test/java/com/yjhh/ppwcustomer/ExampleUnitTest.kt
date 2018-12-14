@@ -1,11 +1,11 @@
-package com.yjhh.ppwcustomer
+package com.paipaiwei.takeout_personal
 
 
 import android.util.Log
-import com.yjhh.ppwcustomer.common.utils.DateUtil
-import com.yjhh.ppwcustomer.common.utils.DateUtil.getFetureDate
-import com.yjhh.ppwcustomer.common.utils.TimeUtil
-import com.yjhh.ppwcustomer.common.utils.time.TimeStampUtils
+import com.paipaiwei.takeout_personal.common.utils.DateUtil
+import com.paipaiwei.takeout_personal.common.utils.DateUtil.getFetureDate
+import com.paipaiwei.takeout_personal.common.utils.TimeUtil
+import com.paipaiwei.takeout_personal.common.utils.time.TimeStampUtils
 import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay

@@ -9,7 +9,7 @@
 
 
 
-<com.yjhh.ppwcustomer.ui.customview.dropdownmenu.DropDownMenu
+<com.paipaiwei.takeout_personal.ui.customview.dropdownmenu.DropDownMenu
         android:layout_below="@+id/view"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"

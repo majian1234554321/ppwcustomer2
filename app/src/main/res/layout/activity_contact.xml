@@ -51,7 +51,7 @@
                     android:background="#e3e4e5"/>
         </LinearLayout>
 
-        <com.yjhh.ppwcustomer.ui.customview.SideBar
+        <com.paipaiwei.takeout_personal.ui.customview.SideBar
                 android:id="@+id/sideBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

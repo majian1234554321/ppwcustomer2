@@ -15,7 +15,9 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.yjhh.ppwcustomer"
+        //applicationId "com.paipaiwei.takeout_personal"
+        applicationId "com.paipaiwei.takeout_personal"
+
         minSdkVersion 19
         targetSdkVersion 28
 

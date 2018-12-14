@@ -3,36 +3,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
-              android:layout_width="match_parent" android:layout_height="wrap_content">
+              android:layout_width="match_parent" android:layout_height="match_parent">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                       app:textValue="修改昵称"
+                                       app:textValue="设置昵称"
                                        app:textColor="@color/white"
                                        android:layout_height="wrap_content"/>
     <EditText
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/sp_16"
+            android:layout_marginTop="27pt"
+            android:layout_marginLeft="30pt"
+            android:layout_marginBottom="9pt"
+            android:layout_marginRight="30pt"
+            android:maxEms="14"
             android:id="@+id/et_nickName"
-            android:layout_height="wrap_content"
-            android:background="@drawable/stroke_search"
+            android:layout_height="45pt"
+            android:background="@drawable/stroke_frame_cd"
     />
 
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:gravity="center"
-              android:textSize="@dimen/sp_12"
-              android:layout_marginTop="@dimen/sp_16"
-              android:text="以英文字母或者汉字开头，限4-16个字符，一个汉字为2个字符"
+
+              android:layout_marginLeft="30pt"
+              android:layout_marginRight="30pt"
+
+              android:text="以英文版字母或汉字开头，限4-16个字符，一个汉字为2个字符"
+              android:textColor="#FFB2B2B2"
+              android:textSize="11pt"
     />
 
 
-    <TextView android:layout_width="100dp"
-              android:text="确定"
-              android:id="@+id/tv_commit"
-              android:background="@drawable/stroke_search"
-              android:layout_marginTop="20dp"
-              android:layout_gravity="center"
-              android:gravity="center"
-              android:layout_height="40dp"/>
+    <com.google.android.material.button.MaterialButton
+            app:cornerRadius="15pt"
+            android:layout_width="180pt"
+            android:text="完成"
+            android:padding="7pt"
+            android:textColor="@color/white"
+            android:textSize="18pt"
+            app:backgroundTint="@color/colorPrimary"
+            android:id="@+id/tv_commit"
+            android:layout_marginTop="46pt"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

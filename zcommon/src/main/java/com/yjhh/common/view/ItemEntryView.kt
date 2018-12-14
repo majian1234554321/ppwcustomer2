@@ -8,9 +8,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.R
-
-
+import com.yjhh.common.R.id.*
 
 
 import kotlinx.android.synthetic.main.itementryview.view.*
@@ -62,7 +62,7 @@ class ItemEntryView @JvmOverloads constructor(
             )
 
 
-        val textSize = type.getDimension(R.styleable.ItemEntryView_ievtextSize, 14f)
+
 
         val titleBarBackground = type.getColor(
             R.styleable.ItemEntryView_ievbackground,
@@ -103,7 +103,7 @@ class ItemEntryView @JvmOverloads constructor(
         val tv_name = view.findViewById<TextView>(R.id.tv_name)
         tv_name.text = textValue
         tv_name.setTextColor(textColor)
-        tv_name.textSize = textSize
+
         tv_name.setPadding(paddingValue.toInt(), 0, 0, 0)
 
 

@@ -31,7 +31,7 @@
             />
 
 
-            <com.yjhh.ppwcustomer.ui.customview.EnhanceTabLayout
+            <com.paipaiwei.takeout_personal.ui.customview.EnhanceTabLayout
                     android:id="@+id/mTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                     app:tabTextSize="6sp"
             >
 
-            </com.yjhh.ppwcustomer.ui.customview.EnhanceTabLayout>
+            </com.paipaiwei.takeout_personal.ui.customview.EnhanceTabLayout>
 
 
             <LinearLayout

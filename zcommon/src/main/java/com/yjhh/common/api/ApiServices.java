@@ -34,30 +34,30 @@ public class ApiServices {
 
         // 添加公共参数拦截器
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-//        httpClient.addInterceptor(
-//                new Interceptor() {
-//                    @Override
-//                    public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
-//                        Request original = chain.request();
-//
-//                        Request request = original.newBuilder()
-//                                .removeHeader("User-Agent")
-//                                .addHeader("User-Agent", WebSettings.getDefaultUserAgent(BaseApplication.context) + "PPW_App")
-//                                .header("userAgent", "PPW_App")
-//                                .header("X-Requested-With", "XMLHttpRequest")
-//                                .header("PPW-TERMINAL", "0") //（0 用户端 1商户端)
-//                                .header("PPW-APP-VERSION", String.valueOf(APKVersionCodeUtils.INSTANCE.getVersionCode(BaseApplication.context)))
-//                                .header("PPW-TIMESTAMP", String.valueOf((int) (System.currentTimeMillis() / 1000)))
-//                                .header("PPW-API-VERSION", "1.0")
-//                                .header("PPW-MARKET-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
-//                                .header("PPW-DEVICE-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
-//                                .header("JSESSIONID", String.valueOf(SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1")))
-//                                .method(original.method(), original.body())
-//                                .build();
-//
-//                        return chain.proceed(request);
-//                    }
-//                });
+        httpClient.addInterceptor(
+                new Interceptor() {
+                    @Override
+                    public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
+                        Request original = chain.request();
+
+                        Request request = original.newBuilder()
+                                .removeHeader("User-Agent")
+                                .addHeader("User-Agent", WebSettings.getDefaultUserAgent(BaseApplication.context) + "PPW_App")
+                                .header("userAgent", "PPW_App")
+                                .header("X-Requested-With", "XMLHttpRequest")
+                                .header("PPW-TERMINAL", "0") //（0 用户端 1商户端)
+                                .header("PPW-APP-VERSION", String.valueOf(APKVersionCodeUtils.INSTANCE.getVersionCode(BaseApplication.context)))
+                                .header("PPW-TIMESTAMP", String.valueOf((int) (System.currentTimeMillis() / 1000)))
+                                .header("PPW-API-VERSION", "1.0")
+                                //.header("PPW-MARKET-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
+                                // .header("PPW-DEVICE-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
+                                .header("JSESSIONID", String.valueOf(SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1")))
+                                .method(original.method(), original.body())
+                                .build();
+
+                        return chain.proceed(request);
+                    }
+                });
 
 
         // 创建Retrofit

@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tl="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       android:id="@+id/tbv_title"
+                                       app:textValue="我的收藏"
+                                       app:textColor="@color/white"
+                                       android:layout_height="wrap_content"/>
 
 
     <com.flyco.tablayout.SlidingTabLayout
 
-
+            android:layout_below="@+id/tbv_title"
             android:id="@+id/mTabLayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            tl:tl_tab_space_equal="true"
+            app:tl_tab_space_equal="true"
             android:background="#F6CE59"
-            tl:tl_indicator_width="10dp"/>
+            app:tl_indicator_width="10dp"/>
     <androidx.viewpager.widget.ViewPager android:layout_width="match_parent"
                                          android:id="@+id/mViewPager"
                                          android:layout_below="@+id/mTabLayout"

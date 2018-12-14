@@ -1,4 +1,4 @@
-package com.yjhh.ppwcustomer
+package com.paipaiwei.takeout_personal
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

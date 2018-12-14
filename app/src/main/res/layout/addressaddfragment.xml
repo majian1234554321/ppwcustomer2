@@ -211,14 +211,14 @@
                     android:layout_toRightOf="@+id/tv_label"
                     android:layout_width="match_parent" android:layout_height="wrap_content">
 
-                <com.yjhh.ppwcustomer.ui.customview.ToggleRadioButton android:layout_width="60dp"
+                <com.paipaiwei.takeout_personal.ui.customview.ToggleRadioButton android:layout_width="60dp"
                                                                       android:text="家"
                                                                       android:gravity="center"
                                                                       android:id="@+id/rb_label1"
                                                                       android:button="@null"
                                                                       android:background="@drawable/tag_bg"
                                                                       android:layout_height="wrap_content"/>
-                <com.yjhh.ppwcustomer.ui.customview.ToggleRadioButton android:layout_width="60dp"
+                <com.paipaiwei.takeout_personal.ui.customview.ToggleRadioButton android:layout_width="60dp"
                                                                       android:text="公司"
                                                                       android:layout_marginLeft="@dimen/sp_12"
                                                                       android:layout_marginRight="@dimen/sp_12"
@@ -227,7 +227,7 @@
                                                                       android:background="@drawable/tag_bg"
                                                                       android:id="@+id/rb_label2"
                                                                       android:layout_height="wrap_content"/>
-                <com.yjhh.ppwcustomer.ui.customview.ToggleRadioButton android:layout_width="60dp"
+                <com.paipaiwei.takeout_personal.ui.customview.ToggleRadioButton android:layout_width="60dp"
                                                                       android:text="学校"
                                                                       android:gravity="center"
                                                                       android:button="@null"
