@@ -86,9 +86,9 @@ class BackViewFragment : BaseFragment() {
         //.header("PPW-SIGN", "XMLHttpRequest")
         map.put("PPW-TIMESTAMP", (System.currentTimeMillis() / 1000).toInt().toString())
         map.put("PPW-API-VERSION", "1.0")
-        map.put("PPW-MARKET-ID", APKVersionCodeUtils.getChannelName(BaseApplication.context))
+        map.put("PPW-MARKET-ID", APKVersionCodeUtils.getChannelName())
 
-        map.put("PPW-DEVICE-ID", APKVersionCodeUtils.getChannelName(BaseApplication.context))
+        map.put("PPW-DEVICE-ID", APKVersionCodeUtils.getChannelName())
 
         map.put(
             "JSESSIONID",

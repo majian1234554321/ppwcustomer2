@@ -12,59 +12,78 @@
 
 
         <RelativeLayout android:layout_width="match_parent"
-                        android:layout_marginTop="24dp"
+                        android:paddingStart="15pt"
+                        android:paddingEnd="15pt"
+                        android:layout_height="48pt">
+            <ImageView android:layout_width="22pt"
+                       android:layout_centerVertical="true"
+                       android:id="@+id/iv_message"
+                       android:src="@drawable/icon_xiaoxi4"
+                       android:layout_height="22pt"/>
+
+            <ImageView android:layout_width="19.5pt"
+                       android:src="@drawable/icon_shezhi00"
+                       android:layout_centerVertical="true"
+                       android:id="@+id/iv_setting"
+                       android:layout_alignParentRight="true"
+                       android:layout_height="19.5pt"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent"
+
                         android:layout_height="wrap_content">
 
 
             <RelativeLayout android:layout_width="match_parent"
                             android:id="@+id/rl0"
-                            android:padding="@dimen/sp_12"
-                            android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@mipmap/ic_launcher"
-                        app:civ_border_color="@color/colorPrimary"
-                        app:civ_border_width="2dp"/>
 
-                <TextView android:layout_width="match_parent"
-                          android:id="@+id/tv_name"
-                          android:layout_toLeftOf="@+id/iv_setting"
-                          android:layout_toRightOf="@+id/profile_image"
-                          android:paddingLeft="@dimen/sp_12"
-                          android:text="未登录"
-                          android:gravity="center_vertical"
-                          android:layout_height="60dp"/>
+                            android:paddingStart="28pt"
+                            android:paddingRight="24pt"
+                            android:layout_height="wrap_content">
+                <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="74pt"
+                        android:layout_height="74pt"
+                        android:src="@mipmap/ic_launcher"
+                       />
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_toLeftOf="@+id/iv_arrow"
+                              android:orientation="vertical"
+                              android:paddingLeft="19.5pt"
+
+                              android:layout_centerVertical="true"
+                              android:layout_toRightOf="@+id/profile_image"
+                              android:layout_height="wrap_content">
+
+                    <TextView android:layout_width="match_parent"
+                              android:id="@+id/tv_name"
+                              android:layout_toLeftOf="@+id/iv_arrow"
+                              android:layout_toRightOf="@+id/profile_image"
+                              android:text="请点击登录"
+                              android:textColor="#FF666666"
+                              android:textSize="17pt"
+                              android:gravity="center_vertical"
+                              android:layout_height="wrap_content"/>
+
+                    <TextView android:layout_width="match_parent"
+                              tools:text="188****8888"
+                              android:paddingTop="4pt"
+                              android:id="@+id/tv_mobile"
+                              android:textColor="#333333"
+                              android:textSize="14pt"
+                              android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
 
                 <ImageView android:layout_width="30dp"
-                           android:src="@mipmap/ic_launcher"
-                           android:id="@+id/iv_setting"
-
+                           android:src="@drawable/arrow_right_48"
                            android:layout_centerVertical="true"
+                           android:id="@+id/iv_arrow"
                            android:layout_alignParentRight="true"
                            android:layout_height="30dp"/>
-
-            </RelativeLayout>
-
-
-            <RelativeLayout android:layout_width="match_parent"
-                            android:id="@+id/rl_buy"
-                            android:layout_below="@+id/rl0"
-                            android:layout_marginLeft="@dimen/sp_16"
-                            android:layout_marginRight="@dimen/sp_16"
-                            android:padding="@dimen/sp_12"
-                            android:background="@drawable/roundedrectangle"
-                            android:layout_height="wrap_content">
-
-
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_alignParentRight="true"
-                          android:text="立即购买，享8折起优惠"
-                          android:id="@+id/tv_buy"
-                />
-
 
             </RelativeLayout>
 
@@ -74,30 +93,94 @@
 
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="horizontal"
-                      android:layout_marginTop="@dimen/sp_14"
-                      android:layout_marginBottom="@dimen/sp_14"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:drawableTop="@mipmap/ic_launcher"
-                      android:layout_weight="1"
-                      android:id="@+id/tv_Coupon"
+                      android:background="@drawable/xuanfubeijing"
                       android:gravity="center"
-                      android:text="优惠券"
+                      android:layout_height="122.5pt">
+
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="vertical"
+                          android:gravity="center"
+                          android:id="@+id/ll_Integral"
+                          android:layout_weight="1"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:drawableLeft="@drawable/icon_jinbi4"
+                          android:drawablePadding="5pt"
+                          android:gravity="center"
+                          android:textColor="#FF666666"
+                          android:textSize="12pt"
+
+                          android:text="金币"
+                />
+                <TextView android:layout_width="wrap_content" android:layout_height="33.5pt"
+                          android:text="99"
+                          android:id="@+id/tv_Integral"
+                          android:textStyle="bold"
+                          android:gravity="center"
+                          android:textColor="#FF333333"
+                          android:textSize="24pt"
+                />
+
+            </LinearLayout>
+            <View
+                    android:layout_width="0.5pt"
+                    android:layout_height="44pt"
+                    android:background="#FFE6E6E6"
             />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:drawableTop="@mipmap/ic_launcher"
-                      android:layout_weight="1"
-                      android:gravity="center"
-                      android:id="@+id/tv_Integral"
-                      android:text="金币"
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="vertical"
+                          android:gravity="center"
+                          android:id="@+id/ll_card"
+                          android:layout_weight="1"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:drawableLeft="@drawable/icon_kaquan"
+                          android:drawablePadding="5pt"
+                          android:gravity="center"
+                          android:textColor="#FF666666"
+                          android:textSize="12pt"
+
+                          android:text="卡券"
+                />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="99"
+                          android:textStyle="bold"
+                          android:gravity="center"
+                          android:textColor="#FF333333"
+                          android:textSize="24pt"
+                />
+
+            </LinearLayout>
+            <View
+                    android:layout_width="0.5pt"
+                    android:layout_height="44pt"
+                    android:background="#FFE6E6E6"
             />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:drawableTop="@mipmap/ic_launcher"
-                      android:layout_weight="1"
-                      android:id="@+id/tv_Collection"
-                      android:gravity="center"
-                      android:text="收藏"
-            />
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="vertical"
+                          android:gravity="center"
+                          android:id="@+id/ll_sign"
+                          android:layout_weight="1"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:drawableLeft="@drawable/icon_qiandao"
+                          android:drawablePadding="5pt"
+                          android:gravity="center"
+                          android:textColor="#FF666666"
+                          android:textSize="12pt"
+
+                          android:text="签到"
+                />
+                <TextView android:layout_width="wrap_content" android:layout_height="33.5pt"
+                          android:text="99"
+                          android:textStyle="bold"
+                          android:textColor="#FF333333"
+                          android:textSize="24pt"
+                />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -106,9 +189,10 @@
                 android:id="@+id/iev_evaluate"
                 app:ievtextValue="我的评价"
                 app:ievunderline="true"
-               app:ievtextpadding ="@dimen/sp_12"
+                app:ievdrwableleft="@drawable/icon_pingjia"
+                app:ievtextpadding="@dimen/sp_12"
                 app:ievbackground="@color/white"
-                app:ievtextColor="@color/all_9"
+                app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
 
         />
@@ -116,49 +200,55 @@
 
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_message"
-                app:ievtextValue="我的消息"
+                app:ievtextValue="我的道具"
                 app:ievunderline="true"
-                app:ievtextpadding ="@dimen/sp_12"
+                app:ievtextpadding="@dimen/sp_12"
+                app:ievdrwableleft="@drawable/icon_daoju"
                 app:ievbackground="@color/white"
-                app:ievtextColor="@color/all_9"
+                app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
 
         />
 
         <com.yjhh.common.view.ItemEntryView
+                android:id="@+id/iev_Collection"
+                app:ievtextValue="我的收藏"
+                app:ievdrwableleft="@drawable/icon_shoucang"
+                app:ievbackground="@color/white" app:ievunderline="true"
+                app:ievtextColor="@color/all_3"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:ievtextpadding="@dimen/sp_12"
+        />
+
+
+        <com.yjhh.common.view.ItemEntryView
+
+
                 android:id="@+id/iev_browse"
+                app:ievunderline="true"
                 app:ievtextValue="最近浏览"
-                app:ievbackground="@color/white"  app:ievunderline="true"
-                app:ievtextColor="@color/all_9"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                app:ievtextpadding ="@dimen/sp_12"
-        />
-
-
-        <com.yjhh.common.view.ItemEntryView
-                android:id="@+id/iev_address"  app:ievunderline="true"
-                app:ievtextValue="我的收货地址"
-                app:ievbackground="@color/white" app:ievtextpadding ="@dimen/sp_12"
-                app:ievtextColor="@color/all_9"
+                app:ievdrwableleft="@drawable/icon_zuijinliulan"
+                app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
+                app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_service"
-                app:ievtextValue="在线客服"  app:ievunderline="true"
-                app:ievbackground="@color/white" app:ievtextpadding ="@dimen/sp_12"
-                app:ievtextColor="@color/all_9"
+                app:ievdrwableleft="@drawable/icon_bangzhu"
+                app:ievtextValue="帮助中心" app:ievunderline="true"
+                app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
+                app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_about"
                 app:ievtextValue="关于我们"
-                app:ievbackground="@color/white" app:ievtextpadding ="@dimen/sp_12"
-                app:ievtextColor="@color/all_9"
+
+                app:ievdrwableleft="@drawable/icon_guanyu"
+                app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
+                app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-
-
 
 
     </LinearLayout>

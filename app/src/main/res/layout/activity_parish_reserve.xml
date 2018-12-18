@@ -10,7 +10,7 @@
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
                                        app:textValue="堂食预定"
-                                       app:textColor="@color/white"
+
                                        android:layout_height="wrap_content"/>
 
     <LinearLayout android:layout_width="match_parent"

@@ -22,6 +22,7 @@ class SectionUselessModel {
     fun usermessage(type: String, share: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
         map.clear()
         map["type"] = type
+        map["share"] = share
         map["pageIndex"] = pageIndex.toString()
         map["pageSize"] = pageSize.toString()
         return ApiServices.getInstance().create(SectionUselessService::class.java).usermessage(map)
@@ -31,7 +32,7 @@ class SectionUselessModel {
     fun usercollect(type: String, itemType: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
         map.clear()
         map["type"] = type
-        map["itemType"] = itemType
+        map["share"] = itemType
         map["pageIndex"] = pageIndex.toString()
         map["pageSize"] = pageSize.toString()
         return ApiServices.getInstance().create(SectionUselessService::class.java).usercollect(map)

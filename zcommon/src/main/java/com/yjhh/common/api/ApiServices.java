@@ -1,22 +1,25 @@
 package com.yjhh.common.api;
 
 
+import android.util.Log;
 import android.webkit.WebSettings;
 import androidx.annotation.NonNull;
 import com.yjhh.common.Constants;
 
 import com.yjhh.common.BaseApplication;
 import com.yjhh.common.utils.APKVersionCodeUtils;
+import com.yjhh.common.utils.Md5Util;
 import com.yjhh.common.utils.SharedPreferencesUtils;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 public class ApiServices {
@@ -34,11 +37,59 @@ public class ApiServices {
 
         // 添加公共参数拦截器
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
+
+//        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+//
+//        //显示日志
+//        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//        httpClient.addInterceptor(logInterceptor);
+
+
         httpClient.addInterceptor(
                 new Interceptor() {
                     @Override
-                    public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
+                    public Response intercept(@NonNull Chain chain) throws IOException {
                         Request original = chain.request();
+
+                        StringBuilder sb = new StringBuilder();
+                        sb.delete(0, sb.length());
+                        RequestBody requestBody = original.body();
+
+
+                        if (requestBody instanceof FormBody) {
+
+                            FormBody oldFormBody = (FormBody) requestBody;
+
+
+                            TreeMap<String, String> treeMap = new TreeMap<>();
+
+                            for (int i = 0; i < oldFormBody.size(); i++) {
+                                treeMap.put(oldFormBody.encodedName(i), oldFormBody.encodedValue(i));
+                            }
+
+                            Iterator it = treeMap.keySet().iterator();
+                            while (it.hasNext()) {
+                                //it.next()得到的是key，tm.get(key)得到obj
+                                String key = (String) it.next();
+                                sb.append(key).
+                                        append(
+                                                URLDecoder.decode(Objects.requireNonNull(treeMap.get(key)).replaceAll("%(?![0-9a-fA-F]{2})", "%25")
+                                                                .replaceAll("\\+", "%2B")
+                                                        , "utf-8")
+                                        );
+                            }
+
+                        }
+
+
+                        sb.append("e170d38d-ff86-11e8-bc8e-b06ebfbca2e4")
+                                .append(String.valueOf((int) (System.currentTimeMillis() / 1000)));
+                        String signValue = sb.toString();
+
+                        Log.i("ApiServices", "\n拼接参数：" + signValue + "\nMD5小写：" + Md5Util.getMD5(signValue, 32).toLowerCase());
+
 
                         Request request = original.newBuilder()
                                 .removeHeader("User-Agent")
@@ -47,13 +98,15 @@ public class ApiServices {
                                 .header("X-Requested-With", "XMLHttpRequest")
                                 .header("PPW-TERMINAL", "0") //（0 用户端 1商户端)
                                 .header("PPW-APP-VERSION", String.valueOf(APKVersionCodeUtils.INSTANCE.getVersionCode(BaseApplication.context)))
+                                .header("PPW-SIGN", Md5Util.getMD5(signValue, 32).toLowerCase())
                                 .header("PPW-TIMESTAMP", String.valueOf((int) (System.currentTimeMillis() / 1000)))
-                                .header("PPW-API-VERSION", "1.0")
-                                //.header("PPW-MARKET-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
-                                // .header("PPW-DEVICE-ID", APKVersionCodeUtils.INSTANCE.getChannelName(BaseApplication.context))
+                                .header("PPW-API-VERSION", APKVersionCodeUtils.INSTANCE.getVerName(BaseApplication.context))
+                                .header("PPW-MARKET-ID", APKVersionCodeUtils.INSTANCE.getChannelName())
+                                .header("PPW-DEVICE-ID", APKVersionCodeUtils.INSTANCE.getChannelName())
                                 .header("JSESSIONID", String.valueOf(SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1")))
                                 .method(original.method(), original.body())
                                 .build();
+
 
                         return chain.proceed(request);
                     }
@@ -83,6 +136,5 @@ public class ApiServices {
     public <T> T create(Class<T> service) {
         return mRetrofit.create(service);
     }
-
 
 }

@@ -11,7 +11,7 @@ import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.PhoneUtils
-import com.yjhh.ppwbusiness.adapter.EvaluateDetailsAdapter
+import com.paipaiwei.personal.adapter.EvaluateDetailsAdapter
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.apis.SectionEvluateService
 import com.paipaiwei.personal.bean.EvaluateDetailsBean

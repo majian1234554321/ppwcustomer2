@@ -18,7 +18,7 @@ class LoginPresent(var context: Context, var loginView: LoginView) : BasePresent
 
     fun login(username: String, password: String, identity: String) {
 
-        toSubscribe(loginModel.login(username, password, identity), object : ProcessObserver<LoginBean>(context) {
+        toSubscribe(loginModel.login(username, password), object : ProcessObserver<LoginBean>(context) {
             override fun onSuccess(data: LoginBean?) {
                 loginView.onSuccess(data)
             }
@@ -33,10 +33,10 @@ class LoginPresent(var context: Context, var loginView: LoginView) : BasePresent
     }
 
 
-    fun login2(username: String, password: String, identity: String) {
+    fun login2(username: String, password: String) {
 
 
-        toSubscribe2(loginModel.login2(username, password, identity), object : ProcessObserver2(context) {
+        toSubscribe2(loginModel.login2(username, password), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                     loginView.onSuccess2(response)
             }

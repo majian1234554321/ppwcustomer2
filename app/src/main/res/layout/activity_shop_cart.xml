@@ -8,7 +8,7 @@
         tools:context=".ui.activity.takeout.ShopCartActivity">
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                       app:textColor="@color/white"
+
                                        app:textValue="购物车"
                                        android:id="@+id/tbv_title"
                                        android:layout_height="wrap_content">

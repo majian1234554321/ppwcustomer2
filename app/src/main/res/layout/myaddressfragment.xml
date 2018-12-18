@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             app:textValue="我的收货地址"
             android:id="@+id/tbv_title"
-            app:textColor="@color/white"
+
             android:layout_height="wrap_content"/>
 
 

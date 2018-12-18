@@ -2,7 +2,7 @@ package com.paipaiwei.personal.bean;
 
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.yjhh.ppwbusiness.adapter.EvaluateManageAdapter;
+import com.paipaiwei.personal.adapter.EvaluateManageAdapter;
 
 import java.util.List;
 

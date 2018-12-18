@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.activity.takeout.OrderSuccessActivity">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                       app:textColor="@color/white"
+
                                        android:id="@+id/tbv_title"
                                        app:textValue="订单详情"
                                        android:layout_height="wrap_content"/>

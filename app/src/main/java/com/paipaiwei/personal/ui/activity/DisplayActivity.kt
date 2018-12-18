@@ -36,6 +36,7 @@ class DisplayActivity : BaseActivity() {
     //var fragments: BaseFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
 

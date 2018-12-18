@@ -20,9 +20,9 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
 
 
 
-    fun regByAccount2(phone: String, password: String, smsCode: String, identity: String, refId: String) {
+    fun regByAccount2(phone: String, password: String, smsCode: String,  refId: String) {
         toSubscribe2(
-            regByAccountModel.regByAccount2(phone, password, smsCode, identity, refId),
+            regByAccountModel.regByAccount2(phone, password, smsCode,  refId),
             object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
                     registView.registSuccess2(response)

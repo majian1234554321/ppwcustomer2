@@ -11,13 +11,12 @@ import okhttp3.ResponseBody
 
 class LoginModel {
 
-    fun login(username: String, password: String, identity: String): Observable<BaseResponse<LoginBean>> {
+    fun login(username: String, password: String): Observable<BaseResponse<LoginBean>> {
 
         val map = androidx.collection.ArrayMap<String, String>()
         with(map) {
             put("account", username)
             put("password", password)
-            put("identity", identity)
 
         }
 
@@ -27,13 +26,13 @@ class LoginModel {
 
 
 
-    fun login2(username: String, password: String, identity: String): Observable<ResponseBody> {
+    fun login2(username: String, password: String): Observable<ResponseBody> {
 
         val map = androidx.collection.ArrayMap<String, String>()
         with(map) {
             put("account", username)
             put("password", password)
-            put("identity", identity)
+
 
         }
 

@@ -36,7 +36,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
         activity?.finish()
     }
 
-    val identity = "0"//身份（即客户端类型，0用户 1骑手 2商户）
+
     val TYPE = "2"
     val refId = "";//推荐人ID/phone
 
@@ -71,7 +71,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
                             et_phone.text.toString()
                             , et_password.text.toString()
                             , et_verifyCode.text.toString()
-                            , identity
+
                             , refId
                         )
                     } else {

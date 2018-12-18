@@ -20,7 +20,7 @@ class AboutAdapter(data: List<AboutBean.FunctionsBean>) :
         when (item?.name) {
 
             "客服电话" -> {
-                helper?.getView<ItemEntryView>(R.id.iev_1)?.setLeftTitle(item?.name)?.setTextContent(item?.linkUrl.split("tels://")[1])?.setArrow()
+                helper?.getView<ItemEntryView>(R.id.iev_1)?.setLeftTitle(item.name)?.setTextContent(item.linkUrl.split("tels://")[1])?.setArrow()
             }
             else -> {
                 helper?.getView<ItemEntryView>(R.id.iev_1)?.setLeftTitle(item?.name)?.setTextContent("")

@@ -14,7 +14,7 @@ class RegByAccountModel {
         phone: String,
         password: String,
         smsCode: String,
-        identity: String,
+
         refId: String
     ): Observable<ResponseBody> {
         map.clear()
@@ -24,7 +24,7 @@ class RegByAccountModel {
             put("smsCode", smsCode)
             put("refId", refId)
 
-            put("identity", identity)
+
 
         }
 
@@ -37,7 +37,7 @@ class RegByAccountModel {
         phone: String,
         password: String,
         smsCode: String,
-        identity: String,
+
         refId: String
     ): Observable<ResponseBody> {
         map.clear()
@@ -45,7 +45,7 @@ class RegByAccountModel {
             put("phone", phone)
             put("password", password)
             put("smsCode", smsCode)
-            put("identity", identity)
+
             put("refId", refId)
 
         }

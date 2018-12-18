@@ -3,27 +3,30 @@
 <androidx.appcompat.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/rl_background"
-        app:contentInsetStart="8pt"
-        app:contentInsetEnd="8pt"
-        android:layout_width="match_parent" android:layout_height="48dp">
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        android:padding="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize">
 
 
     <RelativeLayout android:layout_width="match_parent"
-
-                    android:layout_height="wrap_content">
+                    android:layout_height="?attr/actionBarSize">
 
 
         <ImageView
                 android:id="@+id/iv_back"
-                android:src="@drawable/icon_arrow_left_white"
-                android:layout_width="17pt"
+                android:layout_marginLeft="15pt"
+                android:src="@drawable/icon_arrow_left_black"
+                android:layout_width="22pt"
                 android:layout_centerVertical="true"
-                android:layout_height="17pt"/>
+                android:layout_height="22pt"/>
 
         <TextView
                 android:id="@+id/tv_title"
                 android:layout_gravity="center"
-                android:textSize="24sp"
+                android:textSize="17pt"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -35,6 +38,10 @@
                 android:layout_marginRight="8pt"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/e6"
+              android:layout_height="0.5pt"/>
 
     </RelativeLayout>
 

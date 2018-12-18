@@ -10,18 +10,14 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import android.widget.Toast;
+import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
-import com.yjhh.common.utils.BDLocationUtils;
 import io.reactivex.disposables.CompositeDisposable;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.internal.CustomAdapt;
@@ -36,7 +32,6 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
     public static final int REQUEST_CODE = 1;
 
     public CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private BDLocationUtils bdLocationUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,20 +39,12 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
 
         // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
         super.onCreate(savedInstanceState);
-
+       // PushAgent.getInstance(this).onAppStart();
         ActivityCollector.addActivity(this);
 
 
-        initBaiDuMap();
 
 
-    }
-
-    public void initBaiDuMap() {
-
-        bdLocationUtils = new BDLocationUtils(this);
-        bdLocationUtils.doLocation();//开启定位
-        bdLocationUtils.mLocationClient.start();//开始定位
 
     }
 
@@ -90,17 +77,7 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        bdLocationUtils.mLocationClient.stop();
-    }
 
     @Override
     protected void onDestroy() {
@@ -199,6 +176,31 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
             Window window = activity.getWindow();
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+
+
+    protected void setStatusBar() {
+
+        View decorView = getWindow().getDecorView();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
+
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4到5.0
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+        //修改字体颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//android6.0以后可以对状态栏文字颜色和图标进行修改
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 

@@ -12,7 +12,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
-import com.yjhh.ppwbusiness.adapter.EvaluateManageAdapter
+import com.paipaiwei.personal.adapter.EvaluateManageAdapter
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.apis.SectionEvluateService
 import com.paipaiwei.personal.bean.*

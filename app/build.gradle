@@ -17,7 +17,7 @@ android {
     defaultConfig {
         //applicationId "com.paipaiwei.personal"
         applicationId "com.paipaiwei.personal"
-
+        flavorDimensions "default"
         minSdkVersion 19
         targetSdkVersion 28
 
@@ -109,19 +109,75 @@ android {
         abortOnError false
     }
 
+
+
+    productFlavors {
+
+        company {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "company"]
+        }
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+        }
+
+        yingyongbao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+
+        huawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+        }
+
+        vo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vo"]
+        }
+
+        ali {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ali"]
+        }
+
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+
+        meizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+        }
+
+
+    }
+
+
 }
 
 dependencies {
+
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':zcommon')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    //Android Support
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
+
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+
+
+
+
+
+
+
     kapt 'com.alibaba:arouter-compiler:1.2.1'
     implementation project(':lib-zxing')
     api 'androidx.room:room-runtime:2.1.0-alpha03'

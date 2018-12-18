@@ -37,7 +37,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
                 present?.fromSms(
                     et_mobile.text.toString()
                     , et_verifyCode.text.toString()
-                    , identity
+
                     , "Android"
                 )
 
@@ -83,9 +83,9 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
     }
 
 
-    val identity = "0"//身份（即客户端类型，0用户 1骑手 2商户）
+
     val TYPE = "1"//1登录 2注册 21 重置密码 22找回密码
-    val refId = "";//推荐人ID/phone
+
 
 
     var present: PasswordPresent? = null

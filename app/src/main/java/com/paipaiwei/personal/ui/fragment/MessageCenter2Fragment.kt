@@ -70,6 +70,17 @@ class MessageCenter2Fragment : BaseFragment(), MyMessageView {
         swipeLayout.autoRefresh()
 
 
+
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+
+
+            (parentFragment as BaseFragment).start(
+                MessageDetailFragment.newInstance(adapter.data[position] as MyMessageBean.ItemsBean)
+            )
+
+        }
+
+
     }
 
 

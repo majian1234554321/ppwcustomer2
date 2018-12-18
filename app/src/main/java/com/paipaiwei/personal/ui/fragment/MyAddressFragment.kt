@@ -28,8 +28,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.paipaiwei.personal.R.id.recyclerView
 
 
-
-
 class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
 
 
@@ -62,7 +60,6 @@ class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
     override fun getLayoutRes(): Int = R.layout.myaddressfragment
 
     override fun initView() {
-
 
 
         val dis = RxBus.default.toFlowable(RxAddressBean::class.java).subscribe {

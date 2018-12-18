@@ -1,16 +1,12 @@
-package com.yjhh.ppwbusiness.adapter
+package com.paipaiwei.personal.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.opengl.Visibility
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 
-import android.widget.RelativeLayout
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
 

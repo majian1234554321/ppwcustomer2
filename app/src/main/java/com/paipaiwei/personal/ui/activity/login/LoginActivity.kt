@@ -23,13 +23,10 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 
-
-
 @Route(path = "/LoginActivity/Login")
 class LoginActivity : BaseActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         ARouter.getInstance().inject(this)  // Start auto inject.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

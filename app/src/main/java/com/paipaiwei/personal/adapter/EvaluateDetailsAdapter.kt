@@ -1,4 +1,4 @@
-package com.yjhh.ppwbusiness.adapter
+package com.paipaiwei.personal.adapter
 
 import android.graphics.Color
 import androidx.core.app.ComponentActivity

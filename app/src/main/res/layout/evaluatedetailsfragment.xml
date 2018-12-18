@@ -8,7 +8,7 @@
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                                  android:id="@+id/tbv_title"
                                                  app:textValue="评价详情"
-                                                 app:textColor="@color/white"
+
                                                  android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"

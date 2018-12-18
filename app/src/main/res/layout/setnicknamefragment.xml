@@ -5,7 +5,7 @@
               android:layout_width="match_parent" android:layout_height="wrap_content">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        app:textValue="修改昵称"
-                                       app:textColor="@color/white"
+
                                        android:layout_height="wrap_content"/>
     <EditText
             android:layout_width="match_parent" android:layout_height="wrap_content"

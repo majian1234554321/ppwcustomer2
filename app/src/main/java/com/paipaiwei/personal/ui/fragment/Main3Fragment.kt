@@ -14,13 +14,22 @@ import com.paipaiwei.personal.adapter.ConstellationAdapter
 import com.paipaiwei.personal.adapter.Main2ViewPagerAdapter
 
 import com.paipaiwei.personal.bean.TabEntity
+import com.paipaiwei.personal.present.OrderPresent
+import com.paipaiwei.personal.view.OrderView
 import kotlinx.android.synthetic.main.custom_layout.*
 import kotlinx.android.synthetic.main.main2fragment.*
 import kotlinx.android.synthetic.main.main2fragment.view.*
 import java.util.*
 
 
-class Main3Fragment : BaseMainFragment() {
+class Main3Fragment : BaseMainFragment(), OrderView {
+    override fun onSuccessOrder(response: String?, flag: String?) {
+
+    }
+
+    override fun onFault(errorMsg: String?) {
+
+    }
 
     private val headers = arrayOf("订单")
     private val constellations =
@@ -28,6 +37,9 @@ class Main3Fragment : BaseMainFragment() {
     private val popupViews = ArrayList<View>()
     override fun initView() {
         val mTitles = arrayOf("全部", "进行中", "待评价")
+
+
+        OrderPresent(mActivity,this).orderTypes()
 
 
         val constellationView = layoutInflater.inflate(R.layout.custom_layout, null)

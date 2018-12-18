@@ -6,9 +6,11 @@
     <com.yjhh.common.view.TitleBarView
             android:id="@+id/tbv_title"
             app:textValue="换绑手机"
-            app:textColor="@color/white"
+
+            app:textColor="@color/all_3"
+            app:titleBarBackground="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+            android:layout_height="wrap_content"/>
 
 
     <LinearLayout android:layout_width="match_parent"

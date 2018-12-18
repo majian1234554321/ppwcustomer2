@@ -76,14 +76,14 @@ class QRCodeFragment(var list: List<String>) : androidx.fragment.app.DialogFragm
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, @Nullable container: ViewGroup?, @Nullable savedInstanceState: Bundle?): View? {
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         // dialog.window!!.attributes.windowAnimations = R.style.dialogAnim
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onStart() {
         super.onStart()
-        val win = dialog.window
+        val win = dialog?.window
         // 一定要设置Background，如果不设置，window属性设置无效
         win!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

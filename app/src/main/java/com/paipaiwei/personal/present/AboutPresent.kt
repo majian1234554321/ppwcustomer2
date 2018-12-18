@@ -17,17 +17,17 @@ class AboutPresent(var context: Context, var view: AboutView) : BasePresent() {
         map.put("pageSize", pageSize.toString())
         toSubscribe2(
             ApiServices.getInstance()
-            .create(AboutService::class.java)
-            .feedbackList(map), object : ProcessObserver2(context) {
-            override fun processValue(response: String?) {
-                view.onSuccess(response, flag)
+                .create(AboutService::class.java)
+                .feedbackList(map), object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+                    view.onSuccess(response, flag)
+                }
+
+                override fun onFault(message: String) {
+
+                }
+
             }
-
-            override fun onFault(message: String) {
-
-            }
-
-        }
         )
 
     }

@@ -7,7 +7,7 @@
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
                                        app:textValue="金币"
-                                       app:textColor="@color/white"
+
                                        android:layout_height="wrap_content"/>
 
 

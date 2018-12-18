@@ -43,12 +43,12 @@ class TitleBarView @JvmOverloads constructor(
         val type = context.theme.obtainStyledAttributes(attributeSet, R.styleable.TitleBarView, defStyleAttr, 0)
         val textValue = type.getString(R.styleable.TitleBarView_textValue)
         val textColor =
-            type.getColor(R.styleable.TitleBarView_textColor, ContextCompat.getColor(context, R.color.colorPrimary))
+            type.getColor(R.styleable.TitleBarView_textColor, ContextCompat.getColor(context, R.color.all_3))
         val textSize = type.getDimension(R.styleable.TitleBarView_textSize, 18f)
 
         val titleBarBackground = type.getColor(
             R.styleable.TitleBarView_titleBarBackground,
-            ContextCompat.getColor(context, R.color.colorPrimary)
+            ContextCompat.getColor(context, R.color.white)
         )
 
 

@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.amap.api.col.n3.lp
+
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
@@ -34,6 +34,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.KeywordMapAddressAdapter
 import com.paipaiwei.personal.adapter.MapAddressAdapter
+import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseActivity.mListener
 
 import kotlinx.android.synthetic.main.activity_select_map.*
@@ -42,7 +43,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SelectMapActivity : AppCompatActivity(), AMapLocationListener, LocationSource, PoiSearch.OnPoiSearchListener,
+class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, PoiSearch.OnPoiSearchListener,
     AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener, Inputtips.InputtipsListener {
     override fun onGetInputtips(tipList: MutableList<Tip>?, rCode: Int) {
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {// 正确返回
@@ -335,10 +336,7 @@ class SelectMapActivity : AppCompatActivity(), AMapLocationListener, LocationSou
         mapView.onPause()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState);
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -347,7 +345,6 @@ class SelectMapActivity : AppCompatActivity(), AMapLocationListener, LocationSou
 
 
     fun doSearchQuery2() {
-
         val geocodeSearch = GeocodeSearch(this);
         geocodeSearch.setOnGeocodeSearchListener(this);
         // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
@@ -372,9 +369,7 @@ class SelectMapActivity : AppCompatActivity(), AMapLocationListener, LocationSou
 
         val poiSearch = PoiSearch(this@SelectMapActivity, query)
         poiSearch.setOnPoiSearchListener(this)
-        if (!TextUtils.isEmpty(value3)) {
-            poiSearch.bound = PoiSearch.SearchBound(lp, 5000, true)//// 设置搜索区域为以lp点为圆心，其周围5000米范围
-        }
+        poiSearch.bound = PoiSearch.SearchBound(lp, 5000, true)//// 设置搜索区域为以lp点为圆心，其周围5000米范围
         poiSearch.searchPOIAsyn();// 异步搜索
 
     }

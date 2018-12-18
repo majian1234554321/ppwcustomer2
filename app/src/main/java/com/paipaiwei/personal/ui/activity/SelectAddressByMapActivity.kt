@@ -1,3 +1,4 @@
+/*
 package com.paipaiwei.personal.ui.activity
 
 import android.app.Activity
@@ -278,9 +279,11 @@ class SelectAddressByMapActivity : BaseActivity() {
         }
     }
 
-    /**
+    */
+/**
      * 拖动检索提示
-     */
+     *//*
+
     internal inner class PoiAdapter(private val context: Context, private val pois: List<PoiInfo>) : BaseAdapter() {
         private lateinit var linearLayout: LinearLayout
 
@@ -333,3 +336,4 @@ class SelectAddressByMapActivity : BaseActivity() {
     }
 
 }
+*/

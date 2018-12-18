@@ -5,17 +5,16 @@ import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
-import com.yjhh.common.base.BaseFragment
 
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.ppwbusiness.adapter.EvaluateManageAdapter
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.ui.activity.UserInfoActivity
 import com.paipaiwei.personal.ui.activity.evaluate.EvaluateManageFragment
+import com.yjhh.common.utils.ImageLoaderUtils
 
 import kotlinx.android.synthetic.main.main4fragment.*
 
@@ -42,7 +41,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 }
             }
 
-            R.id.iev_message -> {
+            R.id.iv_message -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
 
                     (parentFragment as MainFragment).startBrotherFragment(MessageCenterFragment())
@@ -51,7 +50,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 }
             }
 
-            R.id.tv_Collection -> {
+            R.id.iev_Collection -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
 
 
@@ -63,7 +62,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             }
 
-            R.id.tv_Integral -> {
+            R.id.ll_Integral -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
                     ARouter.getInstance()
                         .build("/DisplayActivity/Display")
@@ -76,18 +75,18 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             }
 
-            R.id.tv_Coupon -> {
-                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                    ARouter.getInstance()
-                        .build("/DisplayActivity/Display")
-                        .withString("displayTab", "CouponFragment")
-                        .withInt("age", 23)
-                        .navigation(context)
-                } else {
-
-                }
-
-            }
+//            R.id.tv_Coupon -> {
+//                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
+//                    ARouter.getInstance()
+//                        .build("/DisplayActivity/Display")
+//                        .withString("displayTab", "CouponFragment")
+//                        .withInt("age", 23)
+//                        .navigation(context)
+//                } else {
+//
+//                }
+//
+//            }
 
             R.id.iv_setting -> {
                 ARouter.getInstance()
@@ -112,7 +111,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             }
 
-            R.id.profile_image -> {
+            R.id.rl0 -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
                     startActivity(Intent(mActivity, UserInfoActivity::class.java))
 
@@ -126,15 +125,15 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             }
 
-            R.id.iev_address -> {
-
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "MyAddressFragment")
-                    .withInt("age", 23)
-                    .navigation()
-
-            }
+//            R.id.iev_address -> {
+//
+//                ARouter.getInstance()
+//                    .build("/DisplayActivity/Display")
+//                    .withString("displayTab", "MyAddressFragment")
+//                    .withInt("age", 23)
+//                    .navigation()
+//
+//            }
 
             R.id.iev_evaluate -> {
                 (parentFragment as MainFragment).startBrotherFragment(EvaluateManageFragment())
@@ -153,7 +152,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             }
 
 
-            R.id.rl_buy -> {
+            R.id.ll_card -> {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "MembershipCardFragment")
@@ -172,16 +171,29 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
         if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
             tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
+            tv_mobile.visibility = View.VISIBLE
+            tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
+
+            ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+
         } else {
-            tv_name.text = "未登录"
+            tv_name.text = "请点击登录"
+            tv_mobile.visibility = View.GONE
+            ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
         }
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
             LogUtils.i("Main4Fragment", it.mobile)
             if (it.loginSuccess) {
                 tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
+                tv_mobile.visibility = View.VISIBLE
+                tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
+                ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+
             } else {
-                tv_name.text = "未登录"
+                tv_name.text = "请点击登录"
+                tv_mobile.visibility = View.GONE
+                ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
             }
         }
 
@@ -190,18 +202,19 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
         val list = arrayOf(
             iev_evaluate,
-            iev_address,
+
             iev_service,
             iev_about,
             iev_browse,
-            iev_message,
-            tv_Collection,
-            tv_Integral,
-            tv_Coupon,
+            iv_message,
+            ll_Integral,
             iv_setting,
             tv_name,
-            profile_image
-            , rl_buy
+            ll_card,
+            ll_sign,
+            iev_Collection,
+            rl0
+
         )
 
         list.forEach {

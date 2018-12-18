@@ -67,13 +67,18 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     //Android Support
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'com.google.android.material:material:1.1.0-alpha01'
     api 'androidx.legacy:legacy-support-v4:1.0.0'
     api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+
+
+
+
+
     //配合Rxjava 使用
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api 'io.reactivex.rxjava2:rxjava:2.2.2'
@@ -126,7 +131,7 @@ dependencies {
 
     api 'com.amap.api:map2d:5.2.0'
     api 'com.amap.api:location:4.4.0'
-    api 'com.amap.api:navi-3dmap:6.5.0_3dmap6.5.0'
+   // api 'com.amap.api:navi-3dmap:6.5.0_3dmap6.5.0'
     api 'com.amap.api:search:6.5.0.1'
 
 }

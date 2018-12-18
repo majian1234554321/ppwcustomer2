@@ -145,7 +145,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
 
     override fun getLayoutRes(): Int = R.layout.module_login_activity_login
 
-    val identity = "0"
+
 
 
     override fun initView() {
@@ -177,8 +177,8 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                     val loginPresent = LoginPresent(mActivity, this)
                     loginPresent.login2(
                         it.blockingFirst().getString("phone"),
-                        it.blockingFirst().getString("password"),
-                        identity
+                        it.blockingFirst().getString("password")
+
                     )
 
                 } else {

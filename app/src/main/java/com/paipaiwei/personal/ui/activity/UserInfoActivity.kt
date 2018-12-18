@@ -85,6 +85,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
 
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.userinfofragment)
         initView()

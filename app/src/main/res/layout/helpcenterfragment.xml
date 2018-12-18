@@ -5,7 +5,7 @@
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
-                                       app:textColor="@color/white"
+
                                        app:textValue="帮助中心"
                                        android:layout_height="wrap_content"/>
 

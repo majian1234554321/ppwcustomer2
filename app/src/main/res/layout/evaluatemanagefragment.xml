@@ -6,7 +6,7 @@
               android:layout_height="match_parent">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                                  app:textValue="评价管理"
-                                                 app:textColor="@color/white"
+
                                                  android:layout_height="wrap_content"/>
 
 

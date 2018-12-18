@@ -43,4 +43,32 @@ interface SectionUselessService {
     fun currInfo(): Observable<ResponseBody>
 
 
+    @POST("userSignIn")
+    fun userSignIn(): Observable<ResponseBody> //签到列表
+
+    @POST("userSignIn/sign")
+    fun signList(): Observable<ResponseBody> //签到列表
+
+    @FormUrlEncoded
+    @POST("userreservation")
+    fun userreservation(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 我的预订列表
+
+    @FormUrlEncoded
+    @POST("userreservation/cancel")
+    fun cancel(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 取消
+
+    @FormUrlEncoded
+    @POST("userreservation/cancelCause")
+    fun cancelCause(@FieldMap map: Map<String, String>): Observable<ResponseBody>// userreservation/cancelCause
+
+    @FormUrlEncoded
+    @POST("userreservation/detail")
+    fun detail(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
+
+
+
+
+
+
+
 }

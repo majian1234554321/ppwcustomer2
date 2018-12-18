@@ -7,6 +7,7 @@ import android.text.TextUtils
 import com.azhon.appupdate.config.UpdateConfiguration
 import com.azhon.appupdate.listener.OnDownloadListener
 import com.azhon.appupdate.manager.DownloadManager
+import com.yjhh.common.BaseApplication
 import com.yjhh.common.R
 
 
@@ -46,16 +47,16 @@ object APKVersionCodeUtils {
      * @param ctx 此处习惯性的设置为activity，实际上context就可以
      * @return 如果没有获取成功，那么返回值为空
      */
-    fun getChannelName(ctx: Context?): String? {
-        if (ctx == null) {
-            return "company"
-        }
-        var channelName: String? = null
+    fun getChannelName(): String {
+        var channelName: String = "company"
         try {
-            val packageManager = ctx.packageManager
+            val packageManager = BaseApplication.getIns().packageManager
             if (packageManager != null) {
                 //注意此处为ApplicationInfo 而不是 ActivityInfo,因为友盟设置的meta-data是在application标签中，而不是某activity标签中，所以用ApplicationInfo
-                val applicationInfo = packageManager.getApplicationInfo(ctx.packageName, PackageManager.GET_META_DATA)
+                val applicationInfo = packageManager.getApplicationInfo(
+                    BaseApplication.getIns().packageName,
+                    PackageManager.GET_META_DATA
+                )
                 if (applicationInfo != null) {
                     if (applicationInfo.metaData != null) {
                         channelName = applicationInfo.metaData.getString("UMENG_CHANNEL")
@@ -67,10 +68,14 @@ object APKVersionCodeUtils {
             e.printStackTrace()
         }
 
+        if (!TextUtils.isEmpty(channelName)) {
+            channelName = "company"
+        }
+
         return channelName
     }
 
-     fun startUpdate(ctx: Context ,onDownloadListener:OnDownloadListener) {
+    fun startUpdate(ctx: Context, onDownloadListener: OnDownloadListener) {
         /*
          * 整个库允许配置的内容
          * 非必选
@@ -95,7 +100,7 @@ object APKVersionCodeUtils {
 
         manager.setApkName("appupdate.apk")
             .setApkUrl("http://test-1251233192.coscd.myqcloud.com/1_1.apk")
-           // .setSmallIcon(R.mipmap.ic_launcher)
+            // .setSmallIcon(R.mipmap.ic_launcher)
             .setShowNewerToast(true)
             .setConfiguration(configuration)
             .setAuthorities(ctx.packageName)

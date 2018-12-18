@@ -18,7 +18,7 @@ import com.paipaiwei.personal.bean.rxbusbean.RxAddressBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.present.SectionUserPresent
 import com.paipaiwei.personal.ui.activity.ActivityContact
-import com.paipaiwei.personal.ui.activity.SelectAddressByMapActivity
+import com.paipaiwei.personal.ui.activity.SelectMapActivity
 import com.paipaiwei.personal.view.MyAddressView
 import kotlinx.android.synthetic.main.addressaddfragment.*
 import me.yokeyword.fragmentation.ISupportFragment
@@ -80,7 +80,7 @@ class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCh
             }
 
             R.id.iv_location -> {
-                startActivityForResult(Intent(mActivity, SelectAddressByMapActivity::class.java), 10086)
+                startActivityForResult(Intent(mActivity, SelectMapActivity::class.java), 10086)
             }
 
             R.id.tv_commit -> {

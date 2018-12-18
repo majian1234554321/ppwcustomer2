@@ -24,7 +24,7 @@ public class UserinfoBean {
     public int garde;
     public String birthday;
     public int id;
-    public int identity;
+
     public String identityName;
     public String mobile;
     public String nickName;

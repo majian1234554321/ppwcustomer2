@@ -8,7 +8,7 @@
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
                                        app:textValue="区域选择"
-                                       app:textColor="@color/white"
+
                                        android:layout_height="wrap_content"/>
 
 

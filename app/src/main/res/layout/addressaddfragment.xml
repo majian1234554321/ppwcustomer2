@@ -6,7 +6,7 @@
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                         app:textValue="新增地址"
                                         android:id="@+id/tbv_title"
-                                        app:textColor="@color/white"
+
                                         android:layout_height="wrap_content"/>
 
 

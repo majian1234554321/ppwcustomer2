@@ -7,7 +7,7 @@
     <com.yjhh.common.view.TitleBarView
             android:id="@+id/tbv_title"
             app:textValue="注册"
-            app:textColor="@color/white"
+
             android:layout_width="match_parent"
             android:layout_height="48dp"/>
 
