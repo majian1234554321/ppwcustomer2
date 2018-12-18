@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.widget.Toast
 import com.google.gson.Gson
 import com.yjhh.common.base.WaitProgressDialog
 import com.yjhh.common.utils.LogUtils
@@ -17,14 +18,16 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
     private var showProgress: Boolean = true
 
 
-    object constructor  {
+    object constructor {
         val gson = Gson()
     }
 
 
-
     // private var progressDialog: WaitProgressDialog = WaitProgressDialog(context)
     override fun onSubscribe(d: Disposable) {
+
+
+
 
     }
 
@@ -36,8 +39,6 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
 
 
         val response = t.string()
-
-
         LogUtils.i("ProcessObserver2", response)
         if (!TextUtils.isEmpty(response) && response.contains("success")) {
             val jsonValue = JSONObject(response)
@@ -46,7 +47,7 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
                 processValue(jsonString)
             } else {
 
-                    onFault(jsonValue.getString("message"))
+                onFault(jsonValue.getString("message"))
 
 
             }

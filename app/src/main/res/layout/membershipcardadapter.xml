@@ -2,18 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
+                android:gravity="center"
 
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
 
-    <ImageView android:layout_width="325pt"
+    <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="325pt"
+            android:layout_marginTop="10pt"
 
-               android:layout_centerHorizontal="true"
+            android:id="@+id/iv_head"
+            android:background="@drawable/cheng"
+            android:layout_height="133pt"
+    >
 
-               android:id="@+id/iv_head"
-               android:background="@drawable/cheng"
-               android:layout_height="133pt"/>
+        <TextView android:layout_width="75pt"
+                  android:layout_alignParentRight="true"
+                  android:text="立即\n使用"
+                  android:id="@+id/tv_status"
+                  android:textStyle="bold"
+                  android:layout_marginRight="17pt"
+                  android:layout_marginTop="32pt"
+                  android:gravity="center"
+                  android:layout_marginBottom="51pt"
+                  android:textColor="#FFE35454"
+                  android:textSize="18pt"
+                  android:layout_height="50pt"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="使用条件"
+                  android:paddingRight="12pt"
+                  android:paddingBottom="9pt"
+                  android:drawableRight="@drawable/icon_up"
+                  android:layout_alignParentRight="true"
+                  android:layout_alignParentBottom="true"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="11pt"
+                  android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
 
     <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout"
@@ -29,6 +60,17 @@
                         android:elevation="4dp"
                         android:background="@drawable/chengbf"
                         android:layout_height="wrap_content">
+
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingTop="5pt"
+
+                      android:paddingRight="15pt"
+                      android:textSize="11pt"
+                      android:text="仅限大于券面额使用\n限品类：部分商品使用\n周一至周日可用"
+                      android:gravity="right"
+            />
 
 
         </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.paipaiwei.takeout_personal
+package com.paipaiwei.personal
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

@@ -123,5 +123,11 @@ dependencies {
     api(name: 'core-4.3.1-openDefaultRelease', ext: 'aar')
     api(name: 'expand-release', ext: 'aar')
     api 'com.dsiner.lib:xrv:1.1.2'
+
+    api 'com.amap.api:map2d:5.2.0'
+    api 'com.amap.api:location:4.4.0'
+    api 'com.amap.api:navi-3dmap:6.5.0_3dmap6.5.0'
+    api 'com.amap.api:search:6.5.0.1'
+
 }
 

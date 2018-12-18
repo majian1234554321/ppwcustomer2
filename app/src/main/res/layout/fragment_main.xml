@@ -10,7 +10,7 @@
             android:layout_marginBottom="52dp"
             android:layout_height="match_parent"/>
 
-    <com.paipaiwei.takeout_personal.ui.customview.BottomBar
+    <com.paipaiwei.personal.ui.customview.BottomBar
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="52dp"

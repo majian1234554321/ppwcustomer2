@@ -17,7 +17,7 @@
     />
 
 
-    <com.paipaiwei.takeout_personal.ui.customview.RatingBar
+    <com.paipaiwei.personal.ui.customview.RatingBar
             android:id="@+id/id_ratingbar"
             android:layout_width="100dp"
             android:layout_height="25dp"

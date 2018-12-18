@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.paipaiwei.takeout_personal">
+          package="com.paipaiwei.personal">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
@@ -47,6 +47,12 @@
 
         <!-- 微博 -->
 
+        <meta-data
+                android:name="com.amap.api.v2.apikey"
+                android:value="6d0de09b6e263a9cdfd8dd2c618100d0">
+        </meta-data>
+
+        <service android:name="com.amap.api.location.APSService"/>
 
         <meta-data
                 android:name="design_width_in_dp"
@@ -197,6 +203,8 @@
         <activity android:name=".ui.activity.SetNickNameActivity">
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity"/>
+        <activity android:name=".ui.activity.SelectMapActivity">
+        </activity>
     </application>
 
 </manifest>

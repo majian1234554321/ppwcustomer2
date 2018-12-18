@@ -14,7 +14,7 @@
                                                android:id="@+id/hRecyclerView"
                                                android:layout_height="wrap_content"/>
 
-    <com.paipaiwei.takeout_personal.ui.customview.GridViewPager
+    <com.paipaiwei.personal.ui.customview.GridViewPager
             android:id="@+id/mGridViewPager"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

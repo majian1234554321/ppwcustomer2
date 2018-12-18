@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
                 android:layout_width="match_parent" android:layout_height="match_parent">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
@@ -10,19 +11,40 @@
 
     <LinearLayout
             android:layout_below="@+id/tbv_title"
+            android:padding="15pt"
             android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="33.5pt"
+                android:text="设置"
+                android:textColor="#FF333333"
+                android:textSize="24pt"
+        />
+
 
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="修改密码"
                                             app:ievtextColor="@color/all_9"
-                                            app:ievunderline="true"
+                                            app:ievdisplaytextContent="true"
+                                            android:paddingTop="6pt"
+                                            android:paddingBottom="6pt"
                                             android:id="@+id/iev_resetPwd"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
+
+        <View
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
+
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="换绑手机"
                                             app:ievtextColor="@color/all_9"
-
+                                            android:paddingTop="6pt"
+                                            android:paddingBottom="6pt"
                                             android:id="@+id/iev_resetPhone"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
@@ -30,33 +52,57 @@
                                             app:ievtextValue="消息提醒"
                                             app:ievtextColor="@color/all_9"
                                             app:ievunderline="true"
+                                            android:visibility="gone"
                                             android:layout_marginTop="12dp"
                                             android:id="@+id/iev_resetMessage"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
+        <View
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
+
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="清空缓存"
                                             app:ievtextColor="@color/all_9"
-                                            app:ievunderline="true"
+
+                                            android:paddingTop="6pt"
+                                            android:paddingBottom="6pt"
                                             android:id="@+id/iev_resetMemory"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
+
+        <View
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
         <com.yjhh.common.view.ItemEntryView android:layout_width="match_parent"
                                             app:ievtextValue="版本更新"
+                                            android:paddingTop="6pt"
+                                            android:paddingBottom="6pt"
                                             app:ievtextColor="@color/all_9"
                                             android:id="@+id/iev_resetVersion"
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
+        <View
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
     </LinearLayout>
 
 
-    <TextView android:layout_width="match_parent"
-              android:id="@+id/tv_loginout"
-              android:gravity="center"
-              android:padding="12dp"
-              android:layout_alignParentBottom="true"
-              android:text="退出登录"
-              android:textSize="@dimen/sp_14"
-              android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton android:layout_width="match_parent"
+                                                       android:id="@+id/tv_loginout"
+                                                       android:gravity="center"
+                                                       android:layout_margin="15pt"
+                                                       android:layout_alignParentBottom="true"
+                                                       android:text="退出登录"
+                                                       android:textColor="#FFFFFFFF"
+                                                       android:textSize="18pt"
+                                                       app:backgroundTint="#F9572D"
+                                                       android:layout_height="wrap_content"/>
 
 </RelativeLayout>

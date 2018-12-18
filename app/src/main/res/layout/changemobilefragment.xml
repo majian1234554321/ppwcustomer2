@@ -13,13 +13,15 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="vertical"
-                  android:padding="24dp"
+                  android:layout_margin="30pt"
                   android:layout_below="@+id/tbv_title"
                   android:layout_height="wrap_content">
 
 
-        <EditText android:layout_width="match_parent" android:layout_height="50dp"
-
+        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textSize="14pt"
+                  android:paddingTop="12pt"
+                  android:paddingBottom="12pt"
                   android:id="@+id/et_beforePhone"
                   android:background="@null"
                   android:hint="请输入原手机号"
@@ -28,14 +30,17 @@
 
 
         <View android:layout_width="match_parent"
-              android:background="@color/all_6"
+              android:background="@color/cd"
 
               android:layout_height="1dp"/>
 
 
         <EditText
                 android:id="@+id/et_newPhone"
-                android:layout_width="match_parent" android:layout_height="50dp"
+                android:textSize="14pt"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:paddingTop="12pt"
+                android:paddingBottom="12pt"
                 android:layout_below="@+id/et_beforePhone"
                 android:background="@null"
                 android:hint="请输入新手机号码"
@@ -43,7 +48,7 @@
         />
 
         <View android:layout_width="match_parent"
-              android:background="@color/all_6"
+              android:background="@color/cd"
 
               android:layout_height="1dp"/>
 
@@ -53,10 +58,12 @@
                         android:layout_height="wrap_content">
 
 
-            <EditText android:layout_width="match_parent" android:layout_height="50dp"
+            <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:id="@+id/et_verifyCode"
+                      android:paddingTop="12pt"
+                      android:paddingBottom="12pt"
                       android:background="@null"
-
+                      android:textSize="14pt"
                       android:hint="请输入验证码"
                       android:layout_toRightOf="@+id/tv_phone"
             />
@@ -66,26 +73,30 @@
                     android:layout_alignParentRight="true"
                     android:text="获取验证码"
                     android:gravity="center"
-                    android:background="@drawable/border_write"
+                    android:textColor="#FF007AFF"
+                    android:textSize="14pt"
                     android:layout_centerVertical="true"
-                    android:textSize="10sp"
-                    android:layout_width="60dp" android:layout_height="30dp"/>
+
+                    android:layout_width="wrap_content" android:layout_height="30dp"/>
         </RelativeLayout>
         <View android:layout_width="match_parent"
-              android:background="@color/all_6"
+              android:background="@color/cd"
 
               android:layout_height="1dp"/>
 
 
-        <Button android:id="@+id/bt_register"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_register"
+                app:cornerRadius="15pt"
                 android:layout_below="@+id/et_verifyCode"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="51pt"
                 android:layout_gravity="center"
+                android:textSize="18pt"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/white"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_width="277pt" android:layout_height="wrap_content"
                 android:text="完成"
         />
 

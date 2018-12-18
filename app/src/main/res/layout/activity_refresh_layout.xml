@@ -75,7 +75,7 @@
                 android:paddingRight="12dp"
                 app:anchor_id="@+id/viewpager"
                 app:bottom_padding="156.0"
-                app:layout_behavior="com.paipaiwei.takeout_personal.ui.BottomBehavior">
+                app:layout_behavior="com.paipaiwei.personal.ui.BottomBehavior">
             <!--   ..........底部布局-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
