@@ -1,7 +1,9 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -9,6 +11,7 @@ import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Collection123Adapter
 import com.paipaiwei.personal.adapter.RecentlyBrowseAdapter
+import com.paipaiwei.personal.bean.MyMessageBean
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
@@ -17,7 +20,7 @@ import kotlinx.android.synthetic.main.collectionmain123.*
 class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     var startindex = 0
     val pageSize = 10
-    val type = "0"    //默认null（null/0收藏 1足迹）
+    var type = "0"    //默认null（null/0收藏 1足迹）
     val itemType = "0"//默认null( null/0 店铺 1商品 2 文章)
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
@@ -27,6 +30,16 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
     override fun initView() {
+
+        val typeValue = arguments?.getString("type")
+
+        type = if ("收藏" == typeValue) {
+            "0"
+        } else {
+            "1"
+        }
+
+
 
         sectionUselessPresent = SectionUselessPresent(context, this)
 
@@ -73,9 +86,16 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     override fun onSuccess(main1bean: RecentlyBrowseBean, flag: String) {
         if ("refresh" == flag) {
 
-            mAdapter.setNewData(main1bean.items)
 
-            mAdapter.disableLoadMoreIfNotFullPage()
+
+            if (startindex==0&&main1bean.items.isEmpty()) {
+                val view = View.inflate(mActivity, R.layout.emptyview, null)
+                view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+                mAdapter.emptyView = view
+            }else{
+                mAdapter.setNewData(main1bean.items)
+                mAdapter.disableLoadMoreIfNotFullPage()
+            }
 
 
         } else {
@@ -93,5 +113,15 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+    companion object {
+        fun newInstance(type: String?): Collection1Fragment {
+            val fragment = Collection1Fragment()
+            val bundle = Bundle()
+            bundle.putString("type", type)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 
 }

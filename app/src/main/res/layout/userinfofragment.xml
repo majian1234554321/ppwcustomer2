@@ -32,12 +32,12 @@
                       android:textSize="14pt"
                       android:layout_centerVertical="true"
             />
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                     android:layout_width="45pt"
                     android:layout_marginRight="12dp"
                     android:id="@+id/iv_image"
                     android:layout_toLeftOf="@+id/iv_arrow"
-                    android:src="@mipmap/ic_launcher"
+
                     android:layout_height="45pt"/>
 
             <ImageView android:layout_width="35dp" android:layout_height="35dp"
@@ -50,7 +50,7 @@
 
         </RelativeLayout>
         <View android:layout_width="match_parent" android:layout_height="1dp"
-              android:background="@color/gray"
+              android:background="@color/e6"
 
         />
 
@@ -65,7 +65,7 @@
                                             app:ievbackground="@color/white"
                                             android:layout_height="wrap_content"/>
         <View android:layout_width="match_parent" android:layout_height="1dp"
-              android:background="@color/gray"
+              android:background="@color/e6"
 
         />
 
@@ -82,7 +82,7 @@
                                             android:layout_height="wrap_content"/>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-              android:background="@color/gray"
+              android:background="@color/e6"
 
         />
 

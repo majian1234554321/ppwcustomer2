@@ -2,6 +2,7 @@ package com.uuzuche.lib_zxing.encoding;
 
 import android.graphics.Bitmap;
 
+import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -35,6 +36,9 @@ public final class EncodingHandler {
         Bitmap bitmap = Bitmap.createBitmap(width, height,
                 Bitmap.Config.ARGB_8888);
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+
+
+
         return bitmap;
     }
 }

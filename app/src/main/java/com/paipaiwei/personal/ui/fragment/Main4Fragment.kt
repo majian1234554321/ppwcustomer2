@@ -12,6 +12,8 @@ import com.yjhh.common.utils.SharedPreferencesUtils
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
+import com.paipaiwei.personal.ui.activity.FlutterDisActivity
+import com.paipaiwei.personal.ui.activity.SignActivity
 import com.paipaiwei.personal.ui.activity.UserInfoActivity
 import com.paipaiwei.personal.ui.activity.evaluate.EvaluateManageFragment
 import com.yjhh.common.utils.ImageLoaderUtils
@@ -26,19 +28,35 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+                // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+
+
+                startActivity(Intent(mActivity, FlutterDisActivity::class.java))
+
             }
 
             R.id.iev_browse -> {
+//                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
+//                    ARouter.getInstance()
+//                        .build("/DisplayActivity/Display")
+//                        .withString("displayTab", "RecentlyBrowseFragment")
+//                        .withInt("age", 23)
+//                        .navigation(context)
+//                } else {
+//
+//                }
+
+
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-                    ARouter.getInstance()
-                        .build("/DisplayActivity/Display")
-                        .withString("displayTab", "RecentlyBrowseFragment")
-                        .withInt("age", 23)
-                        .navigation(context)
+
+
+                    (parentFragment as MainFragment).startBrotherFragment(CollectionFragment.newInstance("浏览"))
+
                 } else {
 
                 }
+
+
             }
 
             R.id.iv_message -> {
@@ -54,7 +72,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
 
 
-                    (parentFragment as MainFragment).startBrotherFragment(CollectionFragment())
+                    (parentFragment as MainFragment).startBrotherFragment(CollectionFragment.newInstance("收藏"))
 
                 } else {
 
@@ -162,6 +180,8 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             }
 
             else -> {
+                startActivity(Intent(mActivity, SignActivity::class.java))
+
 
             }
         }
@@ -174,12 +194,24 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             tv_mobile.visibility = View.VISIBLE
             tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
 
-            ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+            ImageLoaderUtils.load(
+                mActivity,
+                profile_image,
+                "",
+                R.drawable.icon_login_touxiang,
+                R.drawable.icon_login_touxiang,0
+            )
 
         } else {
             tv_name.text = "请点击登录"
             tv_mobile.visibility = View.GONE
-            ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+            ImageLoaderUtils.load(
+                mActivity,
+                profile_image,
+                "",
+                R.drawable.icon_login_touxiang,
+                R.drawable.icon_login_touxiang,0
+            )
         }
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
@@ -188,12 +220,24 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
                 tv_mobile.visibility = View.VISIBLE
                 tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
-                ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+                ImageLoaderUtils.load(
+                    mActivity,
+                    profile_image,
+                    "",
+                    R.drawable.icon_login_touxiang,
+                    R.drawable.icon_login_touxiang,0
+                )
 
             } else {
                 tv_name.text = "请点击登录"
                 tv_mobile.visibility = View.GONE
-                ImageLoaderUtils.loadCircle(mActivity, profile_image,"",R.drawable.icon_login_touxiang,R.drawable.icon_login_touxiang)
+                ImageLoaderUtils.load(
+                    mActivity,
+                    profile_image,
+                    "",
+                    R.drawable.icon_login_touxiang,
+                    R.drawable.icon_login_touxiang,0
+                )
             }
         }
 

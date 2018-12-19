@@ -15,6 +15,7 @@ import com.paipaiwei.personal.ui.activity.login.ForgotPasswordFragment
 import com.paipaiwei.personal.ui.fragment.*
 
 import kotlinx.android.synthetic.main.activity_display.*
+import io.flutter.facade.Flutter
 
 
 @Route(path = "/DisplayActivity/Display")
@@ -111,6 +112,7 @@ class DisplayActivity : BaseActivity() {
                 fragments = IntegralFragment()
 
             }
+
 
             else -> {
 

@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.graphics.drawable.Drawable
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import kotlinx.android.synthetic.main.membershipcardfragment.*
@@ -7,6 +8,7 @@ import com.paipaiwei.personal.common.ScaleTransformer
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.ArrayMap
 import android.util.Log
+import android.widget.TextView
 import com.google.gson.Gson
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionMembershipService
@@ -37,37 +39,81 @@ class MembershipCardFragment : BaseFragment() {
 
         val list = ArrayList<Boolean>()
 
-        list.add(false)
-        list.add(false)
-        list.add(false)
-        list.add(false)
-        list.add(false)
-        list.add(false)
-        list.add(false)
-        list.add(false)
-
-        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        mRecyclerView.addItemDecoration(SpacesItemDecoration(Util.dip2px(mActivity, 25f),"TOP,BOTTOM"))
-
-      val mAdapter =   MembershipCardAdapter( list)
-
-        mRecyclerView.adapter = mAdapter
-
-        mAdapter.setOnItemClickListener { adapter, view, position ->
-            if (list[position]) {
-                list.set(position, false)
-                view.findViewById<ExpandableLayout>(R.id.expandable_layout).collapse()
-                //mAdapter.notifyItemChanged(position)
-            } else {
-                // expandButton.setSelected(true);
-                view.findViewById<ExpandableLayout>(R.id.expandable_layout).expand()
-                list.set(position, true)
-               // mAdapter.notifyItemChanged(position)
-            }
-
+        for (i in 0..18) {
+            list.add(false)
         }
 
 
+
+
+        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        mRecyclerView.addItemDecoration(SpacesItemDecoration(Util.dip2px(mActivity, 25f), "TOP,BOTTOM"))
+
+        val mAdapter = MembershipCardAdapter(list)
+
+        mRecyclerView.adapter = mAdapter
+
+        mAdapter.setOnItemChildClickListener { adapter, view, position ->
+
+            when (view.id) {
+                R.id.tv_useIf -> {
+                    if (list[position]) {
+                        list.set(position, false)
+                        (adapter.getViewByPosition(
+                            mRecyclerView,
+                            position,
+                            R.id.expandable_layout
+                        ) as ExpandableLayout).collapse()
+
+
+                        val textDrawable =
+                            (adapter.getViewByPosition(mRecyclerView, position, R.id.tv_useIf)) as TextView
+
+                        val drawableLeft = resources.getDrawable(
+                            R.drawable.icon_down
+                        )
+
+                        textDrawable.setCompoundDrawablesWithIntrinsicBounds(
+                            null,
+                            null, drawableLeft, null
+                        );
+                        textDrawable.compoundDrawablePadding = 4
+
+
+                        //mAdapter.notifyItemChanged(position)
+                    } else {
+                        list[position] = true
+                        (adapter.getViewByPosition(
+                            mRecyclerView,
+                            position,
+                            R.id.expandable_layout
+                        ) as ExpandableLayout).expand()
+
+
+                        val textDrawable =
+                            (adapter.getViewByPosition(mRecyclerView, position, R.id.tv_useIf)) as TextView
+                        val drawableLeft = resources.getDrawable(
+                            R.drawable.icon_up
+                        )
+                        textDrawable.setCompoundDrawablesWithIntrinsicBounds(
+                            null,
+                            null, drawableLeft, null
+                        );
+                        textDrawable.compoundDrawablePadding = 4
+                    }
+
+                }
+
+                R.id.tv_status -> {
+                    QRCodeFragment("aa").show(childFragmentManager, "TAG")
+                }
+
+                else -> {
+                }
+            }
+
+
+        }
 
 
     }

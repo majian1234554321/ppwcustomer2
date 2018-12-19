@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout android:layout_width="200pt"
+                    android:background="@color/white"
+                    android:visibility="gone"
+                    android:id="@+id/rl_title"
+                    android:layout_centerInParent="true"
+                    android:layout_height="129pt">
+
+
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/chacha08"
+                   android:id="@+id/iv_close"
+                   android:layout_alignParentRight="true"
+        />
+
+        <TextView android:layout_width="match_parent"
+                  android:text="签到成功！日常签到金币+1"
+                  android:textColor="#FF666666"
+                  android:gravity="center"
+                  android:layout_marginTop="20pt"
+                  android:textSize="12pt"
+                  android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="16.5pt"
+                android:layout_marginTop="42.5pt"
+                android:text="恭喜获得“一元拍”普通道具"
+                android:textColor="#FF000016"
+                android:textSize="12pt"
+        />
+
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="116pt"
+                android:text="去使用"
+                android:textSize="15pt"
+                app:strokeColor="#ffc536"
+                android:layout_marginBottom="15.5pt"
+                app:strokeWidth="1pt"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_height="39pt"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl_fish"
+                    android:background="@drawable/icon_finsh"
+                    android:layout_height="388pt">
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_height="24pt"
+                android:gravity="center"
+                android:layout_marginBottom="52pt"
+                android:layout_alignParentBottom="true"
+                android:text="成功离锦鲤更近一步"
+                android:textColor="#FF777777"
+                android:textSize="12pt"
+        />
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24pt"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/tv_text"
+                android:text="已增加**%概率"
+                android:layout_marginBottom="79pt"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FF333333"
+                android:textSize="16pt"
+        />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

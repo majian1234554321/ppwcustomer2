@@ -9,6 +9,7 @@ import com.yjhh.common.utils.SharedPreferencesUtils
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
+import com.paipaiwei.personal.common.utils.DataCleanManager
 import kotlinx.android.synthetic.main.settingfragment.*
 
 class SettingFragment : BaseFragment(), View.OnClickListener {
@@ -39,7 +40,8 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
             }
 
             R.id.iev_resetMemory -> {
-
+                DataCleanManager.clearAllCache(mActivity)
+                iev_resetMemory.setTextContent(DataCleanManager.getTotalCacheSize(mActivity))
             }
 
             R.id.iev_resetVersion -> {
@@ -72,6 +74,11 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
         iev_resetMemory.setOnClickListener(this)
         iev_resetVersion.setOnClickListener(this)
         tv_loginout.setOnClickListener(this)
+
+        iev_resetMemory.setTextContent(DataCleanManager.getTotalCacheSize(mActivity))
+
+
+
 
     }
 

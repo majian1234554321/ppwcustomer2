@@ -13,10 +13,43 @@
             android:layout_width="325pt"
             android:layout_marginTop="10pt"
 
-            android:id="@+id/iv_head"
-            android:background="@drawable/cheng"
+            android:id="@+id/rl_head"
+
             android:layout_height="133pt"
     >
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="拍拍味 | "
+                  android:textColor="#66333333"
+                  android:paddingLeft="19pt"
+                  android:id="@+id/tv_cardName"
+                  android:paddingTop="12pt"
+                  android:textSize="14pt"
+                  android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:layout_width="118pt"
+                android:layout_height="46pt"
+                android:text="1000代金券"
+                android:paddingLeft="19pt"
+                android:layout_centerVertical="true"
+                android:textColor="#FFFFFFFF"
+                android:textSize="33pt"
+        />
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="拍拍味 | "
+                  android:textColor="#66333333"
+                  android:layout_alignParentBottom="true"
+                  android:paddingLeft="19pt"
+                  android:id="@+id/tv_access"
+                  android:paddingBottom="9pt"
+                  android:textSize="14pt"
+                  android:layout_height="wrap_content"/>
+
 
         <TextView android:layout_width="75pt"
                   android:layout_alignParentRight="true"
@@ -32,10 +65,11 @@
                   android:layout_height="50pt"/>
 
         <TextView android:layout_width="wrap_content"
-                  android:text="使用条件"
+
                   android:paddingRight="12pt"
                   android:paddingBottom="9pt"
-                  android:drawableRight="@drawable/icon_up"
+                  android:id="@+id/tv_useIf"
+
                   android:layout_alignParentRight="true"
                   android:layout_alignParentBottom="true"
                   android:textColor="#FFFFFFFF"
@@ -50,7 +84,7 @@
             android:id="@+id/expandable_layout"
             android:layout_centerHorizontal="true"
             android:layout_width="325pt"
-            android:layout_below="@+id/iv_head"
+            android:layout_below="@+id/rl_head"
             android:layout_height="wrap_content"
             android:foregroundGravity="center"
             app:el_duration="300"
@@ -58,7 +92,7 @@
 
         <RelativeLayout android:layout_width="325pt"
                         android:elevation="4dp"
-                        android:background="@drawable/chengbf"
+                        android:background="@drawable/card_bottom"
                         android:layout_height="wrap_content">
 
 
@@ -66,10 +100,10 @@
                       android:layout_height="wrap_content"
                       android:paddingTop="5pt"
 
-                      android:paddingRight="15pt"
+                      android:paddingLeft="15pt"
                       android:textSize="11pt"
                       android:text="仅限大于券面额使用\n限品类：部分商品使用\n周一至周日可用"
-                      android:gravity="right"
+                      android:gravity="left"
             />
 
 

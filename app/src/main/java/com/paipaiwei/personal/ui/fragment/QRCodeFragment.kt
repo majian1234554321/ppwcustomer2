@@ -31,42 +31,45 @@ import com.yjhh.common.utils.GlideLoader
 import com.paipaiwei.personal.R
 
 import com.youth.banner.listener.OnBannerListener
+import com.uuzuche.lib_zxing.encoding.EncodingHandler.createQRCode
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Log
+import com.uuzuche.lib_zxing.encoding.CodeCreator
+import com.uuzuche.lib_zxing.encoding.EncodingHandler
+import me.jessyan.autosize.internal.CustomAdapt
 
 
 @SuppressLint("ValidFragment")
-class QRCodeFragment(var list: List<String>) : androidx.fragment.app.DialogFragment() {
+class QRCodeFragment(var value: String) : androidx.fragment.app.DialogFragment() {
+
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
-        val view = LayoutInflater.from(activity).inflate(R.layout.photofragment, null);
+        val view = LayoutInflater.from(activity).inflate(R.layout.qrcodefragment, null);
 
-        val tv_index = view.findViewById<TextView>(R.id.tv_index)
+
         val tv_tips = view.findViewById<TextView>(R.id.tv_tips)
 
-        val rl = view.findViewById<RelativeLayout>(R.id.rl)
-        rl.setOnClickListener { dismiss() }
+        val rl1 = view.findViewById<RelativeLayout>(R.id.rl1)
+        //rl.setOnClickListener { dismiss() }
+
+        val iv_qrcode = view.findViewById<ImageView>(R.id.iv_qrcode)
 
 
-        tv_tips.visibility = View.GONE
+        val bitmap = CodeCreator.createQRCode(value, rl1.layoutParams.width,rl1.layoutParams.width,null);
+        if (bitmap != null) {
+            iv_qrcode.setImageBitmap(bitmap)
+
+            Log.i("EncodingHandler", rl1.layoutParams.width.toString())
+        }
 
         val iv_close = view.findViewById<ImageView>(R.id.iv_close)
 
-        val banner = view.findViewById<Banner>(R.id.banner)
         iv_close.setOnClickListener {
             dismiss()
         }
-
-
-        banner.setImages(list)
-            .setImageLoader(GlideLoader())
-            .setDelayTime(10000000)
-            .start()
-
-        banner.setOnBannerListener {
-            dismiss()
-        }
-
 
         builder.setView(view)
         val dialog = builder.create()

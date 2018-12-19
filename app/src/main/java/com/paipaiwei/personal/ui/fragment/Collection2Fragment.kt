@@ -1,5 +1,8 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -12,10 +15,10 @@ import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
 import kotlinx.android.synthetic.main.collectionmain123.*
 
-class Collection2Fragment  :BaseFragment(), RecentlyBrowseView {
+class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
     var startindex = 0
     val pageSize = 10
-    val type = "0"    //默认null（null/0收藏 1足迹）
+    var type = "0"    //默认null（null/0收藏 1足迹）
     val itemType = "1"//默认null( null/0 店铺 1商品 2 文章)
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
@@ -25,6 +28,13 @@ class Collection2Fragment  :BaseFragment(), RecentlyBrowseView {
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
     override fun initView() {
+        val typeValue = arguments?.getString("type")
+        type = if ("收藏" == typeValue) {
+            "0"
+        } else {
+            "1"
+        }
+
 
         sectionUselessPresent = SectionUselessPresent(context, this)
 
@@ -70,13 +80,14 @@ class Collection2Fragment  :BaseFragment(), RecentlyBrowseView {
 
     override fun onSuccess(main1bean: RecentlyBrowseBean, flag: String) {
         if ("refresh" == flag) {
-            // mAdapter.onRefresh(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
-//            lists.clear()
-//            lists.addAll(main1bean.items)
-            mAdapter.setNewData(main1bean.items)
-
-            mAdapter.disableLoadMoreIfNotFullPage()
-            //mAdapter.notifyDataSetChanged()
+            if (startindex == 0 && main1bean.items.isEmpty()) {
+                val view = View.inflate(mActivity, R.layout.emptyview, null)
+                view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+                mAdapter.emptyView = view
+            } else {
+                mAdapter.setNewData(main1bean.items)
+                mAdapter.disableLoadMoreIfNotFullPage()
+            }
 
         } else {
             //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
@@ -97,6 +108,18 @@ class Collection2Fragment  :BaseFragment(), RecentlyBrowseView {
     fun updataContent() {
 
 
+    }
+
+
+    companion object {
+        fun newInstance(type: String?): Collection2Fragment {
+            val fragment = Collection2Fragment()
+            val bundle = Bundle()
+
+            bundle.putString("type", type)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
 

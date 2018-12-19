@@ -32,7 +32,7 @@ class SectionUselessModel {
     fun usercollect(type: String, itemType: String, pageIndex: Int, pageSize: Int): Observable<ResponseBody> {
         map.clear()
         map["type"] = type
-        map["share"] = itemType
+        map["itemType"] = itemType
         map["pageIndex"] = pageIndex.toString()
         map["pageSize"] = pageSize.toString()
         return ApiServices.getInstance().create(SectionUselessService::class.java).usercollect(map)

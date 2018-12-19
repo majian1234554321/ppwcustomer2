@@ -139,17 +139,17 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView {
                     .thumbnailScale(0.85f)
                     //                                            .imageEngine(new GlideEngine())  // for glide-V3
                     .imageEngine(Glide4Engine())    // for glide-V4
-                    .setOnSelectedListener(OnSelectedListener { uriList, pathList ->
+                    .setOnSelectedListener { uriList, pathList ->
                         // DO SOMETHING IMMEDIATELY HERE
                         Log.e("onSelected", "onSelected: pathList=$pathList")
-                    })
+                    }
                     .originalEnable(true)
                     .maxOriginalSize(10)
                     //.autoHideToolbarOnSingleTap(true)
-                    .setOnCheckedListener(OnCheckedListener { isChecked ->
+                    .setOnCheckedListener { isChecked ->
                         // DO SOMETHING IMMEDIATELY HERE
                         Log.e("isChecked", "onCheck: isChecked=$isChecked")
-                    })
+                    }
                     .forResult(10085)
             }
 

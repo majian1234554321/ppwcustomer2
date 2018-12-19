@@ -45,8 +45,7 @@
                         android:id="@+id/profile_image"
                         android:layout_width="74pt"
                         android:layout_height="74pt"
-                        android:src="@mipmap/ic_launcher"
-                       />
+                />
 
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_toLeftOf="@+id/iv_arrow"
@@ -93,6 +92,7 @@
 
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="horizontal"
+                      android:layout_marginTop="9.5pt"
                       android:background="@drawable/xuanfubeijing"
                       android:gravity="center"
                       android:layout_height="122.5pt">
@@ -115,8 +115,9 @@
                 />
                 <TextView android:layout_width="wrap_content" android:layout_height="33.5pt"
                           android:text="99"
+                          android:layout_marginTop="7pt"
                           android:id="@+id/tv_Integral"
-                          android:textStyle="bold"
+
                           android:gravity="center"
                           android:textColor="#FF333333"
                           android:textSize="24pt"
@@ -146,7 +147,8 @@
                 />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="99"
-                          android:textStyle="bold"
+                          android:layout_marginTop="7pt"
+
                           android:gravity="center"
                           android:textColor="#FF333333"
                           android:textSize="24pt"
@@ -175,7 +177,8 @@
                 />
                 <TextView android:layout_width="wrap_content" android:layout_height="33.5pt"
                           android:text="99"
-                          android:textStyle="bold"
+                          android:layout_marginTop="7pt"
+
                           android:textColor="#FF333333"
                           android:textSize="24pt"
                 />
@@ -189,6 +192,8 @@
                 android:id="@+id/iev_evaluate"
                 app:ievtextValue="我的评价"
                 app:ievunderline="true"
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
                 app:ievdrwableleft="@drawable/icon_pingjia"
                 app:ievtextpadding="@dimen/sp_12"
                 app:ievbackground="@color/white"
@@ -199,6 +204,8 @@
 
 
         <com.yjhh.common.view.ItemEntryView
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
                 android:id="@+id/iev_message"
                 app:ievtextValue="我的道具"
                 app:ievunderline="true"
@@ -211,6 +218,8 @@
         />
 
         <com.yjhh.common.view.ItemEntryView
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
                 android:id="@+id/iev_Collection"
                 app:ievtextValue="我的收藏"
                 app:ievdrwableleft="@drawable/icon_shoucang"
@@ -222,7 +231,8 @@
 
 
         <com.yjhh.common.view.ItemEntryView
-
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
 
                 android:id="@+id/iev_browse"
                 app:ievunderline="true"
@@ -233,6 +243,8 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
         <com.yjhh.common.view.ItemEntryView
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
                 android:id="@+id/iev_service"
                 app:ievdrwableleft="@drawable/icon_bangzhu"
                 app:ievtextValue="帮助中心" app:ievunderline="true"
@@ -244,7 +256,8 @@
         <com.yjhh.common.view.ItemEntryView
                 android:id="@+id/iev_about"
                 app:ievtextValue="关于我们"
-
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
                 app:ievdrwableleft="@drawable/icon_guanyu"
                 app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
                 app:ievtextColor="@color/all_3"

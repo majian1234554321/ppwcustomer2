@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content">
+
+    <RelativeLayout android:layout_width="256pt"
+                    android:id="@+id/rl"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/qrcodebg"
+                    android:layout_height="313pt">
+
+        <TextView
+                android:layout_width="154pt"
+                android:layout_height="20pt"
+                android:id="@+id/iv_tips"
+                android:layout_marginTop="34pt"
+                android:layout_centerHorizontal="true"
+                android:text="请将二维码出示给核销员"
+                android:textColor="#FF333333"
+                android:textSize="14pt"
+        />
+
+        <RelativeLayout android:layout_width="146pt"
+                        android:id="@+id/rl1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/iv_tips"
+                        android:layout_marginTop="16.5pt"
+                        android:layout_height="146pt">
+            <ImageView android:layout_width="match_parent"
+                       android:id="@+id/iv_qrcode"
+                       android:layout_height="match_parent"
+
+            />
+
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+    <ImageView android:layout_width="wrap_content"
+               android:layout_marginTop="18.5pt"
+               android:id="@+id/iv_close"
+               android:layout_centerHorizontal="true"
+               android:src="@drawable/qrcode_close"
+               android:layout_below="@id/rl"
+               android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
