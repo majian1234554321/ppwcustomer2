@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.paipaiwei.personal.apis.SignService
 import com.paipaiwei.personal.bean.SignBean
+import com.paipaiwei.personal.bean.SignResultBean
 import com.paipaiwei.personal.view.SignView
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
@@ -40,7 +41,9 @@ class SignPresent(var context: Context, var view: SignView) : BasePresent() {
         toSubscribe2(ob.sign(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 Log.i("userSignInList", response)
-                view.onSuccessSign(response)
+
+               val model =  gson.fromJson<SignResultBean>(response,SignResultBean::class.java)
+                view.onSuccessSign(model)
             }
 
             override fun onFault(message: String) {
