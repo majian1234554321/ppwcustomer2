@@ -140,7 +140,7 @@
 
         <TextView
                 android:layout_width="230pt"
-                android:text="已签到"
+                tools:text="已签到"
                 android:id="@+id/mb_sign"
                 android:gravity="center"
                 android:background="@drawable/qiandao_weiqia"

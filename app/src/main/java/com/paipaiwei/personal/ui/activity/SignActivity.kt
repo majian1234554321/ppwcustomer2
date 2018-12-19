@@ -21,6 +21,13 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
         }
 
 
+        if (response?.ifSign!!){
+            mb_sign.text = "已签到"
+        }else{
+            mb_sign.text = "签到"
+        }
+
+
     }
 
     override fun onSuccessSign(response: SignResultBean?) {
@@ -30,7 +37,12 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
 
         if (response?.ifGetJinLi!!) {
             SignFragment("A").show(supportFragmentManager, "TAG")
+        }else{
+
         }
+
+        present?.userSignInList()
+
 
     }
 
