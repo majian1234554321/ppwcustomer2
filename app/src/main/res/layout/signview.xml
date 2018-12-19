@@ -6,14 +6,14 @@
                 android:layout_height="wrap_content">
     <ImageView android:layout_width="21pt" android:layout_height="23.5pt"
                android:layout_centerHorizontal="true"
-
+               android:background="@drawable/jinli11"
                android:layout_marginBottom="2pt"
                android:id="@+id/iv_head"
     />
 
     <ImageView android:layout_width="31pt" android:layout_height="31pt"
                android:layout_below="@+id/iv_head"
-
+               tools:background="@drawable/icon_sign"
                android:layout_centerHorizontal="true"
                android:id="@+id/iv_mid"
                android:layout_marginBottom="13pt"

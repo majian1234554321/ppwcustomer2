@@ -55,7 +55,7 @@ class SignView @JvmOverloads constructor(
                 if (type.ifPai) {
                     iv_mid.setBackgroundResource(R.drawable.beforeunsignpai) //漏签 有拍
                 } else {
-                    iv_mid.setBackgroundResource(R.drawable.colore6_dot)  //漏签 无拍
+                    iv_mid.setBackgroundResource(R.drawable.color_dot)  //漏签 无拍
                 }
             }
             else -> {
