@@ -6,5 +6,7 @@ import com.paipaiwei.personal.bean.IntegralBean
 interface IntegralView{
     fun onSuccess(value : IntegralBean, flag:String)
 
+
+
     fun onFault(errorMsg: String?)
 }

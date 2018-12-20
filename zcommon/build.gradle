@@ -135,6 +135,6 @@ dependencies {
     api 'com.amap.api:location:4.4.0'
    // api 'com.amap.api:navi-3dmap:6.5.0_3dmap6.5.0'
     api 'com.amap.api:search:6.5.0.1'
-
+    api 'top.zibin:Luban:1.1.8'
 }
 

@@ -27,7 +27,7 @@ import java.util.function.Function
 import kotlin.collections.ArrayList
 
 class SectionUselessPresent(var context: Context) : BasePresent() {
-    lateinit var recentlyBrowseView: RecentlyBrowseView
+     var recentlyBrowseView: RecentlyBrowseView?= null
 
     lateinit var myMessageView: MyMessageView
 
@@ -59,12 +59,12 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
 
                 val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
 
-                recentlyBrowseView.onSuccess(recentlyBrowseBean, flag)
+                recentlyBrowseView?.onSuccess(recentlyBrowseBean, flag)
             }
 
             override fun onFault(message: String) {
                 Log.i("coupon", message)
-                recentlyBrowseView.onFault(message)
+                recentlyBrowseView?.onFault(message)
             }
 
         })
@@ -79,12 +79,12 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
 
                 val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
 
-                recentlyBrowseView.onSuccess(recentlyBrowseBean, flag)
+                recentlyBrowseView?.onSuccess(recentlyBrowseBean, flag)
             }
 
             override fun onFault(message: String) {
                 Log.i("coupon", message)
-                recentlyBrowseView.onFault(message)
+                recentlyBrowseView?.onFault(message)
             }
 
         })
@@ -97,14 +97,14 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
             override fun processValue(response: String?) {
                 Log.i("coupon", response)
 
-                val recentlyBrowseBean = gson.fromJson<RecentlyBrowseBean>(response, RecentlyBrowseBean::class.java)
+                val recentlyBrowseBean = gson.fromJson<IntegralBean>(response, IntegralBean::class.java)
 
-                recentlyBrowseView.onSuccess(recentlyBrowseBean, flag)
+                integralView?.onSuccess(recentlyBrowseBean, flag)
             }
 
             override fun onFault(message: String) {
                 Log.i("coupon", message)
-                recentlyBrowseView.onFault(message)
+                integralView?.onFault(message)
             }
 
         })

@@ -15,7 +15,10 @@
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:paddingLeft="15pt"
+                   android:id="@+id/iv_back"
                    android:paddingTop="34.5pt"
+                   android:paddingBottom="15pt"
+                   android:paddingRight="15pt"
                    android:src="@drawable/icon_arrow_left_white"
         />
 
@@ -34,6 +37,7 @@
             <TextView android:layout_width="wrap_content"
                       android:textColor="#F9572D"
                       tools:text="99天"
+                      android:id="@+id/sign_count"
                       android:gravity="top"
                       android:layout_centerInParent="true"
                       android:textSize="24pt"
@@ -143,7 +147,7 @@
                 tools:text="已签到"
                 android:id="@+id/mb_sign"
                 android:gravity="center"
-                android:background="@drawable/qiandao_weiqia"
+
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="125pt"
                 android:textColor="#FFFFFFFF"

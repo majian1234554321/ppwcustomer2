@@ -13,7 +13,7 @@ class IntegralAdapter :
     override fun convert(helper: BaseViewHolder?, item: IntegralBean.ItemsBean?) {
 
         helper?.setText(R.id.tv_count, "+${item?.money}")
-        helper?.setText(R.id.tv_remark, item?.remark)
+        helper?.setText(R.id.tv_remark, item?.content)
         helper?.setText(R.id.tv_time, TimeUtil.stampToDate(item?.createdTime.toString()))
 
 

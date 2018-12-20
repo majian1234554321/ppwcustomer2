@@ -40,6 +40,7 @@ public class IntegralBean {
          * type : 1
          */
 
+        public String content;
         public double balance;
         public int createdTime;
         public double money;

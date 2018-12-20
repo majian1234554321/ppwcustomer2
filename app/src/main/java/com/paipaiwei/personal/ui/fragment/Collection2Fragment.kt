@@ -10,6 +10,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Collection123Adapter
+import com.paipaiwei.personal.adapter.Collection321Adapter
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
@@ -23,7 +24,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
-    private lateinit var mAdapter: Collection123Adapter
+    private lateinit var mAdapter: Collection321Adapter
     lateinit var sectionUselessPresent: SectionUselessPresent
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
@@ -38,7 +39,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
 
         sectionUselessPresent = SectionUselessPresent(context, this)
 
-        mAdapter = Collection123Adapter(lists)
+        mAdapter = Collection321Adapter(lists)
 
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
 
@@ -88,6 +89,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
                 mAdapter.setNewData(main1bean.items)
                 mAdapter.disableLoadMoreIfNotFullPage()
             }
+
 
         } else {
             //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)

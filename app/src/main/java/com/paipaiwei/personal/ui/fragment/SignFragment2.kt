@@ -35,61 +35,17 @@ import kotlinx.android.synthetic.main.signfragment.*
 
 
 @SuppressLint("ValidFragment")
-class SignFragment(var value: String) : androidx.fragment.app.DialogFragment() {
+class SignFragment2(var value: String) : androidx.fragment.app.DialogFragment() {
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
-        val view = LayoutInflater.from(activity).inflate(R.layout.signfragment, null);
+        val view = LayoutInflater.from(activity).inflate(R.layout.signfragment2, null);
 
-        val rl_title = view.findViewById<MaterialCardView>(R.id.rl_title)
-        val iv_close = view.findViewById<ImageView>(R.id.iv_close)
-
-        val tv_text = view.findViewById<TextView>(R.id.tv_text)
-
-        val rl_fish = view.findViewById<RelativeLayout>(R.id.rl_fish)
-
-        val curTranslationY = rl_fish.getTranslationY();
-        val translationY = ObjectAnimator.ofFloat(
-            rl_fish, "translationY",
-            curTranslationY, curTranslationY + 500f
-        );
-
-        val scaleY = ObjectAnimator.ofFloat(rl_fish, "scaleY", 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
-        val scaleX = ObjectAnimator.ofFloat(rl_fish, "scaleX", 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
-
-        val animSet = AnimatorSet()
-        animSet.play(scaleY).with(scaleX)
-        animSet.duration = 5000
-        animSet.start()
-
-        animSet.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(animation: Animator?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
-                rl_title.visibility = View.VISIBLE
-            }
-
-            override fun onAnimationCancel(animation: Animator?) {
-
-            }
-
-            override fun onAnimationStart(animation: Animator?) {
-
-            }
-
-        })
+        view.findViewById<TextView>(R.id.tv_tips).text = value
 
 
 
-
-
-
-        iv_close.setOnClickListener {
-            dismiss()
-        }
 
         builder.setView(view)
         val dialog = builder.create()
