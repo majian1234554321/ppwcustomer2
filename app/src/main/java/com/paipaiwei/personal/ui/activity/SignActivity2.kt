@@ -21,7 +21,6 @@ import com.paipaiwei.personal.ui.fragment.SignFragment2
 import com.paipaiwei.personal.view.SignView
 
 import com.yjhh.common.base.BaseActivity
-import com.zzhoujay.richtext.RichText
 import io.flutter.facade.Flutter
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
@@ -32,7 +31,7 @@ import io.flutter.view.FlutterView
 import java.util.*
 
 
-class SignActivity : BaseActivity(), View.OnClickListener, SignView {
+class SignActivity2 : BaseActivity(), View.OnClickListener, SignView {
     override fun onSuccessList(response: SignBean?) {
 
         response?.items?.forEachIndexed { index, itemsBean ->
@@ -79,9 +78,29 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
 
 
 
-        RichText.from(response.rule).into(text);
+        val fv = Flutter.createView(this@SignActivity2, lifecycle, "singBottomView")
 
 
+        EventChannel(
+            fv, "com.jzhu.counter/plugin"
+        ).setStreamHandler(object : EventChannel.StreamHandler {
+            override fun onListen(p0: Any?, p1: EventChannel.EventSink?) {
+                p1?.success(response.rule)
+            }
+
+            override fun onCancel(p0: Any?) {
+
+            }
+
+        })
+
+
+
+
+
+        layout.topMargin = rl1.measuredHeight
+
+        addContentView(fv, layout)
 
     }
 
@@ -137,7 +156,7 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
         setContentView(R.layout.activity_singn)
 
 
-        present = SignPresent(this@SignActivity, this)
+        present = SignPresent(this@SignActivity2, this)
 
         present?.userSignInList()
 
@@ -160,12 +179,6 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
 //        tx.commit()
 
 
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        RichText.clear(this@SignActivity);
     }
 
 
