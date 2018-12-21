@@ -1,14 +1,12 @@
 package com.paipaiwei.personal.ui.fragment
 
 import android.content.Intent
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Main1FragmentAdapter
 import com.paipaiwei.personal.bean.MainFinalDataBean
@@ -103,7 +101,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             10086 -> {
                 if (data != null) {
 
-                    val content = data?.getStringExtra("result_string");
+                    val content = data.getStringExtra("result_string")
                     tv_search.text = content
                 }
             }

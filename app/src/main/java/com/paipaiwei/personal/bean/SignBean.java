@@ -18,6 +18,7 @@ public class SignBean {
     public String daysTextHtml;
     public boolean ifLogin;
     public boolean ifSign;
+    public String rule;
     public List<ItemsBean> items;
 
     public static class ItemsBean {

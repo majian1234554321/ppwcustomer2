@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -8,154 +12,167 @@
         android:layout_height="match_parent"
         tools:context=".ui.activity.SignActivity">
 
+
     <RelativeLayout android:layout_width="match_parent"
-                    android:background="@drawable/gradient_l"
-                    android:layout_height="246pt">
+                    android:id="@+id/rl1"
+                    android:layout_height="wrap_content">
 
-        <ImageView android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:paddingLeft="15pt"
-                   android:id="@+id/iv_back"
-                   android:paddingTop="34.5pt"
-                   android:paddingBottom="15pt"
-                   android:paddingRight="15pt"
-                   android:src="@drawable/icon_arrow_left_white"
-        />
+        <RelativeLayout android:layout_width="match_parent"
+                        android:background="@drawable/gradient_l"
+                        android:layout_height="246pt">
 
-        <ImageView android:layout_width="107pt" android:layout_height="27pt"
-                   android:layout_centerHorizontal="true"
-                   android:layout_marginTop="50pt"
-                   android:src="@drawable/zitisheji"
-        />
-
-        <RelativeLayout android:layout_width="166pt"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="82pt"
-                        android:background="@drawable/qiandaobeijing"
-                        android:layout_height="95pt">
-
-            <TextView android:layout_width="wrap_content"
-                      android:textColor="#F9572D"
-                      tools:text="99天"
-                      android:id="@+id/sign_count"
-                      android:gravity="top"
-                      android:layout_centerInParent="true"
-                      android:textSize="24pt"
-                      android:layout_height="35pt"
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:paddingLeft="15pt"
+                       android:id="@+id/iv_back"
+                       android:paddingTop="34.5pt"
+                       android:paddingBottom="15pt"
+                       android:paddingRight="15pt"
+                       android:src="@drawable/icon_arrow_left_white"
             />
+
+            <ImageView android:layout_width="107pt" android:layout_height="27pt"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginTop="50pt"
+                       android:src="@drawable/zitisheji"
+            />
+
+            <RelativeLayout android:layout_width="166pt"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="82pt"
+                            android:background="@drawable/qiandaobeijing"
+                            android:layout_height="95pt">
+
+                <TextView android:layout_width="wrap_content"
+                          android:textColor="#F9572D"
+                          tools:text="99天"
+                          android:id="@+id/sign_count"
+                          android:gravity="top"
+                          android:layout_centerInParent="true"
+                          android:textSize="24pt"
+                          android:layout_height="35pt"
+                />
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_marginTop="166.5pt"
 
+                        android:background="@drawable/di00"
+                        android:layout_height="242pt">
+            <LinearLayout
+                    android:layout_marginTop="25.5pt" android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_5"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_6"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+
+                <com.paipaiwei.personal.ui.customview.SignView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/sv_7"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"/>
+                <View android:layout_width="16pt" android:layout_height="1pt"
+                      android:background="@color/colorPrimary"
+                      android:layout_gravity="center"
+                />
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="已连续签到1天"
+                    android:layout_marginTop="188pt"
+                    android:textColor="#FF333333"
+                    android:textSize="11pt"
+            />
+
+
+            <TextView
+                    android:layout_width="230pt"
+                    tools:text="已签到"
+                    android:id="@+id/mb_sign"
+                    android:gravity="center"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="125pt"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="18pt"
+                    android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
     </RelativeLayout>
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_marginTop="166.5pt"
-                    android:background="@drawable/di00"
-                    android:layout_height="242pt">
-        <LinearLayout
-                android:layout_marginTop="25.5pt" android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content" android:layout_height="wrap_content">
-
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_3"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_4"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_5"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_6"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-
-            <com.paipaiwei.personal.ui.customview.SignView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/sv_7"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"/>
-            <View android:layout_width="16pt" android:layout_height="1pt"
-                  android:background="@color/colorPrimary"
-                  android:layout_gravity="center"
-            />
-
-        </LinearLayout>
-
-        <TextView
-                android:id="@+id/tv_tips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="已连续签到1天"
-                android:layout_marginTop="188pt"
-                android:textColor="#FF333333"
-                android:textSize="11pt"
-        />
 
 
-        <TextView
-                android:layout_width="230pt"
-                tools:text="已签到"
-                android:id="@+id/mb_sign"
-                android:gravity="center"
-
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="125pt"
-                android:textColor="#FFFFFFFF"
-                android:textSize="18pt"
-                android:layout_height="wrap_content"/>
 
 
-    </RelativeLayout>
+
 
 
 </RelativeLayout>

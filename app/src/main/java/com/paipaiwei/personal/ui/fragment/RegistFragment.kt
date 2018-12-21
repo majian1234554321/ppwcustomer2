@@ -18,6 +18,7 @@ import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.common.utils.SpannableStringUtils
 import com.paipaiwei.personal.present.RegByAccountPresent
 import com.paipaiwei.personal.view.RegistView
+import com.yjhh.common.Constants.MAX_COUNT_TIME
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -91,7 +92,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
     }
 
 
-    val MAX_COUNT_TIME = 5L
+
     private lateinit var regByAccountPresent: RegByAccountPresent
     override fun initView() {
 
@@ -145,7 +146,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
         compositeDisposable.add(disposable)
 
 
-        var clickableSpan: ClickableSpan = object : ClickableSpan() {
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
 
@@ -164,7 +165,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
             }
         }
 
-        var clickableSpan2: ClickableSpan = object : ClickableSpan() {
+        val clickableSpan2: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
 

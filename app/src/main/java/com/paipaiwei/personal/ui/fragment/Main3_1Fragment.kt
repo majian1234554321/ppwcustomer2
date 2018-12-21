@@ -1,26 +1,19 @@
 package com.paipaiwei.personal.ui.fragment
 
-import android.nfc.tech.MifareUltralight
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
-import androidx.recyclerview.widget.LinearLayoutManager
+
 import android.util.Log
-import android.view.View
+
 import android.widget.Toast
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
-import com.scwang.smartrefresh.layout.api.RefreshLayout
+
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.yjhh.common.api.SectionOrderService
+
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.adapter.Main2FragmentAdapter
+
 import com.paipaiwei.personal.adapter.PullToRefreshAdapter
-import com.paipaiwei.personal.bean.Main1FootBean
-import com.paipaiwei.personal.bean.MainFinalDataBean
+
 import com.paipaiwei.personal.present.SectionOrderPresent
-import com.paipaiwei.personal.view.SectionOrderView
-import kotlinx.android.synthetic.main.main1fragment.view.*
+
 
 import kotlinx.android.synthetic.main.main2_1fragment.*
 

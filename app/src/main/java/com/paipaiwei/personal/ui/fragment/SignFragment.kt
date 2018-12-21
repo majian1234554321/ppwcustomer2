@@ -55,12 +55,15 @@ class SignFragment(var value: String) : androidx.fragment.app.DialogFragment() {
             curTranslationY, curTranslationY + 500f
         );
 
-        val scaleY = ObjectAnimator.ofFloat(rl_fish, "scaleY", 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
-        val scaleX = ObjectAnimator.ofFloat(rl_fish, "scaleX", 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
+        val scaleY = ObjectAnimator.ofFloat(rl_fish, "alpha", 0f,0.2f, 0.4f, 0.8f, 1f, 1f, 1f, 1f, 1f, 1f, 0.8f, 0.4f, 0.2f, 0f)
+        //val scaleX = ObjectAnimator.ofFloat(rl_fish, "scaleX", 0f,1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
+
+
+
 
         val animSet = AnimatorSet()
-        animSet.play(scaleY).with(scaleX)
-        animSet.duration = 5000
+        animSet.play(scaleY)
+        animSet.duration = 3000
         animSet.start()
 
         animSet.addListener(object : Animator.AnimatorListener {

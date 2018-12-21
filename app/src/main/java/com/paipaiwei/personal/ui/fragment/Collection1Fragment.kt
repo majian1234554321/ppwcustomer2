@@ -1,17 +1,14 @@
 package com.paipaiwei.personal.ui.fragment
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Collection123Adapter
-import com.paipaiwei.personal.adapter.RecentlyBrowseAdapter
-import com.paipaiwei.personal.bean.MyMessageBean
+
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
@@ -25,7 +22,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
-    private lateinit var mAdapter: Collection123Adapter
+    private  var mAdapter: Collection123Adapter? = null
     lateinit var sectionUselessPresent: SectionUselessPresent
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
@@ -47,7 +44,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
 
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
 
-        mAdapter.setOnLoadMoreListener({
+        mAdapter?.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
 
@@ -91,26 +88,27 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
             if (startindex==0&&main1bean.items.isEmpty()) {
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
-                mAdapter.emptyView = view
+                mAdapter?.emptyView = view
             }else{
-                mAdapter.setNewData(main1bean.items)
-                mAdapter.disableLoadMoreIfNotFullPage()
+                mAdapter?.setNewData(main1bean.items)
+                mAdapter?.disableLoadMoreIfNotFullPage()
             }
 
 
         } else {
 
             if (main1bean.items.size < pageSize) {
-                mAdapter.loadMoreEnd()
+                mAdapter?.loadMoreEnd()
             } else {
-                mAdapter.loadMoreEnd()
+                mAdapter?.loadMoreEnd()
             }
 
         }
     }
 
     override fun onFault(errorMsg: String?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
     }
 
 

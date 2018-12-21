@@ -17,7 +17,6 @@ public class BottomBehavior extends CoordinatorLayout.Behavior {
     private int id;
     private float bottomPadding;
     private int screenWidth;
-    private float designWidth = 375.0f;//设计视图的宽度，通常是375dp，
 
     public BottomBehavior() {
         super();
@@ -38,28 +37,30 @@ public class BottomBehavior extends CoordinatorLayout.Behavior {
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
+    public boolean onDependentViewChanged(@NonNull CoordinatorLayout parent, @NonNull View child,@NonNull View dependency) {
         return dependency.getId() == id;
     }
 
+
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
+    public boolean layoutDependsOn(@NonNull CoordinatorLayout parent,@NonNull View child,@NonNull View dependency) {
+        //设计视图的宽度，通常是375dp，
+        float designWidth = 375.0f;
         child.setTranslationY(-(dependency.getTop() - (screenWidth * bottomPadding / designWidth)));
         Log.e("BottomBehavior", "layoutDependsOn() called with: parent = [" + dependency.getTop());
         return true;
     }
 
 
-    public static int getScreenWidth(Context context) {
+    private static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = null;
         if (wm != null) {
             display = wm.getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
-            int width = size.x;
-//            int height = size.y;
-            return width;
+            //            int height = size.y;
+            return size.x;
         }
         return 0;
     }

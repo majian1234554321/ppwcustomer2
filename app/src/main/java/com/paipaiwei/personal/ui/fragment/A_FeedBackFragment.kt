@@ -169,14 +169,14 @@ class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
                 // start(PhotoFragment(lists[position]))
 
                 val dialog = PhotoFragment(lists)
-                dialog?.show(childFragmentManager, "TAG")
+                dialog.show(childFragmentManager, "TAG")
             }
 
         }
 
 
 
-        mAdapter?.setOnItemChildClickListener { adapter, view, position ->
+        mAdapter?.setOnItemChildClickListener { _, _, position ->
 
 
             lists.removeAt(position)
@@ -273,7 +273,7 @@ class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
                     }
 
                     Toast.makeText(mActivity, "请先设置权限", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(Settings.ACTION_SEARCH_SETTINGS);
+                    val intent = Intent(Settings.ACTION_SEARCH_SETTINGS)
                     startActivity(intent)
 
                 }

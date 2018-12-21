@@ -28,10 +28,10 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+                 (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
 
-                startActivity(Intent(mActivity, FlutterDisActivity::class.java))
+                //startActivity(Intent(mActivity, FlutterDisActivity::class.java))
 
             }
 

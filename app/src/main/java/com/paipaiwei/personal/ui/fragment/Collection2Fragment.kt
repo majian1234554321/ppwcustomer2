@@ -24,7 +24,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
-    private lateinit var mAdapter: Collection321Adapter
+    private  var mAdapter: Collection321Adapter? = null
     lateinit var sectionUselessPresent: SectionUselessPresent
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
@@ -43,7 +43,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
 
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
 
-        mAdapter.setOnLoadMoreListener({
+        mAdapter?.setOnLoadMoreListener({
             loadMore()
         }, mRecyclerView)
 
@@ -84,19 +84,19 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
             if (startindex == 0 && main1bean.items.isEmpty()) {
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
-                mAdapter.emptyView = view
+                mAdapter?.emptyView = view
             } else {
-                mAdapter.setNewData(main1bean.items)
-                mAdapter.disableLoadMoreIfNotFullPage()
+                mAdapter?.setNewData(main1bean.items)
+                mAdapter?.disableLoadMoreIfNotFullPage()
             }
 
 
         } else {
             //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
             if (main1bean.items.size < pageSize) {
-                mAdapter.loadMoreEnd()
+                mAdapter?.loadMoreEnd()
             } else {
-                mAdapter.loadMoreEnd()
+                mAdapter?.loadMoreEnd()
             }
 
         }

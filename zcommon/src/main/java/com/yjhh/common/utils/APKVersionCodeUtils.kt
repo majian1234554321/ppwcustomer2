@@ -48,7 +48,7 @@ object APKVersionCodeUtils {
      * @return 如果没有获取成功，那么返回值为空
      */
     fun getChannelName(): String {
-        var channelName: String = "company"
+        var channelName: String? = "company"
         try {
             val packageManager = BaseApplication.getIns().packageManager
             if (packageManager != null) {
@@ -72,7 +72,7 @@ object APKVersionCodeUtils {
             channelName = "company"
         }
 
-        return channelName
+        return channelName.toString()
     }
 
     fun startUpdate(ctx: Context, onDownloadListener: OnDownloadListener) {

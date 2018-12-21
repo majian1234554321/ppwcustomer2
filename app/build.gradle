@@ -31,7 +31,7 @@ android {
 //        }
 
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", 'x86'
         }
 
 
@@ -65,12 +65,17 @@ android {
     // 签名配置
     signingConfigs {
         release {
+
+
+
             //D:\develop\ppwcustomer\app\keystore\release.jks
             try {
                 storeFile file("D:\\develop\\ppwcustomer\\app\\keystore\\release.jks")
-                storePassword "123456"
+                storePassword "123456789"
                 keyAlias "123456"
-                keyPassword "123456"
+                keyPassword "123456789"
+
+
             } catch (ex) {
 //                throw new InvalidUserDataException(ex.toString())
             }
@@ -82,25 +87,11 @@ android {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     buildTypes {
         release {
             ndk {
-                abiFilters "armeabi-v7a"
+                //设置支持的SO库架构
+                abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
             }
             minifyEnabled false
             zipAlignEnabled false
@@ -134,49 +125,47 @@ android {
         abortOnError false
     }
 
+     /* productFlavors {
+
+          company {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "company"]
+          }
+      *//*    _360 {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+          }
+
+          yingyongbao {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+          }
+          wandoujia {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+          }
+          xiaomi {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+          }
+
+          huawei {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+          }
+
+          vo {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vo"]
+          }
+
+          ali {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ali"]
+          }
+
+          baidu {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+          }
+
+          meizu {
+              manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+          }*//*
 
 
-    productFlavors {
-
-        company {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "company"]
-        }
-        _360 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
-        }
-
-        yingyongbao {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
-        }
-        wandoujia {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
-        }
-        xiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-        }
-
-        huawei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
-        }
-
-        vo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vo"]
-        }
-
-        ali {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ali"]
-        }
-
-        baidu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-        }
-
-        meizu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
-        }
-
-
-    }
+      }*/
 
 
 }

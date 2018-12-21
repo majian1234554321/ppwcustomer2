@@ -30,14 +30,10 @@ import androidx.annotation.Nullable
 import com.yjhh.common.utils.GlideLoader
 import com.paipaiwei.personal.R
 
-import com.youth.banner.listener.OnBannerListener
-import com.uuzuche.lib_zxing.encoding.EncodingHandler.createQRCode
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+
 import android.util.Log
 import com.uuzuche.lib_zxing.encoding.CodeCreator
-import com.uuzuche.lib_zxing.encoding.EncodingHandler
-import me.jessyan.autosize.internal.CustomAdapt
+
 
 
 @SuppressLint("ValidFragment")
