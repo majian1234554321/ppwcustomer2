@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="108pt"
+                android:layout_height="108pt">
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+               android:id="@+id/iv_image"
+    />
+
+    <TextView android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:text="拍拍味的店铺门212121212"
+              android:textColor="#FF333333"
+              android:id="@+id/tv_info"
+              android:background="#CCFFFFFF"
+              android:textSize="12pt"
+              android:paddingLeft="4pt"
+              android:paddingRight="4pt"
+              android:singleLine="true"
+              android:maxEms="7"
+              android:gravity="center"
+              android:layout_height="25pt"/>
+
+</RelativeLayout>

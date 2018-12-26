@@ -20,8 +20,10 @@ import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
 import com.paipaiwei.personal.apis.CommonService
+import com.paipaiwei.personal.bean.InitBean
 
 import com.paipaiwei.personal.view.CommonView
+import com.yjhh.common.utils.SharedPreferencesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -37,20 +39,20 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
 
         toSubscribe2(
             ApiServices.getInstance().create(CommonService::class.java)
-            .uploadFile(body), object : ProcessObserver2(context, true) {
-            override fun processValue(response: String?) {
+                .uploadFile(body), object : ProcessObserver2(context, true) {
+                override fun processValue(response: String?) {
 
-                var sb = StringBuilder()
-                sb.append("{\"item\":").append(response).append("}")
-                Log.i("UpLoadFile", sb.toString())
-                view.onSuccess(sb.toString())
-            }
+                    var sb = StringBuilder()
+                    sb.append("{\"item\":").append(response).append("}")
+                    Log.i("UpLoadFile", sb.toString())
+                    view.onSuccess(sb.toString())
+                }
 
-            override fun onFault(message: String) {
-                Log.i("UpLoadFile", message)
-                view.onFault(message)
+                override fun onFault(message: String) {
+                    Log.i("UpLoadFile", message)
+                    view.onFault(message)
+                }
             }
-        }
         )
 
 
@@ -92,9 +94,7 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
     }
 
 
-
-
-    fun checkVersion(){
+    fun checkVersion() {
         ApiServices.getInstance()
             .create(CommonService::class.java)
             .version()
@@ -104,7 +104,7 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
                 override fun processValue(response: String?) {
                     Log.i("MainActivity", response)
 
-                   view.onSuccess(response)
+                    view.onSuccess(response)
 
 
                 }
@@ -119,35 +119,27 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
     }
 
 
-
-   /* fun  applyShop(){
+    fun init() {
         ApiServices.getInstance()
-            .create(ShopSetServices::class.java)
-            .applyShop()
+            .create(CommonService::class.java)
+            .init()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
-                    Log.i("01018", response)
-                    if (response?.contains("\"")!!) {
-                        val intent = Intent(mActivity, BackViewActivity::class.java)
-                        intent.putExtra("url", response.replace("\"", ""))
-                        startActivity(intent)
-                    } else {
-                        val intent = Intent(mActivity, BackViewActivity::class.java)
-                        intent.putExtra("url", response)
-                        startActivity(intent)
-                    }
+                    Log.i("CommonPresent", response)
+                    val model = Gson().fromJson<InitBean>(response, InitBean::class.java)
+                    SharedPreferencesUtils.setParam(context, "applyShopUrl", model.applyShopUrl)
+                    SharedPreferencesUtils.setParam(context, "couponRuleUrl", model.couponRuleUrl)
+                    SharedPreferencesUtils.setParam(context, "helpIndexUrl", model.helpIndexUrl)
 
                 }
 
                 override fun onFault(message: String) {
-                    Log.i("01018", message)
+
                 }
             })
-    }*/
-
-
+    }
 
 
 }

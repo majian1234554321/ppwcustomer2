@@ -18,7 +18,7 @@ class MoreSectionAdapter(var activity: Activity, data: List<String>) : BaseQuick
         helper.setText(R.id.text, item)
 
 
-//      val  flowlayout =  (helper.getView<TagFlowLayout>(R.id.flowlayout))
+//        val flowlayout = (helper.getView<TagFlowLayout>(R.id.flowlayout))
 //        flowlayout.adapter = SearchAdapter(activity,data,flowlayout)
 
     }

@@ -14,7 +14,7 @@
               android:text="周黑鸭"
     />
 
-    <com.paipaiwei.personal.ui.customview.RatingBar
+    <com.yjhh.common.view.RatingBar
             android:id="@+id/ratingbar"
             android:layout_width="100dp"
 

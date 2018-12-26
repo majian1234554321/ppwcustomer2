@@ -31,6 +31,7 @@ import com.paipaiwei.personal.bean.PhotoBean
 import com.paipaiwei.personal.bean.SubmitFeedbackModel
 import com.paipaiwei.personal.present.CommonPresent
 import com.paipaiwei.personal.view.CommonView
+import com.yjhh.common.view.fragments.PhotoFragment
 
 import com.zhihu.matisse.Matisse
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -168,7 +169,7 @@ class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
             } else {
                 // start(PhotoFragment(lists[position]))
 
-                val dialog = PhotoFragment(lists)
+                val dialog = PhotoFragment(lists, position)
                 dialog.show(childFragmentManager, "TAG")
             }
 

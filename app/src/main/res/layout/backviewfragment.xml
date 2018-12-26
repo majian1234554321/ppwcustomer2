@@ -6,23 +6,21 @@
 
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/rl"
-                    android:background="@color/colorPrimary"
-                    android:layout_height="48pt">
+                    android:layout_height="?attr/actionBarSize">
 
 
         <ImageView
-               android:layout_marginLeft="12pt"
                 android:id="@+id/iv_back"
-                android:src="@drawable/icon_arrow_left_white"
-                android:layout_width="17pt"
+                android:layout_marginLeft="15pt"
+                android:src="@drawable/icon_arrow_left_black"
+                android:layout_width="22pt"
                 android:layout_centerVertical="true"
-                android:layout_height="17pt"/>
+                android:layout_height="22pt"/>
 
         <TextView
                 android:id="@+id/tv_title"
                 android:layout_gravity="center"
                 android:textSize="17pt"
-                android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -34,8 +32,30 @@
                 android:layout_marginRight="8pt"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/e6"
+              android:layout_height="0.5pt"/>
 
     </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <WebView

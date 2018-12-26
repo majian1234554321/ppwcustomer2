@@ -18,7 +18,7 @@ import com.paipaiwei.personal.bean.EvaluateDetailsBean
 import com.paipaiwei.personal.bean.SubmitShopReplyCommentModel
 import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridView
 import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridViewClickAdapter
-import com.paipaiwei.personal.ui.customview.RatingBar
+import com.yjhh.common.view.RatingBar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.evaluatedetailsfragment.*

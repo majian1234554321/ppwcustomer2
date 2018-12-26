@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tl="http://schemas.android.com/tools"
+
+        android:background="@color/f8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Light">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentScrim="@color/white"
+                app:expandedTitleMarginBottom="100dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        >
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                          android:orientation="vertical" android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:layout_marginTop="48pt"
+                                android:padding="15pt" android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+
+                    <ImageView android:layout_width="90pt" android:layout_height="90pt"
+                               android:id="@+id/iv_image"
+                               android:src="@drawable/icon_place_pai"
+                               android:layout_marginRight="10pt"
+                    />
+
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_toRightOf="@+id/iv_image"
+                              android:id="@+id/tv_storeName"
+                              android:textColor="#FF333333"
+
+                              android:textSize="15pt"
+                              android:layout_height="wrap_content"
+                              android:text="济州烤肉（汉街店）"
+                    />
+
+
+                    <TextView android:layout_width="match_parent"
+                              android:textColor="#FF666666"
+                              android:textSize="12pt"
+                              android:text="12121212"
+                              android:id="@+id/tv_info"
+                              android:layout_toRightOf="@+id/iv_image"
+                              android:layout_below="@+id/tv_storeName"
+                              android:layout_above="@+id/tv_price"
+                              android:layout_height="wrap_content"
+                    />
+
+
+                    <TextView android:layout_width="wrap_content"
+
+                              android:layout_toRightOf="@+id/iv_image"
+                              android:layout_alignBottom="@+id/iv_image"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tv_price"
+
+                              android:text="武昌区  韩式烤肉"
+                    />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:paddingLeft="15pt"
+                                android:paddingRight="15pt"
+                                android:layout_height="wrap_content">
+                    <TextView android:layout_width="match_parent"
+                              android:text="16:30-21:00营业"
+
+                              android:textColor="#FF333333"
+                              android:paddingBottom="12pt"
+                              android:textSize="13pt"
+                              android:drawablePadding="4pt"
+                              android:drawableLeft="@drawable/icon_time"
+                              android:layout_height="wrap_content"/>
+
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:src="@drawable/icon_call_phone"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                    />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15pt"
+                        android:drawablePadding="4pt"
+                        android:drawableLeft="@drawable/icon_dingwei_gray"
+                        android:paddingBottom="12pt"
+                        android:text="武昌区楚河南路汉街总部国际C座对面二楼"
+                        android:textColor="#FF333333"
+                        android:textSize="13pt"
+                />
+
+
+                <View android:layout_width="match_parent" android:layout_height="10pt"
+                      android:background="#F7F7F9 "
+                />
+
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="@color/white"
+                    app:contentInsetStart="@dimen/spi_8"
+                    android:paddingTop="29pt"
+                    android:paddingBottom="5pt"
+
+                    app:layout_collapseMode="pin">
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:background="@color/white"
+                                android:layout_height="wrap_content">
+
+                    <ImageView android:layout_width="17pt" android:layout_height="17pt"
+                               android:id="@+id/iv_back"
+                               android:layout_centerVertical="true"
+                               android:src="@drawable/icon_arrow_left_black"
+                    />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                            app:cardCornerRadius="25pt"
+                            app:cardBackgroundColor="#ECECF2"
+                            android:background="#ECECF2"
+                            android:layout_width="310pt"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="15pt"
+                            android:layout_marginLeft="15.5pt"
+                            android:layout_toRightOf="@+id/iv_back"
+                            android:layout_height="30pt">
+
+                        <TextView
+                                android:drawableLeft="@drawable/iv_search"
+                                android:layout_width="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="请输入城市名或拼音"
+                                android:gravity="center"
+                                android:drawablePadding="8pt"
+                                android:layout_gravity="center"
+                                android:textColor="#FF999999"
+                                android:textSize="14pt"
+                                android:layout_height="match_parent"
+                        />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <com.flyco.tablayout.CommonTabLayout
+
+                android:id="@+id/mTabLayout_7"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingLeft="40pt"
+                android:paddingRight="40pt"
+                android:background="@color/white"
+                app:tl_iconVisible="false"
+                app:tl_tab_space_equal="true"
+                app:tl_indicator_color="@color/colorPrimary"
+                app:tl_textUnselectColor="@color/all_3"
+                app:tl_textSelectColor="@color/colorPrimary"
+                app:tl_indicator_width_equal_title="true"
+
+                app:tl_textBold="SELECT"/>
+
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                               app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                               android:id="@+id/recyclerView"
+                                               android:layout_height="match_parent"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,202 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tl="http://schemas.android.com/tools"
+
+        android:background="@color/f8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Light">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentScrim="@color/white"
+                app:expandedTitleMarginBottom="100dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        >
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          xmlns:app="http://schemas.android.com/apk/res-auto"
+                          android:background="@color/colorPrimary"
+                          android:orientation="vertical" android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+
+
+                <com.youth.banner.Banner android:layout_width="match_parent"
+                                         android:id="@+id/banner"
+                                         android:layout_height="147pt"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                           android:id="@+id/rv_head"
+                                                           android:layout_height="25pt"/>
+
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="#FFE6E6E6"
+                />
+
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    app:contentInsetStart="@dimen/spi_8"
+                    android:paddingTop="29pt"
+                    android:paddingBottom="5pt"
+
+                    app:layout_collapseMode="pin">
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                    <ImageView android:layout_width="17pt" android:layout_height="17pt"
+                               android:id="@+id/iv_back"
+                               android:layout_centerVertical="true"
+                               android:src="@drawable/icon_arrow_left_black"
+                    />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                            app:cardCornerRadius="25pt"
+                            app:cardBackgroundColor="#ECECF2"
+                            android:background="#ECECF2"
+                            android:id="@+id/mcv_Search"
+                            android:layout_width="310pt"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="15pt"
+                            android:layout_marginLeft="15.5pt"
+                            android:layout_toRightOf="@+id/iv_back"
+                            android:layout_height="30pt">
+
+                        <TextView
+                                android:drawableLeft="@drawable/iv_search"
+                                android:layout_width="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="请输入城市名或拼音"
+                                android:gravity="center"
+                                android:drawablePadding="8pt"
+                                android:layout_gravity="center"
+                                android:textColor="#FF999999"
+                                android:textSize="14pt"
+                                android:layout_height="match_parent"
+                        />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <LinearLayout
+                android:id="@+id/rg"
+                android:orientation="horizontal"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_weight="1"
+                      android:gravity="center"
+                      android:paddingTop="8pt"
+                      android:paddingBottom="8pt"
+                      android:textSize="14pt"
+                      android:textColor="#FF333333"
+                      android:layout_height="match_parent"
+                      android:text="全部"
+                      android:id="@+id/rb1"
+            />
+
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:text="销量最高"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:id="@+id/rb2"
+                      android:paddingTop="8pt"
+                      android:paddingBottom="8pt"
+                      android:textSize="14pt"
+                      android:textColor="#FF333333"
+            />
+
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:text="智能排序"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:id="@+id/rb3"
+                      android:paddingTop="8pt"
+                      android:paddingBottom="8pt"
+                      android:textSize="14pt"
+                      android:textColor="#FF333333"
+            />
+
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:text="筛选"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:id="@+id/rb4"
+                      android:paddingTop="8pt"
+                      android:paddingBottom="8pt"
+                      android:textSize="14pt"
+                      android:textColor="#FF333333"
+            />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout android:layout_width="match_parent"
+                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                 android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                   android:id="@+id/recyclerView"
+                                                   android:layout_height="match_parent"/>
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:background="#33000000"
+                     android:id="@+id/lv_FL"
+                     android:visibility="gone"
+                     android:layout_height="match_parent">
+
+
+            <ListView
+                    android:id="@+id/lv_sort"
+
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+            </ListView>
+
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:background="#33000000"
+                     android:id="@+id/fl_select"
+                     android:visibility="gone"
+                     android:layout_height="match_parent">
+
+
+            <ListView
+                    android:id="@+id/lv_select"
+
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+            </ListView>
+
+        </FrameLayout>
+
+
+    </FrameLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -76,6 +76,40 @@ class ResetPassWordFragment : BaseFragment(), PasswordView {
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         val disposable = RxView.clicks(tv_verifyCode)
             //防止重复点击
             .throttleFirst(1, TimeUnit.SECONDS)

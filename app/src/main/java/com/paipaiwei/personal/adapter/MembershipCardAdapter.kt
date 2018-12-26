@@ -101,7 +101,7 @@ class MembershipCardAdapter(data: List<Boolean>?) :
             expandable_layout?.setExpanded(true, false)
 
             val drawableLeft = BaseApplication.context.resources.getDrawable(
-                R.drawable.icon_up
+                R.drawable.icon_up_black
             )
 
             tv_useIf?.setCompoundDrawablesWithIntrinsicBounds(
@@ -114,7 +114,7 @@ class MembershipCardAdapter(data: List<Boolean>?) :
             expandable_layout?.setExpanded(false, false)
 
             val drawableLeft = BaseApplication.context.resources.getDrawable(
-                R.drawable.icon_down
+                R.drawable.icon_down_black
             )
 
             tv_useIf?.setCompoundDrawablesWithIntrinsicBounds(

@@ -5,11 +5,13 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.MoreSectionAdapter
+import com.yjhh.common.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_more_section.*
 
-class MoreSectionActivity : AppCompatActivity() {
+class MoreSectionActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more_section)
 
@@ -22,7 +24,7 @@ class MoreSectionActivity : AppCompatActivity() {
 
 
 
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = MoreSectionAdapter(this,list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MoreSectionAdapter(this,list)
     }
 }

@@ -22,6 +22,8 @@ class PasswordModel {
         with(map) {
             put("type", type)
             put("phone", phone)
+            put("len", "")
+
         }
         return ApiServices.getInstance().create(LoginService::class.java).sendSms(map)
     }

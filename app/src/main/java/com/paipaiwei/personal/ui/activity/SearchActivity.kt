@@ -1,11 +1,13 @@
 package com.paipaiwei.personal.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -26,6 +28,8 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 import kotlin.collections.ArrayList
 
+
+@Route(path = "/SearchActivity/Search")
 class SearchActivity : BaseActivity() {
 
 
@@ -122,6 +126,11 @@ class SearchActivity : BaseActivity() {
                             }.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
+
+                                val intent = Intent()
+                                intent.putExtra("keyWord", "AA")
+                                setResult(RESULT_OK, intent)
+
                                 Toast.makeText(this, list.get(position), Toast.LENGTH_SHORT).show()
                             }, {
 
@@ -138,6 +147,12 @@ class SearchActivity : BaseActivity() {
             })
 
         compositeDisposable.add(dis)
+
+
+
+        iv_back.setOnClickListener {
+            finish()
+        }
 
 
         tv_history.setOnClickListener {

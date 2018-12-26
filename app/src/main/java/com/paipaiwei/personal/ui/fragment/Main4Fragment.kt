@@ -28,7 +28,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                 (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+                (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
 
                 //startActivity(Intent(mActivity, FlutterDisActivity::class.java))
@@ -161,11 +161,18 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             R.id.iev_service -> {
 
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "MyAddressFragment")
-                    .withInt("age", 23)
-                    .navigation()
+
+                (parentFragment as MainFragment)
+                    .startBrotherFragment(
+                        BackViewFragment.newInstance(
+                            SharedPreferencesUtils.getParam(
+                                mActivity,
+                                "helpIndexUrl",
+                                "-1"
+                            ) as String
+                        )
+                    )
+
 
             }
 
@@ -199,7 +206,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 profile_image,
                 "",
                 R.drawable.icon_login_touxiang,
-                R.drawable.icon_login_touxiang,0
+                R.drawable.icon_login_touxiang, 0
             )
 
         } else {
@@ -210,7 +217,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 profile_image,
                 "",
                 R.drawable.icon_login_touxiang,
-                R.drawable.icon_login_touxiang,0
+                R.drawable.icon_login_touxiang, 0
             )
         }
 
@@ -225,7 +232,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                     profile_image,
                     "",
                     R.drawable.icon_login_touxiang,
-                    R.drawable.icon_login_touxiang,0
+                    R.drawable.icon_login_touxiang, 0
                 )
 
             } else {
@@ -236,7 +243,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                     profile_image,
                     "",
                     R.drawable.icon_login_touxiang,
-                    R.drawable.icon_login_touxiang,0
+                    R.drawable.icon_login_touxiang, 0
                 )
             }
         }

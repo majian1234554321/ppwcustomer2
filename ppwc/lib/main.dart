@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_html_view/flutter_html_view.dart';
 
 
-
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
 Widget _widgetForRoute(String route) {
@@ -20,7 +19,25 @@ Widget _widgetForRoute(String route) {
   }
 }
 
-class SingBottomWidget extends StatefulWidget {
+class SingBottomWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+
+}
+
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -54,23 +71,34 @@ class MM extends State {
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return Container(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: new Column(
-          children: <Widget>[
-            new Text("签到规则",
-                style: TextStyle(fontSize: 17, color: Color(0xFF666666)),
-                textDirection: TextDirection.ltr),
-            new Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
-              child: new HtmlView(data: _eventStr),
+
+    return Scaffold(
+
+        body: Container(
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+          color: Colors.white,
+
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text("签到规则",
+                    style: TextStyle(fontSize: 17, color: Color(0xFF666666)),
+                    textDirection: TextDirection.ltr),
+
+                new HtmlView(data: _eventStr,
+                    baseURL: "", // optional, type String
+                    onLaunchFail: (url) { // optional, type Function
+                      print("launch $url failed");
+                    }
+                ),
+              ],
             ),
-          ],
+
         ),
-      ),
+
+
     );
+
   }
 
   Future<Null> _lisEvent() async {
@@ -78,11 +106,11 @@ class MM extends State {
     try {
       _streamSubscription =
           counterPlugin.receiveBroadcastStream().listen((data) {
-        eventStr = '$data';
-        setState(() {
-          _eventStr = eventStr;
-        });
-      });
+            eventStr = '$data';
+            setState(() {
+              _eventStr = eventStr;
+            });
+          });
     } on PlatformException catch (e) {
       eventStr = "event get data err: '${e.message}'.";
       setState(() {

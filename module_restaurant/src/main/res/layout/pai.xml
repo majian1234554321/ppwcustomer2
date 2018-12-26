@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:gravity="center"
+
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+    <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="345pt"
+            android:layout_marginTop="10pt"
+            android:background="@drawable/mr_youhuiquan"
+            android:id="@+id/rl_head"
+
+            android:layout_height="77pt"
+    >
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="拍拍味美食店铺专享**券"
+                  android:textColor="#FF666666"
+                  android:textSize="11pt"
+                  android:paddingLeft="19pt"
+                  android:id="@+id/tv_cardName"
+                  android:paddingTop="6pt"
+
+                  android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:paddingTop="6pt"
+                android:layout_marginRight="19pt"
+                android:text="每日限拍一次"
+                android:textColor="#FF999999"
+                android:textSize="10pt"
+        />
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="46pt"
+                android:text="1000代金券"
+                android:paddingLeft="19pt"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:textColor="#FF333333"
+                android:textSize="22pt"
+
+        />
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="最高350元获得此券"
+
+                  android:layout_alignParentBottom="true"
+                  android:paddingLeft="19pt"
+                  android:id="@+id/tv_access"
+                  android:textColor="#FF666666"
+                  android:textSize="10pt"
+                  android:paddingBottom="6pt"
+
+                  android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="75pt"
+                  android:layout_alignParentRight="true"
+                  android:text="拍"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="14pt"
+
+                  android:id="@+id/tv_pai"
+                  android:textStyle="bold"
+                  android:layout_marginRight="17pt"
+                  android:layout_centerVertical="true"
+                  android:gravity="center"
+                  android:background="@drawable/mr_button"
+                  android:layout_height="30pt"/>
+
+        <TextView android:layout_width="wrap_content"
+
+
+                  android:paddingBottom="9pt"
+                  android:id="@+id/tv_useIf"
+                  android:gravity="right"
+                  android:text="使用条件"
+                  android:layout_marginRight="19pt"
+                  android:layout_alignParentRight="true"
+                  android:layout_alignParentBottom="true"
+                  android:textColor="#FF666666"
+                  android:textSize="10pt"
+                  android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandable_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_width="325pt"
+            android:layout_below="@+id/rl_head"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            app:el_duration="300"
+            app:el_expanded="false">
+
+        <RelativeLayout android:layout_width="325pt"
+                        android:elevation="4dp"
+
+                        android:layout_height="wrap_content">
+
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingTop="5pt"
+
+                      android:paddingLeft="15pt"
+                      android:textSize="11pt"
+                      android:text="仅限大于券面额使用\n限品类：部分商品使用\n周一至周日可用"
+                      android:gravity="left"
+            />
+
+
+        </RelativeLayout>
+
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+</RelativeLayout>

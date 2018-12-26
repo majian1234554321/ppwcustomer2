@@ -1,24 +1,18 @@
 package com.paipaiwei.personal.ui.fragment
 
 
-import androidx.viewpager.widget.ViewPager
 import android.view.View
-import android.widget.AdapterView
 import android.widget.GridView
 import com.flyco.tablayout.SlidingTabLayout
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 
-import com.flyco.tablayout.listener.CustomTabEntity
 import com.paipaiwei.personal.adapter.ConstellationAdapter
 import com.paipaiwei.personal.adapter.Main2ViewPagerAdapter
 
-import com.paipaiwei.personal.bean.TabEntity
 import com.paipaiwei.personal.present.OrderPresent
 import com.paipaiwei.personal.view.OrderView
-import kotlinx.android.synthetic.main.custom_layout.*
-import kotlinx.android.synthetic.main.main2fragment.*
-import kotlinx.android.synthetic.main.main2fragment.view.*
+import kotlinx.android.synthetic.main.main3fragment.*
 import java.util.*
 
 
@@ -81,5 +75,5 @@ class Main3Fragment : BaseMainFragment(), OrderView {
 
     }
 
-    override fun getLayoutRes(): Int = R.layout.main2fragment
+    override fun getLayoutRes(): Int = R.layout.main3fragment
 }

@@ -1,6 +1,7 @@
 package com.paipaiwei.personal.ui.customview;
 
 import android.content.Context;
+import android.util.Log;
 import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -113,20 +114,12 @@ public class GridViewPager extends RelativeLayout {
         return this;
     }
 
-    /**
-     * optional 设置自定义圆点
-     */
-    public void setOvalLayout(View view, ViewPager.OnPageChangeListener listener) {
-        hasCustomOval = true;
-        mLlDot.removeAllViews();
-        mLlDot.addView(view);
-        mPager.addOnPageChangeListener(listener);
-    }
 
     /**
      * 设置圆点
      */
     private void setOvalLayout() {
+        hasCustomOval = true;
         mLlDot.removeAllViews();
         for (int i = 0; i < pageCount; i++) {
 
@@ -174,7 +167,12 @@ public class GridViewPager extends RelativeLayout {
         for (int i = 0; mPagerList != null && i < mPagerList.size(); i++) {
             View child = mPagerList.get(i);
             child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-            int h = child.getMeasuredHeight() + mLlDot.getHeight();
+            mLlDot.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+
+            Log.i("onMeasure", "getHeight：" + mLlDot.getHeight() + "getHeight2:" + mLlDot.getMeasuredHeight());
+
+            int h = child.getMeasuredHeight() + mLlDot.getMeasuredHeight();
             if (h > height)
                 height = h;
         }

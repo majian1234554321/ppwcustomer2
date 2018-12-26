@@ -92,6 +92,8 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
 
     fun resetPassword(newPassword: String, smsCode: String, type: String) {
         val map = ArrayMap<String, String>()
+
+        map.put("password", newPassword)
         map.put("newPassword", newPassword)
         map.put("smsCode", smsCode)
         map.put("type", type)

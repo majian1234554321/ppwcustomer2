@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.paipaiwei.personal.R
@@ -53,7 +54,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 //                this@Main1Fragment.startActivityForResult(intent, 10086)
 
                 startActivity(Intent(mActivity, SelectMapActivity::class.java))
-               // startActivity(Intent(mActivity, BusinessHomeActivity::class.java))
+                // startActivity(Intent(mActivity, BusinessHomeActivity::class.java))
 
             }
             else -> {
@@ -201,7 +202,16 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
                         when (position) {
                             0 -> {
-                                startActivity(Intent(mActivity, FoodActivity::class.java))
+
+
+
+
+                                ARouter.getInstance()
+                                    .build("/RestaurantActivity/Restaurant")
+                                    .withString("displayTab", "RestaurantInFragment")
+                                    // .withInt("age", 23)
+                                    .navigation()
+
                             }
 
                             1 -> {

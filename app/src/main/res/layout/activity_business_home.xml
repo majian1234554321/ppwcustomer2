@@ -71,7 +71,7 @@
                                        android:id="@+id/iv_homeImage"
                             />
 
-                            <com.paipaiwei.personal.ui.customview.RatingBar
+                            <com.yjhh.common.view.RatingBar
                                     android:id="@+id/id_ratingbar"
                                     android:layout_width="100dp"
                                     android:layout_height="25dp"

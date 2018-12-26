@@ -112,7 +112,7 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
                // present?.sign()
 
 
-                SignFragment("AAAAAAA").show(supportFragmentManager, "TAG")
+                SignFragment("AAAAA").show(supportFragmentManager, "TAG2")
 
             }
 

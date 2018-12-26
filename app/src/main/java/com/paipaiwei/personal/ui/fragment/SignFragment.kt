@@ -43,26 +43,30 @@ class SignFragment(var value: String) : androidx.fragment.app.DialogFragment() {
         val view = LayoutInflater.from(activity).inflate(R.layout.signfragment, null);
 
         val rl_title = view.findViewById<MaterialCardView>(R.id.rl_title)
-        val iv_close = view.findViewById<ImageView>(R.id.iv_close)
 
-        val tv_text = view.findViewById<TextView>(R.id.tv_text)
 
-        val rl_fish = view.findViewById<RelativeLayout>(R.id.rl_fish)
+        val btn_cancel = view.findViewById<TextView>(R.id.btn_cancel)
 
-        val curTranslationY = rl_fish.getTranslationY();
+        btn_cancel.setOnClickListener { dismiss() }
+
+        val btn_ok = view.findViewById<TextView>(R.id.btn_ok)
+
+        val tv_tips = view.findViewById<TextView>(R.id.tv_tips)
+
+        val curTranslationY = tv_tips.getTranslationY();
         val translationY = ObjectAnimator.ofFloat(
-            rl_fish, "translationY",
-            curTranslationY, curTranslationY + 500f
+            tv_tips, "translationY",
+            curTranslationY, curTranslationY - 50f
         );
 
-        val scaleY = ObjectAnimator.ofFloat(rl_fish, "alpha", 0f,0.2f, 0.4f, 0.8f, 1f, 1f, 1f, 1f, 1f, 1f, 0.8f, 0.4f, 0.2f, 0f)
+        val scaleY = ObjectAnimator.ofFloat(tv_tips, "alpha", 0f,0.2f, 0.4f, 0.8f, 1f, 1f, 1f, 1f, 1f, 1f)
         //val scaleX = ObjectAnimator.ofFloat(rl_fish, "scaleX", 0f,1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0f)
 
 
 
 
         val animSet = AnimatorSet()
-        animSet.play(scaleY)
+        animSet.play(scaleY).before(translationY)
         animSet.duration = 3000
         animSet.start()
 
@@ -72,7 +76,7 @@ class SignFragment(var value: String) : androidx.fragment.app.DialogFragment() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                rl_title.visibility = View.VISIBLE
+
             }
 
             override fun onAnimationCancel(animation: Animator?) {
@@ -90,9 +94,7 @@ class SignFragment(var value: String) : androidx.fragment.app.DialogFragment() {
 
 
 
-        iv_close.setOnClickListener {
-            dismiss()
-        }
+
 
         builder.setView(view)
         val dialog = builder.create()

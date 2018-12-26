@@ -6,27 +6,138 @@
                 android:layout_height="match_parent">
 
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tl="http://schemas.android.com/tools"
+            android:layout_below="@+id/tbv_title"
+            android:background="@color/f8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@color/white"
+                    app:expandedTitleMarginBottom="100dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
 
-<com.paipaiwei.personal.ui.customview.dropdownmenu.DropDownMenu
-        android:layout_below="@+id/view"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/dropDownMenu"
-        android:layout_width="wrap_content"
 
-        android:layout_height="match_parent"
-        app:ddmenuTextSize="13sp"
-        app:ddtextUnselectedColor="@color/drop_down_unselected"
-        app:ddtextSelectedColor="@color/drop_down_selected"
-        app:dddividerColor="@color/gray"
-        app:ddunderlineColor="@color/gray"
-        app:ddmenuMenuHeightPercent="0.5"
-        app:ddmenuSelectedIcon="@drawable/drop_down_selected_icon"
-        app:ddmaskColor="@color/cd"
-        app:ddmenuBackgroundColor="@color/white"
-        app:ddmenuUnselectedIcon="@drawable/drop_down_unselected_icon"
-/>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                              android:layout_marginTop="48dp"
+                              android:orientation="vertical" android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+
+
+                    <com.google.android.material.card.MaterialCardView
+                            app:cardCornerRadius="5pt"
+                            android:layout_marginLeft="15pt"
+                            android:layout_marginRight="15pt"
+                            android:layout_marginTop="11pt"
+                            android:backgroundTint="#ECECF2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:gravity="center"
+                                  android:drawableLeft="@drawable/iv_search"
+                                  android:layout_gravity="center"
+                                  android:drawablePadding="4pt"
+                                  android:text="请输入城市名或拼音"
+                                  android:textColor="#FF999999"
+                                  android:textSize="14pt"
+                                  android:layout_height="30pt"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.youth.banner.Banner android:layout_width="match_parent"
+                                             android:layout_height="110pt"/>
+
+
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="top"
+                        app:contentInsetStart="@dimen/spi_8"
+                        android:background="@color/transparent"
+                        app:layout_collapseMode="pin">
+
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textColor="#FF333333"
+                                android:textSize="17pt"
+                                android:drawablePadding="7.5pt"
+                                android:textStyle="bold"
+                                android:drawableLeft="@drawable/iv_mr_dingwei"
+                                android:id="@+id/tv_title"
+                                android:drawableRight="@drawable/iv_mr_down"
+                                android:layout_height="wrap_content"
+                                android:text="我家旁边"/>
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabLayout android:layout_width="match_parent"
+                                                            android:id="@+id/mTabLayout1"
+                                                            app:tabTextColor="@color/all_3"
+                                                            app:tabIndicatorHeight="0dp"
+                                                            app:tabMode="scrollable"
+                                                            app:tabSelectedTextColor="@color/colorPrimary"
+                                                            android:layout_height="wrap_content"/>
+
+                <HorizontalScrollView android:layout_width="match_parent"
+                                      android:id="@+id/hsv"
+                                      android:paddingLeft="15pt"
+                                      android:paddingBottom="8pt"
+                                      android:scrollbars="none"
+                                      android:layout_height="wrap_content">
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/ll"
+                                  android:layout_height="wrap_content">
+
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                   app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                                   android:id="@+id/recyclerView"
+                                                   android:background="@color/white"
+                                                   android:layout_height="match_parent"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

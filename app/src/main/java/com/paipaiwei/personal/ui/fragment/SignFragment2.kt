@@ -27,6 +27,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.Nullable
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.yjhh.common.utils.GlideLoader
 import com.paipaiwei.personal.R
@@ -44,6 +45,9 @@ class SignFragment2(var value: String) : androidx.fragment.app.DialogFragment() 
 
         view.findViewById<TextView>(R.id.tv_tips).text = value
 
+        view.findViewById<MaterialButton>(R.id.mb).setOnClickListener {
+            dismiss()
+        }
 
 
 

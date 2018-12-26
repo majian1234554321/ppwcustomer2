@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.paipaiwei.personal.present.CommonPresent;
+import com.paipaiwei.personal.view.CommonView;
 import com.yjhh.common.base.BaseActivity;
 import com.paipaiwei.personal.R;
 
@@ -22,14 +24,15 @@ import com.yjhh.common.listener.PermissionListener;
 import com.paipaiwei.personal.bean.PhoneBean;
 import com.paipaiwei.personal.common.utils.PhoneUtil;
 import io.reactivex.observers.DisposableObserver;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 @Route(path = "/splashactivity/splash")
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements CommonView {
 
     public String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_CONTACTS};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_CONTACTS};
     private TextView tips;
 
     @Override
@@ -38,6 +41,11 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         tips = findViewById(R.id.text);
+
+
+        CommonPresent present = new CommonPresent(this, this);
+        present.init();
+
         requestRuntimePermission(permissions, new PermissionListener() {
             @Override
             public void onGranted() {
@@ -65,9 +73,6 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void nextStep() {
-
-
-
 
 
         RxCountDown.countdown(3)
@@ -130,4 +135,13 @@ public class SplashActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onSuccess(@Nullable String value) {
+
+    }
+
+    @Override
+    public void onFault(@Nullable String errorMsg) {
+
+    }
 }

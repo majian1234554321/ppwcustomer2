@@ -6,70 +6,157 @@
                 android:layout_height="match_parent">
 
 
-    <com.google.android.material.card.MaterialCardView android:layout_width="wrap_content"
-                                                       app:cardCornerRadius="10pt"
-                                                       android:id="@+id/rl_title"
-                                                       android:visibility="gone"
-                                                       android:layout_centerInParent="true"
-                                                       app:cardBackgroundColor="@color/white"
-                                                       android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent"
 
-        <RelativeLayout android:layout_width="200pt"
-                        android:background="@color/white"
+                    android:layout_height="match_parent">
+        <ImageView android:layout_width="match_parent"
+                   android:src="@drawable/jingli"
+                   android:layout_height="wrap_content"/>
 
 
-                        android:layout_height="129pt">
+        <com.google.android.material.card.MaterialCardView android:layout_width="wrap_content"
+                                                           app:cardCornerRadius="10pt"
+                                                           android:id="@+id/rl_title"
+                                                           android:layout_marginTop="270pt"
+                                                           android:layout_centerHorizontal="true"
+                                                           app:cardBackgroundColor="@color/white"
+                                                           android:layout_height="wrap_content">
+
+            <RelativeLayout android:layout_width="240pt"
+                            android:background="@color/white"
 
 
-            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:src="@drawable/chacha08"
-                       android:id="@+id/iv_close"
-                       android:padding="4pt"
-                       android:layout_alignParentRight="true"
-            />
-
-            <TextView android:layout_width="match_parent"
-                      android:text="签到成功！日常签到金币+1"
-                      android:textColor="#FF666666"
-                      android:gravity="center"
-                      android:layout_marginTop="20pt"
-                      android:textSize="12pt"
-                      android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="16.5pt"
-                    android:layout_marginTop="42.5pt"
-                    android:text="恭喜获得“一元拍”普通道具"
-                    android:textColor="#FF000016"
-                    android:textSize="12pt"
-            />
+                            android:layout_height="144pt">
 
 
-            <com.google.android.material.button.MaterialButton
-                    android:layout_width="116pt"
-                    android:text="去使用"
-                    android:textSize="15pt"
-                    app:strokeColor="#ffc536"
-                    app:backgroundTint="@color/white"
-                    android:textColor="#ffc536"
-                    app:rippleColor="#ffc536"
-                    android:layout_marginBottom="15.5pt"
-                    app:strokeWidth="1pt"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_height="39pt"/>
+                <TextView android:layout_width="match_parent"
+                          android:text="签到成功！日常签到金币+1"
+                          android:textColor="#FF666666"
+                          android:gravity="center"
+                          android:layout_marginTop="28.5pt"
+                          android:textSize="12pt"
+                          android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="16.5pt"
+                        android:layout_marginTop="55pt"
+                        android:text="恭喜获得“一元拍”普通道具"
+                        android:textColor="#FF000016"
+                        android:textSize="12pt"
+                />
 
 
-        </RelativeLayout>
+                <RelativeLayout
+                        android:layout_alignParentBottom="true"
 
-    </com.google.android.material.card.MaterialCardView>
+                        android:layout_width="280pt"
+                        android:gravity="center"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content">
+
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="vertical"
+                                  android:id="@+id/ll_pt"
+                                  android:layout_height="wrap_content">
+
+                        <View
+                                android:id="@+id/line_middle"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/lib_pub_color_line"/>
+
+                        <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:id="@+id/btn_cancel"
+                                    android:layout_width="0dp"
+                                    android:padding="12.5pt"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@color/lib_pub_color_trans"
+                                    android:gravity="center"
+                                    android:text="知道了"
+                                    android:textAllCaps="false"
+                                    android:textColor="#FF454545"
+                                    android:textSize="17pt"
+                                    android:textStyle="normal"/>
+
+                            <View
+                                    android:id="@+id/line_bottom"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/lib_pub_color_line"/>
+
+                            <TextView
+                                    android:id="@+id/btn_ok"
+                                    android:layout_width="0dp"
+                                    android:padding="12.5pt"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@color/lib_pub_color_trans"
+                                    android:gravity="center"
+                                    android:text="去查看"
+                                    android:textColor="#FFFFC536"
+                                    android:textSize="17pt"
+                                    android:textAllCaps="false"
+                                    android:textStyle="normal"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="立即更新"
+                            android:id="@+id/mb"
+                            android:visibility="gone"
+                            android:paddingTop="7.5pt"
+                            android:paddingBottom="7.5pt"
+                            android:paddingLeft="49.5pt"
+                            android:paddingRight="49.5pt"
+                            android:textColor="#FFF3DAAF"
+                            android:textSize="17pt"
+                            app:cornerRadius="19pt"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+                android:layout_width="116.5pt"
+                android:layout_height="24pt"
+                android:id="@+id/tv_tips"
+                android:text="＋318.88%概率"
+                android:layout_marginTop="73pt"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFDED82"
+                android:textSize="17pt"
+        />
+
+    </RelativeLayout>
 
 
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/rl_fish"
-
+                    android:visibility="gone"
                     android:background="@drawable/icon_finsh"
                     android:layout_height="388pt">
 

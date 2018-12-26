@@ -16,7 +16,7 @@ import com.paipaiwei.personal.bean.SubCommentsBean
 import com.paipaiwei.personal.common.utils.TimeUtil
 import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridView
 import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridViewClickAdapter
-import com.paipaiwei.personal.ui.customview.RatingBar
+import com.yjhh.common.view.RatingBar
 
 
 class EvaluateManageAdapter(var context: Context, data: List<MultiItemEntity>) :

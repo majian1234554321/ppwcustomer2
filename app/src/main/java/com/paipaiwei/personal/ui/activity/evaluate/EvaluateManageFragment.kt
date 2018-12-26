@@ -18,6 +18,7 @@ import com.paipaiwei.personal.apis.SectionEvluateService
 import com.paipaiwei.personal.bean.*
 import com.paipaiwei.personal.present.EvaluatePresent
 import com.paipaiwei.personal.view.EvaluateView
+import com.yjhh.common.bean.TabEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.evaluatemanagefragment.*
@@ -188,7 +189,13 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
 
 
                     for (i in model.indices) {
-                        mTabEntities.add(TabEntity(model[i].title, R.mipmap.ic_launcher, R.mipmap.ic_launcher))
+                        mTabEntities.add(
+                            TabEntity(
+                                model[i].title,
+                                R.mipmap.ic_launcher,
+                                R.mipmap.ic_launcher
+                            )
+                        )
                     }
 
                     mTabLayout_7.setTabData(mTabEntities)
