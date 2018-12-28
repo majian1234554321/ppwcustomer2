@@ -1,7 +1,10 @@
-package com.paipaiwei.personal.ui.activity.evaluate.ninegrid;
+package com.yjhh.common.view.ninegrid;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
+import androidx.fragment.app.FragmentManager;
+import com.yjhh.common.view.fragments.PhotoFragment;
 
 import java.util.List;
 
@@ -15,6 +18,14 @@ public class NineGridViewClickAdapter extends NineGridViewAdapter {
         statusHeight = getStatusHeight(context);
     }
 
+    public FragmentManager fragmentManager;
+
+    public NineGridViewClickAdapter(Context context, List<String> imageInfo, FragmentManager fragmentManager) {
+        super(context, imageInfo);
+        statusHeight = getStatusHeight(context);
+        this.fragmentManager = fragmentManager;
+    }
+
     @Override
     protected void onImageItemClick(Context context, NineGridView nineGridView, int index, List<String> imageInfo) {
 
@@ -25,7 +36,12 @@ public class NineGridViewClickAdapter extends NineGridViewAdapter {
 //        bundle.putInt(ImagePreviewActivity.CURRENT_ITEM, index);
 //        intent.putExtras(bundle);
 //        context.startActivity(intent);
-        Toast.makeText(context, "index" + index, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "index" + index, Toast.LENGTH_SHORT).show();
+
+        PhotoFragment photoFragment = new PhotoFragment(imageInfo, index);
+        photoFragment.show(fragmentManager,"TAG");
+
+
     }
 
     /**

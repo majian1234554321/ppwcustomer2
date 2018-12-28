@@ -5,30 +5,39 @@
         xmlns:zhy="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
         tools:context=".ui.activity.SearchActivity">
 
 
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/rl0"
-                    android:layout_height="48dp">
+                    android:layout_height="48pt">
 
-        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <ImageView android:layout_width="wrap_content" android:layout_height="22pt"
                    android:src="@drawable/icon_back"
-                   android:padding="8dp"
+                   android:paddingLeft="8pt"
                    android:layout_centerVertical="true"
                    android:id="@+id/iv_back"
         />
 
-        <EditText android:layout_width="match_parent"
+        <EditText android:layout_width="310pt"
+
                   android:id="@+id/et_search"
                   android:layout_centerVertical="true"
-                  android:layout_marginRight="@dimen/sp_12"
-                  android:padding="@dimen/dp_4"
+                  android:layout_marginRight="30pt"
+                  android:layout_marginLeft="50pt"
+                  android:paddingLeft="12.5pt"
+                  android:drawablePadding="6pt"
+                  android:textSize="14pt"
                   tools:text="121212"
-                  android:layout_toRightOf="@+id/iv_back"
+                  android:hint="请输入商家、商家名称"
+                  android:layout_marginTop="7pt"
+                  android:layout_marginBottom="7pt"
+                  android:drawableLeft="@drawable/icon_search"
+
                   android:background="@drawable/stroke_search"
-                  android:layout_height="wrap_content"/>
+                  android:layout_height="30pt"/>
 
     </RelativeLayout>
 
@@ -61,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/sp_12"
-                   >
+            >
             </com.zhy.view.flowlayout.TagFlowLayout>
 
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"

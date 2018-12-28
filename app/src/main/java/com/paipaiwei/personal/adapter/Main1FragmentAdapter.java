@@ -14,10 +14,10 @@ public class Main1FragmentAdapter extends BaseQuickAdapter<Main1FootBean.ItemsBe
 
     @Override
     protected void convert(BaseViewHolder helper, Main1FootBean.ItemsBean item) {
-        helper.setText(R.id.tv_name, item.getName())
-                .setText(R.id.tv_price,item.getPrice()+"")
-                .setText(R.id.tv_distance,item.getDistance())
-                .setText(R.id.tv_info,item.getMemo());
+//        helper.setText(R.id.tv_name, item.getName())
+//                .setText(R.id.tv_price,item.getPrice()+"")
+//                .setText(R.id.tv_distance,item.getDistance())
+//                .setText(R.id.tv_info,item.getMemo());
 
 
 

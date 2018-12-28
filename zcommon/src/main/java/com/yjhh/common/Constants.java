@@ -22,7 +22,7 @@ public class Constants {
 
 
     public static Long MAX_COUNT_TIME = 60L;
-    public static final String APP_ID_WX = "888888888888";
+    public static final String APP_ID_WX = "wx38e8e36a43722085";
 
 
 }

@@ -13,6 +13,8 @@ class MultipleItem : MultiItemEntity {
     private var itemType: Int = 0
     var spanSize: Int = 0
 
+    var flag:Boolean? = null
+
     constructor(itemType: Int, spanSize: Int, content: String) {
         this.itemType = itemType
         this.spanSize = spanSize
@@ -24,6 +26,24 @@ class MultipleItem : MultiItemEntity {
         this.spanSize = spanSize
     }
 
+    var list: List<String>? = null
+
+    constructor(itemType: Int, spanSize: Int, list: List<String>) {
+        this.itemType = itemType
+        this.spanSize = spanSize
+        this.list = list
+    }
+
+
+
+    constructor(itemType: Int, flag : Boolean, list: List<String>) {
+        this.itemType = itemType
+        this.flag = flag
+        this.list = list
+    }
+
+
+
     var content: String? = null
 
     override fun getItemType(): Int {
@@ -34,6 +54,7 @@ class MultipleItem : MultiItemEntity {
         val A = 1
         val B = 2
         val C = 3
+        val D = 4
 
     }
 }

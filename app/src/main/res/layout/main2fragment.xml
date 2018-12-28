@@ -37,29 +37,33 @@
                               android:layout_height="wrap_content">
 
 
-                    <com.google.android.material.card.MaterialCardView
-                            app:cardCornerRadius="5pt"
+                    <RelativeLayout
+
                             android:layout_marginLeft="15pt"
                             android:layout_marginRight="15pt"
                             android:layout_marginTop="11pt"
+                            android:background="@drawable/stroke_search"
+                            android:layout_marginBottom="9pt"
                             android:backgroundTint="#ECECF2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                         <TextView android:layout_width="wrap_content"
                                   android:gravity="center"
+                                  android:layout_centerInParent="true"
                                   android:drawableLeft="@drawable/iv_search"
                                   android:layout_gravity="center"
                                   android:drawablePadding="4pt"
-                                  android:text="请输入城市名或拼音"
+                                  android:text="寻找你中意的商家"
                                   android:textColor="#FF999999"
                                   android:textSize="14pt"
                                   android:layout_height="30pt"/>
 
-                    </com.google.android.material.card.MaterialCardView>
+                    </RelativeLayout>
 
 
                     <com.youth.banner.Banner android:layout_width="match_parent"
+                                             android:id="@+id/banner"
                                              android:layout_height="110pt"/>
 
 
@@ -89,7 +93,7 @@
                                 android:id="@+id/tv_title"
                                 android:drawableRight="@drawable/iv_mr_down"
                                 android:layout_height="wrap_content"
-                                android:text="我家旁边"/>
+                               />
 
                     </RelativeLayout>
 

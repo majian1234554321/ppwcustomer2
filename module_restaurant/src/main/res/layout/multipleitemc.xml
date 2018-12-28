@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15pt"
+                android:layout_height="wrap_content">
+
+
+    <ImageView android:layout_width="35pt"
+               android:layout_marginLeft="15pt"
+               android:id="@+id/iv_image"
+               android:background="@drawable/icon_place_pai"
+               android:layout_marginRight="8pt"
+               android:layout_height="35pt"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/tv_name"
+              android:layout_toRightOf="@+id/iv_image"
+              android:textColor="#FF333333"
+              android:textSize="13pt"
+              android:gravity="center"
+              android:text="1212"
+              android:layout_alignTop="@+id/iv_image"
+              android:layout_height="18.5pt"/>
+
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/tv_score"
+              android:layout_toRightOf="@+id/iv_image"
+              android:layout_alignBottom="@+id/iv_image"
+              android:text="商家评分"
+              android:textColor="#FF999999"
+              android:textSize="12pt"
+              android:layout_height="16.5pt"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="18.5pt"
+              android:text="2015/020202"
+              android:paddingRight="15pt"
+              android:gravity="center"
+              android:layout_alignParentRight="true"
+    />
+
+
+    <com.yjhh.common.view.RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="100dp"
+
+            android:layout_height="16.5pt"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/iv_image"
+            app:allStarsCount="5"
+            app:curSelectValue="1.5"
+            android:layout_toRightOf="@+id/tv_score"
+            app:starEmpty="@drawable/star_empty"
+            app:starFill="@drawable/star_full"
+            app:starHalf="@drawable/star_half_full"
+            app:starImageSize="15dp"
+            app:starPadding="5dp"
+            app:stepSize="Half"/>
+
+    <TextView
+            android:layout_marginTop="8pt"
+            android:layout_below="@+id/ratingbar"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:id="@+id/tv_content1"
+
+            android:layout_width="302pt"
+            android:layout_marginLeft="58pt"
+            android:layout_height="59pt"
+            android:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，"
+            android:textColor="#FF333333"
+            android:textSize="14pt"
+    />
+
+
+    <com.yjhh.common.view.ninegrid.NineGridView
+            android:layout_below="@+id/tv_content1"
+            android:paddingTop="14pt"
+            android:paddingBottom="11pt"
+            android:paddingLeft="58pt"
+            android:paddingRight="15pt"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/rlNineGridView"
+    />
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:paddingRight="15pt"
+                  android:layout_below="@+id/rlNineGridView"
+                  android:layout_marginLeft="58pt"
+                  android:layout_height="wrap_content">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:background="#FEE5DE"
+
+                        android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商家回复"
+                    android:paddingLeft="10pt"
+                    android:paddingTop="4pt"
+                    android:paddingBottom="4pt"
+                    android:textColor="#FF333333"
+                    android:textSize="12pt"
+            />
+
+            <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:text="2018/10/10"
+                    android:paddingRight="10pt"
+                    android:textColor="#FF999999"
+                    android:textSize="11pt"
+            />
+
+        </RelativeLayout>
+
+        <TextView
+                android:layout_width="302pt"
+                android:paddingTop="8pt"
+                android:paddingBottom="8pt"
+                android:layout_height="wrap_content"
+                android:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，吃饭基本都…"
+                android:textColor="#FF999999"
+                android:textSize="13pt"
+        />
+
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="17pt"
+                    android:text="999"
+                    android:gravity="center"
+                    android:drawablePadding="4pt"
+                    android:drawableLeft="@drawable/icon_see"
+
+                    android:textColor="#FF666666"
+                    android:textSize="12pt"
+            />
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="16.5pt"
+                    android:text="查看详情"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#FF2C85FF"
+                    android:textSize="12pt"
+            />
+
+
+        </RelativeLayout>
+
+
+        <View
+                android:layout_marginTop="15pt"
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

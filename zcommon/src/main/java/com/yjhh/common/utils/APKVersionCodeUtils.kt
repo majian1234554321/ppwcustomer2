@@ -1,7 +1,9 @@
 package com.yjhh.common.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.text.TextUtils
 import com.azhon.appupdate.config.UpdateConfiguration
@@ -12,6 +14,20 @@ import com.yjhh.common.R
 
 
 object APKVersionCodeUtils {
+
+
+    fun isAvailable(mapPackageName: String, activity: Activity): Boolean {
+        var packageInfo: PackageInfo?
+        try {
+            packageInfo = activity.packageManager.getPackageInfo(mapPackageName, 0);
+        } catch (e: PackageManager.NameNotFoundException) {
+            packageInfo = null
+            e.printStackTrace()
+        }
+        return packageInfo != null
+    }
+
+
     fun getVersionCode(mContext: Context): Int {
         var versionCode = 0
         try {

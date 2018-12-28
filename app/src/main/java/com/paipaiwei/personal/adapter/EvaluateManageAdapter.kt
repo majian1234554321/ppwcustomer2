@@ -14,8 +14,8 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.EvaluateManageItemBean
 import com.paipaiwei.personal.bean.SubCommentsBean
 import com.paipaiwei.personal.common.utils.TimeUtil
-import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridView
-import com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridViewClickAdapter
+import com.yjhh.common.view.ninegrid.NineGridView
+import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.yjhh.common.view.RatingBar
 
 

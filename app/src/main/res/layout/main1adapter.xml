@@ -1,53 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:paddingLeft="15pt"
+
+                android:paddingTop="15pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl_content"
+                    android:paddingRight="15pt"
+                    android:layout_height="wrap_content">
 
 
-    <ImageView android:layout_width="120dp" android:layout_height="80dp"
-               android:id="@+id/iv_image"
-               android:scaleType="fitXY"
-               android:src="@mipmap/ic_launcher"
-    />
+        <ImageView android:layout_width="90pt" android:layout_height="90pt"
+                   android:id="@+id/iv_image"
+                   android:layout_marginRight="10pt"
+        />
 
-    <TextView android:layout_width="wrap_content"
-              android:id="@+id/tv_name"
-              android:layout_toRightOf="@+id/iv_image"
-              android:text="正宗油爆大虾"
-              android:layout_height="wrap_content"/>
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="1.2KM"
-              android:id="@+id/tv_distance"
-              android:layout_alignParentRight="true"
 
-    />
+        <TextView android:layout_width="25pt" android:layout_height="17pt"
+                  android:background="@drawable/rectangle"
+                  android:id="@+id/iv_zsj"
+                  android:gravity="center"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="10pt"
+        />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="¥ 19.9"
-              android:layout_toRightOf="@+id/iv_image"
-              android:layout_above="@+id/tv_info"
-              android:gravity="center"
-              android:layout_below="@id/tv_name"
-              android:id="@+id/tv_price"
-    />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="¥ 30.0"
-              android:id="@+id/tv_discountPrice"
-              android:layout_marginLeft="12dp"
-              android:layout_toRightOf="@+id/tv_price"
-              android:layout_above="@+id/tv_info"
-              android:gravity="center"
-              android:layout_below="@id/tv_name"
 
-    />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="提供121212wqwq121"
-              android:id="@+id/tv_info"
-              android:layout_alignBottom="@+id/iv_image"
-              android:layout_toRightOf="@+id/iv_image"
+        <TextView android:layout_width="wrap_content"
+                  android:layout_toRightOf="@+id/iv_image"
+                  android:id="@+id/tv_storeName"
+                  android:textColor="#FF333333"
+
+                  android:textSize="15pt"
+                  android:layout_height="wrap_content"
+                  tools:text="济州烤肉（汉街店）"
+        />
+
+
+        <TextView
+
+                android:layout_width="15pt"
+                android:layout_height="15pt"
+                android:text="拍"
+                android:gravity="center"
+                android:id="@+id/tv_ispai"
+                android:textColor="#FFFFFFFF"
+                android:textSize="11pt"
+                android:layout_toLeftOf="@+id/tv_isbuy"
+                android:background="#FFFD7A4B"
+        />
+
+
+        <TextView
+                android:layout_marginLeft="4pt"
+                android:id="@+id/tv_isbuy"
+                android:layout_alignParentRight="true"
+                android:layout_width="15pt"
+                android:layout_height="15pt"
+                android:text="买"
+                android:gravity="center"
+                android:background="#FFD64A"
+                android:textColor="#FFFFFFFF"
+                android:textSize="11pt"
+        />
+
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:paddingTop="4pt"
+                        android:id="@+id/rl"
+                        android:layout_toRightOf="@+id/iv_image"
+                        android:layout_below="@+id/tv_storeName"
+                        android:layout_height="wrap_content">
+            <com.yjhh.common.view.RatingBar
+                    android:id="@+id/id_ratingbar"
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    app:allStarsCount="5"
+                    app:curSelectValue="1.5"
+                    android:layout_centerVertical="true"
+                    app:starEmpty="@drawable/star_empty"
+                    app:starFill="@drawable/star_full"
+                    app:starHalf="@drawable/star_half_full"
+                    app:starImageSize="15dp"
+                    app:starPadding="5dp"
+                    app:clickable="false"
+                    app:stepSize="Half"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:id="@+id/tv_score"
+                      android:text="12"
+                      android:textColor="#FFF9572D"
+                      android:textSize="12pt"
+                      android:layout_centerVertical="true"
+                      android:layout_toRightOf="@+id/id_ratingbar"
+                      android:layout_height="wrap_content"/>
+
+
+            <TextView android:layout_width="wrap_content"
+
+                      android:layout_centerVertical="true"
+                      android:layout_toRightOf="@+id/tv_score"
+
+                      android:gravity="center"
+                      android:id="@+id/tv_avgPrice"
+                      android:layout_marginLeft="12dp"
+                      android:textColor="#FF333333"
+                      android:textSize="13pt"
+                      android:layout_height="wrap_content"
+                      tools:text="人均54元"
+            />
+
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:gravity="right"
+                      android:id="@+id/tv_KM"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:textColor="#FF888888"
+                      android:textSize="13pt"
+                      tools:text="1.2KM"
+            />
+
+        </RelativeLayout>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_below="@+id/rl"
+                  android:layout_toRightOf="@+id/iv_image"
+
+                  android:layout_height="wrap_content"
+                  android:id="@+id/tv_info"
+                  tools:text="武昌区  韩式烤肉"
+        />
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:id="@+id/rl_foot"
+                        android:layout_alignBottom="@+id/iv_image"
+                        android:layout_toRightOf="@+id/iv_image"
+                        android:layout_height="wrap_content">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="更多  >"
+                      android:id="@+id/tv_more"
+                      android:layout_centerVertical="true"
+                      android:layout_alignParentRight="true"
+                      android:textColor="#FFFE892F"
+                      android:textSize="11pt"
+            />
+
+
+            <TextView android:layout_width="41pt"
+                      android:text="100"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/tv_1"
+                      android:background="@drawable/quan"
+                      android:layout_centerInParent="true"
+                      android:textColor="#FFFFFFFF"
+                      android:gravity="center"
+                      android:textSize="13pt"
+                      android:layout_height="20pt"/>
+
+
+            <TextView android:layout_width="41pt"
+                      android:layout_toRightOf="@+id/tv_1"
+                      android:text="100"
+                      android:background="@drawable/quan"
+                      android:id="@+id/tv_2"
+                      android:layout_marginLeft="8pt"
+                      android:gravity="center"
+                      android:layout_centerInParent="true"
+                      android:textColor="#FFFFFFFF"
+                      android:textSize="13pt"
+                      android:layout_height="20pt"/>
+
+
+            <TextView android:layout_width="41pt"
+                      android:text="100"
+                      android:layout_marginLeft="8pt"
+                      android:gravity="center"
+                      android:id="@+id/tv_3"
+                      android:background="@drawable/quan"
+                      android:layout_toRightOf="@+id/tv_2"
+                      android:layout_centerInParent="true"
+                      android:textColor="#FFFFFFFF"
+                      android:textSize="13pt"
+                      android:layout_height="20pt"/>
+
+
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+    <View
+            android:layout_below="@+id/rl_content"
+            android:layout_marginTop="15pt"
+
+            android:layout_alignParentRight="true"
+            android:layout_width="260pt"
+            android:layout_height="0.5pt"
+            android:background="#FFE6E6E6"
     />
 
 </RelativeLayout>

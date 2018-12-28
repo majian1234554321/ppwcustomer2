@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="40pt"
+              android:layout_marginLeft="27pt"
+              android:layout_height="wrap_content">
+
+    <ImageView android:layout_width="40pt"
+               android:id="@+id/iv_image"
+               android:layout_height="40pt"
+    />
+
+    <TextView
+            android:layout_width="40pt"
+            android:layout_height="16.5pt"
+            android:text="自助餐"
+            android:id="@+id/tv_name"
+            android:layout_gravity="center"
+            android:layout_marginTop="8pt"
+            android:gravity="center"
+            android:textColor="#FF666666"
+            android:textSize="12pt"
+    />
+
+</LinearLayout>

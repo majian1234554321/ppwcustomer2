@@ -254,6 +254,7 @@ class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, 
     val list2 = ArrayList<Tip>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_map)
 

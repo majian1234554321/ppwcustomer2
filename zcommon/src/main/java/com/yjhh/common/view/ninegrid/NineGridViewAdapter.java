@@ -1,8 +1,8 @@
-package com.paipaiwei.personal.ui.activity.evaluate.ninegrid;
+package com.yjhh.common.view.ninegrid;
 
 import android.content.Context;
 import android.widget.ImageView;
-import com.paipaiwei.personal.R;
+import com.yjhh.common.R;
 
 
 import java.io.Serializable;

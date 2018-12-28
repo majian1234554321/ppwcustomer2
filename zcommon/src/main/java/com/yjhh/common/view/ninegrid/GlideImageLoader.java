@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.ui.activity.evaluate.ninegrid;
+package com.yjhh.common.view.ninegrid;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.paipaiwei.personal.R;
+import com.yjhh.common.R;
 
 
 public class GlideImageLoader implements NineGridView.ImageLoader {

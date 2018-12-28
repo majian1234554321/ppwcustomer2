@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="110pt"
+                android:layout_height="78.5pt">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/iv_image"
+            android:layout_height="match_parent"
+    />
+
+    <TextView android:layout_width="match_parent"
+              android:text="121"
+              android:gravity="center"
+              android:textSize="13pt"
+              android:layout_alignParentBottom="true"
+              android:paddingTop="4pt"
+              android:singleLine="true"
+              android:paddingBottom="4pt"
+              android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

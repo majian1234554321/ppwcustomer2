@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.ui.activity.evaluate.ninegrid;
+package com.yjhh.common.view.ninegrid;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
-import com.paipaiwei.personal.R;
-
+import com.yjhh.common.R;
 
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class NineGridView extends ViewGroup {
 
     private List<ImageView> imageViews;
     private List<String> mImageInfo;
-    private com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridViewAdapter mAdapter;
+    private NineGridViewAdapter mAdapter;
 
     public NineGridView(Context context) {
         this(context, null);
@@ -115,7 +114,7 @@ public class NineGridView extends ViewGroup {
     }
 
     /** 设置适配器 */
-    public void setAdapter(@NonNull com.paipaiwei.personal.ui.activity.evaluate.ninegrid.NineGridViewAdapter adapter) {
+    public void setAdapter(@NonNull NineGridViewAdapter adapter) {
         mAdapter = adapter;
         List<String> imageInfo = adapter.getImageInfo();
 

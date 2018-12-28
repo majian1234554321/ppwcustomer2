@@ -83,7 +83,7 @@
 
     />
 
-    <com.yjhh.ppwbusiness.views.evaluate.ninegrid.NineGridView
+    <com.yjhh.common.view.ninegrid.NineGridView
             android:id="@+id/nineGrid"
             android:layout_width="351pt"
 

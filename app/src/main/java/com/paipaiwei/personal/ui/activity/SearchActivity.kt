@@ -19,6 +19,9 @@ import com.paipaiwei.personal.adapter.SearchContentAdapter
 import com.paipaiwei.personal.db.AppDataBase
 import com.paipaiwei.personal.db.entity.HistoricalModel
 
+import com.yjhh.common.iview.QueryResultView
+import com.yjhh.common.present.QueryPresent
+
 
 import io.reactivex.Observable
 
@@ -30,8 +33,13 @@ import kotlin.collections.ArrayList
 
 
 @Route(path = "/SearchActivity/Search")
-class SearchActivity : BaseActivity() {
+class SearchActivity : BaseActivity(), QueryResultView {
+    override fun onFault(errorMsg: String?) {
 
+    }
+
+    val pageSize = 15
+    var pageIndex = 0
 
     lateinit var mAdapter: SearchContentAdapter
     var historyadapter: SearchAdapter? = null
@@ -39,16 +47,11 @@ class SearchActivity : BaseActivity() {
     var lists = ArrayList<HistoricalModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-
+        val present = QueryPresent(this@SearchActivity, this)
         val list = ArrayList<String>()
-        list.add("A")
-        list.add("BB")
-        list.add("CCC")
-        list.add("DDDD")
-        list.add("EEEEE")
-        list.add("AFFFF")
 
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAdapter = SearchContentAdapter(list)
@@ -126,12 +129,12 @@ class SearchActivity : BaseActivity() {
                             }.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-
+                                present.queryValue(it, "", "", "", "", "", pageIndex, pageSize)
                                 val intent = Intent()
-                                intent.putExtra("keyWord", "AA")
+                                intent.putExtra("keyWord", it)
                                 setResult(RESULT_OK, intent)
 
-                                Toast.makeText(this, list.get(position), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, list[position], Toast.LENGTH_SHORT).show()
                             }, {
 
                             })

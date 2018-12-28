@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.ui.activity.evaluate.ninegrid;
+package com.yjhh.common.view.ninegrid;
 
 import android.content.Context;
 import android.graphics.Canvas;

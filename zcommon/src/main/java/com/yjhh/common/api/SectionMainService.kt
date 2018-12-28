@@ -15,9 +15,17 @@ interface SectionMainService {
 
 
 
+
+
+
     @FormUrlEncoded
-    @POST("shop/recProduct")
+    @POST("home/data")
     fun recProduct(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 获取推荐商品
+
+
+//    @FormUrlEncoded
+//    @POST("shop/recProduct")
+//    fun recProduct(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 获取推荐商品
 
 
 }

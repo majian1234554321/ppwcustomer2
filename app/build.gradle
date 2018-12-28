@@ -66,8 +66,6 @@ android {
     signingConfigs {
         release {
 
-
-
             //D:\develop\ppwcustomer\app\keystore\release.jks
             try {
                 storeFile file("D:\\develop\\ppwcustomer\\app\\keystore\\release.jks")
@@ -125,7 +123,7 @@ android {
         abortOnError false
     }
 
-     /* productFlavors {
+    /* productFlavors {
 
           company {
               manifestPlaceholders = [UMENG_CHANNEL_VALUE: "company"]

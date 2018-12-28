@@ -24,7 +24,7 @@
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                           xmlns:app="http://schemas.android.com/apk/res-auto"
-                          android:background="@color/colorPrimary"
+
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="wrap_content">
 
@@ -35,12 +35,14 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                                           android:id="@+id/rv_head"
-                                                           android:layout_height="25pt"/>
+                                                           android:id="@+id/rv_h"
+                                                           android:layout_marginTop="17pt"
+                                                           android:layout_marginBottom="17pt"
+                                                           android:layout_height="66pt"/>
 
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                      android:background="#FFE6E6E6"
+                <View android:layout_width="match_parent" android:layout_height="10dp"
+                      android:background="#FFF7F7F9"
                 />
 
 
@@ -100,27 +102,35 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <LinearLayout
+        <RelativeLayout
                 android:id="@+id/rg"
                 android:orientation="horizontal"
+
                 android:layout_width="match_parent" android:layout_height="wrap_content">
 
-            <TextView android:layout_width="match_parent"
-                      android:layout_weight="1"
+            <TextView android:layout_width="wrap_content"
                       android:gravity="center"
                       android:paddingTop="8pt"
+                      android:layout_marginLeft="38.5pt"
                       android:paddingBottom="8pt"
                       android:textSize="14pt"
+                      android:drawablePadding="5pt"
                       android:textColor="#FF333333"
+                      android:maxEms="3"
+                      android:singleLine="true"
+                      android:ellipsize="end"
                       android:layout_height="match_parent"
                       android:text="全部"
+                      android:drawableRight="@drawable/icon_san_down"
                       android:id="@+id/rb1"
             />
 
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-                      android:text="销量最高"
+            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                      android:text="一元拍"
                       android:gravity="center"
                       android:layout_weight="1"
+                      android:layout_marginLeft="114.5pt"
+
                       android:id="@+id/rb2"
                       android:paddingTop="8pt"
                       android:paddingBottom="8pt"
@@ -128,29 +138,36 @@
                       android:textColor="#FF333333"
             />
 
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                       android:text="智能排序"
                       android:gravity="center"
-                      android:layout_weight="1"
+                      android:layout_marginLeft="193.5pt"
+                      android:drawableRight="@drawable/icon_san_down"
                       android:id="@+id/rb3"
                       android:paddingTop="8pt"
                       android:paddingBottom="8pt"
+                      android:maxEms="5"
+                      android:singleLine="true"
+                      android:ellipsize="end"
                       android:textSize="14pt"
                       android:textColor="#FF333333"
+                      android:drawablePadding="5pt"
             />
 
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                       android:text="筛选"
-                      android:gravity="center"
-                      android:layout_weight="1"
+                      android:gravity="right"
+                      android:drawableRight="@drawable/icon_san_down"
+                      android:layout_marginLeft="297.5pt"
                       android:id="@+id/rb4"
+                      android:drawablePadding="5pt"
                       android:paddingTop="8pt"
                       android:paddingBottom="8pt"
                       android:textSize="14pt"
                       android:textColor="#FF333333"
             />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -167,31 +184,75 @@
 
         <FrameLayout android:layout_width="match_parent"
                      android:background="#33000000"
-                     android:id="@+id/lv_FL"
+                     android:id="@+id/fl1"
                      android:visibility="gone"
                      android:layout_height="match_parent">
 
 
             <ListView
-                    android:id="@+id/lv_sort"
+                    android:id="@+id/lv_1"
 
                     android:layout_width="match_parent" android:layout_height="wrap_content">
             </ListView>
 
         </FrameLayout>
 
+
         <FrameLayout android:layout_width="match_parent"
                      android:background="#33000000"
-                     android:id="@+id/fl_select"
+                     android:id="@+id/fl3"
                      android:visibility="gone"
                      android:layout_height="match_parent">
 
 
             <ListView
-                    android:id="@+id/lv_select"
+                    android:id="@+id/lv_3"
 
                     android:layout_width="match_parent" android:layout_height="wrap_content">
             </ListView>
+
+        </FrameLayout>
+
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:background="#33000000"
+                     android:id="@+id/fl4"
+                     android:visibility="gone"
+                     android:layout_height="match_parent">
+
+
+            <ListView
+                    android:id="@+id/lv_4"
+                    android:layout_width="match_parent" android:layout_height="353pt">
+            </ListView>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="353pt"
+                          android:layout_height="35pt">
+
+                <TextView android:layout_width="0dp" android:layout_height="match_parent"
+                          android:text="重置"
+                          android:layout_weight="1"
+                          android:gravity="center"
+                          android:id="@+id/tv_reset"
+                          android:background="@color/white"
+                          android:textColor="#FF333333"
+                          android:textSize="14pt"
+                />
+
+                <TextView android:layout_width="0dp" android:layout_height="match_parent"
+                          android:text="确定"
+                          android:id="@+id/tv_confirm"
+                          android:gravity="center"
+                          android:background="@color/colorPrimary"
+                          android:layout_weight="1"
+                          android:textColor="@color/white"
+                          android:textSize="14pt"
+                />
+
+            </LinearLayout>
+
 
         </FrameLayout>
 

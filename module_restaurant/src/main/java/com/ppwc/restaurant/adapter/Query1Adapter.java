@@ -8,19 +8,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import com.ppwc.restaurant.R;
-
+import com.ppwc.restaurant.bean.Query1Bean;
 
 import java.util.List;
 
-public class FoodLVAdapter2 extends BaseAdapter {
+public class Query1Adapter extends BaseAdapter {
 
     public Context context;
-    List<String> list;
+    List<Query1Bean> list;
     private TextView tv;
     private ImageView iv;
     public int choosePosition ;
 
-    public FoodLVAdapter2(Context context, List<String> list , int  choosePosition) {
+    public Query1Adapter(Context context, List<Query1Bean> list , int  choosePosition) {
         this.context = context;
         this.list = list;
         this.choosePosition = choosePosition;
@@ -50,6 +50,9 @@ public class FoodLVAdapter2 extends BaseAdapter {
         tv = view.findViewById(R.id.tv);
 
         iv = view.findViewById(R.id.iv);
+
+
+        tv.setText(list.get(position).title);
 
         if (position == choosePosition) {
             tv.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));

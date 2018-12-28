@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 import androidx.multidex.MultiDex;
+
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.onAdaptListener;
@@ -36,11 +37,12 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+
         configUnits();
 
+
+
         AutoSizeConfig.getInstance()
-
-
                 .setCustomFragment(true)
                 .setOnAdaptListener(new onAdaptListener() {
                     @Override
@@ -62,7 +64,6 @@ public class BaseApplication extends Application {
         context = this.getApplicationContext();
         sInstance = this;
         Log.i("BaseApplication", String.valueOf(SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1")));
-
 
 
     }

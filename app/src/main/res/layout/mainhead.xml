@@ -18,6 +18,7 @@
             android:id="@+id/mGridViewPager"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:layout_marginBottom="8pt"
             android:layout_width="match_parent"/>
 
 </LinearLayout>
