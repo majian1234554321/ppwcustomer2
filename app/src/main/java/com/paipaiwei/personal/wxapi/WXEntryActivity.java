@@ -52,7 +52,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
-        Toast.makeText(this, "openid = 请求" + req.openId + "请求类型：req.getType()", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "openid = 请求" + req.openId + "请求类型：req.getType()", Toast.LENGTH_SHORT).show();
 
         switch (req.getType()) {
             case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
@@ -80,7 +80,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
 
-        Toast.makeText(this, "openid = 返回" + resp.openId + "返回类型：" + resp.getType() + "返回的code" + resp.errCode, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "openid = 返回" + resp.openId + "返回类型：" + resp.getType() + "返回的code" + resp.errCode, Toast.LENGTH_SHORT).show();
         if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
             Toast.makeText(this, "code = " + ((SendAuth.Resp) resp).code, Toast.LENGTH_SHORT).show();
         }

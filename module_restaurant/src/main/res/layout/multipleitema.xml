@@ -43,9 +43,10 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="46pt"
+                android:layout_height="31pt"
                 android:text="1000代金券"
                 android:paddingLeft="19pt"
+                android:id="@+id/tv_price"
                 android:gravity="center"
                 android:layout_centerVertical="true"
                 android:textColor="#FF333333"

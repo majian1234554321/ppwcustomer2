@@ -72,9 +72,6 @@ public class ShareUtils {
         req.message = msg;
 
 
-//调用api接口，发送数据到微信
-        api.sendReq(req);
-
         return instance;
     }
 

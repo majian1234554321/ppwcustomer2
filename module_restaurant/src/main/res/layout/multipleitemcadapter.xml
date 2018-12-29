@@ -10,7 +10,7 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:paddingLeft="15pt"
 
-                    android:paddingBottom="16pt"
+                    android:paddingBottom="12pt"
                     android:paddingRight="15pt"
                     android:layout_height="wrap_content">
         <TextView
@@ -36,11 +36,13 @@
     </RelativeLayout>
 
     <com.zhy.view.flowlayout.TagFlowLayout
-            android:id="@+id/TagFlowLayout"
+            android:id="@+id/tagFlowLayout"
             zhy:max_select="-1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+           android:paddingLeft="15pt"
+            android:paddingRight="15pt"
+           >
 
     </com.zhy.view.flowlayout.TagFlowLayout>
 

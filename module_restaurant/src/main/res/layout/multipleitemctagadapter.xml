@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="wrap_content"
+          android:layout_height="30pt"
+          android:textSize="14pt"
+
+          android:background="@drawable/stroke_frame_search"
+          android:gravity="center"
+          android:paddingLeft="18pt"
+          android:paddingRight="18pt"
+
+          android:layout_marginRight="6pt"
+          android:layout_marginBottom="10pt"
+          android:singleLine="true"
+          android:text="Helloworld"
+          android:textColor="@color/all_3">
+
+</TextView>
+
