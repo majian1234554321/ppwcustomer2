@@ -30,8 +30,9 @@ public class SearchAdapter extends TagAdapter<HistoricalModel> {
     @Override
     public View getView(FlowLayout parent, int position, HistoricalModel s) {
 
-        TextView tv = (TextView) activity.getLayoutInflater().inflate(R.layout.tv_single,
-                mFlowLayout, false);
+
+        TextView tv = (TextView) View.inflate(activity, R.layout.hottagadapter, null) ;
+
         tv.setText(s.keyword);
         return tv;
     }

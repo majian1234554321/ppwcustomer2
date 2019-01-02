@@ -13,7 +13,8 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import com.paipaiwei.personal.common.Constants;
+
+import com.yjhh.common.Constants;
 import com.yjhh.common.utils.RxBus;
 import com.paipaiwei.personal.pay.PaymentStatus;
 
@@ -27,9 +28,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.pay_result);
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID_WX);
         api.handleIntent(getIntent(), this);
-
     }
 
     @Override
@@ -46,9 +46,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-
             if (resp.errCode == 0) {
                 //成功 展示成功页面
                 RxBus.Companion.getDefault().post(new PaymentStatus(true));

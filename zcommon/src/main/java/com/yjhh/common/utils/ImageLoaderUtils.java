@@ -10,6 +10,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.yjhh.common.BaseApplication;
 
 public class ImageLoaderUtils {
 
@@ -45,7 +46,7 @@ public class ImageLoaderUtils {
                 .centerCrop()
                 .transform(new CornersTranform(context, radius));
         // 图片加载库采用Glide框架
-        Glide.with(context).load(url).apply(options)
+        Glide.with(BaseApplication.getIns()).load(url).apply(options)
                 .transition(new DrawableTransitionOptions().crossFade())
                 .into(imageView);
 

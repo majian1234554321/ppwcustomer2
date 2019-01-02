@@ -31,6 +31,7 @@ class SetNickNameActivity : BaseActivity(), UserInfoView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_nick_name)
 

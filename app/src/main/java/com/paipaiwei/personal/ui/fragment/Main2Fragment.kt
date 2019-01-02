@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.core.LogisticsCenter
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.tabs.TabLayout
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Main2Adapter
@@ -25,7 +27,21 @@ import com.yjhh.common.listener.LocationLatlng
 import com.paipaiwei.personal.AmpLocationUtil
 
 
-class Main2Fragment : BaseMainFragment(), NearbyView {
+class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.rl_search -> {
+                val postcard = ARouter.getInstance().build("/SearchActivity/Search")
+                LogisticsCenter.completion(postcard);
+                val destination = postcard.destination
+                val intent = Intent(getContext(), destination)
+                startActivityForResult(intent, 10086)
+            }
+            else -> {
+            }
+        }
+    }
+
     override fun onNearbyData(model: NearByDataBean) {
 
         mAdapter?.setNewData(model.items)
@@ -93,6 +109,10 @@ class Main2Fragment : BaseMainFragment(), NearbyView {
         present = NearbyPresent(mActivity, this)
         present?.nearby()
         present?.nearbyData("", "", "", pageIndex, pageSize)
+
+        arrayOf(rl_search).forEach {
+            it.setOnClickListener(this)
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(mActivity)
         mAdapter = Main2Adapter(list)
@@ -250,6 +270,25 @@ class Main2Fragment : BaseMainFragment(), NearbyView {
             }
 
         })
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+
+        when (requestCode) {
+            10086 -> {
+                val keyWord = data?.getStringExtra("keyWord")
+                Toast.makeText(mActivity, keyWord, Toast.LENGTH_SHORT).show()
+                Log.i("Main2Fragment", "232323")
+
+            }
+            else -> {
+            }
+        }
 
     }
 

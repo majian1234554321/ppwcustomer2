@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.R.id.parent
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,8 +41,7 @@ class RestaurantHomeAdapter(
     data: List<MultipleItem>,
     var mRecyclerView: RecyclerView,
     var fragmentManager: FragmentManager
-) :
-    BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
+) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
 
     var parentHeight = 0
 
@@ -54,7 +54,6 @@ class RestaurantHomeAdapter(
     override fun convert(helper: BaseViewHolder, item: MultipleItem) {
         when (helper.itemViewType) {
             MultipleItem.A -> {
-
                 item.list?.forEachIndexed { index, s ->
                     val multipleitema = View.inflate(helper.itemView.context, R.layout.multipleitema, null)
                     val lp = LinearLayout.LayoutParams(
@@ -92,9 +91,9 @@ class RestaurantHomeAdapter(
 
                     if (item.flag!!) {
                         expandable_layout?.setExpanded(true, false)
-                        val drawableLeft = BaseApplication.context.resources.getDrawable(
-                            R.drawable.icon_up_black
-                        )
+                        val drawableLeft =
+                            ContextCompat.getDrawable(BaseApplication.context, R.drawable.icon_up_black)
+
 
                         tv_useIf?.setCompoundDrawablesWithIntrinsicBounds(
                             null,
@@ -105,9 +104,9 @@ class RestaurantHomeAdapter(
                     } else {
                         expandable_layout?.setExpanded(false, false)
 
-                        val drawableLeft = BaseApplication.context.resources.getDrawable(
-                            R.drawable.icon_down_black
-                        )
+                        val drawableLeft =
+                            ContextCompat.getDrawable(BaseApplication.context, R.drawable.icon_down_black)
+
 
                         tv_useIf?.setCompoundDrawablesWithIntrinsicBounds(
                             null,
@@ -126,9 +125,8 @@ class RestaurantHomeAdapter(
                     }
 
                 }
-
-
             }
+
             MultipleItem.B -> {
 
 
@@ -136,16 +134,11 @@ class RestaurantHomeAdapter(
                 viewB.layoutManager = GridLayoutManager(helper.itemView.context, 3)
 
 
-
-
-
-
                 val viewBAdapter = MultipleitemAdapter(item.list)
                 viewB?.adapter = viewBAdapter
 
 
             }
-
 
             MultipleItem.C -> {
 
@@ -164,17 +157,12 @@ class RestaurantHomeAdapter(
                 }
 
 
+                val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
 
-              val tagFlowLayout =   helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
 
-
-                val tagAdapter = MultipleItemCTagAdapter(helper.itemView.context as Activity,  tagFlowLayout,item.list)
+                val tagAdapter = MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.list)
 
                 tagFlowLayout.adapter = tagAdapter
-
-
-
-
 
 
                 val view = View(helper.itemView.context)
@@ -186,7 +174,6 @@ class RestaurantHomeAdapter(
                 }
 
             }
-
 
             MultipleItem.D -> {
                 val view = View(helper.itemView.context)
@@ -210,24 +197,20 @@ class RestaurantHomeAdapter(
         this.muilisteners = muilisteners
     }
 
+    class MultipleItemCTagAdapter(var activity: Activity, var tagFlowLayout: TagFlowLayout, var data: List<String>?) :
+        TagAdapter<String>(data) {
+        override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
+            val tv = activity.layoutInflater.inflate(
+                R.layout.multipleitemctagadapter,
+                tagFlowLayout, false
+            ) as TextView
 
+            tv.text = t
 
+            return tv
+        }
 
-     class MultipleItemCTagAdapter (var activity: Activity,var tagFlowLayout: TagFlowLayout,var data:List<String>?): TagAdapter<String>(data) {
-         override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
-             val tv = activity.layoutInflater.inflate(
-                 R.layout.multipleitemctagadapter,
-                 tagFlowLayout, false
-             ) as TextView
-
-             tv.text = t
-
-             return tv
-         }
-
-     }
-
-
+    }
 
     class MultipleitemAdapter(data: List<String>?) :
         BaseQuickAdapter<String, BaseViewHolder>(R.layout.multipleitemadapter, data) {

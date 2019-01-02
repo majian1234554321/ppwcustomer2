@@ -42,6 +42,7 @@
                             android:layout_marginLeft="15pt"
                             android:layout_marginRight="15pt"
                             android:layout_marginTop="11pt"
+                            android:id="@+id/rl_search"
                             android:background="@drawable/stroke_search"
                             android:layout_marginBottom="9pt"
                             android:backgroundTint="#ECECF2"
@@ -113,7 +114,7 @@
 
                 <HorizontalScrollView android:layout_width="match_parent"
                                       android:id="@+id/hsv"
-                                      android:paddingLeft="15pt"
+
                                       android:paddingBottom="8pt"
                                       android:scrollbars="none"
                                       android:layout_height="wrap_content">
@@ -121,6 +122,7 @@
                     <LinearLayout android:layout_width="match_parent"
                                   android:orientation="horizontal"
                                   android:id="@+id/ll"
+                                  android:paddingLeft="15pt"
                                   android:layout_height="wrap_content">
 
 

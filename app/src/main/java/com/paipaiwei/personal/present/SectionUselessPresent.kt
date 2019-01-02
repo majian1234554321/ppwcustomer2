@@ -27,7 +27,7 @@ import java.util.function.Function
 import kotlin.collections.ArrayList
 
 class SectionUselessPresent(var context: Context) : BasePresent() {
-     var recentlyBrowseView: RecentlyBrowseView?= null
+    var recentlyBrowseView: RecentlyBrowseView? = null
 
     lateinit var myMessageView: MyMessageView
 
@@ -154,8 +154,6 @@ class SectionUselessPresent(var context: Context) : BasePresent() {
                 } else {
 
                 }
-
-
 
 
                 if (t1.string() != null && jsonObject1.getBoolean("success")) {

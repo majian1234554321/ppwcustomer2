@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:background="#F7f7f9"
-              android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:background="#F7f7f9"
+                android:layout_width="match_parent" android:layout_height="match_parent">
 
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
@@ -16,7 +16,24 @@
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:id="@+id/mRecyclerView"
+            android:layout_above="@+id/tv_next"
+            android:layout_below="@+id/tbv_title"
             android:layout_height="wrap_content"/>
 
 
-</LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="查看已失效卡券"
+              android:id="@+id/tv_next"
+              android:paddingTop="17pt"
+              android:paddingBottom="17pt"
+              android:drawablePadding="4pt"
+              android:layout_centerInParent="true"
+              android:gravity="center"
+              android:drawableRight="@drawable/jiantou10"
+              android:layout_alignParentBottom="true"
+              android:textColor="#FFF9572D"
+              android:textSize="13pt"
+    />
+
+
+</RelativeLayout>

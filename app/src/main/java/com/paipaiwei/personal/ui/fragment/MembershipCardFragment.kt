@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.ArrayMap
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.google.gson.Gson
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.SectionMembershipService
@@ -16,9 +17,12 @@ import com.paipaiwei.personal.bean.MemCanBuyBean
 import com.paipaiwei.personal.adapter.MembershipCardAdapter
 import com.paipaiwei.personal.adapter.MyVpAdater
 import com.paipaiwei.personal.bean.MembCardBean
+import com.paipaiwei.personal.bean.MembershipCardBean
 import com.paipaiwei.personal.bean.MyBuyCardInfoBean
 import com.paipaiwei.personal.common.SpacesItemDecoration
 import com.paipaiwei.personal.common.utils.Util
+import com.paipaiwei.personal.present.MembershipCardPresent
+import com.paipaiwei.personal.view.MembershipCardView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function3
@@ -30,35 +34,44 @@ import org.json.JSONObject
 import java.lang.StringBuilder
 
 
-class MembershipCardFragment : BaseFragment() {
+class MembershipCardFragment : BaseFragment(), MembershipCardView {
+    override fun onFault(errorMsg: String?) {
 
+    }
+
+    override fun onMembershipCardValue(model: MembershipCardBean) {
+        mAdapter?.setNewData(model.items)
+        list.addAll(model.items)
+    }
+
+
+    val status = "1" //状态，默认1(1有效的 2已过期的/失效的)
+    var pageIndex = 0
+    var pageSize = 15
+
+    var present: MembershipCardPresent? = null
+    var mAdapter: MembershipCardAdapter? = null
+
+    val list = ArrayList<MembershipCardBean.ItemsBean>()
 
     override fun getLayoutRes(): Int = R.layout.membershipcardfragment
 
     override fun initView() {
 
-        val list = ArrayList<Boolean>()
-
-        for (i in 0..18) {
-            list.add(false)
-        }
-
-
-
-
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mRecyclerView.addItemDecoration(SpacesItemDecoration(Util.dip2px(mActivity, 25f), "TOP,BOTTOM"))
-
-        val mAdapter = MembershipCardAdapter(list)
-
+        mAdapter = MembershipCardAdapter(list)
         mRecyclerView.adapter = mAdapter
 
-        mAdapter.setOnItemChildClickListener { adapter, view, position ->
+        present = MembershipCardPresent(mActivity, this)
+        present?.coupon(status, pageIndex, pageSize)
+
+        mAdapter?.setOnItemChildClickListener { adapter, view, position ->
 
             when (view.id) {
                 R.id.tv_useIf -> {
-                    if (list[position]) {
-                        list.set(position, false)
+                    if (list[position].expand) {
+                        list[position].expand = false
                         (adapter.getViewByPosition(
                             mRecyclerView,
                             position,
@@ -82,7 +95,7 @@ class MembershipCardFragment : BaseFragment() {
 
                         //mAdapter.notifyItemChanged(position)
                     } else {
-                        list[position] = true
+                        list[position].expand = true
                         (adapter.getViewByPosition(
                             mRecyclerView,
                             position,
@@ -105,7 +118,14 @@ class MembershipCardFragment : BaseFragment() {
                 }
 
                 R.id.tv_status -> {
-                    QRCodeFragment("aa").show(childFragmentManager, "TAG")
+
+                    if (list.get(position).ifNeedAudit) {
+                        QRCodeFragment(list[position].qrCodeData).show(childFragmentManager, "TAG")
+                    } else {
+                        Toast.makeText(mActivity, "立即使用", Toast.LENGTH_SHORT).show()
+                    }
+
+
                 }
 
                 else -> {
@@ -114,6 +134,9 @@ class MembershipCardFragment : BaseFragment() {
 
 
         }
+
+
+        // mAdapter?.addFooterView()
 
 
     }

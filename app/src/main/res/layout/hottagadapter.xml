@@ -5,7 +5,7 @@
           android:textSize="14pt"
           android:paddingLeft="15pt"
           android:paddingRight="15pt"
-          android:background="@drawable/stroke_frame_cd"
+    android:background="@drawable/stroke_frame_cd"
           android:gravity="center"
           android:layout_marginRight="10pt"
           android:layout_marginBottom="10pt"
@@ -14,4 +14,3 @@
           android:textColor="#FF666666">
 
 </TextView>
-
