@@ -1,28 +1,23 @@
-package com.paipaiwei.personal.present
+package com.yjhh.common.present
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
 
-import com.azhon.appupdate.utils.LogUtil
 import com.google.gson.Gson
 
-import io.reactivex.disposables.Disposable
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import java.lang.StringBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
-import com.yjhh.common.present.BasePresent
-import com.paipaiwei.personal.apis.CommonService
-import com.paipaiwei.personal.bean.InitBean
 
-import com.paipaiwei.personal.view.CommonView
+
+
+import com.yjhh.common.api.CommonService
+import com.yjhh.common.iview.CommonView
+import com.yjhh.common.model.InitBean
 import com.yjhh.common.utils.SharedPreferencesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -16,7 +16,7 @@
         <TextView
                 android:layout_width="60pt"
                 android:layout_height="21pt"
-                android:text="店铺推荐"
+                android:text="用户评价"
                 android:textColor="#FF171717"
                 android:textSize="15pt"
         />

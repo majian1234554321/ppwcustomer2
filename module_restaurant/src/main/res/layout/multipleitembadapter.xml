@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 
         android:orientation="vertical"
         android:paddingLeft="15pt"
@@ -17,7 +17,7 @@
         <TextView
                 android:layout_width="60pt"
                 android:layout_height="21pt"
-                android:text="用户评价"
+                android:text="店铺推荐"
                 android:textColor="#FF171717"
                 android:textSize="15pt"
         />
@@ -27,9 +27,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="20pt"
-                android:id="@+id/tv_more3"
+                android:id="@+id/tv_more2"
                 android:gravity="right"
-                android:text="更多评价（120条）"
+                tools:text="更多评价（120条）"
                 android:textColor="#FF999999"
                 android:textSize="14pt"
         />

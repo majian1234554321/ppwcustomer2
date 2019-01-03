@@ -29,8 +29,8 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.PhotoAdapter
 import com.paipaiwei.personal.bean.PhotoBean
 import com.paipaiwei.personal.bean.SubmitFeedbackModel
-import com.paipaiwei.personal.present.CommonPresent
-import com.paipaiwei.personal.view.CommonView
+import com.yjhh.common.present.CommonPresent
+import com.yjhh.common.iview.CommonView
 import com.yjhh.common.view.fragments.PhotoFragment
 
 import com.zhihu.matisse.Matisse

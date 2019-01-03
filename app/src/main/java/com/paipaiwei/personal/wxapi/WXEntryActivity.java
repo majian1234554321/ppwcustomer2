@@ -104,6 +104,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             case 2: //分享
                 if (resp.errCode == BaseResp.ErrCode.ERR_OK) {
                     finish();
+                } else {
+                    finish();
                 }
                 break;
             case 1: //登录
@@ -154,9 +156,12 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                         break;
                     case BaseResp.ErrCode.ERR_AUTH_DENIED:
                         //用户拒绝
+                        finish();
                         break;
                     case BaseResp.ErrCode.ERR_USER_CANCEL:
                         //用户取消
+
+                        finish();
                         break;
                     default:
                         break;

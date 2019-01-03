@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools"
                 android:gravity="center"
 
                 android:layout_height="wrap_content"
@@ -119,10 +119,10 @@
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:paddingTop="5pt"
-
+                      android:id="@+id/tv_mark"
                       android:paddingLeft="15pt"
                       android:textSize="11pt"
-                      android:text="仅限大于券面额使用\n限品类：部分商品使用\n周一至周日可用"
+                      tools:text="仅限大于券面额使用\n限品类：部分商品使用\n周一至周日可用"
                       android:gravity="left"
             />
 

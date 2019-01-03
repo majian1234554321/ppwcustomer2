@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.bean;
+package com.yjhh.common.model;
 
 import java.util.List;
 

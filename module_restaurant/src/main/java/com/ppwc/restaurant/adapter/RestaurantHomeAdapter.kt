@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.format.DateUtils
 import android.text.style.RelativeSizeSpan
 import android.view.View
 import android.view.ViewGroup
@@ -26,16 +27,21 @@ import com.ppwc.restaurant.R
 import com.ppwc.restaurant.R.id.tv_pai
 import com.ppwc.restaurant.bean.MeiShiHeadBean
 import com.ppwc.restaurant.mrbean.MultipleItem
+import com.ppwc.restaurant.mrbean.RestaurantHomeBean
 import com.ppwc.restaurant.mrlistener.MuIListener
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.utils.ImageLoaderUtils
+import com.yjhh.common.utils.TimeUtil
+import com.yjhh.common.view.RatingBar
+import com.yjhh.common.view.fragments.PhotoFragment
 import com.yjhh.common.view.ninegrid.NineGridView
 import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
 import net.cachapa.expandablelayout.ExpandableLayout
+import java.lang.StringBuilder
 
 class RestaurantHomeAdapter(
     data: List<MultipleItem>,
@@ -54,7 +60,7 @@ class RestaurantHomeAdapter(
     override fun convert(helper: BaseViewHolder, item: MultipleItem) {
         when (helper.itemViewType) {
             MultipleItem.A -> {
-                item.list?.forEachIndexed { index, s ->
+                item.listone?.forEachIndexed { index, s ->
                     val multipleitema = View.inflate(helper.itemView.context, R.layout.multipleitema, null)
                     val lp = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -63,6 +69,17 @@ class RestaurantHomeAdapter(
                     lp.bottomMargin = 12
                     helper.getView<LinearLayout>(R.id.lla).addView(multipleitema, lp)
                     val expandable_layout = multipleitema.findViewById<ExpandableLayout>(R.id.expandable_layout)
+
+
+                    val tv_cardName = multipleitema.findViewById<TextView>(R.id.tv_cardName)
+                    tv_cardName.text = item.listone!![index].title
+
+                    val tv_mark = multipleitema.findViewById<TextView>(R.id.tv_mark)
+                    val sbMark = StringBuilder()
+                    item.listone!![index].useMarks.forEach {
+                        sbMark.append(it).append("\n")
+                    }
+                    tv_mark.text = sbMark.toString()
 
 
                     val tv_price = multipleitema.findViewById<TextView>(R.id.tv_price)
@@ -131,38 +148,114 @@ class RestaurantHomeAdapter(
 
 
                 val viewB = helper.getView<RecyclerView>(R.id.recyclerView)
+
+
+                val tv_more2 = helper.getView<TextView>(R.id.tv_more2)
+
+                tv_more2.text = "更多推荐(${item.type})"
+
+                tv_more2.setOnClickListener {
+                    muilisteners?.tv_more2()
+                }
+
                 viewB.layoutManager = GridLayoutManager(helper.itemView.context, 3)
 
 
-                val viewBAdapter = MultipleitemAdapter(item.list)
+                val viewBAdapter = MultipleitemAdapter(item.listProducts)
                 viewB?.adapter = viewBAdapter
+
+                viewBAdapter.setOnItemClickListener { adapter, view, position ->
+
+                    val imageList = ArrayList<String>()
+
+                    item.listProducts?.forEach {
+                        imageList.add(it.logoUrl)
+                    }
+                    val dialog = PhotoFragment(imageList, position)
+                    dialog?.show(fragmentManager, "TAG")
+                }
 
 
             }
 
             MultipleItem.C -> {
 
-                item.list?.forEach {
+
+                item.listUserComment?.forEach {
                     val multipleitemc = View.inflate(helper.itemView.context, R.layout.multipleitemc, null)
                     val lp = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
 
+
+                    val iv_image3 = multipleitemc.findViewById<ImageView>(R.id.iv_image3)
+
+                    ImageLoaderUtils.load(
+                        BaseApplication.getIns(),
+                        iv_image3,
+                        it?.shopLogoUrl,
+                        R.drawable.icon_place_pai,
+                        R.drawable.icon_place_pai,
+                        5
+                    )
+
+                    val tv_content3 = multipleitemc.findViewById<TextView>(R.id.tv_content3)
+                    tv_content3.text = it.content
+
+                    val tv_storeName3 = multipleitemc.findViewById<TextView>(R.id.tv_storeName3)
+                    tv_storeName3.text = it.shopName
+
+                    val ratingbar = multipleitemc.findViewById<RatingBar>(R.id.ratingbar)
+                    ratingbar.setStar(it.shopScore)
+
+
+
+                    multipleitemc.findViewById<TextView>(R.id.tv_replay).text = if ("0" == it.ifShop) {
+                        "用户回复"
+                    } else {
+                        "商家回复"
+                    }//是否商家回复 0否 1是
+
+
+                    val tv_pv = multipleitemc.findViewById<TextView>(R.id.tv_pv)
+                    tv_pv.text = it.pv
+
+
+                    val tv_time3 = multipleitemc.findViewById<TextView>(R.id.tv_time3)
+                    tv_time3.text = TimeUtil.stampToDate2(it.createdTime)
+
+
+                    val tv_time33 = multipleitemc.findViewById<TextView>(R.id.tv_time33)
+                    tv_time33.text = it.timeText
+
+
                     val viewC = multipleitemc.findViewById<NineGridView>(R.id.rlNineGridView)
-                    viewC.setAdapter(NineGridViewClickAdapter(context, item.list, fragmentManager))
+                    if (it.files != null && it.files.size > 0) {
+
+                        val listImage3 = ArrayList<String>()
+
+                        it.files.forEach {
+                            listImage3.add(it.toString())
+                        }
+
+                        viewC.setAdapter(NineGridViewClickAdapter(context, listImage3, fragmentManager))
+
+                    }
+
+                    //val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
+                    //val tagAdapter = MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.list)
+                    //tagFlowLayout.adapter = tagAdapter
+
 
                     lp.bottomMargin = 12
                     helper.getView<LinearLayout>(R.id.llc).addView(multipleitemc, lp)
                 }
-
-
-                val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
-
-
-                val tagAdapter = MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.list)
-
-                tagFlowLayout.adapter = tagAdapter
+                val tv_more3 = helper.getView<TextView>(R.id.tv_more3)
+                tv_more3.text = "更多评价(${item.size})"
+                tv_more3.setOnClickListener {
+                    muilisteners?.tv_more3()
+                }
 
 
                 val view = View(helper.itemView.context)
@@ -212,13 +305,13 @@ class RestaurantHomeAdapter(
 
     }
 
-    class MultipleitemAdapter(data: List<String>?) :
-        BaseQuickAdapter<String, BaseViewHolder>(R.layout.multipleitemadapter, data) {
-        override fun convert(helper: BaseViewHolder?, item: String?) {
+    class MultipleitemAdapter(data: List<RestaurantHomeBean.ProductsBean>?) :
+        BaseQuickAdapter<RestaurantHomeBean.ProductsBean, BaseViewHolder>(R.layout.multipleitemadapter, data) {
+        override fun convert(helper: BaseViewHolder?, item: RestaurantHomeBean.ProductsBean?) {
             ImageLoaderUtils.load(
                 BaseApplication.getIns(),
                 helper?.getView<ImageView>(R.id.iv_image),
-                item,
+                item?.logoUrl,
                 R.drawable.icon_place_pai,
                 R.drawable.icon_place_pai,
                 5

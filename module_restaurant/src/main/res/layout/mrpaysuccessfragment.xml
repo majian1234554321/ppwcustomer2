@@ -3,10 +3,12 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:layout_marginTop="20pt"
               android:layout_height="match_parent">
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        app:textValue="支付成功"
+                                       android:id="@+id/tbv_title"
                                        android:layout_height="wrap_content"/>
 
 
@@ -256,6 +258,42 @@
         />
 
     </RelativeLayout>
+
+    <View
+            android:layout_width="327pt"
+            android:layout_gravity="center"
+            android:layout_height="0.5pt"
+            android:background="#FFE6E6E6"
+    />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl7"
+                    android:layout_height="wrap_content">
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="前往评价"
+                  android:id="@+id/tv7"
+                  android:layout_centerVertical="true"
+                  android:textColor="#FF666666"
+                  android:textSize="14pt"
+        />
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tv_7"
+                  android:layout_marginLeft="25pt"
+                  android:paddingTop="12pt"
+                  android:layout_alignParentRight="true"
+                  android:layout_toRightOf="@+id/tv7"
+                  android:paddingBottom="12pt"
+                  android:textColor="#FF333333"
+                  tools:text="121212"
+                  android:textSize="14pt" android:layout_height="wrap_content"
+
+        />
+
+    </RelativeLayout>
+
 
 </LinearLayout>
 

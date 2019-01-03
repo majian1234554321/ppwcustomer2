@@ -1,16 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_marginTop="20pt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        app:textValue="订单评价"
+                                       android:id="@+id/tbv_title"
                                        android:layout_height="wrap_content"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                               android:id="@+id/recyclerView"
-                                               android:layout_height="wrap_content"/>
 
-</LinearLayout>
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:layout_below="@+id/tbv_title"
+                                           android:layout_above="@+id/ll_bottom"
+                                           android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:gravity="center"
+
+                      android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="24pt"
+
+                    android:id="@+id/tv_1"
+                    android:gravity="center"
+                    android:drawablePadding="6pt"
+                    android:drawableLeft="@drawable/jinli111"
+                    android:text="亲爱的锦鲤，请先完成本次评价再进行付款哦"
+                    android:textColor="#FF999999"
+                    android:textSize="12pt"
+            />
+
+
+            <ImageView android:layout_width="60pt"
+                       android:layout_marginTop="17pt"
+                       android:id="@+id/iv_image"
+                       android:background="@drawable/icon_place_pai"
+                       android:layout_centerHorizontal="true"
+                       android:layout_below="@+id/tv_1"
+                       android:layout_height="60pt"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20pt"
+                    android:layout_marginTop="10pt"
+                    android:id="@+id/tv_storeName"
+                    android:layout_below="@+id/iv_image"
+                    android:layout_centerHorizontal="true"
+                    android:text="外婆菜（楚河汉街店）"
+                    android:textColor="#FF333333"
+                    android:textSize="14pt"
+            />
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_marginTop="10pt"
+                            android:id="@+id/rl"
+                            android:layout_marginBottom="10pt"
+                            android:layout_below="@+id/tv_storeName"
+                            android:layout_height="wrap_content">
+
+
+                <TextView
+                        android:layout_width="101pt"
+                        android:layout_centerInParent="true"
+                        android:layout_height="20pt"
+
+                        android:text="为商家服务打分"
+                        android:id="@+id/tv_mid"
+                        android:textColor="#FF333333"
+                        android:textSize="14pt"
+                />
+
+                <View
+                        android:layout_width="87pt"
+                        android:layout_marginLeft="30pt"
+                        android:layout_centerVertical="true"
+                        android:layout_height="0.5pt"
+                        android:background="#FFCDCDCD"
+                />
+
+                <View
+                        android:layout_alignParentRight="true"
+                        android:layout_width="87pt"
+                        android:layout_marginRight="30pt"
+                        android:layout_centerVertical="true"
+                        android:layout_height="0.5pt"
+                        android:background="#FFCDCDCD"
+                />
+
+
+            </RelativeLayout>
+
+
+            <com.yjhh.common.view.RatingBar2
+                    android:id="@+id/id_ratingbar"
+                    android:layout_below="@+id/rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="36.5pt"
+                    android:gravity="center"
+
+
+                    app:startTotalNumber="5"
+                    app:selectedNumber="2"
+                    android:layout_centerVertical="true"
+                    app:starEmptyRes="@drawable/xihuan0020unchecked"
+                    app:starSelectedRes="@drawable/xihuan0010check"
+                    android:background="@color/white"
+                    app:starWidth="36.5pt"
+                    app:starHeight="36.5pt"
+
+                    app:starDistance="17pt"
+
+                    app:starIsFull="true"/>
+
+
+            <View
+                    android:layout_marginTop="10pt"
+                    android:layout_marginBottom="10pt"
+                    android:layout_width="315pt"
+                    android:layout_height="0.5pt"
+                    android:background="#FFCDCDCD"
+            />
+
+            <EditText android:layout_width="match_parent"
+                      android:layout_marginLeft="30pt"
+                      android:id="@+id/et_info"
+                      android:gravity="top|left"
+                      android:padding="10pt"
+                      android:text="1212"
+                      android:textColor="#FF333333"
+                      android:textSize="12pt"
+                      android:background="@drawable/mr_check_bg"
+                      android:layout_below="@+id/id_ratingbar"
+                      android:layout_marginRight="30pt"
+                      android:layout_height="120pt"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@+id/et_info"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="30pt"
+                    android:paddingTop="10pt"
+                    android:layout_marginRight="30pt"
+                    android:id="@+id/recyclerView"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_marginLeft="20pt"
+                    android:paddingTop="4pt"
+                    android:layout_marginBottom="4pt"
+                    android:layout_height="wrap_content"
+                    android:text="必选项：上传图片不少于3张"
+                    android:textColor="#FFB5B5B5"
+                    android:textSize="12pt"
+            />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:id="@+id/ll_bottom"
+                  android:layout_marginBottom="12pt"
+                  android:layout_marginTop="12pt"
+                  android:layout_alignParentBottom="true"
+                  android:layout_height="wrap_content">
+
+        <TextView android:layout_width="300pt"
+                  android:layout_gravity="center_horizontal"
+                  android:text="确认支付（￥128.50）"
+                  android:textColor="#FFFFFFFF"
+                  android:background="@drawable/button034"
+                  android:gravity="center"
+                  android:id="@+id/tv_pay"
+                  android:textSize="16pt"
+                  android:layout_height="39pt"
+
+        />
+
+        <TextView
+                android:layout_width="300pt"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="16.5pt"
+                android:text="注：评价内容需真实可信，否则拍拍味平台有权收回权益"
+                android:textColor="#FFF9572D"
+                android:textSize="12pt"
+        />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

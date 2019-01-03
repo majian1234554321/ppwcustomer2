@@ -4,4 +4,7 @@ public interface MuIListener {
     void tv_if(int position);
 
     void tv_pai(int position);
+
+    void tv_more2();
+    void tv_more3();
 }

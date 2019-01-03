@@ -1,181 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tl="http://schemas.android.com/tools"
-
-        android:background="@color/f8"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tl="http://schemas.android.com/tools"
+            android:layout_marginTop="20pt"
+            android:background="@color/f8"
             android:layout_width="match_parent"
-            android:background="@color/white"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Light">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="wrap_content"
-                app:contentScrim="@color/white"
-                app:expandedTitleMarginBottom="100dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        >
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                          xmlns:app="http://schemas.android.com/apk/res-auto"
-                          android:layout_marginTop="60pt"
-                          android:orientation="vertical" android:layout_width="match_parent"
-                          android:layout_height="wrap_content">
-
-
-                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                xmlns:app="http://schemas.android.com/apk/res-auto"
-
-                                android:padding="15pt" android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-
-                    <ImageView android:layout_width="90pt" android:layout_height="90pt"
-                               android:id="@+id/iv_image"
-                               android:src="@drawable/icon_place_pai"
-                               android:layout_marginRight="10pt"
-                    />
-
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_toRightOf="@+id/iv_image"
-                              android:id="@+id/tv_storeName"
-                              android:textColor="#FF333333"
-                              android:maxLines="2"
-                              android:ellipsize="end"
-                              android:textSize="15pt"
-                              android:layout_height="wrap_content"
-                              android:text="济州烤肉（汉街店）"
-                    />
-
-
-
-
-
-                    <com.yjhh.common.view.RatingBar
-                            android:id="@+id/ratingbar"
-                            android:layout_width="100dp"
-                            android:layout_marginTop="9pt"
-                            android:layout_height="25dp"
-                            android:gravity="center"
-                            android:layout_below="@+id/tv_storeName"
-                            app:allStarsCount="5"
-                            app:curSelectValue="1.5"
-                            android:layout_toRightOf="@+id/iv_image"
-                            app:starEmpty="@drawable/star_empty"
-                            app:starFill="@drawable/star_full"
-                            app:starHalf="@drawable/star_half_full"
-                            app:starImageSize="15dp"
-                            app:starPadding="5dp"
-                            app:stepSize="Half"/>
-
-                    <TextView android:layout_width="wrap_content" android:layout_height="25dp"
-                              android:layout_below="@+id/tv_storeName"
-                              android:layout_marginTop="9pt"
-                              android:text="1212"
-                              android:gravity="center"
-                              android:textColor="#FF333333"
-                              android:textSize="13pt"
-                              android:paddingLeft="8pt"
-                              android:layout_toRightOf="@+id/ratingbar"
-                    />
-
-
-
-                    <TextView android:layout_width="wrap_content"
-                              android:textColor="#FF999999"
-                              android:textSize="13pt"
-                              android:layout_toRightOf="@+id/iv_image"
-                              android:layout_alignBottom="@+id/iv_image"
-                              android:layout_height="wrap_content"
-                              android:id="@+id/tv_price"
-
-                              android:text="武昌区  韩式烤肉"
-                    />
-
-
-                </RelativeLayout>
-
-
-                <RelativeLayout android:layout_width="match_parent"
-                                android:paddingLeft="15pt"
-                                android:paddingRight="15pt"
-                                android:layout_height="wrap_content">
-                    <TextView android:layout_width="match_parent"
-                              android:text="16:30-21:00营业"
-
-                              android:textColor="#FF333333"
-                              android:paddingBottom="12pt"
-                              android:textSize="13pt"
-                              android:drawablePadding="4pt"
-                              android:drawableLeft="@drawable/icon_time"
-                              android:layout_height="wrap_content"/>
-
-
-                    <ImageView android:layout_width="wrap_content"
-                               android:src="@drawable/icon_call_phone"
-                               android:layout_height="wrap_content"
-                               android:layout_alignParentRight="true"
-                    />
-
-
-                </RelativeLayout>
-
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="15pt"
-                        android:drawablePadding="4pt"
-                        android:drawableLeft="@drawable/icon_dingwei_gray"
-                        android:paddingBottom="12pt"
-                        android:text="武昌区楚河南路汉街总部国际C座对面二楼"
-                        android:textColor="#FF333333"
-                        android:textSize="13pt"
-                />
-
-
-                <View android:layout_width="match_parent" android:layout_height="10pt"
-                      android:background="#F7F7F9 "
-                />
-
-
-            </LinearLayout>
-
-
-            <androidx.appcompat.widget.Toolbar
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60pt"
-                    android:layout_gravity="top"
-                    android:background="@color/white"
-                    app:contentInsetStart="0dp"
-                    app:contentInsetEnd="0dp"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@color/white"
+                    app:expandedTitleMarginBottom="100dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
 
-                    app:contentInsetStartWithNavigation="0dp"
-                    android:paddingTop="29pt"
-                    android:paddingLeft="0dp"
-                    android:paddingRight="0dp"
 
-                    app:layout_collapseMode="pin">
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                              android:layout_marginTop="60pt"
+                              android:orientation="vertical" android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+
+
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                                    android:padding="15pt" android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+
+                        <RelativeLayout android:layout_width="90pt"
+                                        android:id="@+id/rl_image"
+                                        android:layout_marginRight="10pt"
+                                        android:layout_height="90pt">
+
+
+                            <ImageView android:layout_width="90pt" android:layout_height="90pt"
+                                       android:id="@+id/iv_image"
+                                       android:src="@drawable/icon_place_pai"
+
+                            />
+
+
+                            <TextView android:layout_width="match_parent"
+                                      android:background="#CCFFFFFF"
+                                      android:id="@+id/tv_image_text"
+                                      android:gravity="center"
+                                      android:textSize="13pt"
+                                      android:textColor="@color/all_3"
+                                      android:layout_alignParentBottom="true"
+                                      android:layout_height="25pt"/>
+
+
+                        </RelativeLayout>
+
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_toRightOf="@+id/rl_image"
+                                  android:id="@+id/tv_storeName"
+                                  android:textColor="#FF333333"
+                                  android:maxLines="1"
+                                  android:ellipsize="end"
+                                  android:textSize="15pt"
+                                  android:layout_height="wrap_content"
+                                  android:text="济州烤肉（汉街店）"
+                        />
+
+
+                        <com.yjhh.common.view.RatingBar
+                                android:id="@+id/ratingbar"
+                                android:layout_width="100dp"
+                                android:layout_marginTop="9pt"
+                                android:layout_height="25dp"
+                                android:gravity="center"
+                                android:layout_below="@+id/tv_storeName"
+                                app:allStarsCount="5"
+                                app:curSelectValue="1.5"
+                                android:layout_toRightOf="@+id/rl_image"
+                                app:starEmpty="@drawable/star_empty"
+                                app:starFill="@drawable/star_full"
+                                app:starHalf="@drawable/star_half_full"
+                                app:starImageSize="15dp"
+                                app:starPadding="5dp"
+                                app:stepSize="Half"/>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="25dp"
+                                  android:layout_below="@+id/tv_storeName"
+                                  android:layout_marginTop="9pt"
+
+                                  android:id="@+id/tv_renjun"
+                                  android:gravity="center"
+                                  android:textColor="#FF333333"
+                                  android:textSize="13pt"
+                                  android:paddingLeft="8pt"
+                                  android:layout_toRightOf="@+id/ratingbar"
+                        />
+
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:textColor="#FF999999"
+                                  android:textSize="13pt"
+                                  android:layout_toRightOf="@+id/rl_image"
+                                  android:layout_alignBottom="@+id/rl_image"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/tv_price"
+
+                                  android:text="武昌区  韩式烤肉"
+                        />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:paddingLeft="15pt"
+                                    android:paddingRight="15pt"
+                                    android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content"
+                                  android:text="16:30-21:00营业"
+                                  android:id="@+id/tv_times"
+                                  android:textColor="#FF333333"
+                                  android:paddingBottom="12pt"
+                                  android:textSize="13pt"
+                                  android:drawablePadding="4pt"
+                                  android:drawableLeft="@drawable/icon_time"
+                                  android:layout_height="wrap_content"/>
+
+
+                        <ImageView android:layout_width="wrap_content"
+                                   android:id="@+id/iv_tel"
+                                   android:paddingLeft="12pt"
+                                   android:paddingBottom="12pt"
+                                   android:src="@drawable/icon_call_phone"
+                                   android:layout_height="wrap_content"
+                                   android:layout_alignParentRight="true"
+                        />
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15pt"
+                            android:drawablePadding="4pt"
+                            android:drawableLeft="@drawable/icon_dingwei_gray"
+                            android:paddingBottom="12pt"
+                            android:text="武昌区楚河南路汉街总部国际C座对面二楼"
+                            android:textColor="#FF333333"
+                            android:textSize="13pt"
+                    />
+
+
+                    <View android:layout_width="match_parent" android:layout_height="10pt"
+                          android:background="#F7F7F9 "
+                    />
+
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="vertical"
+                                  android:paddingRight="21pt"
+                                  android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:text="超值抢购"
+                                  android:paddingLeft="25pt"
+                                  android:textColor="#FF333333"
+                                  android:textSize="15pt"
+                        />
+
+
+                        <RelativeLayout android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+
+                            <ImageView android:layout_width="90pt"
+                                       android:id="@+id/iv_image_buy"
+                                       android:layout_marginRight="10pt"
+                                       android:layout_marginBottom="9pt"
+                                       android:layout_marginTop="9pt"
+                                       android:layout_marginLeft="25pt"
+                                       android:layout_height="90pt"/>
+
+                            <TextView
+                                    android:layout_alignTop="@+id/iv_image_buy"
+                                    android:layout_toRightOf="@+id/iv_image_buy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="21pt"
+                                    android:id="@+id/iv_store_buy"
+                                    android:text="拍拍味日料寿司豪华礼券"
+                                    android:textColor="#FF333333"
+                                    android:textSize="15pt"
+                            />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="18.5pt"
+                                    android:text="剩余15份"
+                                    android:id="@+id/tv_tips"
+                                    android:layout_toRightOf="@+id/iv_image_buy"
+                                    android:layout_alignBottom="@+id/iv_image_buy"
+                                    android:textColor="#FF666666"
+                                    android:textSize="13pt"
+                            />
+
+
+                            <TextView android:layout_width="wrap_content" android:layout_height="20pt"
+                                      android:layout_below="@+id/iv_store_buy"
+                                      android:text="121212"
+                                      android:textColor="#F9572D"
+                                      android:textSize="17pt"
+                                      android:gravity="center"
+                                      android:layout_toRightOf="@+id/iv_image_buy"
+                                      android:id="@+id/tv_price1"
+                            />
+
+
+                            <TextView android:layout_width="wrap_content" android:layout_height="20pt"
+                                      android:layout_below="@+id/iv_store_buy"
+                                      android:text="121212"
+                                      android:gravity="center"
+                                      android:textColor="#FF999999"
+                                      android:textSize="12pt"
+                                      android:layout_marginLeft="5pt"
+                                      android:layout_toRightOf="@+id/tv_price1"
+                                      android:id="@+id/tv_price2"
+                            />
+
+
+                            <TextView android:layout_width="83pt"
+                                      android:text="立即购买"
+                                      android:textColor="#FFFFFFFF"
+                                      android:textSize="14pt"
+                                      android:id="@+id/tv_buy"
+                                      android:gravity="center"
+                                      android:background="@drawable/button11"
+                                      android:layout_alignParentRight="true"
+                                      android:layout_alignBottom="@+id/iv_image_buy"
+                                      android:layout_height="30pt"/>
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="top"
+                        android:background="@color/white"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetEnd="0dp"
+
+                        app:contentInsetStartWithNavigation="0dp"
+
+                        android:paddingLeft="0dp"
+                        android:paddingRight="0dp"
+
+                        app:layout_collapseMode="pin">
 
 
                     <RelativeLayout android:layout_width="match_parent"
                                     android:background="@color/white"
-
-
-
+                                    android:gravity="center_vertical"
                                     android:layout_height="wrap_content">
 
                         <ImageView android:layout_width="22pt"
-                                 android:layout_marginLeft="15pt"
+                                   android:layout_marginLeft="15pt"
                                    android:layout_height="22pt"
                                    android:id="@+id/iv_back"
+                                   android:layout_centerVertical="true"
 
                                    android:src="@drawable/icon_arrow_left_black"
                         />
@@ -183,6 +297,7 @@
 
                         <ImageView android:layout_width="22pt"
                                    android:id="@+id/iv_share"
+                                   android:layout_centerVertical="true"
                                    android:layout_marginRight="15pt"
                                    android:background="@drawable/icon_share"
                                    android:layout_alignParentRight="true"
@@ -191,10 +306,10 @@
 
                         <ImageView android:layout_width="22pt"
                                    android:id="@+id/iv_like"
+                                   android:layout_centerVertical="true"
                                    android:layout_marginLeft="15pt"
                                    android:layout_marginRight="15pt"
                                    android:layout_toLeftOf="@+id/iv_share"
-                                   android:background="@drawable/icon_unlike"
                                    android:layout_height="22pt"/>
 
                         <View android:layout_width="match_parent"
@@ -206,36 +321,50 @@
                     </RelativeLayout>
 
 
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/mTabLayout_7"
+                    android:layout_marginLeft="20pt"
+                    android:layout_marginRight="20pt"
+
+                    app:tabMode="fixed"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
 
 
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
+        <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                   app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                                   android:id="@+id/recyclerView"
+                                                   android:layout_height="match_parent"/>
 
 
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/mTabLayout_7"
-             android:layout_marginLeft="20pt"
-                android:layout_marginRight="20pt"
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="-37.5pt"
+                    android:background="@drawable/maidandise01"
+                    android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="买单"
+                  android:id="@+id/tv_buy2"
+                  android:paddingLeft="8pt"
+                  android:drawableLeft="@drawable/maidan01"
+                  android:drawablePadding="4pt"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+                  android:textColor="#FFF9572D"
+                  android:textSize="16pt"
+        />
 
-                app:tabMode="fixed"
-                android:layout_width="match_parent"
-                android:layout_height="40dp" />
+    </RelativeLayout>
 
 
+</RelativeLayout>
 
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                               app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                                               android:id="@+id/recyclerView"
-                                               android:layout_height="match_parent"/>
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>

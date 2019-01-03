@@ -3,19 +3,10 @@ package com.paipaiwei.personal.ui.activity
 import android.Manifest
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.text.TextUtils
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import android.util.ArrayMap
 import android.util.Log
 import android.view.Gravity
@@ -24,30 +15,25 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
-import com.azhon.appupdate.utils.PermissionUtil.requestPermission
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.tencent.bugly.beta.Beta.storageDir
 import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.api.ApiServices
-import com.yjhh.common.api.SectionCommonService
 import com.yjhh.common.api.SectionUserService
 import com.yjhh.common.base.BaseActivity
-import com.yjhh.common.base.BaseFragment
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.bean.PhotoBean
 import com.paipaiwei.personal.bean.UserinfoBean
 import com.paipaiwei.personal.common.utils.TimeUtil
-import com.paipaiwei.personal.present.CommonPresent
+import com.yjhh.common.present.CommonPresent
 import com.paipaiwei.personal.present.SectionUserPresent
 
 
-import com.paipaiwei.personal.view.CommonView
+import com.yjhh.common.iview.CommonView
 import com.paipaiwei.personal.view.UserInfoView
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.yjhh.common.api.ProcessObserver2

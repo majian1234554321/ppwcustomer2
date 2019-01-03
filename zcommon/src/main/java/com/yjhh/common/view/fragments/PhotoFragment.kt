@@ -67,8 +67,7 @@ class PhotoFragment(var list: List<String>,var index : Int) : androidx.fragment.
             .setDelayTime(10000000)
             .start()
 
-
-
+        banner.viewPager.currentItem = index+1
 
         banner.setOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -77,10 +76,7 @@ class PhotoFragment(var list: List<String>,var index : Int) : androidx.fragment.
 
             override fun onPageSelected(position: Int) {
 
-
                 tv_title.text = "${position+1}/${list.size}"
-
-
 
                 Log.i("PhotoFragment",position.toString())
             }

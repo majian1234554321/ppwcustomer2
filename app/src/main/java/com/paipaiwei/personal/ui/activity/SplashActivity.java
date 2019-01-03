@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.paipaiwei.personal.present.CommonPresent;
-import com.paipaiwei.personal.view.CommonView;
+import com.yjhh.common.present.CommonPresent;
+import com.yjhh.common.iview.CommonView;
 import com.yjhh.common.base.BaseActivity;
 import com.paipaiwei.personal.R;
 
@@ -21,8 +21,6 @@ import com.yjhh.common.utils.LogUtils;
 import com.yjhh.common.utils.RxCountDown;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import com.yjhh.common.listener.PermissionListener;
-import com.paipaiwei.personal.bean.PhoneBean;
-import com.paipaiwei.personal.common.utils.PhoneUtil;
 import io.reactivex.observers.DisposableObserver;
 import org.jetbrains.annotations.Nullable;
 
