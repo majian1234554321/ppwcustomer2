@@ -1,4 +1,4 @@
-package com.cuieney.sdk.rxpay.wechatpay
+package com.yjhh.common.pay.wechatpay
 
 import android.app.Activity
 import android.content.pm.ApplicationInfo
@@ -7,8 +7,9 @@ import android.content.pm.PackageManager
 
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
+import com.yjhh.common.Constants
 import com.yjhh.common.utils.RxBus
-import com.paipaiwei.personal.pay.PaymentStatus
+import com.yjhh.common.pay.PaymentStatus
 
 import org.json.JSONObject
 
@@ -32,7 +33,7 @@ object WXPayWay {
     private val NONCE_STR = "nonceStr"
     private val TIME_STAMP = "timeStamp"
     private val SIGN = "sign"
-    private val META_WX_APPID = "WX_APPID"
+
     private val META_PARTNER_ID = "PARTNER_ID"
     private val META_API_KEY = "API_KEY"
 
@@ -40,9 +41,9 @@ object WXPayWay {
     fun payMoney(context: Activity, orderInfo: String): Flowable<PaymentStatus> {
 
         return Flowable.create(FlowableOnSubscribe<PaymentStatus> { e ->
-            val appId = getMetaData(context, META_WX_APPID)
-            val api = WXAPIFactory.createWXAPI(context, appId)
-            api.registerApp(appId)
+
+            val api = WXAPIFactory.createWXAPI(context, Constants.APP_ID_WX)
+            api.registerApp( Constants.APP_ID_WX)
             val req = PayReq()
             val json:JSONObject
             try {
@@ -51,7 +52,7 @@ object WXPayWay {
                 throw IllegalArgumentException(e)
             }
 
-            req.appId = appId
+            req.appId =  Constants.APP_ID_WX
             val exist = setValue(req, SIGN, json.optString("sign"), context)
             if (!exist) {
                 setValue(req, NONCE_STR, json.optString("null"), context)
@@ -93,20 +94,20 @@ object WXPayWay {
 
     }
 
-    fun getMetaData(context: Activity, metaData: String): String? {
+  /*  fun getMetaData(context: Activity, metaData: String): String? {
         var info: ApplicationInfo?
         try {
             info = context.application.packageManager
                     .getApplicationInfo(context.packageName,
                             PackageManager.GET_META_DATA)
-            val data = info!!.metaData.get(metaData) ?: throw NullPointerException(metaData + "  FIELD CANNOT BE EMPTY")
+            val data = info!!.metaData.get(metaData) ?: throw NullPointerException("$metaData  FIELD CANNOT BE EMPTY")
             return data.toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
 
         return null
-    }
+    }*/
 
 
     private fun setValue(req: PayReq, value: String, rawValue: String?, context: Activity):Boolean {
@@ -114,14 +115,14 @@ object WXPayWay {
         var exist = true
         when (value) {
             PARTNER_ID -> {
-                if (configValue!!.length <= 0 ) {
-                    configValue = getMetaData(context, META_PARTNER_ID)
+                if (configValue!!.isEmpty()) {
+                    configValue =  META_PARTNER_ID
                     exist = false
                 }
                 req.partnerId = configValue
             }
             NONCE_STR -> {
-                if (configValue!!.length <= 0) {
+                if (configValue!!.isEmpty()) {
                     configValue = genNonceStr()
                     exist = false
                 }
@@ -129,15 +130,15 @@ object WXPayWay {
                 req.nonceStr = configValue
             }
             TIME_STAMP -> {
-                if (configValue!!.length <= 0) {
+                if (configValue!!.isEmpty()) {
                     configValue = genTimeStamp()
                     exist = false
                 }
                 req.timeStamp = configValue
             }
             SIGN -> {
-                if (configValue!!.length <= 0) {
-                    configValue = genAppSign(req, getMetaData(context, META_API_KEY))
+                if (configValue!!.isEmpty()) {
+                    configValue = genAppSign(req,  META_API_KEY)
                     exist = false
                 }
                 req.sign = configValue

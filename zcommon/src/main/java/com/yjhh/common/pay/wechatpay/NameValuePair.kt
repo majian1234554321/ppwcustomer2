@@ -1,4 +1,4 @@
-package com.cuieney.sdk.rxpay.wechatpay
+package com.yjhh.common.pay.wechatpay
 
 /**
  * Created by cuieney on 2017/11/28.

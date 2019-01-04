@@ -36,7 +36,8 @@ import kotlinx.android.synthetic.main.restauranthomefragment.*
 class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantView {
     override fun onRestaurantValue(model: RestaurantHomeBean) {
 
-        tv_image_text.text = model.imageText
+        if (tv_image_text != null)
+            tv_image_text.text = model.imageText
 
         ImageLoaderUtils.load(
             BaseApplication.getIns(),
@@ -106,7 +107,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
         if (model.userComment != null && model.userComment.size > 0) {
-            listValue.add(MultipleItem(MultipleItem.C, model.userComment,model.userCommentCount))
+            listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount))
         }
 
         listValue.add(MultipleItem(MultipleItem.D))
@@ -310,7 +311,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
 
-        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy,tv_buy2).forEach {
+        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy, tv_buy2).forEach {
             it.setOnClickListener(this)
         }
 

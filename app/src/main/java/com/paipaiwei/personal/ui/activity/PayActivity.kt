@@ -6,7 +6,7 @@ import com.tencent.mm.opensdk.utils.Log
 import com.yjhh.common.base.BaseActivity
 import com.paipaiwei.personal.R
 
-import com.paipaiwei.personal.pay.RxPay
+import com.yjhh.common.pay.RxPay
 
 class PayActivity : BaseActivity() {
 

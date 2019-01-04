@@ -1,11 +1,10 @@
-package com.paipaiwei.personal.pay.alipay
+package com.yjhh.common.pay.alipay
 
 import android.app.Activity
 import android.util.Log
 
 import com.alipay.sdk.app.PayTask
-import com.cuieney.sdk.rxpay.alipay.PayResult
-import com.paipaiwei.personal.pay.PaymentStatus
+import com.yjhh.common.pay.PaymentStatus
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable

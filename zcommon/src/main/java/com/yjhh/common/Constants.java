@@ -3,7 +3,7 @@ package com.yjhh.common;
 import retrofit2.http.Url;
 
 public class Constants {
-       public static String BASE_URL = "http://192.168.2.200:8080/api/";
+    public static String BASE_URL = "http://192.168.2.200:8080/api/";
 
     // public static String BASE_URL = "http://192.168.2.218:8081/api/";
 
@@ -23,6 +23,8 @@ public class Constants {
 
     public static Long MAX_COUNT_TIME = 60L;
     public static final String APP_ID_WX = "wx38e8e36a43722085";
+
+    public static final String APP_SECRET = "87177d40f44845c742f6e75f58c3ca75";
 
 
 }

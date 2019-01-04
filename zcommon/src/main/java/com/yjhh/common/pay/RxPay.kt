@@ -1,9 +1,8 @@
-package com.paipaiwei.personal.pay
+package com.yjhh.common.pay
 
 import android.app.Activity
-import com.cuieney.sdk.rxpay.wechatpay.WXPayWay
-import com.paipaiwei.personal.pay.alipay.AlipayWay
-import org.json.JSONObject
+import com.yjhh.common.pay.wechatpay.WXPayWay
+import com.yjhh.common.pay.alipay.AlipayWay
 
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer

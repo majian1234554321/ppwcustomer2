@@ -7,29 +7,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
+
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
+
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
-
 import com.yjhh.common.Constants;
 import com.yjhh.common.utils.RxBus;
-import com.paipaiwei.personal.pay.PaymentStatus;
+import com.yjhh.common.pay.PaymentStatus;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
-    private static final String TAG = "WXPayEntryActivity";
+
 
     private IWXAPI api;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.pay_result);
+
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID_WX);
         api.handleIntent(getIntent(), this);
+
+
     }
 
     @Override
@@ -41,11 +45,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
+        Log.i("WXPayEntryActivity", "openid = 返回" + req.toString() + "返回类型：" + req.getType() );
     }
 
     @Override
     public void onResp(BaseResp resp) {
-        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
+        Log.i("WXPayEntryActivity", "openid = 返回" + resp.openId + "返回类型：" + resp.getType() + "返回的code" + resp.errCode + "code = " + ((SendAuth.Resp) resp).code);
+
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == 0) {
                 //成功 展示成功页面

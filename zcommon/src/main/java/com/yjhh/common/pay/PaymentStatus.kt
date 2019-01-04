@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.pay
+package com.yjhh.common.pay
 
 /**
  * Created by cuieney on 18/08/2017.
