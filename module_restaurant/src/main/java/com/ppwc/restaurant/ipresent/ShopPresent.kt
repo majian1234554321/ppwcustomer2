@@ -18,7 +18,7 @@ import com.yjhh.common.base.BaseView
 import com.yjhh.common.present.BasePresent
 
 class ShopPresent(var context: Context) : BasePresent() {
-    val map = ArrayMap<String, String>()
+
 
     var restaurantView: RestaurantView? = null
 

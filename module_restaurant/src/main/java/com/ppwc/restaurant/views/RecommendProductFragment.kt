@@ -88,6 +88,10 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
         }
 
 
+        mAdapter?.setOnItemChildClickListener { adapter, view, position ->
+
+        }
+
     }
 
 

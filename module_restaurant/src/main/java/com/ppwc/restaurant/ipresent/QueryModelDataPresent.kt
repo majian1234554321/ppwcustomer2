@@ -14,7 +14,7 @@ import com.yjhh.common.present.BasePresent
 class QueryModelDataPresent(var context: Context, var view: MeiShiHeadView) : BasePresent() {
 
 
-    val map = ArrayMap<String, String>()
+
 
 
     fun meishiData(

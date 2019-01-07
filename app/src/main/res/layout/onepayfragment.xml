@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="我的道具"
+                                       android:layout_height="wrap_content"/>
+
+
+    <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:text="确认购买"
+            android:id="@+id/mb_buy"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -1,11 +1,12 @@
 package com.paipaiwei.personal.ui.fragment
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
-import com.tencent.mm.opensdk.utils.Log
+
 import com.yjhh.common.base.BaseFragment
 
 import com.paipaiwei.personal.present.RegByAccountPresent

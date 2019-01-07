@@ -16,6 +16,7 @@ import com.paipaiwei.personal.ui.activity.FlutterDisActivity
 import com.paipaiwei.personal.ui.activity.SignActivity
 import com.paipaiwei.personal.ui.activity.UserInfoActivity
 import com.paipaiwei.personal.ui.activity.evaluate.EvaluateManageFragment
+import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
 import com.yjhh.common.utils.ImageLoaderUtils
 
 import kotlinx.android.synthetic.main.main4fragment.*
@@ -28,9 +29,9 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+               // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
-
+                (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
                 //startActivity(Intent(mActivity, FlutterDisActivity::class.java))
 
             }

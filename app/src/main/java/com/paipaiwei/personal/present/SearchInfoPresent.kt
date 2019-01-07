@@ -10,7 +10,7 @@ import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
 
 class SearchInfoPresent(var context: Context,var view : SearchInfoView) : BasePresent() {
-    val map = ArrayMap<String, String>()
+
 
 
     fun searchHot() {

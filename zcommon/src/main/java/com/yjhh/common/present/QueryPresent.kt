@@ -15,7 +15,7 @@ import com.yjhh.common.present.BasePresent
 class QueryPresent(var context: Context,var view :QueryResultView) : BasePresent() {
 
 
-    val map = ArrayMap<String, String>()
+
 
 
 

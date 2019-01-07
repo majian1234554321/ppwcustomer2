@@ -46,4 +46,9 @@ interface OrderService {
     fun payment(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
 
 
+    @FormUrlEncoded
+    @POST("order/detailFromCallback")
+    fun detailFromCallback(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
+
+
 }

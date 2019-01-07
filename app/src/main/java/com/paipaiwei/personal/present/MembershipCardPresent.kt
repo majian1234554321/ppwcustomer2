@@ -11,9 +11,10 @@ import com.yjhh.common.present.BasePresent
 
 class MembershipCardPresent(var context: Context,var view :MembershipCardView) : BasePresent() {
 
-    val map = ArrayMap<String, String>()
+
 
     fun coupon(status: String, pageIndex: Int, pageSize: Int) {
+        map.clear()
         map["status"] = status
         map["pageIndex"] = pageIndex.toString()
         map["pageSize"] = pageSize.toString()

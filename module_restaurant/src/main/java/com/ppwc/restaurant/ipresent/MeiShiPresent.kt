@@ -15,7 +15,7 @@ import com.yjhh.common.present.BasePresent
 class MeiShiPresent(var context: Context, var view: MeiShiHeadView) : BasePresent() {
 
 
-    val  map = ArrayMap<String,String>()
+
 
     fun meishi(code:String) {
         map.clear()

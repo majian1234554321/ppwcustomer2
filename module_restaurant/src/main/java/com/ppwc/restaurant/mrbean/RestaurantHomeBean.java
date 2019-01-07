@@ -120,7 +120,7 @@ public class RestaurantHomeBean {
         public boolean ifMerRec;
         public boolean ifPlatRec;
         public boolean ifRead;
-        public int itemId;
+        public String itemId;
         public String logoUrl;
         public String name;
         public int orderBy;
@@ -175,7 +175,7 @@ public class RestaurantHomeBean {
         public String timeText;
         public String userName;
         public String avatarUrl;
-        public List<?> files;
+        public List<FileBean> files;
         public List<ItemsBean> items;
 
         public static class ItemsBean {
@@ -208,8 +208,13 @@ public class RestaurantHomeBean {
             public int shopScore;
             public String timeText;
             public String userName;
-            public List<?> files;
+            public List<FileBean> files;
             public List<?> items;
         }
+
+        public static class FileBean{
+            public String fileUrl;
+        }
+
     }
 }

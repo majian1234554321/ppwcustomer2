@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_marginTop="15pt"
@@ -20,10 +20,10 @@
               android:textColor="#FF333333"
               android:textSize="13pt"
               android:singleLine="true"
-              android:gravity="center"
+              android:gravity="center_vertical"
               android:maxEms="15"
               android:ellipsize="end"
-              android:text="1212"
+              android:text="哈哈"
               android:layout_alignTop="@+id/iv_image3"
               android:layout_height="18.5pt"/>
 
@@ -74,8 +74,9 @@
 
             android:layout_width="302pt"
             android:layout_marginLeft="58pt"
-            android:layout_height="59pt"
-            android:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，"
+            android:paddingBottom="4pt"
+            android:layout_height="wrap_content"
+            tools:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，"
             android:textColor="#FF333333"
             android:textSize="14pt"
     />

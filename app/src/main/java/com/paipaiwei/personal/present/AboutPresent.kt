@@ -10,7 +10,7 @@ import com.paipaiwei.personal.apis.AboutService
 import com.paipaiwei.personal.view.AboutView
 
 class AboutPresent(var context: Context, var view: AboutView) : BasePresent() {
-    val map = ArrayMap<String, String>()
+
     fun feedbackList(pageIndex: Int, pageSize: Int, flag: String) {
         map.clear()
         map.put("pageIndex", pageIndex.toString())

@@ -13,6 +13,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.mrlistener.AlphaPageTransformer
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.utils.TextStyleUtils
 import kotlinx.android.synthetic.main.mrcheckpayadapter.*
 import kotlinx.android.synthetic.main.mrcheckpayfragment.*
 import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
@@ -80,6 +81,8 @@ class MRCheckPayFragment : BaseFragment() {
 
                val rl_footer = view22?.findViewById<RelativeLayout>(R.id.rl_footer)
 
+
+                tv_price?.text = TextStyleUtils.changeTextAa(tv_price?.text.toString(),tv_price?.text.toString().length-3,tv_price?.text.toString().length,15)
 
                 rl_head?.setBackgroundResource(R.drawable.iv_red)
 
@@ -198,14 +201,12 @@ class MRCheckPayFragment : BaseFragment() {
                 tv2price = it.toString()
 
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
-
                     tv1price = et_totleprice.text.toString()
                     tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0").toString()
                     tv_finalprice.text =
                             calculation(et_totleprice.text.toString(), it.toString(), "1", "0").toString()
                 } else {
                     tv_finalprice.text = ""
-
                     tv1price = "0"
                     tv4price = "0"
                 }
@@ -241,7 +242,7 @@ class MRCheckPayFragment : BaseFragment() {
 
         var price = 0f
 
-        if ("1" == flag) {   //  类型（0满减（面值）1 抵扣（折扣百分比））
+        if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
             if ("0" == discountValue) {  //“0” 不打折扣
                 price = (totleprice.toFloat() - discountNoPrice.toFloat())
             } else {

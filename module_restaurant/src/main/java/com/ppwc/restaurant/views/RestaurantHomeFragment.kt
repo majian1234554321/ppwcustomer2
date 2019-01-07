@@ -39,14 +39,16 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         if (tv_image_text != null)
             tv_image_text.text = model.imageText
 
-        ImageLoaderUtils.load(
-            BaseApplication.getIns(),
-            iv_image,
-            model.logoUrl,
-            R.drawable.icon_place_pai,
-            R.drawable.icon_place_pai,
-            5
-        )
+        if (iv_image != null) {
+            ImageLoaderUtils.load(
+                BaseApplication.getIns(),
+                iv_image,
+                model.logoUrl,
+                R.drawable.icon_place_pai,
+                R.drawable.icon_place_pai,
+                5
+            )
+        }
 
         tv_storeName.text = model.name
 
@@ -60,6 +62,14 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             tv_times.text = "${sb.toString()} 营业"
         }
+
+
+        if (model.ifCollect) {
+            iv_like.setBackgroundResource(R.drawable.xingxing02)
+        } else {
+            iv_like.setBackgroundResource(R.drawable.icon_unlike)
+        }
+
 
         tv_renjun.text = "${model.renj}/每人"
 
@@ -168,8 +178,11 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
     var mAdapter: RestaurantHomeAdapter? = null
 
-    override fun initView() {
 
+    var present:ShopPresent? = null
+
+    override fun initView() {
+      present =   ShopPresent(mActivity, this)
 
         for (i in 0 until titles1.size) {
 
@@ -183,10 +196,10 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         val listValue = listValue
 
-        mAdapter = RestaurantHomeAdapter(listValue, recyclerView, childFragmentManager)
+        mAdapter = RestaurantHomeAdapter(listValue, recyclerView, this, childFragmentManager)
 
         recyclerView.adapter = mAdapter
-        ShopPresent(mActivity, this).shop("1009")
+        present?.shop("1009")
 
 
 
@@ -231,12 +244,13 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                 super.onScrolled(recyclerView, dx, dy)
 
 
-                mTabLayout_7.setScrollPosition(
-                    (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),
-                    0f,
-                    true
-                )
-
+                if (mTabLayout_7 != null) {
+                    mTabLayout_7.setScrollPosition(
+                        (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),
+                        0f,
+                        true
+                    )
+                }
             }
 
 

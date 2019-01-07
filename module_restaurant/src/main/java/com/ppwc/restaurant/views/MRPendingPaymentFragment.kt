@@ -1,22 +1,39 @@
 package com.ppwc.restaurant.views
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.ppwc.restaurant.R
-import com.tencent.mm.opensdk.modelpay.PayReq
-import com.tencent.mm.opensdk.openapi.WXAPIFactory
-import com.tencent.mm.opensdk.utils.Log
+
+
+
 import com.yjhh.common.Constants
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.iview.PayView
 import com.yjhh.common.pay.RxPay
+import com.yjhh.common.present.PayPresent
 import kotlinx.android.synthetic.main.mrpendingpaymentfragment.*
 
-class MRPendingPaymentFragment : BaseFragment() {
+class MRPendingPaymentFragment : BaseFragment(), PayView {
+    override fun onFault(errorMsg: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun onWxPayValue(value:String?) {
+
+    }
+
+    override fun onAliPayValue() {
+
+    }
+
+    var payPresent: PayPresent? = null
 
     override fun getLayoutRes(): Int = R.layout.mrpendingpaymentfragment
 
     override fun initView() {
+
+       payPresent =  PayPresent(mActivity,this)
 
         val price = arguments?.getString("price")
 
@@ -61,6 +78,10 @@ class MRPendingPaymentFragment : BaseFragment() {
 
 
     fun aliPay() {
+
+        payPresent?.paymentByAli("1","0.01")
+
+
         val str =
             "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
         val disposable = RxPay(mActivity).requestAlipay(str)
@@ -74,22 +95,26 @@ class MRPendingPaymentFragment : BaseFragment() {
 
     fun wxPay() {
 
-       val api = WXAPIFactory.createWXAPI(mActivity, Constants.APP_ID_WX)
-
-        val req = PayReq()
-
-        req.appId = Constants.APP_ID_WX
-        req.partnerId = "partnerid"
-        req.prepayId = "prepayid"
-        req.nonceStr = "noncestr"
-        req.timeStamp = "timestamp"
-        req.packageValue = "package"
-        req.sign = "sign"
-        req.extData = "app data" // optional
+        payPresent?.paymentByWx("1","0.01")
 
 
 
-        api.sendReq(req)
+//       val api = WXAPIFactory.createWXAPI(mActivity, Constants.APP_ID_WX)
+//
+//        val req = PayReq()
+//
+//        req.appId = Constants.APP_ID_WX
+//        req.partnerId = "partnerid"
+//        req.prepayId = "prepayid"
+//        req.nonceStr = "noncestr"
+//        req.timeStamp = "timestamp"
+//        req.packageValue = "package"
+//        req.sign = "sign"
+//        req.extData = "app data" // optional
+//
+//
+//
+//        api.sendReq(req)
 
 
 

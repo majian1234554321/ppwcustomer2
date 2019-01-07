@@ -2,7 +2,8 @@ package com.paipaiwei.personal.ui.activity
 
 
 import android.os.Bundle
-import com.tencent.mm.opensdk.utils.Log
+import android.util.Log
+
 import com.yjhh.common.base.BaseActivity
 import com.paipaiwei.personal.R
 

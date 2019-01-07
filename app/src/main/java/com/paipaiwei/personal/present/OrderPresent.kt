@@ -13,7 +13,7 @@ import com.paipaiwei.personal.view.AboutView
 import com.paipaiwei.personal.view.OrderView
 
 class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
-    val map = ArrayMap<String, String>()
+
     val obs = ApiServices.getInstance().create(OrderService::class.java)
 
     fun orderTypes() {
@@ -151,22 +151,52 @@ class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
 
     }
 
-    fun myOrders(id: String?, money: String?) {
+    fun myOrders(type: String?, status: String?, pageIndex: Int?, pageSize: Int?, flag: String?) {
         map.clear()
-        map.put("id", id)
-        map.put("money", money)
+
+        map.put("type", type)
+        map.put("status", status)
+        map.put("pageIndex", pageIndex.toString())
+        map.put("pageSize", pageSize.toString())
         toSubscribe2(obs
             .myOrders(map), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                view.onSuccessOrder(response, id)
+                view.onSuccessOrder(response, flag)
+                Log.i("myOrders", "Main2_1Fragment")
             }
 
             override fun onFault(message: String) {
                 view.onFault(message)
+                Log.i("myOrders", "Main2_1Fragment")
             }
 
         }
         )
+
+    }
+
+
+    fun detailFromCallback(id: String, type: String) {
+        map.clear()
+
+        map["id"] = id
+        map["type"] = type //1微信 2支付宝 4银联
+
+        toSubscribe2(ApiServices.getInstance().create(OrderService::class.java).detailFromCallback(map),
+            object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+
+                    Log.i("detailFromCallback", response)
+
+
+                    view.onSuccessOrder(response, "detailFromCallback")
+                }
+
+                override fun onFault(message: String) {
+                    view.onFault(message)
+                }
+
+            })
 
     }
 

@@ -17,6 +17,7 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.APKVersionCodeUtils
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.paipaiwei.personal.R
+import com.paipaiwei.personal.interfaces.MyJSInterface
 import kotlinx.android.synthetic.main.backviewfragment.*
 
 
@@ -106,7 +107,7 @@ class BackViewFragment : BaseFragment() {
             }
         }
 
-        // mWebView.addJavascriptInterface(MyJSInterface(context), "android")
+         mWebView.addJavascriptInterface(MyJSInterface(mActivity), "android")
 
 
         iv_back.setOnClickListener {

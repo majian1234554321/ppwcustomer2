@@ -60,11 +60,11 @@ object WXPayWay {
             }else{
                 val nonceStrExist = setValue(req, NONCE_STR, json.optString("nonceStr"), context)
                 if (!nonceStrExist) {
-                    throw NullPointerException(NONCE_STR + "  FIELD CANNOT BE EMPTY")
+                    throw NullPointerException("$NONCE_STR  FIELD CANNOT BE EMPTY")
                 }
                 val timeStampExist = setValue(req, TIME_STAMP, json.optString("timeStamp"), context)
                 if (!timeStampExist) {
-                    throw NullPointerException(TIME_STAMP + "  FIELD CANNOT BE EMPTY")
+                    throw NullPointerException("$TIME_STAMP  FIELD CANNOT BE EMPTY")
                 }
             }
             

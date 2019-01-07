@@ -6,7 +6,7 @@
                 android:layout_height="wrap_content">
 
 
-    <ImageView android:layout_width="87pt" android:layout_height="75pt"
+    <ImageView android:layout_width="87pt" android:layout_height="75.5pt"
                android:id="@+id/iv_image"
              android:scaleType="fitXY"
                android:layout_marginRight="10pt"
@@ -51,11 +51,21 @@
     />
 
 
+
+    <ImageView android:layout_width="17pt"
+               android:layout_alignBottom="@+id/iv_image"
+               android:background="@drawable/zan022x"
+               android:layout_marginRight="4pt"
+               android:id="@+id/iv_zan"
+               android:layout_toLeftOf="@+id/tv_like"
+               android:layout_height="17pt"/>
+
     <TextView android:layout_width="wrap_content"
-              android:textColor="#FFF9572D"
+
               android:textSize="12pt"
+              android:gravity="center"
               android:layout_alignBottom="@+id/iv_image"
-              android:layout_height="wrap_content"
+              android:layout_height="17pt"
               android:id="@+id/tv_like"
               android:layout_alignParentRight="true"
               tools:text="999"

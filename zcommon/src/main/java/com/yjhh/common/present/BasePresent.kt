@@ -1,6 +1,7 @@
 package com.yjhh.common.present
 
 
+import android.util.ArrayMap
 import com.google.gson.Gson
 import com.yjhh.common.api.BaseResponse
 import com.yjhh.common.api.ProcessObserver
@@ -13,7 +14,10 @@ import okhttp3.ResponseBody
 
 open class BasePresent {
 
+
+
     val gson = Gson()
+    val map = ArrayMap<String,String>()
 
     fun <T> toSubscribe(o: Observable<BaseResponse<T>>, s: Observer<BaseResponse<T>>) {
         o.subscribeOn(Schedulers.io())

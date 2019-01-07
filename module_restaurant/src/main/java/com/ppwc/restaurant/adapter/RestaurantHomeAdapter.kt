@@ -29,6 +29,8 @@ import com.ppwc.restaurant.bean.MeiShiHeadBean
 import com.ppwc.restaurant.mrbean.MultipleItem
 import com.ppwc.restaurant.mrbean.RestaurantHomeBean
 import com.ppwc.restaurant.mrlistener.MuIListener
+import com.ppwc.restaurant.views.ProductDetailsFragment
+import com.ppwc.restaurant.views.RestaurantHomeFragment
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.BaseApplication.context
 import com.yjhh.common.utils.ImageLoaderUtils
@@ -46,6 +48,7 @@ import java.lang.StringBuilder
 class RestaurantHomeAdapter(
     data: List<MultipleItem>,
     var mRecyclerView: RecyclerView,
+    var fragment: RestaurantHomeFragment,
     var fragmentManager: FragmentManager
 ) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
 
@@ -166,13 +169,19 @@ class RestaurantHomeAdapter(
 
                 viewBAdapter.setOnItemClickListener { adapter, view, position ->
 
-                    val imageList = ArrayList<String>()
 
-                    item.listProducts?.forEach {
-                        imageList.add(it.logoUrl)
-                    }
-                    val dialog = PhotoFragment(imageList, position)
-                    dialog?.show(fragmentManager, "TAG")
+
+                    fragment.start(ProductDetailsFragment.newInstance((adapter.data[position] as RestaurantHomeBean.ProductsBean).itemId))
+
+
+
+//                    val imageList = ArrayList<String>()
+//
+//                    item.listProducts?.forEach {
+//                        imageList.add(it.logoUrl)
+//                    }
+//                    val dialog = PhotoFragment(imageList, position)
+//                    dialog?.show(fragmentManager, "TAG")
                 }
 
 
@@ -181,7 +190,7 @@ class RestaurantHomeAdapter(
             MultipleItem.C -> {
 
 
-                item.listUserComment?.forEach {
+                item.listUserComment?.forEach { it ->
                     val multipleitemc = View.inflate(helper.itemView.context, R.layout.multipleitemc, null)
                     val lp = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -236,7 +245,7 @@ class RestaurantHomeAdapter(
                         val listImage3 = ArrayList<String>()
 
                         it.files.forEach {
-                            listImage3.add(it.toString())
+                            listImage3.add(it.fileUrl)
                         }
 
                         viewC.setAdapter(NineGridViewClickAdapter(context, listImage3, fragmentManager))

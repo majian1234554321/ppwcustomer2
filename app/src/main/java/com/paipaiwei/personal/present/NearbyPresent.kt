@@ -12,7 +12,7 @@ import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
 
 class NearbyPresent(var context: Context, var view: NearbyView) : BasePresent() {
-    val map = ArrayMap<String, String>()
+
 
     fun nearby() {
         toSubscribe2(

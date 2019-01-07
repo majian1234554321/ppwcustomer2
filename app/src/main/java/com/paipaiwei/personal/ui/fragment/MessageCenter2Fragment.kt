@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
-import com.tencent.mm.opensdk.utils.Log
+
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SpaceItemDecoration
 

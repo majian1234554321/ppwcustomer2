@@ -62,12 +62,12 @@ public class RecommendProductBean {
         public String logoUrl;
         public String name;
         public int orderBy;
-        public String price;
+        public float price;
         public int saleStatus;
         public String saleStatusText;
         public int shopId;
         public String shopName;
-        public int zan;
+        public String zan;
         public String zanText;
     }
 }

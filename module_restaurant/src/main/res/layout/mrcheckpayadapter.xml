@@ -31,7 +31,7 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="31pt"
+                android:layout_height="wrap_content"
                 android:text="1000代金券"
 
                 android:paddingLeft="19pt"
@@ -39,7 +39,7 @@
                 android:gravity="center"
                android:layout_centerInParent="true"
                 android:textColor="@color/white"
-                android:textSize="22pt"
+                android:textSize="33pt"
 
         />
 

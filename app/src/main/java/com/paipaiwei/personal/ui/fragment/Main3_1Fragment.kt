@@ -11,20 +11,31 @@ import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 
 import com.paipaiwei.personal.adapter.PullToRefreshAdapter
+import com.paipaiwei.personal.present.OrderPresent
 
 import com.paipaiwei.personal.present.SectionOrderPresent
+import com.paipaiwei.personal.view.OrderView
 
 
 import kotlinx.android.synthetic.main.main2_1fragment.*
 
-class Main3_1Fragment : BaseFragment() {
+class Main3_1Fragment : BaseFragment(), OrderView {
+    override fun onSuccessOrder(response: String?, flag: String?) {
+
+    }
+
+    override fun onFault(errorMsg: String?) {
+
+    }
 
     override fun getLayoutRes(): Int = R.layout.main2_1fragment
 
     var pageIndex = 0
     val pageSize = 15
+    var type = ""
+    var status = ""
 
-    var present: SectionOrderPresent? = null
+    var present: OrderPresent? = null
     var mAdapter: PullToRefreshAdapter? = null
 
     override fun initView() {
@@ -32,6 +43,9 @@ class Main3_1Fragment : BaseFragment() {
         initAdapter()
         initRefreshLayout()
         swipeLayout.autoRefresh()
+
+        present = OrderPresent(mActivity, this)
+
     }
 
     private fun initAdapter() {
@@ -44,7 +58,6 @@ class Main3_1Fragment : BaseFragment() {
         }, mRecyclerView)
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
-
             Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
         }
 
@@ -59,28 +72,16 @@ class Main3_1Fragment : BaseFragment() {
     }
 
     private fun refresh() {
-        mAdapter?.setNewData(getData())
+        pageIndex = 0
+        present?.myOrders(type, status, pageIndex, pageSize, "refresh")
     }
 
     private fun loadMore() {
-        mAdapter?.addData(getData())
-        mAdapter?.loadMoreEnd()
+        pageIndex++
+        present?.myOrders(type, status, pageIndex, pageSize, "loadMore")
 
     }
 
-    fun getData(): ArrayList<String> {
-        val list = ArrayList<String>()
-        list.add("A")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        list.add("B")
-        return list
-    }
 
     override fun initData() {
         Log.i("TAG", "Main2_1Fragment")
