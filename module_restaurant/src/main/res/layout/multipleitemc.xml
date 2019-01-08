@@ -160,6 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="16.5pt"
                     android:text="查看详情"
+                    android:id="@+id/tv_details"
                     android:layout_alignParentRight="true"
                     android:textColor="#FF2C85FF"
                     android:textSize="12pt"

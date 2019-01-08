@@ -28,6 +28,12 @@ public class GridViewPager extends RelativeLayout {
     private GridItemClickListener gridItemClickListener;
     private GridItemLongClickListener gridItemLongClickListener;
 
+    public void setVis(){
+        if (mLlDot!= null){
+            mLlDot.setVisibility(GONE);
+        }
+    }
+
     /**
      * 总的页数 计算得出
      */
@@ -91,7 +97,7 @@ public class GridViewPager extends RelativeLayout {
                 public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                     if (gridItemClickListener == null) return;
                     int position = pos + curIndex * pageSize;
-                    gridItemClickListener.click(pos, position, mData.get(position).getText());
+                    gridItemClickListener.click(pos, position, mData.get(position).text);
                 }
             });
             //true if the callback consumed the long click, false otherwise
@@ -101,7 +107,7 @@ public class GridViewPager extends RelativeLayout {
                     if (gridItemLongClickListener == null) return false;
                     else {
                         int position = pos + curIndex * pageSize;
-                        gridItemLongClickListener.click(pos, position, mData.get(position).getText());
+                        gridItemLongClickListener.click(pos, position, mData.get(position).text);
                         return true;
                     }
                 }

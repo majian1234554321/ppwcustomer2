@@ -73,10 +73,10 @@ public class GridViewAdapter extends BaseAdapter {
          * 在给View绑定显示的数据时，计算正确的position = position + curIndex * pageSize，
          */
         int pos = position + curIndex * pageSize;
-        viewHolder.tv.setText(mData.get(pos).getText());
+        viewHolder.tv.setText(mData.get(pos).text);
 
         Glide.with(context)
-                .load(mData.get(pos).getIconUrl())
+                .load(mData.get(pos).iconUrl)
                 .into(viewHolder.iv);
 
 

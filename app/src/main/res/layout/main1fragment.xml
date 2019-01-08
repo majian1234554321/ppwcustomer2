@@ -9,13 +9,15 @@
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/swipeLayout"
+            android:background="@color/colorPrimary"
             android:layout_below="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRecyclerView"
+                android:id="@+id/recyclerView"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

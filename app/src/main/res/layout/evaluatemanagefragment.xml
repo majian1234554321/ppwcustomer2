@@ -4,9 +4,14 @@
               android:background="@color/f8"
               android:orientation="vertical" android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <View android:layout_width="match_parent" android:layout_height="20pt"
+          android:background="@color/white"
+    />
+
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                                  app:textValue="评价管理"
-
+                                                android:id="@+id/tbv_title"
                                                  android:layout_height="wrap_content"/>
 
 

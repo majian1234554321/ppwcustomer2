@@ -10,12 +10,17 @@ import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.gyf.barlibrary.ImmersionBar;
+import com.yjhh.common.R;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import io.reactivex.disposables.CompositeDisposable;
 import me.jessyan.autosize.internal.CustomAdapt;
 import me.yokeyword.fragmentation.SupportFragment;
 
 public abstract class BaseFragment extends SupportFragment implements CustomAdapt {
+
+    public ImmersionBar mImmersionBar;
+
     @Override
     public boolean isBaseOnWidth() {
         return true;
@@ -27,7 +32,8 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
     }
 
 
-    public BaseFragment(){}
+    public BaseFragment() {
+    }
 
 
     public void loginOut() {
@@ -76,13 +82,14 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(getLayoutRes(), container, false);
+        mImmersionBar = ImmersionBar.with(this);
         return mRootView;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         if (isLazyLoad()) {
@@ -98,10 +105,15 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
         setListener();
     }
 
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
 
+        if (mImmersionBar != null) {
+            mImmersionBar.destroy();
+        }
     }
 
     @Override
@@ -135,6 +147,15 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
         return true;
     }
 
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        //如果要在Fragment单独使用沉浸式，请在onSupportVisible实现沉浸式
+
+    }
+
+
     /**
      * 用户可见时执行的操作
      */
@@ -147,9 +168,7 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
             mIsPrepare = false;
             initData();
         }
-        if (mIsVisible && mIsImmersion && isImmersionBarEnabled()) {
-            // initImmersionBar();
-        }
+
     }
 
     /**

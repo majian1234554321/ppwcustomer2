@@ -51,6 +51,8 @@ public class RestaurantHomeBean {
     public List<TimesBean> times;
     public List<UserCommentBean> userComment;
 
+
+
     public static class MapPointBean {
         /**
          * latitude : 30.556642

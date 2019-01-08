@@ -4,6 +4,7 @@ package com.paipaiwei.personal.ui.fragment
 import android.view.View
 import android.widget.GridView
 import com.flyco.tablayout.SlidingTabLayout
+import com.gyf.barlibrary.ImmersionBar
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 
@@ -33,7 +34,9 @@ class Main3Fragment : BaseMainFragment(), OrderView {
         val mTitles = arrayOf("全部", "进行中", "待评价")
 
 
-        OrderPresent(mActivity,this).orderTypes()
+
+
+        OrderPresent(mActivity, this).orderTypes()
 
 
         val constellationView = layoutInflater.inflate(R.layout.custom_layout, null)

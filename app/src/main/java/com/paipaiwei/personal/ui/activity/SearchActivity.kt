@@ -19,7 +19,7 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.SearchAdapter
 import com.paipaiwei.personal.adapter.SearchContentAdapter
 import com.paipaiwei.personal.bean.SearchInfoBean
-import com.paipaiwei.personal.common.extend.Visitable
+
 import com.paipaiwei.personal.db.AppDataBase
 import com.paipaiwei.personal.db.entity.HistoricalModel
 import com.paipaiwei.personal.present.SearchInfoPresent

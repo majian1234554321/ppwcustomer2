@@ -1,6 +1,7 @@
 package com.paipaiwei.personal.ui.fragment
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import com.yjhh.common.base.BaseFragment
@@ -18,19 +19,40 @@ class SelectDistrictFragment : BaseFragment() {
 
     override fun getLayoutRes(): Int = R.layout.selectdistrictfragment
     override fun initView() {
+
+        val value = arguments?.getString("id")
         var constellationAdapter = ConstellationAdapter(context, Arrays.asList(*constellations))
+        constellations.forEachIndexed { index, s ->
+            if (s == value) {
+                constellationAdapter.setCheckItem(index)
+            }
+        }
+
+
         gridView.adapter = constellationAdapter
         tv_currentLocation.text = "当前地址:${com.yjhh.common.Constants.district}"
 
         gridView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
 
-
-           val intent =  Intent()
-            intent.putExtra("location",constellations[position])
-            mActivity.setResult(RESULT_OK,intent)
+            val intent = Intent()
+            intent.putExtra("location", constellations[position])
+            mActivity.setResult(RESULT_OK, intent)
 
             mActivity.finish()
         }
     }
+
+
+    companion object {
+        fun newInstance(id: String?): SelectDistrictFragment {
+            val fragment = SelectDistrictFragment()
+            val bundle = Bundle()
+
+            bundle.putString("id", id)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
 }

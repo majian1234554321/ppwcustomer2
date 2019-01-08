@@ -44,7 +44,7 @@ class PayPresent(var context: Context,var payViiew:PayView) : BasePresent() {
         toSubscribe2(ApiServices.getInstance().create(PayService::class.java).paymentByAli(map),object :ProcessObserver2(context){
             override fun processValue(response: String?) {
                 Log.i("paymentByAli",response)
-                payViiew.onAliPayValue()
+                payViiew.onAliPayValue(response)
             }
 
             override fun onFault(message: String) {

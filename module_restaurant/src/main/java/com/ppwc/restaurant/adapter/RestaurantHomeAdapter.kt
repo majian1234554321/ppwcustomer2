@@ -170,9 +170,7 @@ class RestaurantHomeAdapter(
                 viewBAdapter.setOnItemClickListener { adapter, view, position ->
 
 
-
                     fragment.start(ProductDetailsFragment.newInstance((adapter.data[position] as RestaurantHomeBean.ProductsBean).itemId))
-
 
 
 //                    val imageList = ArrayList<String>()
@@ -190,7 +188,7 @@ class RestaurantHomeAdapter(
             MultipleItem.C -> {
 
 
-                item.listUserComment?.forEach { it ->
+                item.listUserComment?.forEachIndexed { index, userCommentBean ->
                     val multipleitemc = View.inflate(helper.itemView.context, R.layout.multipleitemc, null)
                     val lp = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -200,27 +198,34 @@ class RestaurantHomeAdapter(
 
                     val iv_image3 = multipleitemc.findViewById<ImageView>(R.id.iv_image3)
 
+                    val tv_details = multipleitemc.findViewById<TextView>(R.id.tv_details)
+
+                    tv_details.setOnClickListener {
+
+                    }
+
+
                     ImageLoaderUtils.load(
                         BaseApplication.getIns(),
                         iv_image3,
-                        it?.shopLogoUrl,
+                        userCommentBean?.shopLogoUrl,
                         R.drawable.icon_place_pai,
                         R.drawable.icon_place_pai,
                         5
                     )
 
                     val tv_content3 = multipleitemc.findViewById<TextView>(R.id.tv_content3)
-                    tv_content3.text = it.content
+                    tv_content3.text = userCommentBean.content
 
                     val tv_storeName3 = multipleitemc.findViewById<TextView>(R.id.tv_storeName3)
-                    tv_storeName3.text = it.shopName
+                    tv_storeName3.text = userCommentBean.shopName
 
                     val ratingbar = multipleitemc.findViewById<RatingBar>(R.id.ratingbar)
-                    ratingbar.setStar(it.shopScore)
+                    ratingbar.setStar(userCommentBean.shopScore)
 
 
 
-                    multipleitemc.findViewById<TextView>(R.id.tv_replay).text = if ("0" == it.ifShop) {
+                    multipleitemc.findViewById<TextView>(R.id.tv_replay).text = if ("0" == userCommentBean.ifShop) {
                         "用户回复"
                     } else {
                         "商家回复"
@@ -228,23 +233,23 @@ class RestaurantHomeAdapter(
 
 
                     val tv_pv = multipleitemc.findViewById<TextView>(R.id.tv_pv)
-                    tv_pv.text = it.pv
+                    tv_pv.text = userCommentBean.pv
 
 
                     val tv_time3 = multipleitemc.findViewById<TextView>(R.id.tv_time3)
-                    tv_time3.text = TimeUtil.stampToDate2(it.createdTime)
+                    tv_time3.text = TimeUtil.stampToDate2(userCommentBean.createdTime)
 
 
                     val tv_time33 = multipleitemc.findViewById<TextView>(R.id.tv_time33)
-                    tv_time33.text = it.timeText
+                    tv_time33.text = userCommentBean.timeText
 
 
                     val viewC = multipleitemc.findViewById<NineGridView>(R.id.rlNineGridView)
-                    if (it.files != null && it.files.size > 0) {
+                    if (userCommentBean.files != null && userCommentBean.files.size > 0) {
 
                         val listImage3 = ArrayList<String>()
 
-                        it.files.forEach {
+                        userCommentBean.files.forEach {
                             listImage3.add(it.fileUrl)
                         }
 

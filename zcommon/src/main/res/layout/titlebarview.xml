@@ -2,7 +2,7 @@
 
 <androidx.appcompat.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/rl_background"
+        android:id="@+id/toolbar"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
         android:padding="0dp"

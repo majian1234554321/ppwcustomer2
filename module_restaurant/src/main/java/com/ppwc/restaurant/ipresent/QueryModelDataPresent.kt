@@ -26,7 +26,8 @@ class QueryModelDataPresent(var context: Context, var view: MeiShiHeadView) : Ba
         sort: String,
         query: String,
         pageIndex: Int,
-        pageSize: Int
+        pageSize: Int,
+        flag:String
     ) {
         map.clear()
 
@@ -50,7 +51,7 @@ class QueryModelDataPresent(var context: Context, var view: MeiShiHeadView) : Ba
                 override fun processValue(response: String?) {
                     Log.i("meishi", response)
                     val model = gson.fromJson<MeiShiFootBean>(response, MeiShiFootBean::class.java)
-                    view.MeiShiFootValue(model)
+                    view.MeiShiFootValue(model,flag)
                 }
 
                 override fun onFault(message: String) {

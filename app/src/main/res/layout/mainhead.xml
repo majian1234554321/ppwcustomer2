@@ -1,26 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.youth.banner.Banner
-            android:id="@+id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+
+        <com.github.florent37.arclayout.ArcLayout
+                android:layout_width="match_parent"
+                android:layout_height="76pt"
+                android:layout_marginBottom="68pt"
+                android:id="@+id/arc"
+                app:arc_cropDirection="cropOutside"
+                app:arc_height="22pt"
+                app:arc_position="bottom"
+                android:elevation="5dp">
+            <ImageView android:layout_width="match_parent" android:layout_height="76pt"
+                       android:background="@color/colorPrimary"
+            />
+
+        </com.github.florent37.arclayout.ArcLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
-                                               android:id="@+id/hRecyclerView"
-                                               android:layout_height="wrap_content"/>
 
-    <com.paipaiwei.personal.ui.customview.GridViewPager
-            android:id="@+id/mGridViewPager"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="8pt"
-            android:layout_width="match_parent"/>
+        <com.paipaiwei.personal.ui.customview.GridViewPager
+                android:id="@+id/mGridViewPager"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8pt"
+                android:layout_marginRight="8pt"
+                android:background="#FFFFFF"
+                android:layout_width="match_parent"/>
 
-</LinearLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_marginLeft="15pt"
+
+                        android:layout_marginBottom="10pt"
+                        android:layout_marginRight="15pt"
+                        android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="68pt"
+                    android:layout_height="24pt"
+                    android:text="限时抢拍"
+                    android:textColor="#FF333333"
+                    android:textSize="17pt"
+            />
+
+            <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:drawablePadding="2pt"
+                    android:layout_height="15pt"
+                    android:drawableRight="@drawable/icon_jiantou082x"
+                    android:layout_centerVertical="true"
+
+                    android:text="更多"
+                    android:textColor="#FF666666"
+                    android:textSize="11pt"
+            />
+
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                   android:id="@+id/hRecyclerView"
+                                                   android:layout_marginLeft="15pt"
+                                                   android:layout_marginRight="15pt"
+                                                   android:layout_height="wrap_content"/>
+
+        <ImageView android:layout_width="match_parent" android:layout_height="132pt"
+                   android:background="@drawable/iv_imagegame"
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17pt"
+                android:text="为你优选"
+                android:layout_marginLeft="15pt"
+                android:textColor="#FF333333"
+                android:textSize="17pt"
+        />
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+                                                       android:layout_marginTop="6.5pt"
+                                                       app:cardCornerRadius="6pt"
+                                                       android:layout_marginLeft="15pt"
+                                                       android:layout_marginRight="15pt"
+                                                       android:layout_height="wrap_content">
+        <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="120.5pt"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>
 
 

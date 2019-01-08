@@ -4,73 +4,92 @@
                                    xmlns:tools="http://schemas.android.com/tools"
                                    android:id="@+id/toolbar"
                                    android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
+                                   android:layout_height="?attr/actionBarSize"
                                    android:background="@color/colorPrimary"
                                    app:contentInsetStart="0dp">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
-                  android:background="@color/colorPrimary"
-                  android:layout_height="wrap_content">
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+           >
+
+        <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15pt"
+                android:textSize="16pt"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:drawablePadding="2pt"
+                android:textColor="@color/white"
+                android:drawableRight="@drawable/icon_arrow_right"
+                tools:text="武昌区"
+                android:orientation="vertical">
+
+        </TextView>
+
+        <com.google.android.material.card.MaterialCardView android:layout_width="wrap_content"
+                                                            android:id="@+id/mcv_Search"
+                                                           android:layout_marginLeft="15pt"
+                                                           android:layout_marginRight="15pt"
+                                                           android:layout_centerVertical="true"
+                                                           android:layout_toLeftOf="@+id/iv_scan"
+                                                           app:cardCornerRadius="25pt"
+                                                           app:cardBackgroundColor="#99FFFFFF"
+                                                           android:layout_toRightOf="@+id/tv_location"
+                                                           android:layout_height="30pt">
 
             <TextView
-                    android:id="@+id/tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_marginStart="12dp"
-
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:drawableRight="@color/all_9"
-                    tools:text="武昌区"
-                    android:orientation="vertical">
-
-            </TextView>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:padding="5pt"
+                    android:text="请输入商家名称"
+                    android:textSize="14pt"
+                    android:layout_gravity="center"
                     android:gravity="center_vertical"
-                    android:background="@drawable/stroke_frame_all6"
+
                     android:cursorVisible="false"
-                    android:drawablePadding="12dp"
-                    android:layout_toLeftOf="@+id/iv_scan"
-                    android:layout_toRightOf="@+id/tv_location"
-                    android:drawableStart="@mipmap/seek"
+                    android:drawablePadding="8pt"
+                    android:drawableStart="@drawable/icon_search"
                     android:id="@+id/tv_search"
                     android:hint="输入商家、商品名称"
-                    android:paddingLeft="@dimen/sp_12"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:textSize="12sp"/>
+            />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
 
 
-            <ImageView
 
-                    android:layout_marginRight="@dimen/sp_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/iv_scan"
-                    android:src="@mipmap/scan"/>
+                android:layout_width="22pt"
+                android:layout_height="22pt"
+              android:layout_toLeftOf="@+id/iv_fenlei"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_scan"
+               android:layout_marginRight="19pt"
+                android:src="@drawable/iv_scan"/>
 
 
-        </RelativeLayout>
-    </LinearLayout>
+        <ImageView
+
+                android:layout_marginRight="14pt"
+                android:layout_width="22pt"
+                android:layout_height="22pt"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_fenlei"
+                android:src="@drawable/fenlei0202x"/>
+
+
+    </RelativeLayout>
+
 
 </androidx.appcompat.widget.Toolbar>

@@ -68,7 +68,7 @@ class TitleBarView @JvmOverloads constructor(
         tv_title.textSize = textSize
 
 
-        val rl_background = view.findViewById<Toolbar>(R.id.rl_background)
+        val rl_background = view.findViewById<Toolbar>(R.id.toolbar)
 
         rl_background.setBackgroundColor(titleBarBackground)
         // iv_right.setImageResource(imageSrc)

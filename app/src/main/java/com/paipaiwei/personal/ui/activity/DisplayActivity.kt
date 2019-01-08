@@ -30,6 +30,8 @@ class DisplayActivity : BaseActivity() {
     var age: Int? = 0
 
 
+    var value1:String?= null
+
     @Autowired
     @JvmField
     var bean: RxAddressBean? = null
@@ -45,6 +47,8 @@ class DisplayActivity : BaseActivity() {
 
 
         displayTab = intent.getStringExtra("displayTab")
+
+        value1 = intent.getStringExtra("value1")
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragments: BaseFragment? = null
@@ -98,7 +102,7 @@ class DisplayActivity : BaseActivity() {
 
 
             "SelectDistrictFragment" -> {
-                fragments = SelectDistrictFragment()
+                fragments = SelectDistrictFragment.newInstance(value1)
 
             }
 

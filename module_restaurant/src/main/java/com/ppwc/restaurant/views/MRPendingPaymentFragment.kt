@@ -6,7 +6,6 @@ import android.widget.Toast
 import com.ppwc.restaurant.R
 
 
-
 import com.yjhh.common.Constants
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.iview.PayView
@@ -19,11 +18,11 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onWxPayValue(value:String?) {
+    override fun onWxPayValue(value: String?) {
 
     }
 
-    override fun onAliPayValue() {
+    override fun onAliPayValue(value: String?) {
 
     }
 
@@ -33,7 +32,7 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
 
     override fun initView() {
 
-       payPresent =  PayPresent(mActivity,this)
+        payPresent = PayPresent(mActivity, this)
 
         val price = arguments?.getString("price")
 
@@ -62,9 +61,6 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
             }
 
 
-
-
-
 //            Toast.makeText(
 //                mActivity, if (rb_alipay.isChecked) {
 //                    "alipay"
@@ -79,7 +75,7 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
 
     fun aliPay() {
 
-        payPresent?.paymentByAli("1","0.01")
+        payPresent?.paymentByAli("1", "0.01")
 
 
         val str =
@@ -95,8 +91,7 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
 
     fun wxPay() {
 
-        payPresent?.paymentByWx("1","0.01")
-
+        payPresent?.paymentByWx("1", "0.01")
 
 
 //       val api = WXAPIFactory.createWXAPI(mActivity, Constants.APP_ID_WX)
@@ -117,15 +112,14 @@ class MRPendingPaymentFragment : BaseFragment(), PayView {
 //        api.sendReq(req)
 
 
-
-      /*  val str = "{\"prepayId\":\"wx20171130142918877d249e440347896475\"}"
-        val disposable = RxPay(mActivity).requestWXpay(str)
-            .subscribe({ aBoolean ->
-                Log.e("accept:", aBoolean.toString())
-            }) { throwable ->
-                Log.e("accept: ", throwable.toString())
-            }
-        compositeDisposable.add(disposable)*/
+        /*  val str = "{\"prepayId\":\"wx20171130142918877d249e440347896475\"}"
+          val disposable = RxPay(mActivity).requestWXpay(str)
+              .subscribe({ aBoolean ->
+                  Log.e("accept:", aBoolean.toString())
+              }) { throwable ->
+                  Log.e("accept: ", throwable.toString())
+              }
+          compositeDisposable.add(disposable)*/
 
     }
 

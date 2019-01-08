@@ -30,7 +30,7 @@ import androidx.annotation.Nullable
 import com.google.android.material.card.MaterialCardView
 import com.yjhh.common.utils.GlideLoader
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.common.extend.Visitable
+
 import kotlinx.android.synthetic.main.signfragment.*
 
 

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tl="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tl="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
+    <View android:layout_width="match_parent"
+          android:background="@color/white"
+          android:layout_height="20pt"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_gravity="top"
+                        android:id="@+id/toolbar"
                         app:contentInsetStart="@dimen/spi_8"
                         android:background="@color/transparent"
                         app:layout_collapseMode="pin">
@@ -94,7 +99,7 @@
                                 android:id="@+id/tv_title"
                                 android:drawableRight="@drawable/iv_mr_down"
                                 android:layout_height="wrap_content"
-                               />
+                        />
 
                     </RelativeLayout>
 
@@ -146,4 +151,4 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

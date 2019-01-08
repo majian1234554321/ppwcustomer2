@@ -23,6 +23,7 @@ import com.yjhh.common.utils.GlideLoader
 import kotlinx.android.synthetic.main.main2fragment.*
 
 import com.amap.api.maps2d.model.LatLng
+import com.gyf.barlibrary.ImmersionBar
 import com.yjhh.common.listener.LocationLatlng
 import com.paipaiwei.personal.AmpLocationUtil
 
@@ -105,6 +106,9 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
     override fun getLayoutRes(): Int = R.layout.main2fragment
 
     override fun initView() {
+
+
+
 
         present = NearbyPresent(mActivity, this)
         present?.nearby()

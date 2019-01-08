@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.core.LogisticsCenter
 import com.alibaba.android.arouter.launcher.ARouter
+import com.gyf.barlibrary.ImmersionBar
 import com.ppwc.restaurant.R
 
 import com.ppwc.restaurant.adapter.Query1Adapter
@@ -23,8 +24,23 @@ import com.yjhh.common.utils.GlideLoader
 import kotlinx.android.synthetic.main.restaurantinfragment.*
 
 class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadView {
-    override fun MeiShiFootValue(model: MeiShiFootBean) {
-        mAdapter?.setNewData(model.items)
+    override fun MeiShiFootValue(model: MeiShiFootBean, flag: String?) {
+
+
+        if ("refresh" == flag) {
+            mAdapter?.setNewData(model.items)
+        } else {
+
+            mAdapter?.addData(model.items)
+
+            if (pageSize == model.items.size) {
+                mAdapter?.loadMoreComplete()
+            } else {
+                mAdapter?.loadMoreEnd()
+            }
+        }
+
+
     }
 
 
@@ -56,9 +72,9 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             rv_h.layoutManager = layoutManager
             val mAdapter = RestaurantInTabAdapter(model.tabsModuleModels)
             rv_h.adapter = mAdapter
-            
-            mAdapter.setOnItemChildClickListener { adapter, view, position ->  }
-            
+
+            mAdapter.setOnItemChildClickListener { adapter, view, position -> }
+
 
         }
 
@@ -221,6 +237,19 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             }
 
 
+            R.id.fl1 -> {
+                fl1.visibility = View.GONE
+            }
+
+            R.id.fl3 -> {
+                fl3.visibility = View.GONE
+            }
+
+            R.id.fl4 -> {
+                fl4.visibility = View.GONE
+            }
+
+
             else -> {
 
                 val postcard = ARouter.getInstance().build("/SearchActivity/Search")
@@ -256,13 +285,15 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
     var mAdapter: RestaurantInAdapter? = null
 
     val pageSize = 15
-    val pageIndex = 0
+    var pageIndex = 0
 
 
     var queryPresent: QueryModelDataPresent? = null
 
     override fun initView() {
-
+        ImmersionBar.with(mActivity)
+            .statusBarDarkFont(true, 0.2f)
+            .init()
 
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
         mAdapter = RestaurantInAdapter(listFoot)
@@ -271,15 +302,21 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             start(RestaurantHomeFragment())
         }
 
+        mAdapter?.setOnLoadMoreListener({
+            loadMore()
+        }, recyclerView)
+
+
+
         present = MeiShiPresent(mActivity, this)
         present?.meishi("")
 
         queryPresent = QueryModelDataPresent(mActivity, this)
 
 
-        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize)
+        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize,"refresh")
 
-        val arrays = arrayOf(rb1, rb2, rb3, rb4, mcv_Search, iv_back, tv_reset, tv_confirm)
+        val arrays = arrayOf(rb1, rb2, rb3, rb4, mcv_Search, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
 
         query1Adapter = Query1Adapter(mActivity, listAll, 0)
         lv_1.adapter = query1Adapter
@@ -287,6 +324,9 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             fl1.visibility = View.GONE
             rb1.text = listAll[position].title
             lv_1.adapter = Query1Adapter(mActivity, listAll, position)
+
+            pageIndex = 0
+
 
         }
 
@@ -297,6 +337,9 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             fl3.visibility = View.GONE
             rb3.text = list3[position].title
             lv_3.adapter = Query1Adapter(mActivity, list3, position)
+
+            pageIndex = 0
+
         }
 
 
@@ -309,6 +352,14 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             it.setOnClickListener(this)
         }
 
+
+    }
+
+
+    private fun loadMore() {
+
+        pageIndex++
+        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize, "loadMore")
 
     }
 

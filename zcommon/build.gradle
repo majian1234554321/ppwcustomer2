@@ -123,6 +123,9 @@ dependencies {
     api(name: 'core-4.3.1-openDefaultRelease', ext: 'aar')
     api(name: 'expand-release', ext: 'aar')
     api(name: 'banner-release', ext: 'aar')
+    api(name: 'immersionbar-2.3.3-beta15', ext: 'aar')
+
+
     api 'com.dsiner.lib:xrv:1.1.2'
     api 'com.amap.api:map2d:5.2.0'
     api 'com.amap.api:location:4.4.0'

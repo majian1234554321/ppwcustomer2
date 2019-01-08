@@ -1,43 +1,21 @@
 package com.paipaiwei.personal.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main1FootBean {
 
+
     /**
-     * items : [{"beforePrice":45.22,"distance":"123km","id":0,"isBuy":false,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memberPrice":8.5,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":10000,"isBuy":false,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":20000,"isBuy":false,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memberPrice":8.5,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":30000,"isBuy":true,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":40000,"isBuy":true,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memberPrice":8.5,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":50000,"isBuy":true,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":60000,"isBuy":false,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memberPrice":8.5,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]},{"beforePrice":45.22,"distance":"123km","id":70000,"isBuy":false,"isCollect":false,"isMerRec":false,"isPlatRec":false,"memo":"提供免费wifi，免费停车","name":"正宗油焖大虾","price":13.22,"shopId":11111,"tags":["还可以"]}]
+     * items : [{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"0m","grade":10,"ifBuy":true,"ifNews":false,"ifRec":true,"labels":["武昌区"," 西餐牛排"],"name":"测试占位1"},{"coupons":[],"distance":"30m","grade":9,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位2"},{"coupons":[],"distance":"24m","grade":8,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位3"},{"coupons":[],"distance":"72m","grade":7,"ifBuy":true,"ifNews":false,"ifRec":false,"labels":["武昌区"," 西餐牛排"],"name":"测试占位4"},{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"360m","grade":6,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位5"},{"coupons":[],"distance":"175m","grade":5,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位6"},{"coupons":[],"distance":"258m","grade":4,"ifBuy":true,"ifNews":false,"ifRec":true,"labels":["武昌区"," 西餐牛排"],"name":"测试占位7"},{"coupons":[],"distance":"105m","grade":3,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位8"},{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"408m","grade":2,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位9"},{"coupons":[],"distance":"99m","grade":1,"ifBuy":true,"ifNews":false,"ifRec":false,"labels":["武昌区"," 西餐牛排"],"name":"测试占位10"}]
+     * pageCount : 0
      * queryModel : {"pageIndex":0,"pageSize":10}
-     * recordCount : 8
+     * recordCount : 0
      */
 
-    private QueryModelBean queryModel;
-    private int recordCount;
-    private ArrayList<ItemsBean> items;
-
-    public QueryModelBean getQueryModel() {
-        return queryModel;
-    }
-
-    public void setQueryModel(QueryModelBean queryModel) {
-        this.queryModel = queryModel;
-    }
-
-    public int getRecordCount() {
-        return recordCount;
-    }
-
-    public void setRecordCount(int recordCount) {
-        this.recordCount = recordCount;
-    }
-
-    public ArrayList<ItemsBean> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<ItemsBean> items) {
-        this.items = items;
-    }
+    public int pageCount;
+    public QueryModelBean queryModel;
+    public int recordCount;
+    public List<ItemsBean> items;
 
     public static class QueryModelBean {
         /**
@@ -45,159 +23,49 @@ public class Main1FootBean {
          * pageSize : 10
          */
 
-        private int pageIndex;
-        private int pageSize;
-
-        public int getPageIndex() {
-            return pageIndex;
-        }
-
-        public void setPageIndex(int pageIndex) {
-            this.pageIndex = pageIndex;
-        }
-
-        public int getPageSize() {
-            return pageSize;
-        }
-
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
-        }
+        public int pageIndex;
+        public int pageSize;
     }
 
     public static class ItemsBean {
         /**
-         * beforePrice : 45.22
-         * distance : 123km
-         * id : 0
-         * isBuy : false
-         * isCollect : false
-         * isMerRec : false
-         * isPlatRec : false
-         * memberPrice : 8.5
-         * memo : 提供免费wifi，免费停车
-         * name : 正宗油焖大虾
-         * price : 13.22
-         * shopId : 11111
-         * tags : ["还可以"]
+         * coupons : [{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}]
+         * distance : 0m
+         * grade : 10
+         * ifBuy : true
+         * ifNews : false
+         * ifRec : true
+         * labels : ["武昌区"," 西餐牛排"]
+         * name : 测试占位1
          */
 
-        private double beforePrice;
-        private String distance;
-        private int id;
-        private boolean isBuy;
-        private boolean isCollect;
-        private boolean isMerRec;
-        private boolean isPlatRec;
-        private double memberPrice;
-        private String memo;
-        private String name;
-        private double price;
-        private int shopId;
-        private List<String> tags;
+        public String logoUrl;
+        public String perCapita;
+        public String distance;
+        public int grade;
+        public boolean ifBuy;
+        public boolean ifNews;
+        public boolean ifRec;
+        public String name;
+        public List<CouponsBean> coupons;
+        public List<String> labels;
 
-        public double getBeforePrice() {
-            return beforePrice;
-        }
+        public static class CouponsBean {
+            /**
+             * dis : 900
+             * full : 1000
+             * title : 券名
+             * type : 1
+             * value : 900
+             * valueText : 900
+             */
 
-        public void setBeforePrice(double beforePrice) {
-            this.beforePrice = beforePrice;
-        }
-
-        public String getDistance() {
-            return distance;
-        }
-
-        public void setDistance(String distance) {
-            this.distance = distance;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public boolean isIsBuy() {
-            return isBuy;
-        }
-
-        public void setIsBuy(boolean isBuy) {
-            this.isBuy = isBuy;
-        }
-
-        public boolean isIsCollect() {
-            return isCollect;
-        }
-
-        public void setIsCollect(boolean isCollect) {
-            this.isCollect = isCollect;
-        }
-
-        public boolean isIsMerRec() {
-            return isMerRec;
-        }
-
-        public void setIsMerRec(boolean isMerRec) {
-            this.isMerRec = isMerRec;
-        }
-
-        public boolean isIsPlatRec() {
-            return isPlatRec;
-        }
-
-        public void setIsPlatRec(boolean isPlatRec) {
-            this.isPlatRec = isPlatRec;
-        }
-
-        public double getMemberPrice() {
-            return memberPrice;
-        }
-
-        public void setMemberPrice(double memberPrice) {
-            this.memberPrice = memberPrice;
-        }
-
-        public String getMemo() {
-            return memo;
-        }
-
-        public void setMemo(String memo) {
-            this.memo = memo;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public double getPrice() {
-            return price;
-        }
-
-        public void setPrice(double price) {
-            this.price = price;
-        }
-
-        public int getShopId() {
-            return shopId;
-        }
-
-        public void setShopId(int shopId) {
-            this.shopId = shopId;
-        }
-
-        public List<String> getTags() {
-            return tags;
-        }
-
-        public void setTags(List<String> tags) {
-            this.tags = tags;
+            public int dis;
+            public int full;
+            public String title;
+            public int type;
+            public int value;
+            public String valueText;
         }
     }
 }

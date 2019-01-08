@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout android:layout_width="108pt" android:layout_height="108pt">
+        <ImageView android:layout_width="108pt" android:layout_height="108pt"
+                   android:id="@+id/iv_image_head"
+        />
+
+        <TextView android:layout_width="108pt"
+                  android:text="拍拍味烧烤盛宴…"
+                  android:padding="5.5pt"
+                  android:textColor="#FFFFFFFF"
+                  android:id="@+id/tv_name"
+                  android:background="#33000000"
+                  android:gravity="center"
+                  android:maxEms="5"
+                  android:singleLine="true"
+                  android:layout_alignParentBottom="true"
+                  android:textSize="11pt"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+    <TextView android:layout_width="108pt"
+              android:text="剩余 31:58"
+              android:id="@+id/tv_count"
+              android:layout_marginTop="7pt"
+              android:layout_marginBottom="5pt"
+              android:layout_height="wrap_content"/>
+
+    <TextView
+           android:padding="7pt"
+            android:layout_marginBottom="7pt"
+
+            android:id="@+id/mb_pai"
+
+            android:layout_width="108pt" android:layout_height="wrap_content"
+            android:text="立即抢拍"
+            android:gravity="center"
+            android:textColor="#FFFF5F26"
+            android:textSize="13pt"
+    />
+
+
+</LinearLayout>

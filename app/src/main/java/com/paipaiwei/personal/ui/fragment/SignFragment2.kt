@@ -14,10 +14,7 @@ import android.view.*
 
 import android.view.ViewGroup
 import android.view.Gravity
-import android.R.attr.gravity
-import android.animation.Animator
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+
 
 import android.view.WindowManager
 import android.util.DisplayMetrics
@@ -31,7 +28,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.yjhh.common.utils.GlideLoader
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.common.extend.Visitable
+
 import kotlinx.android.synthetic.main.signfragment.*
 
 

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
@@ -32,14 +33,20 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
     public static final int REQUEST_CODE = 1;
 
     public CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private ImmersionBar mImmersionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //transparentAndCoverStatusBar(this);
-
-        // SystemBarUtil.tintStatusBar(this, ContextCompat.getColor(this,R.color.colorPrimary),0.0f);
         super.onCreate(savedInstanceState);
-       // PushAgent.getInstance(this).onAppStart();
+
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.keyboardEnable(true).navigationBarWithKitkatEnable(false).init();
+        //解决华为emui3.0与3.1手机手动隐藏底部导航栏时，导航栏背景色未被隐藏的问题
+
+        mImmersionBar
+                .statusBarDarkFont(true, 0.2f)
+                .init();
         ActivityCollector.addActivity(this);
 
 
@@ -47,6 +54,9 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
 
 
     }
+
+
+
 
 
     @Override
@@ -87,6 +97,12 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
         if (compositeDisposable != null) {
             compositeDisposable.clear();
         }
+
+        if (mImmersionBar!=null){
+            mImmersionBar.destroy();
+        }
+
+
     }
 
     public static void requestRuntimePermission(String[] permissions,
@@ -216,6 +232,8 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
+
+
 
 
 }

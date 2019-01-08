@@ -32,7 +32,7 @@ class MainActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setStatusBar()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

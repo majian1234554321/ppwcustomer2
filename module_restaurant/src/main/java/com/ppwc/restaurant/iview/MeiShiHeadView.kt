@@ -7,5 +7,5 @@ import com.yjhh.common.base.BaseView
 interface MeiShiHeadView :BaseView {
     fun MeiShiHeadValue(model :MeiShiHeadBean)
 
-    fun MeiShiFootValue(model : MeiShiFootBean)
+    fun MeiShiFootValue(model : MeiShiFootBean,flag:String?)
 }

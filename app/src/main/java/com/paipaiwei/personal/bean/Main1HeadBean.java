@@ -5,193 +5,94 @@ import java.util.List;
 public class Main1HeadBean {
 
 
-    private List<?> banners;
-    private List<ContentsBean> contents;
-    private List<TabsBean> tabs;
+    /**
+     * banners : [{"ifAdv":false,"imageUrl":"http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg","title":"gggg"},{"ifAdv":false,"imageUrl":"http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg","title":"gggg"},{"ifAdv":false,"imageUrl":"http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg","title":"gggg"},{"ifAdv":false,"imageUrl":"http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg","title":"gggg"},{"ifAdv":false,"imageUrl":"http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg","title":"gggg"}]
+     * jinli : {"imageUrl":"http://192.168.2.200/asset/file/upload/20181222/b4ea95c45258e2b3.jpg","linkUrl":"http://192.168.2.200:8080/activity/jinli","status":1,"title":"12月锦鲤活动"}
+     * qiangPais : [{"beginTime":1546927200,"count":12,"countText":"剩余 28份","endTime":1546937999,"id":1002,"imageUrl":"http://192.168.2.200/asset/file/upload/20181228/3e3a06f7c0e3d6d6.png","memo":"","rec":false,"status":1,"statusText":"立即抢拍","title":"抱","total":40},{"beginTime":1546927200,"count":15,"countText":"剩余 25份","endTime":1546937999,"id":1001,"imageUrl":"http://192.168.2.200/asset/file/upload/20181227/9bdf1dd17083c8f5.png","memo":"","rec":false,"status":1,"statusText":"立即抢拍","title":"其他","total":40},{"beginTime":1546927200,"count":0,"countText":"剩余 40份","endTime":1546937999,"id":1000,"imageUrl":"http://192.168.2.200/asset/file/upload/20181227/beeb280f2b7f05f2.png","memo":"","rec":true,"status":1,"statusText":"立即抢拍","title":"明志","total":40}]
+     * tabs : [{"code":"","iconUrl":"http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png","ifBuild":false,"ifHideText":false,"linkUrl":"01","rowIndex":0,"text":"美食"},{"code":"","iconUrl":"http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png","ifBuild":false,"ifHideText":false,"linkUrl":"02","rowIndex":0,"text":"休闲娱乐"},{"code":"","iconUrl":"http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png","ifBuild":false,"ifHideText":false,"linkUrl":"03","rowIndex":0,"text":"医疗美容"},{"code":"","iconUrl":"http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png","ifBuild":false,"ifHideText":false,"linkUrl":"04","rowIndex":0,"text":"丽人美发"},{"code":"","iconUrl":"http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png","ifBuild":false,"ifHideText":false,"linkUrl":"05","rowIndex":0,"text":"酒店住宿"}]
+     * youXuanText : 为你优选
+     */
 
-    public List<?> getBanners() {
-        return banners;
-    }
+    public JinliBean jinli;
+    public String youXuanText;
+    public List<BannersBean> banners;
+    public List<QiangPaisBean> qiangPais;
+    public List<TabsBean> tabs;
 
-    public void setBanners(List<?> banners) {
-        this.banners = banners;
-    }
-
-    public List<ContentsBean> getContents() {
-        return contents;
-    }
-
-    public void setContents(List<ContentsBean> contents) {
-        this.contents = contents;
-    }
-
-    public List<TabsBean> getTabs() {
-        return tabs;
-    }
-
-    public void setTabs(List<TabsBean> tabs) {
-        this.tabs = tabs;
-    }
-
-    public static class ContentsBean {
+    public static class JinliBean {
         /**
-         * id : 0
-         * ifNews : false
-         * ifRec : false
-         * linkUrl : https://www.baidu.com
-         * title : 今天天气不错
-         * type : 0
+         * imageUrl : http://192.168.2.200/asset/file/upload/20181222/b4ea95c45258e2b3.jpg
+         * linkUrl : http://192.168.2.200:8080/activity/jinli
+         * status : 1
+         * title : 12月锦鲤活动
          */
 
-        private int id;
-        private boolean ifNews;
-        private boolean ifRec;
-        private String linkUrl;
-        private String title;
-        private int type;
+        public String imageUrl;
+        public String linkUrl;
+        public int status;
+        public String title;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public static class BannersBean {
+        /**
+         * ifAdv : false
+         * imageUrl : http://192.168.2.200/asset/file/upload/20190103/a775ab803c1386e5.jpeg
+         * title : gggg
+         */
 
-        public void setId(int id) {
-            this.id = id;
-        }
+        public boolean ifAdv;
+        public String imageUrl;
+        public String title;
+    }
 
-        public boolean isIfNews() {
-            return ifNews;
-        }
+    public static class QiangPaisBean {
+        /**
+         * beginTime : 1546927200
+         * count : 12
+         * countText : 剩余 28份
+         * endTime : 1546937999
+         * id : 1002
+         * imageUrl : http://192.168.2.200/asset/file/upload/20181228/3e3a06f7c0e3d6d6.png
+         * memo :
+         * rec : false
+         * status : 1
+         * statusText : 立即抢拍
+         * title : 抱
+         * total : 40
+         */
 
-        public void setIfNews(boolean ifNews) {
-            this.ifNews = ifNews;
-        }
-
-        public boolean isIfRec() {
-            return ifRec;
-        }
-
-        public void setIfRec(boolean ifRec) {
-            this.ifRec = ifRec;
-        }
-
-        public String getLinkUrl() {
-            return linkUrl;
-        }
-
-        public void setLinkUrl(String linkUrl) {
-            this.linkUrl = linkUrl;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
+        public int time;
+        public int beginTime;
+        public int count;
+        public String countText;
+        public int endTime;
+        public int id;
+        public String imageUrl;
+        public String memo;
+        public boolean rec;
+        public int status;
+        public String statusText;
+        public String title;
+        public int total;
     }
 
     public static class TabsBean {
         /**
-         * iconUrl : http://192.168.2.200:8080/file/20181030/4da9c5571b3b02de.png
-         * ifAll : false
+         * code :
+         * iconUrl : http://192.168.2.200/asset/file/upload/20181227/d166130fa6c0d6fa.png
          * ifBuild : false
          * ifHideText : false
-         * ifHot : false
-         * ifSeckill : false
-         * linkUrl : http://www.hbyjhh.com
+         * linkUrl : 01
          * rowIndex : 0
-         * text : 测试
+         * text : 美食
          */
 
-        private String iconUrl;
-        private boolean ifAll;
-        private boolean ifBuild;
-        private boolean ifHideText;
-        private boolean ifHot;
-        private boolean ifSeckill;
-        private String linkUrl;
-        private int rowIndex;
-        private String text;
-
-        public String getIconUrl() {
-            return iconUrl;
-        }
-
-        public void setIconUrl(String iconUrl) {
-            this.iconUrl = iconUrl;
-        }
-
-        public boolean isIfAll() {
-            return ifAll;
-        }
-
-        public void setIfAll(boolean ifAll) {
-            this.ifAll = ifAll;
-        }
-
-        public boolean isIfBuild() {
-            return ifBuild;
-        }
-
-        public void setIfBuild(boolean ifBuild) {
-            this.ifBuild = ifBuild;
-        }
-
-        public boolean isIfHideText() {
-            return ifHideText;
-        }
-
-        public void setIfHideText(boolean ifHideText) {
-            this.ifHideText = ifHideText;
-        }
-
-        public boolean isIfHot() {
-            return ifHot;
-        }
-
-        public void setIfHot(boolean ifHot) {
-            this.ifHot = ifHot;
-        }
-
-        public boolean isIfSeckill() {
-            return ifSeckill;
-        }
-
-        public void setIfSeckill(boolean ifSeckill) {
-            this.ifSeckill = ifSeckill;
-        }
-
-        public String getLinkUrl() {
-            return linkUrl;
-        }
-
-        public void setLinkUrl(String linkUrl) {
-            this.linkUrl = linkUrl;
-        }
-
-        public int getRowIndex() {
-            return rowIndex;
-        }
-
-        public void setRowIndex(int rowIndex) {
-            this.rowIndex = rowIndex;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
+        public String code;
+        public String iconUrl;
+        public boolean ifBuild;
+        public boolean ifHideText;
+        public String linkUrl;
+        public int rowIndex;
+        public String text;
     }
 }

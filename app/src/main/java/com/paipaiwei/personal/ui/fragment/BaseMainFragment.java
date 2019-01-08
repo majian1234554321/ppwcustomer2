@@ -52,6 +52,13 @@ public abstract class BaseMainFragment extends BaseFragment {
         return true;
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
     public interface OnBackToFirstListener {
         void onBackToFirstFragment();
     }

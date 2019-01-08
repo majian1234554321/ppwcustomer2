@@ -35,8 +35,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        new GlideImageLoader().displayImage(context,list.get(position).getIconUrl(),holder.imageView);
-        holder.tv.setText(list.get(position).getText());
+        new GlideImageLoader().displayImage(context,list.get(position).iconUrl,holder.imageView);
+        holder.tv.setText(list.get(position).text);
     }
 
     @Override

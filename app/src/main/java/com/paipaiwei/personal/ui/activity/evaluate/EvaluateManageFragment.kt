@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
@@ -21,6 +22,8 @@ import com.paipaiwei.personal.view.EvaluateView
 import com.yjhh.common.bean.TabEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+
+
 import kotlinx.android.synthetic.main.evaluatemanagefragment.*
 import java.util.*
 
@@ -158,6 +161,8 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
     var present: EvaluatePresent? = null
 
     override fun initView() {
+
+
 
         present = EvaluatePresent(mActivity, this)
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)

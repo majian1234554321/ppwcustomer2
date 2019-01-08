@@ -83,7 +83,19 @@ public class TimeUtil {
         long minutes = second / 60;//转换分钟
         second = second % 60;//剩余秒数
 
-        return days + "$" + hours + "$" + minutes + "$" + second;
+        if (days > 0) {
+            return days + ":" + hours + ":" + minutes + ":" + second;
+        } else if (hours > 0) {
+            return hours + ":" + minutes + ":" + second;
+        } else if (minutes > 0) {
+            if (second >= 10) {
+                return minutes + ":" + second;
+            }
+            return minutes + ":0" + second;
+        } else {
+            return "00:" + second;
+        }
+
 
     }
 

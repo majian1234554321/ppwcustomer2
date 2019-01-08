@@ -1,22 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent" android:layout_height="match_parent">
 
-                android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+
+            android:id="@+id/toolbar"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            android:padding="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
 
-    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                       android:id="@+id/tbv_title"
-                                       app:textValue="区域选择"
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize">
 
-                                       android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_marginLeft="15pt"
+                    android:src="@drawable/icon_arrow_left_black"
+                    android:layout_width="22pt"
+                    android:layout_centerVertical="true"
+                    android:layout_height="22pt"/>
+
+
+            <com.google.android.material.card.MaterialCardView
+                    app:cardCornerRadius="25pt"
+                    app:cardBackgroundColor="#ECECF2"
+                    android:background="#ECECF2"
+                    android:id="@+id/mcv_Search"
+                    android:layout_width="285pt"
+                    android:layout_centerInParent="true"
+
+                    android:layout_toRightOf="@+id/iv_back"
+                    android:layout_height="30pt">
+
+                <TextView
+                        android:drawableLeft="@drawable/iv_search"
+                        android:layout_width="wrap_content"
+                        android:text="请输入城市名或拼音"
+                        android:gravity="center"
+                        android:drawablePadding="8pt"
+                        android:paddingLeft="15pt"
+                        android:textColor="#FF999999"
+                        android:textSize="14pt"
+                        android:layout_height="match_parent"
+                />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                    android:id="@+id/iv_right"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15pt"
+                    android:layout_marginLeft="8.5pt"
+                    android:text="取消"
+                    android:textColor="#FF999999"
+                    android:textSize="15pt"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:padding="15pt"
               android:id="@+id/tv_currentLocation"
+              android:drawableLeft="@drawable/dingwei01"
               android:layout_below="@+id/tbv_title"
-              android:text="当前：武汉市江汉区"
+              android:text="当前：定位失败，请重试"
+              android:textColor="#FF333333"
+              android:textSize="14pt"
+
     />
 
 
@@ -25,16 +91,29 @@
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:horizontalSpacing="3dp"
-            android:verticalSpacing="2dp"
+
+            android:layout_marginLeft="20pt"
+            android:layout_marginRight="20pt"
+            android:layout_marginBottom="15pt"
+            android:horizontalSpacing="22pt"
+            android:verticalSpacing="10pt"
+
             android:numColumns="4"/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:layout_below="@+id/gridView"
               android:gravity="center"
-              android:text="更多城市，敬请期待…"
+
+              android:text="更多地区，敬请期待..."
+              android:textColor="#FF999999"
+              android:textSize="11pt"
     />
 
-
-</RelativeLayout>
+    <View
+            android:layout_marginTop="10pt"
+            android:layout_gravity="center"
+            android:layout_width="345pt"
+            android:layout_height="0.5pt"
+            android:background="#FFE6E6E6"
+    />
+</LinearLayout>
