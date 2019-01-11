@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tl="http://schemas.android.com/apk/res-auto"
+              xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
 
     <View android:layout_width="match_parent" android:layout_height="20pt"
@@ -12,25 +12,40 @@
     />
 
 
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <com.paipaiwei.personal.ui.customview.dropdownmenu.DropDownMenu
-            android:layout_below="@+id/view"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/dropDownMenu"
-            android:layout_width="wrap_content"
+        <com.paipaiwei.personal.ui.customview.dropdownmenu.DropDownMenu
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_below="@+id/view"
+                android:id="@+id/dropDownMenu"
+                android:layout_width="wrap_content"
 
-            android:layout_height="match_parent"
-            app:ddmenuTextSize="17pt"
-            app:ddtextUnselectedColor="@color/drop_down_unselected"
-            app:ddtextSelectedColor="@color/drop_down_selected"
-            app:dddividerColor="@color/gray"
-            app:ddunderlineColor="@color/gray"
-            app:ddmenuMenuHeightPercent="0.5"
-            app:ddmenuSelectedIcon="@drawable/drop_down_selected_icon"
-            app:ddmaskColor="@color/cd"
-            app:ddmenuBackgroundColor="@color/white"
-            app:ddmenuUnselectedIcon="@drawable/drop_down_unselected_icon"
-    />
+                android:layout_height="match_parent"
+                app:ddmenuTextSize="17pt"
+                app:ddtextUnselectedColor="@color/all_3"
+                app:ddtextSelectedColor="@color/all_3"
+                app:dddividerColor="@color/gray"
+                app:ddunderlineColor="@color/gray"
+                app:ddmenuMenuHeightPercent="0.5"
+                app:ddmenuSelectedIcon="@drawable/icon_arrow_up"
+                app:ddmaskColor="@color/cd"
+                app:ddmenuBackgroundColor="@color/white"
+                app:ddmenuUnselectedIcon="@drawable/icon_arrow_down"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="消费记录"
+                  android:id="@+id/tv_consumption"
+                  android:textColor="#FF2C85FF"
+                  android:textSize="15pt"
+                  android:paddingRight="15pt"
+                  android:paddingBottom="15pt"
+                  android:paddingTop="18pt"
+                  android:layout_alignParentRight="true"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
 
 </LinearLayout>

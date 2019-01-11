@@ -39,6 +39,10 @@ class Main3_2Fragment :BaseFragment() {
     }
 
 
+
+
+
+
     fun getData():ArrayList<String>{
         val list= ArrayList<String>()
         list.add("A")

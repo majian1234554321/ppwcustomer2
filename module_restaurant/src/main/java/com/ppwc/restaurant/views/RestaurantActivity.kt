@@ -38,6 +38,16 @@ class RestaurantActivity : BaseActivity() {
                 loadRootFragment(R.id.frameLayout, RestaurantInFragment.newInstance())
             }
 
+            "ConsumptionLogFragment" -> {
+                loadRootFragment(R.id.frameLayout, ConsumptionLogFragment.newInstance(id))
+
+            }
+
+            "RestaurantOrderDetailsFragment" ->{
+
+                loadRootFragment(R.id.frameLayout, RestaurantOrderDetailsFragment.newInstance(id))
+            }
+
             else -> {
                 loadRootFragment(R.id.frameLayout, RestaurantHomeFragment.newInstance(id))
 

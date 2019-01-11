@@ -57,15 +57,16 @@ public class Main3_1Bean {
          * payType : 1
          */
 
+
         public String avatarUrl;
         public String couponDisplayText;
-        public int createdTime;
+        public String createdTime;
         public double disMoney;
-        public int id;
+        public String id;
         public int ifHasItem;
         public int ifShowUnDisMoney;
         public int ifUseCoupon;
-        public double money;
+        public String money;
         public String nickName;
         public String orderNo;
         public int payFlag;
@@ -77,7 +78,7 @@ public class Main3_1Bean {
         public int statusDisplay;
         public String statusDisplayText;
         public String statusText;
-        public double totalMoney;
+        public float totalMoney;
         public int type;
         public double unDisMoney;
         public int userId;

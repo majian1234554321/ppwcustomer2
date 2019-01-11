@@ -28,10 +28,10 @@ class MembershipCardAdapter(data: List<MembershipCardBean.ItemsBean>) :
         val tv_cardName = helper?.getView<TextView>(R.id.tv_cardName)
         val tv_value = helper?.getView<TextView>(R.id.tv_value)
 
-        helper?.setText(R.id.tv_access, item?.useText)
+        helper?.setText(R.id.tv_access, item?.useText)?.setText(R.id.tv_access,item?.useMark)
 
         val stringValue = "拍拍味 | ${item?.title}"
-        tv_cardName?.text = TextStyleUtils.changeTextColor(stringValue, 0, 4, Color.parseColor("#66333333"))
+        tv_cardName?.text = TextStyleUtils.changeTextColor(stringValue, 0, 5, Color.parseColor("#66333333"))
 
         val valueUnitValue = "${item?.value}${item?.valueUnit}"
         tv_value?.text = TextStyleUtils.changeTextAa(valueUnitValue, valueUnitValue.length-3, valueUnitValue.length, 14)
@@ -47,96 +47,110 @@ class MembershipCardAdapter(data: List<MembershipCardBean.ItemsBean>) :
 
 
 
-        when (item?.style) { //1美食 红 2医疗 金 3 美容美发 蓝 4 休闲娱乐 黑 5 酒店住宿 橙
 
 
-            1 -> {
+            when (item?.status) {//0 可以使用 1已使用 2已过期 3未领取 4未生效
+                0 -> {
+                    when (item?.style) { //1美食 红 2医疗 金 3 美容美发 蓝 4 休闲娱乐 黑 5 酒店住宿 橙
 
-                if (item.ifNeedAudit) {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_red_qrcode)
-                    helper?.setText(R.id.tv_status, "  ")
 
-                } else {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_red)
-                    helper?.setText(R.id.tv_status, "立即\n使用")
+                        1 -> {
 
+                            if (item.ifNeedAudit) {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_red_qrcode)
+                                helper?.setText(R.id.tv_status, "  ")
+
+                            } else {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_red)
+                                helper?.setText(R.id.tv_status, "立即\n使用")
+
+                            }
+
+
+                        }
+
+                        2 -> {
+
+
+                            if (item.ifNeedAudit) {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_thj_qrcode)
+                                helper?.setText(R.id.tv_status, "\t")
+
+                            } else {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_thj)
+                                helper?.setText(R.id.tv_status, "立即\n使用")
+
+                            }
+
+                        }
+
+                        3 -> {
+
+
+                            if (item.ifNeedAudit) {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_blue_qrcode)
+                                helper?.setText(R.id.tv_status, "\t")
+
+                            } else {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_blue)
+                                helper?.setText(R.id.tv_status, "立即\n使用")
+
+                            }
+                        }
+
+                        4 -> {
+
+
+                            if (item.ifNeedAudit) {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_black_qrcode)
+                                helper?.setText(R.id.tv_status, "\t")
+
+                            } else {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_black)
+                                helper?.setText(R.id.tv_status, "立即\n使用")
+
+                            }
+
+
+                        }
+
+                        5 -> {
+
+                            if (item.ifNeedAudit) {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_orange_qrcode)
+                                helper?.setText(R.id.tv_status, "\t")
+                            } else {
+                                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_orange)
+                                helper?.setText(R.id.tv_status, "立即\n使用")
+                            }
+
+                        }
+
+                        else -> {
+
+                        }
+                    }
                 }
 
+                2 -> {
+                    if (item.ifNeedAudit) {
+                        helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_before_qrcode)
+                        helper?.setText(R.id.tv_status, "  ")
 
-            }
+                    } else {
+                        helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_before)
+                        helper?.setText(R.id.tv_status, "已过期")?.setTextColor(R.id.tv_status,Color.parseColor("#FFEAEAEA"))
 
-            2 -> {
-
-
-                if (item.ifNeedAudit) {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_thj_qrcode)
-                    helper?.setText(R.id.tv_status, "\t")
-
-                } else {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_thj)
-                    helper?.setText(R.id.tv_status, "立即\n使用")
-
+                    }
                 }
 
-            }
-
-            3 -> {
-
-
-                if (item.ifNeedAudit) {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_blue_qrcode)
-                    helper?.setText(R.id.tv_status, "\t")
-
-                } else {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_blue)
-                    helper?.setText(R.id.tv_status, "立即\n使用")
-
+                else -> {
                 }
             }
 
-            4 -> {
 
 
-                if (item.ifNeedAudit) {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_black_qrcode)
-                    helper?.setText(R.id.tv_status, "\t")
 
-                } else {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_black)
-                    helper?.setText(R.id.tv_status, "立即\n使用")
-
-                }
-
-
-            }
-
-            5 -> {
-
-                if (item.ifNeedAudit) {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_orange_qrcode)
-                    helper?.setText(R.id.tv_status, "\t")
-                } else {
-                    helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_orange)
-                    helper?.setText(R.id.tv_status, "立即\n使用")
-                }
-
-            }
-
-
-            10 -> {
-                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_before)
-                helper?.setVisible(R.id.tv_status, true)
-            }
-
-            11 -> {
-                helper?.setBackgroundRes(R.id.rl_head, R.drawable.card_before_qrcode)
-                helper?.setVisible(R.id.tv_status, false)
-            }
-
-            else -> {
-
-            }
-        }
 
 
 
@@ -165,7 +179,7 @@ class MembershipCardAdapter(data: List<MembershipCardBean.ItemsBean>) :
             tv_useIf?.setCompoundDrawablesWithIntrinsicBounds(
                 null,
                 null, drawableLeft, null
-            );
+            )
             tv_useIf?.compoundDrawablePadding = 4
         }
 

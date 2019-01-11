@@ -1,6 +1,5 @@
 package com.paipaiwei.personal.ui.fragment
 
-import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -13,7 +12,7 @@ import com.paipaiwei.personal.R
 
 import kotlinx.android.synthetic.main.main2_3fragment.*
 
-class Main3_3Fragment : BaseFragment(), OnRefreshListener {
+class Main3_4Fragment : BaseFragment(), OnRefreshListener {
     override fun onRefresh(refreshLayout: RefreshLayout) {
 
     }
@@ -34,28 +33,8 @@ class Main3_3Fragment : BaseFragment(), OnRefreshListener {
 
     }
 
-//    override fun onLazyInitView(savedInstanceState: Bundle?) {
-//        super.onLazyInitView(savedInstanceState)
-//        Log.i("TAG", "Main2_3Fragment")
-//    }
-
-    override fun onVisible() {
-        Log.i("TAG", "onVisible")
-    }
-
-//    override fun onInvisible() {
-//        super.onInvisible()
-//        Log.i("TAG", "onInvisible")
-//    }
-
-    override fun onSupportVisible() {
-        Log.i("TAG", "onSupportVisible")
-    }
-
-
-
     override fun initData() {
-
+        Log.i("TAG", "Main2_4Fragment")
        // swipeLayout.autoRefresh()
     }
 }

@@ -4,6 +4,7 @@ package com.paipaiwei.personal.ui.fragment
 import android.util.Log
 
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
 
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -18,6 +19,7 @@ import com.paipaiwei.personal.present.OrderPresent
 
 import com.paipaiwei.personal.present.SectionOrderPresent
 import com.paipaiwei.personal.view.OrderView
+import com.yjhh.common.utils.SpaceItemDecoration2
 
 
 import kotlinx.android.synthetic.main.main2_1fragment.*
@@ -69,6 +71,8 @@ class Main3_1Fragment : BaseFragment(), OrderView {
 
     private fun initAdapter() {
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        mRecyclerView.addItemDecoration(SpaceItemDecoration2(4, "top"))
+
         mAdapter = Main3_1Adapter(listValue)
         mRecyclerView.adapter = mAdapter
 
@@ -77,7 +81,11 @@ class Main3_1Fragment : BaseFragment(), OrderView {
         }, mRecyclerView)
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
-            Toast.makeText(context, Integer.toString(position), Toast.LENGTH_LONG).show()
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "RestaurantOrderDetailsFragment")
+                .withString("id", (adapter.data[position] as Main3_1Bean.ItemsBean).id)
+                .navigation()
         }
 
 

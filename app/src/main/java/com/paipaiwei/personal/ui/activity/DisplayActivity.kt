@@ -94,6 +94,10 @@ class DisplayActivity : BaseActivity() {
 
             }
 
+            "MembershipCardFragment2" -> {
+                fragments = MembershipCardFragment2()
+
+            }
 
             "AddressADUFragment" -> {
                 fragments = AddressADUFragment.newInstance(bean)

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:fitsSystemWindows="true"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       android:id="@+id/tbv_title"
+                                       app:textValue="订单详情"
+                                       app:imageDis="true"
+                                       app:imageSrc="@drawable/iv_delete"
+                                       android:layout_height="wrap_content"/>
+
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:layout_below="@+id/tbv_title"
+                                           android:layout_above="@+id/rl_foot"
+                                           android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:paddingLeft="15pt"
+                            android:paddingRight="15pt"
+                            android:background="@color/white"
+                            android:layout_height="wrap_content">
+
+                <ImageView android:layout_width="45pt"
+                           android:layout_marginTop="7.5pt"
+                           android:id="@+id/iv_image"
+                           android:layout_marginBottom="7.5pt"
+                           android:layout_marginRight="10pt"
+                           android:layout_height="45pt"/>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/iv_image"
+                        android:text="拍拍味至尊KTV"
+                        android:drawableRight="@drawable/icon_jiantou082x"
+                        android:layout_centerVertical="true"
+
+                        android:textColor="#FF333333"
+                        android:textSize="15pt"
+                />
+
+
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10pt"
+                    android:background="#f7f7f9"
+
+            />
+
+            <RelativeLayout android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="vertical"
+                              android:padding="15pt"
+                              android:layout_height="wrap_content">
+                    <TextView
+                            android:layout_width="wrap_content"
+
+                            android:paddingBottom="5pt"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_1"
+                            android:text="卡券"
+                            android:textColor="#FF666666"
+                            android:textSize="14pt"
+                    />
+
+                    <TextView
+
+                            android:layout_below="@+id/tv_1"
+                            android:layout_width="wrap_content"
+                            android:paddingBottom="5pt"
+                            android:layout_height="wrap_content"
+                            android:text="卡券"
+                            android:textColor="#FF666666"
+                            android:textSize="14pt"
+                    />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:paddingBottom="5pt"
+                            android:layout_height="wrap_content"
+                            android:text="限周一至周五使用"
+                            android:textColor="#FF999999"
+                            android:textSize="12pt"
+                    />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5pt"
+                            android:text="有效时间：2018/11/11－2018/12/11"
+                            android:textColor="#FF999999"
+                            android:textSize="12pt"
+                    />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15pt"
+                    android:paddingTop="5pt"
+                    android:paddingBottom="5pt"
+                    android:background="#f7f7f9"
+                    android:text="订单信息"
+                    android:textColor="#FF333333"
+                    android:textSize="14pt"
+            />
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievtextValue2="下单时间"
+                                                     android:id="@+id/iev1"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_3"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="订单单号"
+                                                     android:id="@+id/iev2"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="总价"
+                                                     android:id="@+id/iev3"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="已付金额"
+                                                     android:id="@+id/iev4"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="付款时间"
+                                                     android:id="@+id/iev5"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10pt"
+                        android:background="#f7f7f9"
+
+                />
+
+
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="使用时间"
+                                                     android:paddingLeft="15pt"
+                                                     android:id="@+id/iev6"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="消费金额"
+                                                     android:id="@+id/iev7"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="抵扣金额"
+                                                     android:id="@+id/iev8"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="不参与金额"
+                                                     android:id="@+id/iev9"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+                <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
+                                                     app:ievtextValue2="实付金额"
+                                                     android:id="@+id/iev10"
+                                                     android:paddingLeft="15pt"
+                                                     app:ievbackground="@color/white"
+                                                     app:ievtextColor2="@color/all_6"
+                                                     android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl_foot"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="60pt">
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:text="前往评价"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:paddingRight="15pt"
+                android:paddingLeft="15pt"
+                app:cornerRadius="25pt"
+                app:backgroundTint="#FFC536"
+                android:paddingTop="7pt"
+                android:id="@+id/mb_2"
+                android:paddingBottom="7pt"
+                android:layout_marginRight="15pt"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15pt"
+                android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="200pt"
+                android:layout_centerInParent="true"
+                android:text="剩余支付时间 15:00"
+                android:textColor="#FFFFFFFF"
+                android:id="@+id/mb_1"
+                app:backgroundTint="@color/colorPrimary"
+                android:textSize="15pt"
+                app:cornerRadius="25pt"
+                android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

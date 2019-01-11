@@ -9,8 +9,7 @@ import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
 
-class MembershipCardPresent(var context: Context,var view :MembershipCardView) : BasePresent() {
-
+class MembershipCardPresent(var context: Context, var view: MembershipCardView) : BasePresent() {
 
 
     fun coupon(status: String, pageIndex: Int, pageSize: Int) {
@@ -29,7 +28,7 @@ class MembershipCardPresent(var context: Context,var view :MembershipCardView) :
                 }
 
                 override fun onFault(message: String) {
-view.onFault(message)
+                    view.onFault(message)
                 }
 
             }

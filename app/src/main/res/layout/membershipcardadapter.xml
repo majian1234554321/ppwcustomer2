@@ -30,7 +30,7 @@
 
 
         <TextView
-                android:layout_width="118pt"
+                android:layout_width="wrap_content"
                 android:layout_height="46pt"
                 android:text="1000代金券"
                 android:id="@+id/tv_value"
@@ -42,7 +42,7 @@
 
 
         <TextView android:layout_width="wrap_content"
-                  android:text="拍拍味 | "
+                  tools:text="拍拍味 | "
                   android:textColor="#66333333"
                   android:layout_alignParentBottom="true"
                   android:paddingLeft="19pt"

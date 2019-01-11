@@ -3,39 +3,24 @@ package com.paipaiwei.personal.ui.fragment
 import android.graphics.drawable.Drawable
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
-import kotlinx.android.synthetic.main.membershipcardfragment.*
-import com.paipaiwei.personal.common.ScaleTransformer
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.ArrayMap
-import android.util.Log
+import kotlinx.android.synthetic.main.membershipcardfragment2.*
+
 import android.widget.TextView
 import android.widget.Toast
-import com.alibaba.android.arouter.launcher.ARouter
-import com.google.gson.Gson
-import com.yjhh.common.api.ApiServices
-import com.yjhh.common.api.SectionMembershipService
-import com.paipaiwei.personal.bean.MemCanBuyBean
+
 import com.paipaiwei.personal.adapter.MembershipCardAdapter
-import com.paipaiwei.personal.adapter.MyVpAdater
-import com.paipaiwei.personal.bean.MembCardBean
+
 import com.paipaiwei.personal.bean.MembershipCardBean
-import com.paipaiwei.personal.bean.MyBuyCardInfoBean
+
 import com.paipaiwei.personal.common.SpacesItemDecoration
 import com.paipaiwei.personal.common.utils.Util
 import com.paipaiwei.personal.present.MembershipCardPresent
 import com.paipaiwei.personal.view.MembershipCardView
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Function3
-import io.reactivex.schedulers.Schedulers
+
 import net.cachapa.expandablelayout.ExpandableLayout
-import okhttp3.ResponseBody
-import org.json.JSONArray
-import org.json.JSONObject
-import java.lang.StringBuilder
 
 
-class MembershipCardFragment : BaseFragment(), MembershipCardView {
+class MembershipCardFragment2 : BaseFragment(), MembershipCardView {
     override fun onFault(errorMsg: String?) {
 
     }
@@ -46,7 +31,7 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
     }
 
 
-    val status = "1" //状态，默认1(1有效的 2已过期的/失效的)
+    val status = "2" //状态，默认1(1有效的 2已过期的/失效的)
     var pageIndex = 0
     var pageSize = 15
 
@@ -55,7 +40,7 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
 
     val list = ArrayList<MembershipCardBean.ItemsBean>()
 
-    override fun getLayoutRes(): Int = R.layout.membershipcardfragment
+    override fun getLayoutRes(): Int = R.layout.membershipcardfragment2
 
     override fun initView() {
 
@@ -136,14 +121,6 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
 
         }
 
-
-        // mAdapter?.addFooterView()
-        tv_next.setOnClickListener {
-            ARouter.getInstance()
-                .build("/DisplayActivity/Display")
-                .withString("displayTab", "MembershipCardFragment2")
-                .navigation()
-        }
 
     }
 }

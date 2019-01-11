@@ -43,12 +43,15 @@ interface OrderService {
 
     @FormUrlEncoded
     @POST("order/payment")
-    fun payment(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
+    fun payment(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
 
     @FormUrlEncoded
     @POST("order/detailFromCallback")
     fun detailFromCallback(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
+
+
+
 
 
 }

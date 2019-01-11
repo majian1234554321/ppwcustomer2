@@ -345,7 +345,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             return fragment
 
 
-            return fragment
+
         }
     }
 

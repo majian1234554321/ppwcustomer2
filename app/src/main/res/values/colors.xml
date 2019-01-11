@@ -41,8 +41,8 @@
 
     <color name="gray">#cccccc</color>
 
-    <color name="drop_down_selected">#333333</color>
-    <color name="drop_down_unselected">#111111</color>
+    <color name="drop_down_selected">#FFFFFF</color>
+    <color name="drop_down_unselected">#F9572D</color>
 
     <color name="mask_color">#88888888</color>
     <color name="check_bg">#f2f2f2</color>
