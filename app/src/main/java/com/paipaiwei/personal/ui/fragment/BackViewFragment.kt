@@ -57,16 +57,21 @@ class BackViewFragment : BaseFragment() {
         mWebView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-//                    if (newProgress > 70 && ll != null) {
-//                        ll.visibility = View.GONE
-//                    }
+                 if(newProgress==100){
+                     progressBar1.visibility = View.GONE
+				}
+				else{
+                     progressBar1.visibility = View.VISIBLE
+                     progressBar1.progress = newProgress
+				}
+
             }
 
             override fun onReceivedTitle(view: WebView, title: String) {
                 super.onReceivedTitle(view, title)
 
                 if (!TextUtils.isEmpty(title) && tv_title != null) {
-                    tv_title.setText(title)
+                    tv_title.text = title
                 }
             }
         }

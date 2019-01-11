@@ -99,7 +99,7 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     api 'com.zhihu.android:matisse:0.5.1'
-    api 'com.contrarywind:Android-PickerView:4.1.6'
+
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     // api 'com.youth.banner:banner:1.4.10'
@@ -125,6 +125,8 @@ dependencies {
     api(name: 'banner-release', ext: 'aar')
     api(name: 'immersionbar-2.3.3-beta15', ext: 'aar')
 
+    api(name: 'pickerview-release', ext: 'aar')
+    api(name: 'wheelview-release', ext: 'aar')
 
     api 'com.dsiner.lib:xrv:1.1.2'
     api 'com.amap.api:map2d:5.2.0'

@@ -92,14 +92,15 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView, Com
 
     override fun onSuccess(main1bean: UserinfoBean) {
         iev_nickName.setTextContent(main1bean.nickName)
-        ImageLoaderUtils.load(
+        ImageLoaderUtils.loadCircle(
             this@UserInfoActivity,
             iv_image,
             main1bean.avatarUrl,
             R.drawable.icon_login_touxiang,
-            R.drawable.icon_login_touxiang, 0
+            R.drawable.icon_login_touxiang
         )
 
+        if (main1bean.birthday!=null)
         iev_birthday.setTextContent(TimeUtil.stampToDate2(main1bean.birthday))
     }
 

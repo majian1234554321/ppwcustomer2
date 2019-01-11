@@ -45,7 +45,8 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
     }
 
 
-    val status = "1" //状态，默认1(1有效的 2已过期的/失效的)
+
+        val status = "1" //状态，默认1(1有效的 2已过期的/失效的)
     var pageIndex = 0
     var pageSize = 15
 

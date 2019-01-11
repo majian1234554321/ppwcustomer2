@@ -27,6 +27,7 @@ class PayPresent(var context: Context,var payViiew:PayView) : BasePresent() {
 
             override fun onFault(message: String) {
                 Log.i("paymentByWx",message)
+                payViiew.onFault(message)
             }
 
         })
@@ -49,6 +50,7 @@ class PayPresent(var context: Context,var payViiew:PayView) : BasePresent() {
 
             override fun onFault(message: String) {
                 Log.i("paymentByAli",message)
+                payViiew.onFault(message)
             }
 
         })

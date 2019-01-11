@@ -38,6 +38,7 @@ class OnePayPresent(var context: Context, var view: OnePayService.OnePayView) : 
 
                 override fun onFault(message: String) {
                     Log.i("userProp", message)
+                    view.onFault(message)
                 }
 
             })

@@ -50,8 +50,13 @@ public class RestaurantHomeBean {
     public List<ProductsBean> products;
     public List<TimesBean> times;
     public List<UserCommentBean> userComment;
+    public List<CommentLabel> commentLabel;
 
 
+    public static class CommentLabel {
+        public String title;
+        public String total;
+    }
 
     public static class MapPointBean {
         /**
@@ -93,6 +98,7 @@ public class RestaurantHomeBean {
         public String valuePrefix;
         public String valueUnit;
         public List<String> useMarks;
+        public String value;
     }
 
     public static class ProductsBean {
@@ -214,7 +220,7 @@ public class RestaurantHomeBean {
             public List<?> items;
         }
 
-        public static class FileBean{
+        public static class FileBean {
             public String fileUrl;
         }
 

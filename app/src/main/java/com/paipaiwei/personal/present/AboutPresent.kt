@@ -24,7 +24,7 @@ class AboutPresent(var context: Context, var view: AboutView) : BasePresent() {
                 }
 
                 override fun onFault(message: String) {
-
+view.onFault(message)
                 }
 
             }

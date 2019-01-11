@@ -20,7 +20,7 @@ class RestaurantActivity : BaseActivity() {
 
     @Autowired
     @JvmField
-    var age: Int? = 0
+    var id: String? = "0"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class RestaurantActivity : BaseActivity() {
             }
 
             else -> {
-               // loadRootFragment(R.id.frameLayout, RestaurantOutFragment())
+                loadRootFragment(R.id.frameLayout, RestaurantHomeFragment.newInstance(id))
 
             }
 

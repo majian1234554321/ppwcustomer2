@@ -1,5 +1,8 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.Manifest
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -23,9 +26,14 @@ import com.yjhh.common.utils.GlideLoader
 import kotlinx.android.synthetic.main.main2fragment.*
 
 import com.amap.api.maps2d.model.LatLng
-import com.gyf.barlibrary.ImmersionBar
+import com.d.lib.xrv.listener.AppBarStateChangeListener
+import com.google.android.material.appbar.AppBarLayout
+import com.tbruyelle.rxpermissions2.RxPermissions
+import com.yjhh.common.Constants
 import com.yjhh.common.listener.LocationLatlng
-import com.paipaiwei.personal.AmpLocationUtil
+import com.yjhh.common.utils.AmpLocationUtil
+import com.yjhh.common.utils.permission.PermissionUtils
+import com.yjhh.common.view.AlertDialogFactory
 
 
 class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
@@ -43,9 +51,37 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         }
     }
 
-    override fun onNearbyData(model: NearByDataBean) {
+    override fun onNearbyData(model: NearByDataBean, flag: String) {
 
-        mAdapter?.setNewData(model.items)
+        if ("refresh" == flag) {
+            mAdapter?.setNewData(model.items)
+
+
+
+            if (pageIndex == 0) {
+
+                if (model.items.size == pageSize) {
+
+                } else {
+                    mAdapter?.loadMoreEnd()
+                }
+
+            } else {
+
+            }
+
+
+        } else {
+            if (model.items != null && model.items.size == pageSize) {
+                mAdapter?.loadMoreComplete()
+            } else {
+                mAdapter?.loadMoreEnd()
+            }
+
+            mAdapter?.addData(model.items)
+        }
+
+
     }
 
 
@@ -108,11 +144,9 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
     override fun initView() {
 
 
-
-
         present = NearbyPresent(mActivity, this)
         present?.nearby()
-        present?.nearbyData("", "", "", pageIndex, pageSize)
+        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
 
         arrayOf(rl_search).forEach {
             it.setOnClickListener(this)
@@ -121,8 +155,15 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         recyclerView.layoutManager = LinearLayoutManager(mActivity)
         mAdapter = Main2Adapter(list)
         recyclerView.adapter = mAdapter
-        mAdapter?.setOnItemClickListener { adapter, view, position ->
+        mAdapter?.setOnLoadMoreListener({
+            loadMore()
+        }, recyclerView)
 
+
+
+
+
+        mAdapter?.setOnItemClickListener { adapter, view, position ->
 
             val intent = Intent(mActivity, GPSActivity::class.java)
 
@@ -134,72 +175,65 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         }
 
 
+        appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
+                if (state == State.EXPANDED) {
 
+                    //展开状态
+                    iv_search.visibility = View.GONE
 
+                } else if (state == State.COLLAPSED) {
+                    //折叠状态
 
-        AmpLocationUtil.getCurrentLocation {
-            //针对location进行相关操作，如location.getCity()，无需验证location是否为null;
-//            it.locationType// 定位类型
-//            it.longitude //经度
-//            it.latitude //纬度
-//            location.getProvince()//省
-//            location.getCity()//市
-//            getDistrict()//区
-//            getAddress()//地址
+                    iv_search.visibility = View.VISIBLE
+                } else {
+                    //中间状态
+                    iv_search.visibility = View.GONE
 
-            val sb = StringBuffer();
-            //errCode等于0代表定位成功，其他的为定位失败，具体的可以参照官网定位错误码说明
-            if (it.errorCode == 0) {
-
-                tv_title.text = it.aoiName //获取当前定位点的AOI信息
-
-
-                Log.e("LocationServer", "获取当前定位结果来源:::" + it.getLocationType());
-                Log.e("LocationServer", "获取纬度:::" + it.getLatitude());
-                Log.e("LocationServer", "获取经度:::" + it.getLongitude());
-                Log.e("LocationServer", "获取精度信息:::" + it.getAccuracy());
-                Log.e("LocationServer", "获取地址:::" + it.getAddress());
-                Log.e("LocationServer", "获取国家信息:::" + it.getCountry());
-                Log.e("LocationServer", "获取省信息:::" + it.getProvince());
-                Log.e("LocationServer", "获取城市信息:::" + it.getCity());
-                Log.e("LocationServer", "获取城区信息:::" + it.getDistrict());
-                Log.e("LocationServer", "获取街道信息:::" + it.getStreet());
-                Log.e("LocationServer", "获取街道门牌号信息:::" + it.getStreetNum());
-                Log.e("LocationServer", "获取城市编码:::" + it.getCityCode());
-                Log.e("LocationServer", "获取地区编码:::" + it.getAdCode());
-                Log.e("LocationServer", "获取当前定位点的AOI信息:::" + it.getAoiName());
-                Log.e("LocationServer", "获取当前室内定位的建筑物Id:::" + it.getBuildingId());
-                Log.e("LocationServer", "获取当前室内定位的楼层:::" + it.getFloor());
-                Log.e("LocationServer", "获取GPS的当前状态:::" + it.getGpsAccuracyStatus());
-                Log.e("LocationServer", "获取定位信息描述:::" + it.getLocationDetail());
-                Log.e("LocationServer", "获取方向角信息:::" + it.getBearing());
-                Log.e("LocationServer", "获取速度信息:::" + it.getSpeed() + "m/s");
-                Log.e("LocationServer", "获取海拔高度信息:::" + it.getAltitude());
-                Log.e("LocationServer", "获取当前位置的POI名称:::" + it.getPoiName());
-
-
-                if (locationLatlng != null) {
-                    locationLatlng?.locatinmLatlng(LatLng(it.latitude, it.longitude), it.address);
                 }
-            } else {
-                //定位失败
-                sb.append("定位失败" + "\n");
-                sb.append("错误码:" + it.errorCode + "\n");
-                sb.append("错误信息:" + it.errorInfo + "\n");
-                sb.append("错误描述:" + it.locationDetail + "\n");
             }
-            sb.append("***定位质量报告***").append("\n");
-            // sb.append("* WIFI开关：").append(it.locationQualityReport.isWifiAble ? "开启" : "关闭").append("\n");
-            // sb.append("* GPS状态：").append(getGPSStatusString(it.locationQualityReport.gpsStatus)).append("\n");
-            sb.append("* GPS星数：").append(it.locationQualityReport.gpsSatellites).append("\n");
-            sb.append("****************").append("\n");
-            //定位之后的回调时间
+        });
 
 
-            Log.i("LocationServer", sb.toString());
+        if (RxPermissions(this).isGranted(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            AmpLocationUtil.getCurrentLocation { am ->
 
+
+                val sb = StringBuffer();
+
+                if (am.errorCode == 0) {
+
+                    tv_title.text = am.aoiName //获取当前定位点的AOI信息
+
+                    if (locationLatlng != null) {
+                        locationLatlng?.locatinmLatlng(LatLng(am.latitude, am.longitude), am.address)
+                    }
+                } else {
+                    //定位失败
+
+                }
+
+                Log.i("LocationServer", sb.toString());
+
+
+            }
+        } else {
+            AlertDialogFactory.createFactory(mActivity).getAlertDialog(
+                "定位服务未开启",
+                "请在设置定位服务中开启定位服务，需要知道您的位置才能提供更好的服务~",
+                "去开启", "暂不",
+                { dlg, v ->
+                    PermissionUtils.toPermissionSetting(mActivity);
+                },
+                { dlg, v ->
+
+                })
 
         }
+
+
+
+
 
 
 
@@ -211,6 +245,10 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+
+                if (tab?.position != 0)
+                    appBarLayout.setExpanded(false)
+
 
                 val lisCheckBox = ArrayList<CheckBox>()
                 lisCheckBox.clear()
@@ -275,6 +313,18 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
         })
 
+
+    }
+
+
+    private fun refresh() {
+        pageIndex = 0
+        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
+    }
+
+    private fun loadMore() {
+        pageIndex++
+        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "loadMore")
     }
 
 
@@ -286,7 +336,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         when (requestCode) {
             10086 -> {
                 val keyWord = data?.getStringExtra("keyWord")
-                Toast.makeText(mActivity, keyWord, Toast.LENGTH_SHORT).show()
+                //  Toast.makeText(mActivity, keyWord, Toast.LENGTH_SHORT).show()
                 Log.i("Main2Fragment", "232323")
 
             }

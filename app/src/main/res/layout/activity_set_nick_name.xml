@@ -34,9 +34,9 @@
 
 
     <com.google.android.material.button.MaterialButton
-            app:cornerRadius="15pt"
+            app:cornerRadius="25pt"
             android:layout_width="180pt"
-            android:text="完成"
+            android:text="确定"
             android:padding="7pt"
             android:textColor="@color/white"
             android:textSize="18pt"

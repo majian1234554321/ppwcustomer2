@@ -111,6 +111,9 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.rb1 -> {
+
+                appBarLayout.setExpanded(false)
+
                 fl4.visibility = View.GONE
                 fl3.visibility = View.GONE
 
@@ -122,12 +125,16 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             }
 
             R.id.rb2 -> {
+                appBarLayout.setExpanded(false)
+
                 fl3.visibility = View.GONE
                 fl1.visibility = View.GONE
                 fl4.visibility = View.GONE
             }
 
             R.id.rb3 -> {
+                appBarLayout.setExpanded(false)
+
                 fl1.visibility = View.GONE
 
                 fl4.visibility = View.GONE
@@ -142,7 +149,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             }
 
             R.id.rb4 -> {
-
+                appBarLayout.setExpanded(false)
 
                 fl1.visibility = View.GONE
                 fl3.visibility = View.GONE
@@ -314,7 +321,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
         queryPresent = QueryModelDataPresent(mActivity, this)
 
 
-        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize,"refresh")
+        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize, "refresh")
 
         val arrays = arrayOf(rb1, rb2, rb3, rb4, mcv_Search, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
 

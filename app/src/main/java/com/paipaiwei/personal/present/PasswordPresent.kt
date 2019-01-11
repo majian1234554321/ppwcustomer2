@@ -108,7 +108,7 @@ class PasswordPresent(var context: Context, var registView: PasswordView) : Base
                 }
 
                 override fun onFault(message: String) {
-                    registView.onSuccess(message)
+                    registView.onFault(message)
                 }
 
             })

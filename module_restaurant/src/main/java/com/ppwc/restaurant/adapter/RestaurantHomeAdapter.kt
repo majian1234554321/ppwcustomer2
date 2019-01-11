@@ -33,6 +33,7 @@ import com.ppwc.restaurant.views.ProductDetailsFragment
 import com.ppwc.restaurant.views.RestaurantHomeFragment
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.BaseApplication.context
+import com.yjhh.common.utils.GridSpacingItemDecoration
 import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.RatingBar
@@ -86,7 +87,7 @@ class RestaurantHomeAdapter(
 
 
                     val tv_price = multipleitema.findViewById<TextView>(R.id.tv_price)
-                    val textintegral = "1000元代金券"
+                    val textintegral = "${s.value}元代金券"
                     val spannableString = SpannableString(textintegral)
                     val sizeSpan01 = RelativeSizeSpan(0.5f)
                     spannableString.setSpan(
@@ -162,8 +163,8 @@ class RestaurantHomeAdapter(
                 }
 
                 viewB.layoutManager = GridLayoutManager(helper.itemView.context, 3)
-
-
+                viewB.addItemDecoration( GridSpacingItemDecoration(3, 15, false));
+                viewB.setHasFixedSize(true)
                 val viewBAdapter = MultipleitemAdapter(item.listProducts)
                 viewB?.adapter = viewBAdapter
 
@@ -257,9 +258,7 @@ class RestaurantHomeAdapter(
 
                     }
 
-                    //val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
-                    //val tagAdapter = MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.list)
-                    //tagFlowLayout.adapter = tagAdapter
+
 
 
                     lp.bottomMargin = 12
@@ -270,6 +269,18 @@ class RestaurantHomeAdapter(
                 tv_more3.setOnClickListener {
                     muilisteners?.tv_more3()
                 }
+
+                val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
+                if(item.commentLabel!=null){
+                    val tagAdapter =
+                        MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.commentLabel)
+                    tagFlowLayout.adapter = tagAdapter
+                    tagFlowLayout.visibility = View.VISIBLE
+                }else{
+                    tagFlowLayout.visibility = View.GONE
+                }
+
+
 
 
                 val view = View(helper.itemView.context)
@@ -304,15 +315,19 @@ class RestaurantHomeAdapter(
         this.muilisteners = muilisteners
     }
 
-    class MultipleItemCTagAdapter(var activity: Activity, var tagFlowLayout: TagFlowLayout, var data: List<String>?) :
-        TagAdapter<String>(data) {
-        override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
+    class MultipleItemCTagAdapter(
+        var activity: Activity,
+        var tagFlowLayout: TagFlowLayout,
+        var data: List<RestaurantHomeBean.CommentLabel>?
+    ) :
+        TagAdapter<RestaurantHomeBean.CommentLabel>(data) {
+        override fun getView(parent: FlowLayout?, position: Int, t: RestaurantHomeBean.CommentLabel?): View {
             val tv = activity.layoutInflater.inflate(
                 R.layout.multipleitemctagadapter,
                 tagFlowLayout, false
             ) as TextView
 
-            tv.text = t
+            tv.text = " ${t?.title} ${t?.total}"
 
             return tv
         }

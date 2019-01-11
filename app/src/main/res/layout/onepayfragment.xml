@@ -1,19 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                       app:textValue="我的道具"
-                                       android:layout_height="wrap_content"/>
+    <!-- <View android:layout_width="match_parent"
+           android:background="@color/white"
+           android:layout_height="20pt"/>-->
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tl="http://schemas.android.com/tools"
+            android:layout_below="@+id/tbv_title"
+            android:background="@color/f8"
+            app:statusBarBackground="@color/white"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:text="确认购买"
-            android:id="@+id/mb_buy"
-            android:layout_height="wrap_content"/>
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@color/white"
+                    app:expandedTitleGravity="left|bottom"
+
+                    app:expandedTitleMarginBottom="100dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                              android:layout_marginTop="48dp"
+                              android:orientation="vertical" android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+
+
+                    <RelativeLayout
+
+                            android:layout_marginLeft="15pt"
+                            android:layout_marginRight="15pt"
+                            android:layout_marginTop="11pt"
+                            android:id="@+id/rl_search"
+                            android:background="@drawable/stroke_search"
+                            android:layout_marginBottom="9pt"
+                            android:backgroundTint="#ECECF2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:gravity="center"
+                                  android:layout_centerInParent="true"
+                                  android:drawableLeft="@drawable/iv_search"
+                                  android:layout_gravity="center"
+                                  android:drawablePadding="4pt"
+                                  android:text="寻找你中意的商家"
+                                  android:textColor="#FF999999"
+                                  android:textSize="14pt"
+                                  android:layout_height="30pt"/>
+
+                    </RelativeLayout>
+
+
+                    <com.youth.banner.Banner android:layout_width="match_parent"
+                                             android:id="@+id/banner"
+                                             android:layout_height="110pt"/>
+
+
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="top"
+                        android:id="@+id/toolbar"
+                        android:fitsSystemWindows="true"
+                        app:contentInsetStart="@dimen/spi_8"
+                        android:background="@color/transparent"
+                        app:layout_collapseMode="pin">
+
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textColor="#FF333333"
+                                android:textSize="17pt"
+                                android:drawablePadding="7.5pt"
+                                android:textStyle="bold"
+                                android:drawableLeft="@drawable/iv_mr_dingwei"
+                                android:id="@+id/tv_title"
+                                android:drawableRight="@drawable/iv_mr_down"
+                                android:layout_height="wrap_content"
+                        />
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabLayout android:layout_width="match_parent"
+                                                            android:id="@+id/mTabLayout1"
+                                                            app:tabTextColor="@color/all_3"
+                                                            app:tabIndicatorHeight="0dp"
+                                                            app:tabMode="scrollable"
+                                                            app:tabSelectedTextColor="@color/colorPrimary"
+                                                            android:layout_height="wrap_content"/>
+
+                <HorizontalScrollView android:layout_width="match_parent"
+                                      android:id="@+id/hsv"
+
+                                      android:paddingBottom="8pt"
+                                      android:scrollbars="none"
+                                      android:layout_height="wrap_content">
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/ll"
+                                  android:paddingLeft="15pt"
+                                  android:layout_height="wrap_content">
+
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="48dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                               app:textValue="我的道具"
+
+                                               android:layout_height="wrap_content"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:text="确认购买"
+                    android:id="@+id/mb_buy"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </LinearLayout>

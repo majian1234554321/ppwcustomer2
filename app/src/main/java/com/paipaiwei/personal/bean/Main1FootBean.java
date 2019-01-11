@@ -12,6 +12,7 @@ public class Main1FootBean {
      * recordCount : 0
      */
 
+    public String id;
     public int pageCount;
     public QueryModelBean queryModel;
     public int recordCount;
@@ -38,7 +39,7 @@ public class Main1FootBean {
          * labels : ["武昌区"," 西餐牛排"]
          * name : 测试占位1
          */
-
+        public String id;
         public String logoUrl;
         public String perCapita;
         public String distance;

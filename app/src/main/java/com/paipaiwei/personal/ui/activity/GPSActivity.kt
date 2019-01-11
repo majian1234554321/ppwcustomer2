@@ -3,10 +3,7 @@ package com.paipaiwei.personal.ui.activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.Point
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.paipaiwei.personal.R
@@ -16,12 +13,10 @@ import com.yjhh.common.view.AlertDialogFactory
 import com.yjhh.common.view.BottomVerSheetDialog
 import kotlinx.android.synthetic.main.activity_gps.*
 import java.util.*
-import com.paipaiwei.personal.R.id.mapView
 import com.amap.api.maps2d.AMap
-import com.amap.api.maps2d.CameraUpdate
 import com.amap.api.maps2d.CameraUpdateFactory
 import com.amap.api.maps2d.model.*
-import com.paipaiwei.personal.AmpLocationUtil
+import com.yjhh.common.utils.AmpLocationUtil
 
 import com.amap.api.maps2d.model.Marker
 import com.amap.api.maps2d.model.LatLng

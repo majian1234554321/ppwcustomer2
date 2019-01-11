@@ -40,11 +40,20 @@ class MultipleItem : MultiItemEntity {
 
 
     var listUserComment: List<RestaurantHomeBean.UserCommentBean>? = null
-     var size: Int = 0
-    constructor(itemType: Int, listUserComment: List<RestaurantHomeBean.UserCommentBean>, size: Int) {
+    var size: Int = 0
+
+    var commentLabel: List<RestaurantHomeBean.CommentLabel>? = null
+
+    constructor(
+        itemType: Int,
+        listUserComment: List<RestaurantHomeBean.UserCommentBean>,
+        size: Int,
+        commentLabel: List<RestaurantHomeBean.CommentLabel>
+    ) {
         this.itemType = itemType
         this.listUserComment = listUserComment
         this.size = size
+        this.commentLabel = commentLabel;
     }
 
 

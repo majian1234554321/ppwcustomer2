@@ -53,6 +53,7 @@ class QueryPresent(var context: Context,var view :QueryResultView) : BasePresent
 
                 override fun onFault(message: String) {
                     Log.i("meishi", message)
+                    view.onFault(message)
                 }
 
             })

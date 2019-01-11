@@ -8,5 +8,5 @@ interface NearbyView : BaseView {
     fun onNearby(model: NearbyBean)
 
 
-    fun onNearbyData(model: NearByDataBean)
+    fun onNearbyData(model: NearByDataBean,flag:String)
 }

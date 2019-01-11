@@ -115,6 +115,16 @@ public class AlertDialogFactory {
         return dialog;
     }
 
+
+    public BottomHorSheetDialog getBottomHorDialog(String title, List<BottomHorSheetDialog.Bean> datas,
+                                                   AbsSheetDialog.OnItemClickListener<BottomHorSheetDialog.Bean> listener) {
+        BottomHorSheetDialog dialog = new BottomHorSheetDialog(context, title, datas);
+        dialog.setOnItemClickListener(listener);
+        dialog.show();
+        return dialog;
+    }
+
+
     /*public AlertSubDialog getAlertSubDialog(String title, String content, String subTips, boolean isChecked, AlertSubDialog.OnCheckListener listener) {
         AlertSubDialog dialog = new AlertSubDialog(context, title, content, subTips, isChecked);
         dialog.setOnCheckListener(listener);
@@ -145,13 +155,7 @@ public class AlertDialogFactory {
 
 
 
-    public BottomHorSheetDialog getBottomHorDialog(String title, List<BottomHorSheetDialog.Bean> datas,
-                                                   AbsSheetDialog.OnItemClickListener<BottomHorSheetDialog.Bean> listener) {
-        BottomHorSheetDialog dialog = new BottomHorSheetDialog(context, title, datas);
-        dialog.setOnItemClickListener(listener);
-        dialog.show();
-        return dialog;
-    }
+
 
     public BottomShareSheetDialog getBottomShareDialog(String title, List<BottomShareSheetDialog.Bean> datas) {
         BottomShareSheetDialog dialog = new BottomShareSheetDialog(context, title, datas);

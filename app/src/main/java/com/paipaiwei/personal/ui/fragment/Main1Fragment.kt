@@ -127,7 +127,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                 mAdapter?.setNewData(main1bean.main1FootBean.items)
                 if (startindex == 0) {
 
-                    if (main1bean.main1FootBean.items.size == 0) {
+                    if (main1bean.main1FootBean.items.size == pageSize) {
 
                     } else {
                         mAdapter?.loadMoreEnd()
@@ -204,10 +204,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
         initAdapter()
         initRefreshLayout()
-
         addHeaderView()
-
-
 
         arrayOf(tv_search, iv_scan, tv_location).forEach {
             it.setOnClickListener(this)
@@ -254,6 +251,13 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         }, recyclerView)
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
+
+
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "RestaurantHomeFragment")
+                .withString("id", (adapter.data[position] as Main1FootBean.ItemsBean).id)
+                .navigation()
 
         }
 

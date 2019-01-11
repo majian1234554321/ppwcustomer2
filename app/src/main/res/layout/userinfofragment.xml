@@ -34,7 +34,7 @@
             />
             <ImageView
                     android:layout_width="45pt"
-                    android:layout_marginRight="12dp"
+
                     android:id="@+id/iv_image"
                     android:layout_toLeftOf="@+id/iv_arrow"
 

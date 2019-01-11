@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yjhh.common.present.CommonPresent;
 import com.yjhh.common.iview.CommonView;
 import com.yjhh.common.base.BaseActivity;
@@ -21,17 +23,23 @@ import com.yjhh.common.utils.LogUtils;
 import com.yjhh.common.utils.RxCountDown;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import com.yjhh.common.listener.PermissionListener;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.subjects.Subject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 @Route(path = "/splashactivity/splash")
-public class SplashActivity extends BaseActivity implements CommonView {
+public class SplashActivity extends AppCompatActivity implements CommonView {
 
     public String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_CONTACTS};
     private TextView tips;
+    private Disposable disposable;
+    private RxPermissions rxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +51,18 @@ public class SplashActivity extends BaseActivity implements CommonView {
 
         CommonPresent present = new CommonPresent(this, this);
         present.init();
+        rxPermissions = new RxPermissions(this);
+        disposable = rxPermissions.request(permissions).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                nextStep();
+            }
+        });
 
-        requestRuntimePermission(permissions, new PermissionListener() {
+/*        requestRuntimePermission(permissions, new PermissionListener() {
             @Override
             public void onGranted() {
                 nextStep();
-
-
-
-              /*  PhoneUtil phoneUtil = new PhoneUtil(SplashActivity.this);
-               List<PhoneBean> phoneDtos = phoneUtil.getPhone();
-                for (int i = 0; i < phoneDtos.size(); i++) {
-                    LogUtils.i("SplashActivity", phoneDtos.get(i).name+":"+phoneDtos.get(i).telPhone );
-                }*/
 
             }
 
@@ -67,7 +74,7 @@ public class SplashActivity extends BaseActivity implements CommonView {
                 nextStep();
 
             }
-        });
+        });*/
     }
 
     public void nextStep() {
@@ -107,6 +114,16 @@ public class SplashActivity extends BaseActivity implements CommonView {
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (disposable!=null){
+            disposable.dispose();
+        }
+
+
+    }
 
     protected void setStatusBar() {
 

@@ -29,13 +29,14 @@ class NearbyPresent(var context: Context, var view: NearbyView) : BasePresent() 
 
                 override fun onFault(message: String) {
                     Log.i("nearby", message)
+                    view.onFault(message)
                 }
 
             })
     }
 
 
-    fun nearbyData(categoryId: String, longitude: String, latitude: String, pageIndex: Int, pageSize: Int) {
+    fun nearbyData(categoryId: String, longitude: String, latitude: String, pageIndex: Int, pageSize: Int,flag:String) {
 
         map["categoryId"] = categoryId
         map["longitude"] = longitude
@@ -52,7 +53,7 @@ class NearbyPresent(var context: Context, var view: NearbyView) : BasePresent() 
                     Log.i("nearbyData", response)
 
                    val model =  gson.fromJson<NearByDataBean>(response, NearByDataBean::class.java)
-                    view.onNearbyData(model)
+                    view.onNearbyData(model,flag)
 
                 }
 

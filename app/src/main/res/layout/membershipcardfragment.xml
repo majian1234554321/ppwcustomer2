@@ -8,8 +8,9 @@
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
-                                       app:textValue="会员卡"
-
+                                       app:textValue="卡券中心"
+                                       app:imageDis="true"
+                                       app:imageSrc="@drawable/bangzhu"
                                        android:layout_height="wrap_content"/>
 
 

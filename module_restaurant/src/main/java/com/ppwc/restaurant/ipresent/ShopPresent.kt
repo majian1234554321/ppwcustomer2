@@ -44,6 +44,7 @@ class ShopPresent(var context: Context) : BasePresent() {
 
                 override fun onFault(message: String) {
                     Log.i("shop", message)
+                    restaurantView?.onFault(message)
                 }
 
             })
@@ -75,6 +76,7 @@ class ShopPresent(var context: Context) : BasePresent() {
 
                 override fun onFault(message: String) {
                     Log.i("images", message)
+                    restaurantAlbumView?.onFault(message)
                 }
 
             })

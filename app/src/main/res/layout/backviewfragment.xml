@@ -37,25 +37,17 @@
               android:background="@color/e6"
               android:layout_height="0.5pt"/>
 
+        <ProgressBar
+                android:id="@+id/progressBar1"
+                android:layout_alignParentBottom="true"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dip"
+                android:progressDrawable="@drawable/pg"
+                android:visibility="gone"
+
+        />
     </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <WebView

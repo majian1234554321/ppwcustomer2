@@ -29,7 +29,7 @@ class MembershipCardPresent(var context: Context,var view :MembershipCardView) :
                 }
 
                 override fun onFault(message: String) {
-
+view.onFault(message)
                 }
 
             }

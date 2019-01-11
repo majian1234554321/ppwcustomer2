@@ -95,6 +95,8 @@
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="horizontal"
                       android:layout_marginTop="9.5pt"
+                      android:visibility="gone"
+                      android:id="@+id/ll_3"
                       android:background="@drawable/xuanfubeijing"
                       android:gravity="center"
                       android:layout_height="122.5pt">

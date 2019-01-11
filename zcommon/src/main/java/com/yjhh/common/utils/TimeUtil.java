@@ -14,6 +14,8 @@ import java.util.Locale;
 
 public class TimeUtil {
 
+    private static StringBuilder sb;
+
     /*
      * 将时间戳转换为时间
      */
@@ -76,6 +78,12 @@ public class TimeUtil {
 
     public static String secondToTime(long second) {
 
+        String daystring = "";
+        String hoursstring = "";
+        String minutesstring = "";
+        String secondstring = "";
+
+
         long days = second / 86400;//转换天数
         second = second % 86400;//剩余秒数
         long hours = second / 3600;//转换小时数
@@ -83,18 +91,50 @@ public class TimeUtil {
         long minutes = second / 60;//转换分钟
         second = second % 60;//剩余秒数
 
+
         if (days > 0) {
-            return days + ":" + hours + ":" + minutes + ":" + second;
-        } else if (hours > 0) {
-            return hours + ":" + minutes + ":" + second;
-        } else if (minutes > 0) {
-            if (second >= 10) {
-                return minutes + ":" + second;
-            }
-            return minutes + ":0" + second;
-        } else {
-            return "00:" + second;
+            daystring = String.valueOf(days);
         }
+
+        if (hours > 0) {
+            if (hours >= 10)
+                hoursstring = String.valueOf(hours);
+            else
+                hoursstring = "0" + hours;
+        }
+
+        if (minutes > 0) {
+            if (minutes >= 10)
+                minutesstring = String.valueOf(minutes);
+            else
+                minutesstring = "0" + minutes;
+        }
+
+
+        if (second > 0) {
+            if (second >= 10)
+                secondstring = String.valueOf(second);
+            else
+                secondstring = "0" + second;
+        }
+
+        sb = new StringBuilder();
+
+        if (!TextUtils.isEmpty(daystring)) {
+            sb.append(daystring).append(":");
+        }
+
+        if (!TextUtils.isEmpty(hoursstring)) {
+            sb.append(hoursstring).append(":");
+        }
+
+
+        sb.append(minutesstring).append(":");
+
+        sb.append(secondstring);
+
+
+        return sb.toString();
 
 
     }

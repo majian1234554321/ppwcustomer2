@@ -26,7 +26,6 @@ class TitleBarView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-
     fun setTitle(name: String) {
         tv_title.text = name
     }
@@ -38,7 +37,6 @@ class TitleBarView @JvmOverloads constructor(
     }
 
     init {
-
 
         val type = context.theme.obtainStyledAttributes(attributeSet, R.styleable.TitleBarView, defStyleAttr, 0)
         val textValue = type.getString(R.styleable.TitleBarView_textValue)
@@ -92,7 +90,6 @@ class TitleBarView @JvmOverloads constructor(
 
 
     }
-
 
     interface OnRightClickListion {
         fun setOnRightClick()

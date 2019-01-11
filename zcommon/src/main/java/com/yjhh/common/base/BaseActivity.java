@@ -19,6 +19,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.yjhh.common.R;
 import com.yjhh.common.listener.PermissionListener;
 import com.yjhh.common.utils.ActivityCollector;
+import com.yjhh.common.utils.AmpLocationUtil;
 import io.reactivex.disposables.CompositeDisposable;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.internal.CustomAdapt;
@@ -102,6 +103,7 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
             mImmersionBar.destroy();
         }
 
+        AmpLocationUtil.destroy();
 
     }
 
@@ -232,6 +234,7 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
+
 
 
 

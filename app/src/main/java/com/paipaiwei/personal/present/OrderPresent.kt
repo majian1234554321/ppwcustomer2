@@ -27,7 +27,7 @@ class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
                 }
 
                 override fun onFault(message: String) {
-
+                    view.onFault(message)
                 }
 
             }

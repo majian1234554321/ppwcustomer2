@@ -240,7 +240,7 @@ class SectionUserPresent(context: Context) : BasePresent() {
             }
 
             override fun onFault(message: String) {
-
+addressView.onFault(message)
             }
 
         })

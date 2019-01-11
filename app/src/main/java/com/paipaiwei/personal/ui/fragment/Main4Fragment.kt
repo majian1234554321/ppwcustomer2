@@ -29,7 +29,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-               // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+                // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
                 (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
                 //startActivity(Intent(mActivity, FlutterDisActivity::class.java))
@@ -145,7 +145,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             }
 
 //            R.id.iev_address -> {
-//
 //                ARouter.getInstance()
 //                    .build("/DisplayActivity/Display")
 //                    .withString("displayTab", "MyAddressFragment")
@@ -197,64 +196,18 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
     override fun initView() {
 
-        if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-            tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
-            tv_mobile.visibility = View.VISIBLE
-            tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
 
-            ImageLoaderUtils.load(
-                mActivity,
-                profile_image,
-                "",
-                R.drawable.icon_login_touxiang,
-                R.drawable.icon_login_touxiang, 0
-            )
-
-        } else {
-            tv_name.text = "请点击登录"
-            tv_mobile.visibility = View.GONE
-            ImageLoaderUtils.load(
-                mActivity,
-                profile_image,
-                "",
-                R.drawable.icon_login_touxiang,
-                R.drawable.icon_login_touxiang, 0
-            )
-        }
+        updateUI(!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String))
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
             LogUtils.i("Main4Fragment", it.mobile)
-            if (it.loginSuccess) {
-                tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
-                tv_mobile.visibility = View.VISIBLE
-                tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
-                ImageLoaderUtils.load(
-                    mActivity,
-                    profile_image,
-                    "",
-                    R.drawable.icon_login_touxiang,
-                    R.drawable.icon_login_touxiang, 0
-                )
-
-            } else {
-                tv_name.text = "请点击登录"
-                tv_mobile.visibility = View.GONE
-                ImageLoaderUtils.load(
-                    mActivity,
-                    profile_image,
-                    "",
-                    R.drawable.icon_login_touxiang,
-                    R.drawable.icon_login_touxiang, 0
-                )
-            }
+            updateUI(it.loginSuccess)
         }
-
         compositeDisposable.add(dis)
 
 
         val list = arrayOf(
             iev_evaluate,
-
             iev_service,
             iev_about,
             iev_browse,
@@ -275,4 +228,32 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
     }
 
     override fun getLayoutRes(): Int = R.layout.main4fragment
+
+    fun updateUI(flag: Boolean) {
+        if (flag) {
+            tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
+            tv_mobile.visibility = View.VISIBLE
+            tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
+            ImageLoaderUtils.load(
+                mActivity,
+                profile_image,
+                "",
+                R.drawable.icon_login_touxiang,
+                R.drawable.icon_login_touxiang, 0
+            )
+            ll_3.visibility = View.VISIBLE
+        } else {
+            ll_3.visibility = View.GONE
+            tv_name.text = "请点击登录"
+            tv_mobile.visibility = View.GONE
+            ImageLoaderUtils.load(
+                mActivity,
+                profile_image,
+                "",
+                R.drawable.icon_login_touxiang,
+                R.drawable.icon_login_touxiang, 0
+            )
+        }
+    }
+
 }

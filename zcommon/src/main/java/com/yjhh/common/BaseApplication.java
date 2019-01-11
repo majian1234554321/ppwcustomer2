@@ -42,6 +42,8 @@ public class BaseApplication extends Application {
 
 
 
+
+
         AutoSizeConfig.getInstance()
                 .setCustomFragment(true)
                 .setOnAdaptListener(new onAdaptListener() {

@@ -1,6 +1,7 @@
 package com.ppwc.restaurant.views
 
 import android.Manifest
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -109,18 +110,31 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
         if (model.oneMoney != null && model.oneMoney.size > 0) {
+            titles1.add("一元拍")
+
             listValue.add(MultipleItem(MultipleItem.A, false, model.oneMoney))
         }
 
         if (model.products != null && model.products.size > 0) {
+
+            titles1.add("店铺推荐")
+
             listValue.add(MultipleItem(MultipleItem.B, model.products, model.productCount))
         }
 
         if (model.userComment != null && model.userComment.size > 0) {
-            listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount))
+            titles1.add("店铺推荐")
+            listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount,model.commentLabel))
         }
 
         listValue.add(MultipleItem(MultipleItem.D))
+
+
+        for (i in 0 until titles1.size) {
+
+            mTabLayout_7.addTab(mTabLayout_7.newTab().setText(titles1[i]))
+        }
+
 
 
         mAdapter?.notifyDataSetChanged()
@@ -144,7 +158,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
             R.id.iv_share -> {
-                ShareUtils.getInstance().initWx(mActivity).sendToWeiXin(1)
+                ShareUtils.dialog(mActivity)
             }
 
             R.id.tv_buy -> {
@@ -167,8 +181,8 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
     }
 
-
-    private val titles1 = arrayOf("一元拍", "店铺推荐", "用户评价")
+    // arrayOf("一元拍", "店铺推荐", "用户评价")
+    private val titles1 = ArrayList<String>()
 
     override fun getLayoutRes(): Int = R.layout.restauranthomefragment
 
@@ -179,15 +193,11 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
     var mAdapter: RestaurantHomeAdapter? = null
 
 
-    var present:ShopPresent? = null
+    var present: ShopPresent? = null
 
     override fun initView() {
-      present =   ShopPresent(mActivity, this)
+        present = ShopPresent(mActivity, this)
 
-        for (i in 0 until titles1.size) {
-
-            mTabLayout_7.addTab(mTabLayout_7.newTab().setText(titles1[i]))
-        }
 
         mTabLayout_7.tabMode = MODE_FIXED
 
@@ -200,15 +210,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         recyclerView.adapter = mAdapter
         present?.shop("1009")
-
-
-
-
-
-
-
-
-
 
 
 
@@ -330,6 +331,22 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
 
+    }
+
+
+    companion object {
+        fun newInstance(id:String?): RestaurantHomeFragment {
+
+            val fragment = RestaurantHomeFragment()
+            val bundle = Bundle()
+
+            bundle.putString("id", id)
+            fragment.arguments = bundle
+            return fragment
+
+
+            return fragment
+        }
     }
 
 
