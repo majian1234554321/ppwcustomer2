@@ -1,6 +1,8 @@
 package com.ppwc.restaurant.views
 
+import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,9 +13,17 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.ppwc.restaurant.R
+import com.ppwc.restaurant.bean.ShopPayPageInitModel
+import com.ppwc.restaurant.bean.SubmitShopPayModel
+import com.ppwc.restaurant.iview.PrePayCheckServie
+import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.ppwc.restaurant.mrlistener.AlphaPageTransformer
+import com.yjhh.common.api.ApiServices
+import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.TextStyleUtils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.mrcheckpayadapter.*
 import kotlinx.android.synthetic.main.mrcheckpayfragment.*
 import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
@@ -31,13 +41,19 @@ class MRCheckPayFragment : BaseFragment() {
 
 
     var tv_useIf: TextView? = null
+    var shopId: String? = null
 
-
-    var view22:View? = null
+    var view22: View? = null
 
     override fun getLayoutRes(): Int = R.layout.mrcheckpayfragment
 
     override fun initView() {
+
+        val couponId = arguments?.getString("couponId")
+        val orderId = arguments?.getString("orderId")
+        val typeId = arguments?.getString("typeId")
+        shopId = arguments?.getString("shopId")
+
         mb_buy.setOnClickListener {
 
             if ("0" != tv1price) {
@@ -46,6 +62,33 @@ class MRCheckPayFragment : BaseFragment() {
 
                 dialog.setOnDialogClick(object : ProofreadingDialogFragment.OnDialogClickListener {
                     override fun onDialogClick() {
+
+                        val model2 = SubmitShopPayModel()
+
+                        model2.couponId
+                        model2.fromType
+                        model2.money
+                        model2.orderId
+                        model2.result
+                        model2.shopId
+                        model2.unDisMoney
+
+
+                        ApiServices.getInstance().create(PrePayCheckServie::class.java).paySubmit(model2)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(object : ProcessObserver2(mActivity) {
+                                override fun processValue(response: String?) {
+                                    Log.i("ShopPayPageInitModel", response)
+                                }
+
+                                override fun onFault(message: String) {
+
+                                }
+
+                            })
+
+
 
                         start(MRPendingPaymentFragment.newInstance(tv4price))
                         dialog.dismiss()
@@ -59,10 +102,8 @@ class MRCheckPayFragment : BaseFragment() {
 
         }
 
-
-
         mViewPager.pageMargin = 40
-      //  mViewPager.setPadding(40,0,40,0)
+        //  mViewPager.setPadding(40,0,40,0)
 
         mViewPager.offscreenPageLimit = 3
         mViewPager.adapter = object : PagerAdapter() {
@@ -76,26 +117,31 @@ class MRCheckPayFragment : BaseFragment() {
 
                 val tv_price = view22?.findViewById<TextView>(R.id.tv_price)
                 val tv_access = view22?.findViewById<TextView>(R.id.tv_access)
-                 tv_useIf = view22?.findViewById<TextView>(R.id.tv_useIf)
+                tv_useIf = view22?.findViewById<TextView>(R.id.tv_useIf)
                 val tv_cardName = view22?.findViewById<TextView>(R.id.tv_cardName)
 
-               val rl_footer = view22?.findViewById<RelativeLayout>(R.id.rl_footer)
+                val rl_footer = view22?.findViewById<RelativeLayout>(R.id.rl_footer)
 
 
-                tv_price?.text = TextStyleUtils.changeTextAa(tv_price?.text.toString(),tv_price?.text.toString().length-3,tv_price?.text.toString().length,15)
+                tv_price?.text = TextStyleUtils.changeTextAa(
+                    tv_price?.text.toString(),
+                    tv_price?.text.toString().length - 3,
+                    tv_price?.text.toString().length,
+                    15
+                )
 
                 rl_head?.setBackgroundResource(R.drawable.iv_red)
 
 
                 view22?.setOnClickListener {
-                    Toast.makeText(mActivity,"view",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mActivity, "view", Toast.LENGTH_SHORT).show()
 
-                    rl_footer?.visibility= View.VISIBLE
+                    rl_footer?.visibility = View.VISIBLE
                 }
 
                 tv_useIf?.setOnClickListener {
-                    Toast.makeText(mActivity,"tv_useIf",Toast.LENGTH_SHORT).show()
-                    rl_footer?.visibility= View.GONE
+                    Toast.makeText(mActivity, "tv_useIf", Toast.LENGTH_SHORT).show()
+                    rl_footer?.visibility = View.GONE
                 }
 
                 container.addView(view22)
@@ -113,12 +159,8 @@ class MRCheckPayFragment : BaseFragment() {
             }
         }
         mViewPager.setPageTransformer(true, AlphaPageTransformer())
-
-
-
-
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override   fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
 
@@ -131,6 +173,37 @@ class MRCheckPayFragment : BaseFragment() {
 
             }
         })
+
+
+        val model = ShopPayPageInitModel()
+
+        model.couponId = couponId
+        model.orderId = orderId
+        model.shopId = shopId
+        model.type = typeId
+        /*  1、商家首页，立即买单（页面A）
+          2、卡券中心，我要使用（页面A）
+          3、订单列表，立即使用（页面B）
+          4、待定
+          5、待定
+          其他视为非法请求*/
+
+        ApiServices.getInstance().create(PrePayCheckServie::class.java).pay(model)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ProcessObserver2(mActivity) {
+                override fun processValue(response: String?) {
+                    Log.i("ShopPayPageInitModel", response)
+                }
+
+                override fun onFault(message: String) {
+
+                }
+
+            })
+
+
+
 
 
 
@@ -257,6 +330,22 @@ class MRCheckPayFragment : BaseFragment() {
 
 
         return price
+    }
+
+
+    companion object {
+        fun newInstance(couponId: String?, orderId: String?, shopId: String?, typeId: String?): MRCheckPayFragment {
+            val fragment = MRCheckPayFragment()
+            val bundle = Bundle()
+
+            bundle.putString("couponId", couponId)
+            bundle.putString("orderId", orderId)
+            bundle.putString("shopId", shopId)
+            bundle.putString("typeId", typeId)
+
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
 

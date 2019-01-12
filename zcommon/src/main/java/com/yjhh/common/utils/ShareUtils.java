@@ -41,11 +41,12 @@ public class ShareUtils {
 
 
         BottomHorSheetDialog dialog = AlertDialogFactory.createFactory(context).getBottomHorDialog("分享",
-                Arrays.asList(new BottomHorSheetDialog.Bean("QQ", R.drawable.star_full),
-                        new BottomHorSheetDialog.Bean("微信", R.drawable.star_full),
-                        new BottomHorSheetDialog.Bean("朋友圈", R.drawable.star_full),
-                        new BottomHorSheetDialog.Bean("微博", R.drawable.star_full),
-                        new BottomHorSheetDialog.Bean("短信", R.drawable.star_full)),
+                Arrays.asList(new BottomHorSheetDialog.Bean("QQ", R.drawable.share_qq),
+                        new BottomHorSheetDialog.Bean("QQ空间", R.drawable.share_qzone),
+                        new BottomHorSheetDialog.Bean("微信", R.drawable.share_wx),
+                        new BottomHorSheetDialog.Bean("朋友圈", R.drawable.share_pyq),
+                        new BottomHorSheetDialog.Bean("微博", R.drawable.share_sina)
+                ),
                 new AbsSheetDialog.OnItemClickListener<BottomHorSheetDialog.Bean>() {
                     @Override
                     public void onClick(Dialog dlg, int position, BottomHorSheetDialog.Bean item) {
@@ -55,12 +56,15 @@ public class ShareUtils {
                             case 0:
                                 break;
                             case 1:
-                                initWx(context, 0);
+
                                 break;
                             case 2:
-                                initWx(context, 1);
+                                initWx(context, 0);
                                 break;
                             case 3:
+                                initWx(context, 1);
+                                break;
+                            case 4:
 
                                 break;
 

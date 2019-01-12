@@ -124,7 +124,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         if (model.userComment != null && model.userComment.size > 0) {
             titles1.add("店铺推荐")
-            listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount,model.commentLabel))
+            listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount, model.commentLabel))
         }
 
         listValue.add(MultipleItem(MultipleItem.D))
@@ -166,7 +166,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             }
 
             R.id.tv_buy2 -> {
-                start(MRCheckPayFragment())
+                start(MRCheckPayFragment.newInstance("", "", shopId, "1"))
             }
 
             R.id.iv_like -> {
@@ -186,6 +186,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
     override fun getLayoutRes(): Int = R.layout.restauranthomefragment
 
+    var shopId: String? = null
 
     val listValue = ArrayList<MultipleItem>()
 
@@ -208,8 +209,12 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         mAdapter = RestaurantHomeAdapter(listValue, recyclerView, this, childFragmentManager)
 
+
         recyclerView.adapter = mAdapter
-        present?.shop("1009")
+
+        shopId = arguments?.getString("id")
+
+        present?.shop(shopId)
 
 
 
@@ -335,7 +340,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
     companion object {
-        fun newInstance(id:String?): RestaurantHomeFragment {
+        fun newInstance(id: String?): RestaurantHomeFragment {
 
             val fragment = RestaurantHomeFragment()
             val bundle = Bundle()
@@ -343,7 +348,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             bundle.putString("id", id)
             fragment.arguments = bundle
             return fragment
-
 
 
         }

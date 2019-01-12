@@ -28,7 +28,7 @@ class ShopPresent(var context: Context) : BasePresent() {
     }
 
 
-    fun shop(id: String) {
+    fun shop(id: String?) {
         map.clear()
         map["id"] = id
         toSubscribe2(ApiServices.getInstance().create(ShopService::class.java).shop(map),
@@ -58,7 +58,7 @@ class ShopPresent(var context: Context) : BasePresent() {
         this.restaurantAlbumView = restaurantAlbumView
     }
 
-    fun images(shopId: String, type: String, pageIndex: Int, pageSize: Int) {
+    fun images(shopId: String?, type: String, pageIndex: Int, pageSize: Int) {
         map.clear()
         map["shopId"] = shopId
         map["type"] = type  //类型 null 默认 0 logo 1背景墙 2商品 3证件 4法人 5、1+2 6、3+4 7、123 8、1234
@@ -90,7 +90,7 @@ class ShopPresent(var context: Context) : BasePresent() {
         this.recommendProductView = recommendProductView
     }
 
-    fun products(shopId: String, pageIndex: Int, pageSize: Int,flag:String) {
+    fun products(shopId: String?, pageIndex: Int, pageSize: Int,flag:String) {
         map.clear()
         map["shopId"] = shopId
         map["pageIndex"] = pageIndex.toString()

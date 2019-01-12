@@ -39,6 +39,9 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/iv_image"
                         android:text="拍拍味至尊KTV"
+                        android:singleLine="true"
+                        android:maxEms="15"
+                        android:id="@+id/tv_storeName"
                         android:drawableRight="@drawable/icon_jiantou082x"
                         android:layout_centerVertical="true"
 

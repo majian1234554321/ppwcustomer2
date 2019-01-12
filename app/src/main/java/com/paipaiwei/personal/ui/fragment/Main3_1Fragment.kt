@@ -2,6 +2,8 @@ package com.paipaiwei.personal.ui.fragment
 
 
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
@@ -14,11 +16,14 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Main3_1Adapter
 
 import com.paipaiwei.personal.adapter.PullToRefreshAdapter
+import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.bean.Main3_1Bean
 import com.paipaiwei.personal.present.OrderPresent
 
 import com.paipaiwei.personal.present.SectionOrderPresent
 import com.paipaiwei.personal.view.OrderView
+import com.yjhh.common.utils.LogUtils
+import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SpaceItemDecoration2
 
 
@@ -47,13 +52,25 @@ class Main3_1Fragment : BaseFragment(), OrderView {
 
     override fun onFault(errorMsg: String?) {
 
+        val view = View.inflate(mActivity, R.layout.emptyview, null)
+
+        view.setOnClickListener {
+            ARouter.getInstance()
+                .build("/LoginActivity/Login")
+                .navigation(mActivity)
+        }
+
+        view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+        mAdapter?.setNewData(listValue)
+        mAdapter?.emptyView = view
+
     }
 
     override fun getLayoutRes(): Int = R.layout.main2_1fragment
 
     var pageIndex = 0
     val pageSize = 15
-    var type = ""
+    var type: String? = ""
     var status = ""
 
     var present: OrderPresent? = null
@@ -61,11 +78,21 @@ class Main3_1Fragment : BaseFragment(), OrderView {
     var listValue = ArrayList<Main3_1Bean.ItemsBean>()
 
     override fun initView() {
+
+
+        present = OrderPresent(mActivity, this)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
         initRefreshLayout()
         swipeLayout.autoRefresh()
-        present = OrderPresent(mActivity, this)
+
+
+        val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
+            LogUtils.i("Main4Fragment", it.mobile)
+            swipeLayout.autoRefresh()
+        }
+        compositeDisposable.add(dis)
+
 
     }
 
@@ -110,9 +137,9 @@ class Main3_1Fragment : BaseFragment(), OrderView {
     }
 
 
-    override fun initData() {
-        Log.i("TAG", "Main2_1Fragment")
-
+    fun loadData(type: String?) {
+        this.type = type
+        swipeLayout.autoRefresh()
     }
 
 

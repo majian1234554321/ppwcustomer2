@@ -34,6 +34,7 @@ public class MeiShiFootBean {
         public List<String> labels;
         public String perCapita = "0";
         public String logoUrl;
+        public String id;
 
         public static class CouponsBean {
             /**

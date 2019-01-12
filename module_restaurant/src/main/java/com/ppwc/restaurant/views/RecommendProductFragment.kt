@@ -60,6 +60,8 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
     var pageIndex = 0
     val pageSize = 15
 
+    var shopId:String? = null
+
     val list = ArrayList<RecommendProductBean.ItemsBean>()
     var mAdapter: RecommendProductAdapter? = null
 
@@ -68,6 +70,7 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
 
     override fun initView() {
 
+        shopId= arguments?.getString("id")
 
         val id = arguments?.getString("id")
 
@@ -79,7 +82,7 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
 
 
         present = ShopPresent(mActivity, this)
-        present?.products("1009", pageIndex, pageSize, "refresh")
+        present?.products(shopId, pageIndex, pageSize, "refresh")
 
 
 
@@ -123,14 +126,14 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
 
         pageIndex = 0
 
-        present?.products("1009", pageIndex, pageSize, "refresh")
+        present?.products(shopId, pageIndex, pageSize, "refresh")
     }
 
 
     private fun loadMore() {
 
         pageIndex++
-        present?.products("1009", pageIndex, pageSize, "load")
+        present?.products(shopId, pageIndex, pageSize, "load")
     }
 
 

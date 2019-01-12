@@ -37,8 +37,8 @@ interface OrderService {
 
 
     @FormUrlEncoded
-    @POST("order/myOrders")
-    fun myOrders(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
+    @POST("order")
+    fun myOrders(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
 
     @FormUrlEncoded
@@ -51,6 +51,9 @@ interface OrderService {
     fun detailFromCallback(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
 
+
+    @POST("order/nav")
+    fun nav(): Observable<ResponseBody>//
 
 
 

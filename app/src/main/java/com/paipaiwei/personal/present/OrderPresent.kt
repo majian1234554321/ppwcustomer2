@@ -162,12 +162,12 @@ class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
             .myOrders(map), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
                 view.onSuccessOrder(response, flag)
-                Log.i("myOrders", "Main2_1Fragment")
+                Log.i("myOrders", response)
             }
 
             override fun onFault(message: String) {
                 view.onFault(message)
-                Log.i("myOrders", "Main2_1Fragment")
+                Log.i("myOrders", message)
             }
 
         }

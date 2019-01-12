@@ -67,7 +67,7 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
                     SharedPreferencesUtils.setParam(context, "type", "")
                     onFault("01001")
                     // context.startActivity(Intent(context, LoginActivity::class.java))
-                    (context as Activity).finish()
+                   // (context as Activity).finish()
                 } else if ("01018" == jsonValue.optString("code")) {
                     onFault("01018")
                 } else {

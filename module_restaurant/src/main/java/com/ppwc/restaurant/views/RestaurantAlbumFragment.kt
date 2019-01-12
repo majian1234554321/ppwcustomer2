@@ -1,5 +1,6 @@
 package com.ppwc.restaurant.views
 
+import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.adapter.RestaurantAlbumAdapter
@@ -43,10 +44,11 @@ class RestaurantAlbumFragment : BaseFragment(), RestaurantAlbumView {
 
 
 
+        val shopId = arguments?.getString("id")
 
 
 
-        ShopPresent(mActivity, this).images("1009", "", pageIndex, pageSize)
+        ShopPresent(mActivity, this).images(shopId, "", pageIndex, pageSize)
 
 
         mAdapter = RestaurantAlbumAdapter(list)
@@ -59,4 +61,21 @@ class RestaurantAlbumFragment : BaseFragment(), RestaurantAlbumView {
             dialog?.show(childFragmentManager, "TAG")
         }
     }
+
+
+
+
+
+    companion object {
+        fun newInstance(id: String): RestaurantAlbumFragment {
+            val fragment = RestaurantAlbumFragment()
+            val bundle = Bundle()
+
+            bundle.putString("id", id)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+
 }

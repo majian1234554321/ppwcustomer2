@@ -214,14 +214,15 @@
 
     <RelativeLayout android:layout_width="match_parent"
                     android:orientation="horizontal"
-                    android:layout_below="@+id/content"
+                    android:layout_above="@+id/service"
+
                     android:id="@+id/rl2"
                     android:layout_height="wrap_content">
         <View android:layout_width="78pt"
               android:background="@color/all_9"
               android:layout_centerVertical="true"
               android:layout_toLeftOf="@+id/tv_text"
-              android:layout_height="2dp"/>
+              android:layout_height="1pt"/>
 
         <TextView
                 android:id="@+id/tv_text"
@@ -236,7 +237,7 @@
               android:layout_centerVertical="true"
               android:background="@color/all_9"
               android:layout_toRightOf="@+id/tv_text"
-              android:layout_height="2dp"/>
+              android:layout_height="1pt"/>
 
 
     </RelativeLayout>

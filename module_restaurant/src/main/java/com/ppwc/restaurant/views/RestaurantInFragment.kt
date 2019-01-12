@@ -306,7 +306,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
         mAdapter = RestaurantInAdapter(listFoot)
         recyclerView.adapter = mAdapter
         mAdapter?.setOnItemClickListener { adapter, view, position ->
-            start(RestaurantHomeFragment())
+            start(RestaurantHomeFragment.newInstance((adapter.data[position] as MeiShiFootBean.ItemsBean).id))
         }
 
         mAdapter?.setOnLoadMoreListener({
