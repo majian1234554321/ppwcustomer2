@@ -22,6 +22,15 @@ class RestaurantActivity : BaseActivity() {
     @JvmField
     var id: String? = "0"
 
+    @Autowired
+    @JvmField
+    var type: String? = "XX"
+
+    @Autowired
+    @JvmField
+    var typeValue: String? = "XX"
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
@@ -35,12 +44,11 @@ class RestaurantActivity : BaseActivity() {
 
         when (displayTab) {
             "RestaurantInFragment" -> {
-                loadRootFragment(R.id.frameLayout, RestaurantInFragment.newInstance())
+                loadRootFragment(R.id.frameLayout, RestaurantInFragment.newInstance(type,typeValue))
             }
 
             "ConsumptionLogFragment" -> {
                 loadRootFragment(R.id.frameLayout, ConsumptionLogFragment.newInstance(id))
-
             }
 
             "RestaurantOrderDetailsFragment" ->{

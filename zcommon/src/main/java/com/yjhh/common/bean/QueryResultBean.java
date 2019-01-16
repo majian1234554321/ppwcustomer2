@@ -6,32 +6,59 @@ public class QueryResultBean {
 
 
     /**
-     * items : [{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"0m","grade":10,"ifBuy":true,"ifNews":false,"ifRec":true,"labels":["武昌区"," 西餐牛排"],"name":"测试占位1"},{"coupons":[],"distance":"48m","grade":9,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位2"},{"coupons":[],"distance":"16m","grade":8,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位3"},{"coupons":[],"distance":"285m","grade":7,"ifBuy":true,"ifNews":false,"ifRec":false,"labels":["武昌区"," 西餐牛排"],"name":"测试占位4"},{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"92m","grade":6,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位5"},{"coupons":[],"distance":"370m","grade":5,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位6"},{"coupons":[],"distance":"414m","grade":4,"ifBuy":true,"ifNews":false,"ifRec":true,"labels":["武昌区"," 西餐牛排"],"name":"测试占位7"},{"coupons":[],"distance":"497m","grade":3,"ifBuy":false,"ifNews":false,"ifRec":false,"labels":[],"name":"测试占位8"},{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"784m","grade":2,"ifBuy":false,"ifNews":false,"ifRec":true,"labels":[],"name":"测试占位9"},{"coupons":[],"distance":"810m","grade":1,"ifBuy":true,"ifNews":false,"ifRec":false,"labels":["武昌区"," 西餐牛排"],"name":"测试占位10"}]
+     * items : [{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"0m","grade":10,"ifBrand":false,"ifBuy":true,"ifNews":false,"ifPai":false,"ifPre":false,"ifRec":true,"labelA":[{"code":"buy","title":"买","total":0,"value":""}],"labelB":[{"code":"rec","title":"推荐","total":0,"value":""}],"labels":["武昌区"," 西餐牛排"],"name":"测试占位1"},{"coupons":[],"distance":"6m","grade":9,"ifBrand":false,"ifBuy":false,"ifNews":false,"ifPai":false,"ifPre":false,"ifRec":false,"labelA":[],"labelB":[],"labels":[],"name":"测试占位2"},{"coupons":[],"distance":"148m","grade":8,"ifBrand":false,"ifBuy":false,"ifNews":false,"ifPai":false,"ifPre":false,"ifRec":true,"labelA":[],"labelB":[{"code":"rec","title":"推荐","total":0,"value":""}],"labels":[],"name":"测试占位3"},{"coupons":[],"distance":"177m","grade":7,"ifBrand":false,"ifBuy":true,"ifNews":false,"ifPai":false,"ifPre":false,"ifRec":false,"labelA":[{"code":"buy","title":"买","total":0,"value":""}],"labelB":[],"labels":["武昌区"," 西餐牛排"],"name":"测试占位4"},{"coupons":[{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}],"distance":"32m","grade":6,"ifBrand":false,"ifBuy":false,"ifNews":false,"ifPai":false,"ifPre":false,"ifRec":true,"labelA":[],"labelB":[{"code":"rec","title":"推荐","total":0,"value":""}],"labels":[],"name":"测试占位5"}]
+     * pageCount : 0
+     * queryModel : {"pageIndex":0,"pageSize":10}
      * recordCount : 0
      */
 
+    public int pageCount;
+    public QueryModelBean queryModel;
     public int recordCount;
     public List<ItemsBean> items;
+
+    public static class QueryModelBean {
+        /**
+         * pageIndex : 0
+         * pageSize : 10
+         */
+
+        public int pageIndex;
+        public int pageSize;
+    }
 
     public static class ItemsBean {
         /**
          * coupons : [{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"},{"dis":900,"full":1000,"title":"券名","type":1,"value":900,"valueText":"900"}]
          * distance : 0m
          * grade : 10
+         * ifBrand : false
          * ifBuy : true
          * ifNews : false
+         * ifPai : false
+         * ifPre : false
          * ifRec : true
+         * labelA : [{"code":"buy","title":"买","total":0,"value":""}]
+         * labelB : [{"code":"rec","title":"推荐","total":0,"value":""}]
          * labels : ["武昌区"," 西餐牛排"]
          * name : 测试占位1
          */
 
+        public String id;
+        public String perCapita;
+        public String logoUrl;
         public String distance;
         public int grade;
+        public boolean ifBrand;
         public boolean ifBuy;
         public boolean ifNews;
+        public boolean ifPai;
+        public boolean ifPre;
         public boolean ifRec;
         public String name;
         public List<CouponsBean> coupons;
+        public List<LabelABean> labelA;
+        public List<LabelBBean> labelB;
         public List<String> labels;
 
         public static class CouponsBean {
@@ -50,6 +77,34 @@ public class QueryResultBean {
             public int type;
             public int value;
             public String valueText;
+        }
+
+        public static class LabelABean {
+            /**
+             * code : buy
+             * title : 买
+             * total : 0
+             * value :
+             */
+
+            public String code;
+            public String title;
+            public int total;
+            public String value;
+        }
+
+        public static class LabelBBean {
+            /**
+             * code : rec
+             * title : 推荐
+             * total : 0
+             * value :
+             */
+
+            public String code;
+            public String title;
+            public int total;
+            public String value;
         }
     }
 }

@@ -16,24 +16,7 @@ class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
 
     val obs = ApiServices.getInstance().create(OrderService::class.java)
 
-    fun orderTypes() {
-        toSubscribe2(
-            obs.orderTypes(), object : ProcessObserver2(context) {
-                override fun processValue(response: String?) {
-                    view.onSuccessOrder(response, "")
 
-                    Log.i("orderTypes", response)
-
-                }
-
-                override fun onFault(message: String) {
-                    view.onFault(message)
-                }
-
-            }
-        )
-
-    }
 
 
     fun payment(id: String?, money: String?) {

@@ -14,7 +14,14 @@ interface RestaurantOrderSerVice {
     @POST("order/detail")
     fun detail(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
+    @FormUrlEncoded
+    @POST("order/del")
+    fun del(@FieldMap map: Map<String, String>): Observable<ResponseBody>
+
     interface RestaurantOrderView : BaseView {
-        fun onRestaurantOrder(model: String?)
+        fun onRestaurantOrder(model: String?,flag:String)
     }
+
+
+
 }

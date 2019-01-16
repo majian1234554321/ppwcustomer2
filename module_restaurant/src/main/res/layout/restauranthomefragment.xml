@@ -53,7 +53,8 @@
 
                             <ImageView android:layout_width="90pt" android:layout_height="90pt"
                                        android:id="@+id/iv_image"
-                                       android:src="@drawable/icon_place_pai"
+                                       android:scaleType="fitXY"
+                                       android:src="@drawable/icon_place_square"
 
                             />
 

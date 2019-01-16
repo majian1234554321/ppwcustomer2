@@ -1,11 +1,15 @@
 package com.ppwc.restaurant.views
 
 import android.content.Intent
+import android.opengl.Visibility
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.core.LogisticsCenter
 import com.alibaba.android.arouter.launcher.ARouter
+import com.d.lib.xrv.listener.AppBarStateChangeListener
+import com.google.android.material.appbar.AppBarLayout
 import com.gyf.barlibrary.ImmersionBar
 import com.ppwc.restaurant.R
 
@@ -302,6 +306,53 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             .statusBarDarkFont(true, 0.2f)
             .init()
 
+
+        val type = arguments?.getString("type")
+        val typeValue = arguments?.getString("typeValue")
+
+
+
+        if ("MORE" == type) {
+            ll_typeA.visibility = View.GONE
+            mcv_Search.visibility = View.GONE
+            tv_title.visibility = View.VISIBLE
+            tv_title.text = typeValue
+            iv_search.visibility = View.VISIBLE
+            mcv_Search_type.visibility = View.VISIBLE
+
+
+
+
+            appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+                override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
+                    if (state == State.EXPANDED) {
+
+                        //展开状态
+                        iv_search.visibility = View.GONE
+
+                    } else if (state == State.COLLAPSED) {
+                        //折叠状态
+
+                        iv_search.visibility = View.VISIBLE
+                    } else {
+                        //中间状态
+                        iv_search.visibility = View.GONE
+
+                    }
+                }
+            });
+
+
+
+
+
+
+        } else {
+            mcv_Search_type.visibility = View.GONE
+            iv_search.visibility = View.GONE
+        }
+
+
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
         mAdapter = RestaurantInAdapter(listFoot)
         recyclerView.adapter = mAdapter
@@ -323,7 +374,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
         queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize, "refresh")
 
-        val arrays = arrayOf(rb1, rb2, rb3, rb4, mcv_Search, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
+        val arrays = arrayOf(rb1, rb2, rb3, rb4, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
 
         query1Adapter = Query1Adapter(mActivity, listAll, 0)
         lv_1.adapter = query1Adapter
@@ -389,8 +440,14 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
 
     companion object {
-        fun newInstance(): RestaurantInFragment {
-            return RestaurantInFragment()
+        fun newInstance(type: String?, typeValue: String?): RestaurantInFragment {
+            val fragment = RestaurantInFragment()
+            val bundle = Bundle()
+            bundle.putString("type", type)
+            bundle.putString("typeValue", typeValue)
+
+            fragment.arguments = bundle
+            return fragment
         }
     }
 

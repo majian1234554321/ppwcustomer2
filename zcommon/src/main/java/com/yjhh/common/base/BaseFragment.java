@@ -15,7 +15,9 @@ import com.yjhh.common.R;
 import com.yjhh.common.utils.SharedPreferencesUtils;
 import io.reactivex.disposables.CompositeDisposable;
 import me.jessyan.autosize.internal.CustomAdapt;
+import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 
 public abstract class BaseFragment extends SupportFragment implements CustomAdapt {
 
@@ -91,7 +93,7 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        ((ISupportActivity) _mActivity).setFragmentAnimator(new DefaultHorizontalAnimator());
         if (isLazyLoad()) {
             mIsPrepare = true;
             mIsImmersion = true;

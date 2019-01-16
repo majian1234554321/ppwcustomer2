@@ -9,11 +9,12 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.bean.OrderDetailsBean
+import com.yjhh.common.bean.RxOrderBean
 import com.ppwc.restaurant.ipresent.RestaurantOrderPresent
 import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.ImageLoaderUtils
-import com.yjhh.common.utils.PhoneUtils
+import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.AlertDialogFactory
 import com.yjhh.common.view.TitleBarView
@@ -21,107 +22,111 @@ import kotlinx.android.synthetic.main.restaurantorderdetailsfragment.*
 
 class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     RestaurantOrderSerVice.RestaurantOrderView {
-    override fun onRestaurantOrder(model: String?) {
+    override fun onRestaurantOrder(model: String?, flag: String) {
+
+        if ("detail" == flag) {
+
+            val orderDetailsBean = Gson().fromJson<OrderDetailsBean>(model, OrderDetailsBean::class.java)
+
+            if (!TextUtils.isEmpty(TimeUtil.stampToDate(orderDetailsBean.createdTime))) {
+                iev1.setTextContent(TimeUtil.stampToDate(orderDetailsBean.createdTime))
+                iev1.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+            } else {
+                iev1.visibility = View.GONE
+            }
 
 
-        val orderDetailsBean = Gson().fromJson<OrderDetailsBean>(model, OrderDetailsBean::class.java)
+            iev2.setTextContent(orderDetailsBean.orderNo)
+            iev2.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
 
-        if (!TextUtils.isEmpty(TimeUtil.stampToDate(orderDetailsBean.createdTime))) {
-            iev1.setTextContent(TimeUtil.stampToDate(orderDetailsBean.createdTime))
-            iev1.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+            iev3.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.totalMoney))
+            iev3.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+
+            iev4.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.money))
+
+
+
+            if (!TextUtils.isEmpty(orderDetailsBean.payTime)) {
+                iev5.setTextContent(TimeUtil.stampToDate(orderDetailsBean.payTime))
+            } else {
+                iev5.visibility = View.GONE
+            }
+
+
+
+
+            if (!TextUtils.isEmpty(orderDetailsBean.useTime)) {
+                iev6.setTextContent(TimeUtil.stampToDate(orderDetailsBean.useTime)) //	消费 时间
+            } else {
+                iev6.visibility = View.GONE
+            }
+
+            if (orderDetailsBean.useTotalMoney != 0f) {
+                iev7.setTextContent(orderDetailsBean.useTotalMoney.toString()) // 消费 金额
+            } else {
+                iev7.visibility = View.GONE
+            }
+
+            if (orderDetailsBean.useDisMoney != 0f) {
+                iev8.setTextContent(orderDetailsBean.useDisMoney.toString()) //消费 抵扣金额
+            } else {
+                iev8.visibility = View.GONE
+            }
+
+            if (orderDetailsBean.useUnDisMoney != 0f) {
+                iev9.setTextContent(orderDetailsBean.useUnDisMoney.toString()) // 不参与折扣金额/不参与优惠金额
+            } else {
+                iev9.visibility = View.GONE
+            }
+
+            if (orderDetailsBean.useMoney != 0f) {
+                iev10.setTextContent(orderDetailsBean.useMoney.toString()) //消费 实付金额
+            } else {
+                iev10.visibility = View.GONE
+            }
+
+
+
+
+            tv_storeName.text = orderDetailsBean.shopName
+            ImageLoaderUtils.loadCircle(
+                mActivity,
+                iv_image,
+                orderDetailsBean.shopLogoUrl,
+                R.drawable.icon_place_pai,
+                R.drawable.icon_place_pai
+            )
+
+
+            when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
+                1 -> {
+                }
+                2 -> {
+                }
+                3 -> {
+                }
+                4 -> {
+                }
+                5 -> {
+                }
+                6 -> {
+                }
+                7 -> {
+                }
+                8 -> {
+                    mb_2.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFC536"))
+                    mb_2.visibility = View.VISIBLE
+                    mb_1.visibility = View.GONE
+                }
+                else -> {
+                }
+            }
+
+
         } else {
-            iev1.visibility = View.GONE
+            RxBus.default.post(RxOrderBean("RestaurantOrderDetailsFragment", true))
+            mActivity.onBackPressed()
         }
-
-
-        iev2.setTextContent(orderDetailsBean.orderNo)
-        iev2.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
-
-        iev3.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.totalMoney))
-        iev3.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
-
-        iev4.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.money))
-
-
-
-        if (!TextUtils.isEmpty(orderDetailsBean.payTime)) {
-            iev5.setTextContent(TimeUtil.stampToDate(orderDetailsBean.payTime))
-        } else {
-            iev5.visibility = View.GONE
-        }
-
-
-
-
-        if (!TextUtils.isEmpty(orderDetailsBean.useTime)) {
-            iev6.setTextContent(TimeUtil.stampToDate(orderDetailsBean.useTime)) //	消费 时间
-        } else {
-            iev6.visibility = View.GONE
-        }
-
-        if (orderDetailsBean.useTotalMoney != 0f) {
-            iev7.setTextContent(orderDetailsBean.useTotalMoney.toString()) // 消费 金额
-        } else {
-            iev7.visibility = View.GONE
-        }
-
-        if (orderDetailsBean.useDisMoney != 0f) {
-            iev8.setTextContent(orderDetailsBean.useDisMoney.toString()) //消费 抵扣金额
-        } else {
-            iev8.visibility = View.GONE
-        }
-
-        if (orderDetailsBean.useUnDisMoney != 0f) {
-            iev9.setTextContent(orderDetailsBean.useUnDisMoney.toString()) // 不参与折扣金额/不参与优惠金额
-        } else {
-            iev9.visibility = View.GONE
-        }
-
-        if (orderDetailsBean.useMoney != 0f) {
-            iev10.setTextContent(orderDetailsBean.useMoney.toString()) //消费 实付金额
-        } else {
-            iev10.visibility = View.GONE
-        }
-
-
-
-
-        tv_storeName.text = orderDetailsBean.shopName
-        ImageLoaderUtils.loadCircle(
-            mActivity,
-            iv_image,
-            orderDetailsBean.shopLogoUrl,
-            R.drawable.icon_place_pai,
-            R.drawable.icon_place_pai
-        )
-
-
-        when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
-            1 -> {
-            }
-
-            2 -> {
-            }
-            3 -> {
-            }
-            4 -> {
-            }
-            5 -> {
-            }
-            6 -> {
-            }
-            7 -> {
-            }
-            8 -> {
-                mb_2.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFC536"))
-                mb_2.visibility = View.VISIBLE
-                mb_1.visibility = View.GONE
-            }
-
-            else -> {
-            }
-        }
-
 
     }
 
@@ -144,7 +149,11 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
     override fun getLayoutRes(): Int = R.layout.restaurantorderdetailsfragment
 
+    var present: RestaurantOrderPresent? = null
+
     override fun initView() {
+        val orderId = arguments?.getString("id")
+        present = RestaurantOrderPresent(mActivity, this)
 
         tbv_title.setOnRightClickListener(object : TitleBarView.OnRightClickListion {
             override fun setOnRightClick() {
@@ -153,6 +162,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                     "确认删除此订单吗？",
                     "确定", "取消",
                     { dlg, v ->
+                        present?.del(orderId, "del")
 
                     }, { dlg, v ->
                     })
@@ -161,21 +171,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
         })
 
-
-        val orderId = arguments?.getString("id")
-
-
-
-
-        RestaurantOrderPresent(mActivity, this).detail(orderId)
-
-
-
-
-
-
-
-
+        present?.detail(orderId, "detail")
 
         arrayOf(mb_1, mb_2).forEach {
             it.setOnClickListener(this)

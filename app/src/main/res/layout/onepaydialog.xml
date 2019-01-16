@@ -27,6 +27,7 @@
                         android:layout_marginTop="-20pt"
                         android:background="@drawable/beijing0232x"
                         android:id="@+id/rl1"
+                        android:layout_gravity="center"
                         android:layout_height="176pt">
 
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"

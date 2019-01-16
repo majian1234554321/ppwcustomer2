@@ -70,7 +70,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
 
 
-            if (bean.propA!=null) {
+            if (bean.propA != null) {
                 propa_title.text = bean.propA.name
                 propa_count.text = "数量：${bean.propA.quantity}"
             } else {
@@ -78,7 +78,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
             }
 
 
-            if (bean.propB!=null) {
+            if (bean.propB != null) {
                 propb_title.text = bean.propB.name
                 propb_count.text = "数量：${bean.propB.quantity}"
             } else {
@@ -124,7 +124,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
     }
 
 
-    class OnePayDialogFragment : DialogFragment() {
+    class OnePayDialogFragment() : DialogFragment() {
         interface OnDialogClickListener {
             fun onDialogClick(value: Int)
         }

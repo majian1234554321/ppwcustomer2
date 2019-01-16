@@ -22,6 +22,7 @@ import com.paipaiwei.personal.present.OrderPresent
 
 import com.paipaiwei.personal.present.SectionOrderPresent
 import com.paipaiwei.personal.view.OrderView
+import com.yjhh.common.bean.RxOrderBean
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
 import com.yjhh.common.utils.SpaceItemDecoration2
@@ -31,11 +32,7 @@ import kotlinx.android.synthetic.main.main2_1fragment.*
 
 class Main3_1Fragment : BaseFragment(), OrderView {
     override fun onSuccessOrder(response: String?, flag: String?) {
-
         val model = Gson().fromJson<Main3_1Bean>(response, Main3_1Bean::class.java)
-
-
-
         if ("refresh" == flag) {
             mAdapter?.setNewData(model.items)
         } else {
@@ -86,6 +83,13 @@ class Main3_1Fragment : BaseFragment(), OrderView {
         initRefreshLayout()
         swipeLayout.autoRefresh()
 
+
+        val dis2 = RxBus.default.toFlowable(RxOrderBean::class.java).subscribe {
+            if (it != null) {
+                swipeLayout.autoRefresh()
+            }
+        }
+        compositeDisposable.add(dis2)
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
             LogUtils.i("Main4Fragment", it.mobile)

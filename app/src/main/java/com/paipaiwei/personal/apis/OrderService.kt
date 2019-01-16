@@ -18,8 +18,6 @@ interface OrderService {
     fun cancelCause(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
 
 
-    @POST("order/orderTypes")
-    fun orderTypes(): Observable<ResponseBody>// 资金记录/积分记录
 
 
     @FormUrlEncoded
@@ -51,10 +49,8 @@ interface OrderService {
     fun detailFromCallback(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
 
-
     @POST("order/nav")
     fun nav(): Observable<ResponseBody>//
-
 
 
 }

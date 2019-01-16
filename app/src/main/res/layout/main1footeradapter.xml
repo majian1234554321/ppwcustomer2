@@ -17,6 +17,7 @@
 
         <ImageView android:layout_width="90pt" android:layout_height="90pt"
                    android:id="@+id/iv_image"
+                   android:scaleType="fitXY"
                    android:layout_marginRight="10pt"
         />
 
@@ -28,8 +29,6 @@
                   android:textColor="#FFFFFFFF"
                   android:textSize="10pt"
         />
-
-
 
 
         <TextView android:layout_width="wrap_content"
@@ -197,9 +196,7 @@
                       android:layout_height="20pt"/>
 
 
-
         </RelativeLayout>
-
 
 
     </RelativeLayout>

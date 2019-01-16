@@ -30,4 +30,11 @@ public class ActivityCollector {
         context.startActivity(intent);
     }
 
+
+    public static void JumpActivity(Context context, Class clazz,String key,String value) {
+        Intent intent = new Intent(context, clazz);
+        intent.putExtra(key,value);
+        context.startActivity(intent);
+    }
+
 }

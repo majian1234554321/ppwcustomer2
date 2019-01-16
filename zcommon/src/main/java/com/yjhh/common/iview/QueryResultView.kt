@@ -4,7 +4,5 @@ import com.yjhh.common.base.BaseView
 import com.yjhh.common.bean.QueryResultBean
 
 interface QueryResultView :BaseView{
-    fun  queryResultValue (model: QueryResultBean) {
-
-    }
+    fun  queryResultValue (model: QueryResultBean)
 }

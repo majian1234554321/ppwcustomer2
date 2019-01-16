@@ -11,7 +11,7 @@ import com.yjhh.common.present.BasePresent
 class RestaurantOrderPresent(var context: Context, var view: RestaurantOrderSerVice.RestaurantOrderView) :
     BasePresent() {
 
-    fun detail(orderId: String?) {
+    fun detail(orderId: String?,flag:String) {
         map.clear()
         map.put("orderId", orderId)
 
@@ -19,7 +19,7 @@ class RestaurantOrderPresent(var context: Context, var view: RestaurantOrderSerV
             object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
                     Log.i("detail", response)
-                    view.onRestaurantOrder(response)
+                    view.onRestaurantOrder(response,flag)
                 }
 
                 override fun onFault(message: String) {
@@ -28,6 +28,26 @@ class RestaurantOrderPresent(var context: Context, var view: RestaurantOrderSerV
 
             })
     }
+
+
+    fun del(orderId: String?,flag:String) {
+        map.clear()
+        map.put("id", orderId)
+
+        toSubscribe2(ApiServices.getInstance().create(RestaurantOrderSerVice::class.java).del(map),
+            object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+                    Log.i("detail", response)
+                    view.onRestaurantOrder(response,flag)
+                }
+
+                override fun onFault(message: String) {
+                    Log.i("detail", message)
+                }
+
+            })
+    }
+
 
 
 }

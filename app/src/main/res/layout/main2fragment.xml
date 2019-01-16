@@ -34,7 +34,6 @@
                     app:contentScrim="@color/white"
                     android:id="@+id/collapsingToolbarLayout"
                     app:expandedTitleGravity="left|bottom"
-
                     app:expandedTitleMarginBottom="100dp"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >
@@ -144,7 +143,7 @@
                                   android:orientation="horizontal"
                                   android:id="@+id/ll"
                                   android:paddingLeft="15pt"
-                                  android:layout_height="wrap_content">
+                                  android:layout_height="30pt">
 
 
                     </LinearLayout>

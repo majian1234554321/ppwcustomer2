@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -105,7 +106,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                             }
 
                             else -> {
-                                startActivity(Intent(mActivity, MoreSectionActivity::class.java))
+
                             }
                         }
 
@@ -181,6 +182,15 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
             }
+
+            R.id.iv_fenlei ->{
+                startActivity(Intent(mActivity, MoreSectionActivity::class.java))
+            }
+
+            R.id.iv_imagegame->{
+                (parentFragment as MainFragment).startBrotherFragment(QiangPaiFragment())
+            }
+
             else -> {
             }
         }
@@ -206,7 +216,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         initRefreshLayout()
         addHeaderView()
 
-        arrayOf(tv_search, iv_scan, tv_location).forEach {
+        arrayOf(tv_search, iv_scan, tv_location,iv_fenlei).forEach {
             it.setOnClickListener(this)
         }
 
@@ -275,7 +285,8 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         mGridViewPager?.setVis()
         hRecyclerView = headView.findViewById(R.id.hRecyclerView)
-
+       val  iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
+        iv_imagegame.setOnClickListener(this)
         hRecyclerView?.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 3)
 
         mAdapter?.addHeaderView(headView)

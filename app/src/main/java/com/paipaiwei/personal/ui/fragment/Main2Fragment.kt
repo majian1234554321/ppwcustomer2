@@ -208,9 +208,10 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                     if (locationLatlng != null) {
                         locationLatlng?.locatinmLatlng(LatLng(am.latitude, am.longitude), am.address)
                     }
+                    Log.i("LocationServer", "${am.poiName}定位成功定位信息${am.aoiName}")
                 } else {
                     //定位失败
-
+                    Log.i("LocationServer", "定位失败")
                 }
 
                 Log.i("LocationServer", sb.toString());
@@ -246,10 +247,12 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
 
-                if (tab?.position != 0)
+                if (tab?.position != 0) {
                     appBarLayout.setExpanded(false)
-
-
+                    ll.visibility = View.VISIBLE
+                } else {
+                    ll.visibility = View.GONE
+                }
                 val lisCheckBox = ArrayList<CheckBox>()
                 lisCheckBox.clear()
                 ll.removeAllViews()
@@ -259,10 +262,10 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
                     for (i in 0 until model1212!![tab.position].nodes.size) {
 
-
-                        val checkboxitem = View.inflate(mActivity, R.layout.checkboxitem, null) as CheckBox
+                        val checkboxitem = View.inflate(mActivity, R.layout.checkboxitem2, null) as CheckBox
                         checkboxitem.buttonDrawable = ColorDrawable(Color.TRANSPARENT)
                         checkboxitem.setBackgroundResource(R.drawable.uncheckbox)
+
                         checkboxitem.setTextColor(Color.parseColor("#666666"))
 
                         val listA = model1212!![tab.position]
@@ -305,7 +308,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
 
                 } else {
-                    ll.visibility = View.INVISIBLE
+                    ll.visibility = View.GONE
                 }
 
 
