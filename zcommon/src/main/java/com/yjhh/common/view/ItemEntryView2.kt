@@ -1,4 +1,5 @@
 package com.yjhh.common.view
+
 import android.content.Context
 import android.graphics.drawable.Drawable
 
@@ -25,6 +26,10 @@ class ItemEntryView2 @JvmOverloads constructor(
 
     fun setTextContent(name: String?) {
         tv_right.text = name
+    }
+
+    fun setTextColor(color: Int) {
+        tv_right.setTextColor(color)
     }
 
     fun getTextContent(): String {

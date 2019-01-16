@@ -5,6 +5,9 @@ import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
+import com.gyf.barlibrary.ImmersionBar
+import com.gyf.barlibrary.ImmersionBar.setTitleBar
+import com.paipaiwei.personal.CurrentApplication
 
 import com.yjhh.common.utils.LogUtils
 import com.yjhh.common.utils.RxBus
@@ -12,11 +15,14 @@ import com.yjhh.common.utils.SharedPreferencesUtils
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
-import com.paipaiwei.personal.ui.activity.FlutterDisActivity
+
 import com.paipaiwei.personal.ui.activity.SignActivity
 import com.paipaiwei.personal.ui.activity.UserInfoActivity
 import com.paipaiwei.personal.ui.activity.evaluate.EvaluateManageFragment
 import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
+import com.tencent.tauth.Tencent
+import com.yjhh.common.BaseApplication
+import com.yjhh.common.Constants.APP_ID_QQ
 import com.yjhh.common.utils.ImageLoaderUtils
 
 import kotlinx.android.synthetic.main.main4fragment.*
@@ -29,18 +35,21 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
         when (v?.id) {
 
             R.id.iev_about -> {
-                // (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
-                (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
-                //startActivity(Intent(mActivity, FlutterDisActivity::class.java))
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "AboutFragment")
+                    .withInt("age", 23)
+                    .navigation(context)
 
             }
 
-            R.id.iev_browse -> {
+
+            R.id.iev_prop -> {
 //                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
 //                    ARouter.getInstance()
 //                        .build("/DisplayActivity/Display")
-//                        .withString("displayTab", "RecentlyBrowseFragment")
+//                        .withString("displayTab", "OnePayFragment")
 //                        .withInt("age", 23)
 //                        .navigation(context)
 //                } else {
@@ -48,11 +57,18 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 //                }
 
 
+                (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
+
+            }
+
+
+            R.id.iev_browse -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-
-                    (parentFragment as MainFragment).startBrotherFragment(CollectionFragment.newInstance("浏览"))
-
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "CollectionFragment")
+                        .withString("value", "浏览")
+                        .navigation(context)
                 } else {
 
                 }
@@ -62,7 +78,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             R.id.iv_message -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
                     (parentFragment as MainFragment).startBrotherFragment(MessageCenterFragment())
                 } else {
 
@@ -71,10 +86,11 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             R.id.iev_Collection -> {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-
-
-                    (parentFragment as MainFragment).startBrotherFragment(CollectionFragment.newInstance("收藏"))
-
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "CollectionFragment")
+                        .withString("value", "收藏")
+                        .navigation(context)
                 } else {
 
                 }
@@ -94,18 +110,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             }
 
-//            R.id.tv_Coupon -> {
-//                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-//                    ARouter.getInstance()
-//                        .build("/DisplayActivity/Display")
-//                        .withString("displayTab", "CouponFragment")
-//                        .withInt("age", 23)
-//                        .navigation(context)
-//                } else {
-//
-//                }
-//
-//            }
 
             R.id.iv_setting -> {
                 ARouter.getInstance()
@@ -162,16 +166,17 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             R.id.iev_service -> {
 
 
-                (parentFragment as MainFragment)
-                    .startBrotherFragment(
-                        BackViewFragment.newInstance(
-                            SharedPreferencesUtils.getParam(
-                                mActivity,
-                                "helpIndexUrl",
-                                "-1"
-                            ) as String
-                        )
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "BackViewFragment")
+                    .withString(
+                        "value", SharedPreferencesUtils.getParam(
+                            mActivity,
+                            "helpIndexUrl",
+                            "-1"
+                        ) as String
                     )
+                    .navigation()
 
 
             }
@@ -197,6 +202,8 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
     override fun initView() {
 
 
+        ImmersionBar.setTitleBar(mActivity, toolbar)
+
         updateUI(!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String))
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
@@ -211,7 +218,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             iev_service,
             iev_about,
             iev_browse,
-            iv_message,
+            iev_prop,
             ll_Integral,
             iv_setting,
             tv_name,

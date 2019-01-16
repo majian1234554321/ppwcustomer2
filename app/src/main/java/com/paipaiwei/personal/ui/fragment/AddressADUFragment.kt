@@ -27,12 +27,12 @@ import me.yokeyword.fragmentation.ISupportFragment
 //我的地址增删改
 class AddressADUFragment : BaseFragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener, MyAddressView {
     override fun onFault(errorMsg: String?) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
         Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(main1bean: MyAddressBean, flag: String) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
         RxBus.default.post(RxAddressBean())
         mActivity?.finish()
 

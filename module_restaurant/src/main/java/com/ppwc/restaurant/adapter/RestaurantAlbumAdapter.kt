@@ -10,7 +10,7 @@ import com.yjhh.common.utils.ImageLoaderUtils
 class RestaurantAlbumAdapter(data: List<RestaurantAlbumBean.ItemsBean>) :
     BaseQuickAdapter<RestaurantAlbumBean.ItemsBean, BaseViewHolder>(R.layout.restaurantalbumadapter, data) {
     override fun convert(helper: BaseViewHolder?, item: RestaurantAlbumBean.ItemsBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
         helper?.setText(R.id.tv_info, item?.name)

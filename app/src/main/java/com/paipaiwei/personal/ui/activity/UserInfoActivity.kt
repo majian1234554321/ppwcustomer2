@@ -189,7 +189,7 @@ class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView, Com
 
 
     override fun onClick(v: View?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
         when (v?.id) {
             R.id.iev_nickName -> {

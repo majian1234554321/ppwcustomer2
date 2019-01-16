@@ -37,7 +37,7 @@ class MessageCenter1Fragment : BaseFragment(), MyMessageView {
     }
 
     override fun onFault(errorMsg: String?) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
     var startindex = 0
@@ -110,7 +110,7 @@ class MessageCenter1Fragment : BaseFragment(), MyMessageView {
 
 
     private fun loadMore() {
-        Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
+
         startindex++
         sectionCouponPresent.usermessage(status, share, startindex, pageSize, "load")
 

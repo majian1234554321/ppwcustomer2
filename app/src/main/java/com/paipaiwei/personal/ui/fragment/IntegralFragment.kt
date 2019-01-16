@@ -22,11 +22,11 @@ class IntegralFragment : BaseFragment(), IntegralView {
 
 
     override fun onFault(errorMsg: String?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
     override fun onSuccess(value: IntegralBean, flag: String) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
         if ("refresh" == flag) {
 

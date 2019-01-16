@@ -5,8 +5,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.paipaiwei.personal.R
+import com.paipaiwei.personal.common.utils.DateUtil
+import com.paipaiwei.personal.common.utils.TimeUtil
+import com.paipaiwei.personal.common.utils.time.TimeStampUtils
 import com.paipaiwei.personal.present.OrderPresent
 import com.paipaiwei.personal.view.OrderView
 import com.tencent.mm.opensdk.modelpay.PayReq
@@ -18,6 +22,7 @@ import com.yjhh.common.iview.PayView
 import com.yjhh.common.model.WxPayBean
 import com.yjhh.common.pay.RxPay
 import com.yjhh.common.present.PayPresent
+import com.yjhh.common.utils.RxCountDown
 
 import kotlinx.android.synthetic.main.onepaymoneyfragment.*
 import java.util.concurrent.TimeUnit
@@ -45,7 +50,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
                     if (aBoolean) {
-                        // getOederSuccessDetails(model.id, "1")
+
                     } else {
                         Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
                     }
@@ -81,9 +86,14 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
                 .subscribe({ aBoolean ->
                     Log.e("accept:WX", aBoolean.toString())
                     if (aBoolean) {
-                        getOederSuccessDetails(model.id, "1")
+
+
+                        startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
+
                     } else {
+                        startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
                         Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+
                     }
                 }) { throwable ->
 
@@ -116,6 +126,9 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
     override fun getLayoutRes(): Int = R.layout.onepaymoneyfragment
 
     override fun initView() {
+
+        ImmersionBar.setTitleBar(mActivity, tbv_title)
+
         payPresent = PayPresent(mActivity, this)
 
         orderPresent = OrderPresent(mActivity, this)
@@ -125,9 +138,15 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val gson = Gson()
         val model = gson.fromJson<DisplayPayTypeBean>(jsonString, DisplayPayTypeBean::class.java)
 
+
+        val dis5 = RxCountDown.countdown(900).subscribe {
+            if (it != null&&tv_countdown!=null)
+                tv_countdown.text = DateUtil.getFormatDHMmDate(it)
+        }
+
+        compositeDisposable.add(dis5)
+
         //客户端固定三种方式  微信 1 支付宝2 银联 4
-
-
         if (1 and model.suppPayType == 1) {
             rb_wxpay.visibility = View.VISIBLE
         } else {
@@ -154,11 +173,6 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         compositeDisposable.add(dis)
 
 
-    }
-
-
-    fun getOederSuccessDetails(id: String, type: String) {
-        orderPresent?.detailFromCallback(id, type)
     }
 
 

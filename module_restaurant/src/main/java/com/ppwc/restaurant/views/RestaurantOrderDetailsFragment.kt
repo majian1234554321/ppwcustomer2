@@ -3,7 +3,9 @@ package com.ppwc.restaurant.views
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.bean.OrderDetailsBean
@@ -24,16 +26,65 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
         val orderDetailsBean = Gson().fromJson<OrderDetailsBean>(model, OrderDetailsBean::class.java)
 
-        iev1.setTextContent(TimeUtil.stampToDate(orderDetailsBean.createdTime))
+        if (!TextUtils.isEmpty(TimeUtil.stampToDate(orderDetailsBean.createdTime))) {
+            iev1.setTextContent(TimeUtil.stampToDate(orderDetailsBean.createdTime))
+            iev1.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+        } else {
+            iev1.visibility = View.GONE
+        }
+
+
         iev2.setTextContent(orderDetailsBean.orderNo)
-        iev3.setTextContent(orderDetailsBean.totalMoney.toString())
-        iev4.setTextContent(orderDetailsBean.money.toString())
-        iev5.setTextContent(TimeUtil.stampToDate(orderDetailsBean.finishTime))
-//        iev6.setTextContent()
-//        iev7.setTextContent()
-//        iev8.setTextContent()
-//        iev9.setTextContent()
-//        iev10.setTextContent()
+        iev2.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+
+        iev3.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.totalMoney))
+        iev3.setTextColor(ContextCompat.getColor(mActivity, R.color.all_3))
+
+        iev4.setTextContent(context.getString(R.string.rmb_price_double2, orderDetailsBean.money))
+
+
+
+        if (!TextUtils.isEmpty(orderDetailsBean.payTime)) {
+            iev5.setTextContent(TimeUtil.stampToDate(orderDetailsBean.payTime))
+        } else {
+            iev5.visibility = View.GONE
+        }
+
+
+
+
+        if (!TextUtils.isEmpty(orderDetailsBean.useTime)) {
+            iev6.setTextContent(TimeUtil.stampToDate(orderDetailsBean.useTime)) //	消费 时间
+        } else {
+            iev6.visibility = View.GONE
+        }
+
+        if (orderDetailsBean.useTotalMoney != 0f) {
+            iev7.setTextContent(orderDetailsBean.useTotalMoney.toString()) // 消费 金额
+        } else {
+            iev7.visibility = View.GONE
+        }
+
+        if (orderDetailsBean.useDisMoney != 0f) {
+            iev8.setTextContent(orderDetailsBean.useDisMoney.toString()) //消费 抵扣金额
+        } else {
+            iev8.visibility = View.GONE
+        }
+
+        if (orderDetailsBean.useUnDisMoney != 0f) {
+            iev9.setTextContent(orderDetailsBean.useUnDisMoney.toString()) // 不参与折扣金额/不参与优惠金额
+        } else {
+            iev9.visibility = View.GONE
+        }
+
+        if (orderDetailsBean.useMoney != 0f) {
+            iev10.setTextContent(orderDetailsBean.useMoney.toString()) //消费 实付金额
+        } else {
+            iev10.visibility = View.GONE
+        }
+
+
+
 
         tv_storeName.text = orderDetailsBean.shopName
         ImageLoaderUtils.loadCircle(
@@ -44,6 +95,32 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
             R.drawable.icon_place_pai
         )
 
+
+        when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
+            1 -> {
+            }
+
+            2 -> {
+            }
+            3 -> {
+            }
+            4 -> {
+            }
+            5 -> {
+            }
+            6 -> {
+            }
+            7 -> {
+            }
+            8 -> {
+                mb_2.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFC536"))
+                mb_2.visibility = View.VISIBLE
+                mb_1.visibility = View.GONE
+            }
+
+            else -> {
+            }
+        }
 
 
     }
@@ -104,9 +181,6 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
             it.setOnClickListener(this)
         }
 
-
-        mb_2.backgroundTintList = ColorStateList.valueOf(Color.RED)
-        mb_1.backgroundTintList = ColorStateList.valueOf(Color.YELLOW)
 
     }
 

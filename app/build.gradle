@@ -173,21 +173,16 @@ dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
     //Android Support
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    implementation project(':flutter')
-
-
-
-
+   // implementation project(':flutter')
 
 
     kapt 'com.alibaba:arouter-compiler:1.2.1'

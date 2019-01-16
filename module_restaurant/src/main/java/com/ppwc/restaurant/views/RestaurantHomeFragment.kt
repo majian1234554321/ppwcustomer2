@@ -1,6 +1,7 @@
 package com.ppwc.restaurant.views
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,6 +24,10 @@ import com.ppwc.restaurant.mrbean.MultipleItem
 import com.ppwc.restaurant.mrbean.RestaurantHomeBean
 import com.ppwc.restaurant.mrlistener.MuIListener
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tencent.connect.common.Constants
+import com.tencent.tauth.IUiListener
+import com.tencent.tauth.Tencent
+import com.tencent.tauth.UiError
 import com.yjhh.common.BaseApplication
 
 import com.yjhh.common.base.BaseFragment
@@ -158,7 +163,8 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
             R.id.iv_share -> {
-                ShareUtils.dialog(mActivity)
+
+                ShareUtils.dialog(mActivity,mIUiListener)
             }
 
             R.id.tv_buy -> {
@@ -183,6 +189,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
     // arrayOf("一元拍", "店铺推荐", "用户评价")
     private val titles1 = ArrayList<String>()
+    var mIUiListener: MyIUiListener? = null
 
     override fun getLayoutRes(): Int = R.layout.restauranthomefragment
 
@@ -197,6 +204,9 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
     var present: ShopPresent? = null
 
     override fun initView() {
+
+        mIUiListener = MyIUiListener()
+
         present = ShopPresent(mActivity, this)
 
 
@@ -320,7 +330,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             }
 
             override fun tv_pai(position: Int) {
-                // Toast.makeText(mActivity, "position:tv_pai$position", Toast.LENGTH_SHORT).show()
+
             }
 
         })
@@ -336,6 +346,33 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
 
+    }
+
+
+    class MyIUiListener : IUiListener {
+        override fun onComplete(p0: Any?) {
+
+        }
+
+        override fun onCancel() {
+
+        }
+
+        override fun onError(p0: UiError?) {
+
+        }
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Tencent.onActivityResultData(requestCode, resultCode, data, mIUiListener);
+        if (requestCode == Constants.REQUEST_API) {
+            if (resultCode == Constants.REQUEST_QQ_SHARE || resultCode == Constants.REQUEST_QZONE_SHARE || resultCode == Constants.REQUEST_OLD_SHARE) {
+                Tencent.handleResultData(data, mIUiListener);
+            }
+        }
     }
 
 

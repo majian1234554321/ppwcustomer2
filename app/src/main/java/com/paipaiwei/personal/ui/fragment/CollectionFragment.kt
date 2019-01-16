@@ -33,7 +33,7 @@ class CollectionFragment : BaseFragment() {
 
 
     companion object {
-        fun newInstance(type: String): CollectionFragment {
+        fun newInstance(type: String?): CollectionFragment {
             val fragment = CollectionFragment()
             val bundle = Bundle()
 

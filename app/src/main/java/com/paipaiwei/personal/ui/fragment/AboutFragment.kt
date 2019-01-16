@@ -50,7 +50,7 @@ class AboutFragment : BaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ProcessObserver2(mActivity) {
                 override fun processValue(response: String?) {
-                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    //
 
                     Log.i("AboutFragment", response)
 
@@ -65,7 +65,7 @@ class AboutFragment : BaseFragment() {
                 }
 
                 override fun onFault(message: String) {
-                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    //
                     Log.i("AboutFragment", message)
                 }
 

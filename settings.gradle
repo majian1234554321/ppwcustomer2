@@ -1,10 +1,4 @@
 include ':app', ':zcommon', ':lib-zxing', ':module_restaurant'
-setBinding(new Binding([gradle: this]))
-evaluate(new File(
-        settingsDir.parentFile,
-        'ppwcustomer/ppwc/.android/include_flutter.groovy'
 
-      //  'D:/develop/ppwcustomer/ppwc/.android/include_flutter.groovy'
-))
 
 

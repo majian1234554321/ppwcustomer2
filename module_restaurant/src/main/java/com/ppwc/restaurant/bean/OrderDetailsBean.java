@@ -28,14 +28,15 @@ public class OrderDetailsBean {
      * userId : 1023
      */
 
+    public float useDisMoney;
     public String finishTime;
     public String createdTime;
-    public double disMoney;
+    public float disMoney;
     public int displayStatus;
     public int id;
     public boolean ifComment;
     public int ifHasItem;
-    public double money;
+    public float money;
     public int number;
     public String orderNo;
     public int shopId;
@@ -45,9 +46,15 @@ public class OrderDetailsBean {
     public int subStatus;
     public int suppPayType;
     public int times;
-    public double totalMoney;
+    public float totalMoney;
     public int type;
     public double unDisMoney;
     public int userId;
     public List<?> items;
+    public String payTime;
+    public float useMoney;
+    public String useTime;
+    public float useTotalMoney;
+
+    public float useUnDisMoney;
 }

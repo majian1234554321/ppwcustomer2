@@ -8,7 +8,7 @@ class AllAddressFragment : BaseFragment() {
 
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun getLayoutRes(): Int = R.layout.alladdressfragment

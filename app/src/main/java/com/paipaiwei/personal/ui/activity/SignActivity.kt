@@ -14,7 +14,7 @@ import com.amap.api.mapcore2d.fv
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.SignBean
 import com.paipaiwei.personal.bean.SignResultBean
-import com.paipaiwei.personal.interfaces.FlutterPluginCounter
+
 import com.paipaiwei.personal.present.SignPresent
 import com.paipaiwei.personal.ui.fragment.SignFragment
 import com.paipaiwei.personal.ui.fragment.SignFragment2
@@ -22,13 +22,9 @@ import com.paipaiwei.personal.view.SignView
 
 import com.yjhh.common.base.BaseActivity
 import com.zzhoujay.richtext.RichText
-import io.flutter.facade.Flutter
-import io.flutter.plugin.common.EventChannel
-import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.PluginRegistry
-import io.flutter.plugins.GeneratedPluginRegistrant
+
 import kotlinx.android.synthetic.main.activity_singn.*
-import io.flutter.view.FlutterView
+
 import java.util.*
 
 

@@ -133,7 +133,7 @@ class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
 
 
     private fun loadMore() {
-        Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
+
         startindex++
         sectionUserPresent.getAllUserAddress("", startindex, pageSize, "load")
 
@@ -151,7 +151,7 @@ class MyAddressFragment : BaseFragment(), View.OnClickListener, MyAddressView {
     }
 
     override fun onFault(errorMsg: String?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
 

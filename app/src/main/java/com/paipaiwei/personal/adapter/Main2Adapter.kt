@@ -21,7 +21,7 @@ import java.lang.StringBuilder
 class Main2Adapter(data: List<NearByDataBean.ItemsBean>) :
     BaseQuickAdapter<NearByDataBean.ItemsBean, BaseViewHolder>(R.layout.recentlybrowseadapter, data) {
     override fun convert(helper: BaseViewHolder?, item: NearByDataBean.ItemsBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
         helper?.setText(com.ppwc.restaurant.R.id.tv_storeName, item?.name)

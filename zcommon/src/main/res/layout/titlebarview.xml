@@ -7,7 +7,7 @@
         app:contentInsetEnd="0dp"
         android:padding="0dp"
         app:contentInsetStartWithNavigation="0dp"
-
+    android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 

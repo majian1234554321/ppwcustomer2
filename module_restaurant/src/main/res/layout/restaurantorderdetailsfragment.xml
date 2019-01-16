@@ -130,6 +130,7 @@
                           android:layout_height="wrap_content">
                 <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievtextValue2="下单时间"
                                                      android:id="@+id/iev1"
                                                      app:ievbackground="@color/white"
@@ -138,6 +139,7 @@
                 <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                                      app:ievtextValue2="订单单号"
                                                      android:id="@+id/iev2"
+                                                     android:paddingRight="15pt"
                                                      android:paddingLeft="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
@@ -146,6 +148,7 @@
                                                      app:ievtextValue2="总价"
                                                      android:id="@+id/iev3"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -153,6 +156,7 @@
                                                      app:ievtextValue2="已付金额"
                                                      android:id="@+id/iev4"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -160,6 +164,7 @@
                                                      app:ievtextValue2="付款时间"
                                                      android:id="@+id/iev5"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -175,6 +180,7 @@
                 <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                                      app:ievtextValue2="使用时间"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      android:id="@+id/iev6"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
@@ -183,6 +189,7 @@
                                                      app:ievtextValue2="消费金额"
                                                      android:id="@+id/iev7"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -190,6 +197,7 @@
                                                      app:ievtextValue2="抵扣金额"
                                                      android:id="@+id/iev8"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -197,6 +205,7 @@
                                                      app:ievtextValue2="不参与金额"
                                                      android:id="@+id/iev9"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>
@@ -204,6 +213,7 @@
                                                      app:ievtextValue2="实付金额"
                                                      android:id="@+id/iev10"
                                                      android:paddingLeft="15pt"
+                                                     android:paddingRight="15pt"
                                                      app:ievbackground="@color/white"
                                                      app:ievtextColor2="@color/all_6"
                                                      android:layout_height="wrap_content"/>

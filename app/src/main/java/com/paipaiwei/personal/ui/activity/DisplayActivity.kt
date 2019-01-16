@@ -12,10 +12,11 @@ import com.yjhh.common.utils.SystemBarUtil
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.rxbusbean.RxAddressBean
 import com.paipaiwei.personal.ui.activity.login.ForgotPasswordFragment
+import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
 import com.paipaiwei.personal.ui.fragment.*
 
 import kotlinx.android.synthetic.main.activity_display.*
-import io.flutter.facade.Flutter
+
 
 
 @Route(path = "/DisplayActivity/Display")
@@ -28,6 +29,11 @@ class DisplayActivity : BaseActivity() {
     @Autowired
     @JvmField
     var age: Int? = 0
+
+    @Autowired
+    @JvmField
+    var value: String? = null
+
 
 
     var value1:String?= null
@@ -53,6 +59,10 @@ class DisplayActivity : BaseActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragments: BaseFragment? = null
         when (displayTab) {
+
+            "CollectionFragment"->{
+                fragments =   CollectionFragment.newInstance(value)
+            }
 
             "RegistFragment" -> {
                 fragments = RegistFragment()
@@ -116,10 +126,19 @@ class DisplayActivity : BaseActivity() {
             }
 
 
+            "OnePayFragment" ->{
+                fragments = OnePayFragment()
+            }
+
             "IntegralFragment" -> {
                 fragments = IntegralFragment()
 
             }
+
+            "BackViewFragment" ->{
+                fragments = BackViewFragment.newInstance(value)
+            }
+
 
 
             else -> {

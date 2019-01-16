@@ -16,7 +16,7 @@ import com.yjhh.common.utils.TextStyleUtils
 class RecommendProductAdapter(data: List<RecommendProductBean.ItemsBean>) :
     BaseQuickAdapter<RecommendProductBean.ItemsBean, BaseViewHolder>(R.layout.recommendproductadapter, data) {
     override fun convert(helper: BaseViewHolder?, item: RecommendProductBean.ItemsBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
         helper?.setText(R.id.tv_storeName, item?.shopName)

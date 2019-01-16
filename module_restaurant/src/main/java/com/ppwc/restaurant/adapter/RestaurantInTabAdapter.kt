@@ -12,7 +12,7 @@ import com.yjhh.common.utils.ImageLoaderUtils
 
 class RestaurantInTabAdapter(data: List<MeiShiHeadBean.TabsModuleModelsBean>) : BaseQuickAdapter<MeiShiHeadBean.TabsModuleModelsBean, BaseViewHolder>(R.layout.restaurantintabadapter, data) {
     override fun convert(helper: BaseViewHolder?, item: MeiShiHeadBean.TabsModuleModelsBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
         helper?.setText(R.id.tv_name,item?.text)

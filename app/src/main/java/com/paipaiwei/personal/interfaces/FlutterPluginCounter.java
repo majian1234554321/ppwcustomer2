@@ -1,3 +1,4 @@
+/*
 package com.paipaiwei.personal.interfaces;
 
 import android.app.Activity;
@@ -39,3 +40,4 @@ public class FlutterPluginCounter implements EventChannel.StreamHandler {
     }
 
 }
+*/

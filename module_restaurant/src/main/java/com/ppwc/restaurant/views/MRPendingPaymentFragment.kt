@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.mrpendingpaymentfragment.*
 
 class MRPendingPaymentFragment : BaseFragment(), PayView {
     override fun onFault(errorMsg: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
     override fun onWxPayValue(value: String?) {

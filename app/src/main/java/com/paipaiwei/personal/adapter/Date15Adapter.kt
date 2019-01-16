@@ -18,6 +18,6 @@ class Date15Adapter(var mContext: Context var list: List<DateBean>) : RecyclerVi
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(p0: Date15Adapter.ViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }*/

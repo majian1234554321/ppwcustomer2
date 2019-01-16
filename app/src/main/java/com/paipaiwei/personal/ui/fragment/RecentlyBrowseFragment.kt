@@ -52,7 +52,7 @@ class RecentlyBrowseFragment : BaseFragment(), RecentlyBrowseView {
 
 
     private fun loadMore() {
-        Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
+
         startindex++
         sectionUselessPresent.userhistory(status, startindex, pageSize, "load")
 
@@ -70,7 +70,7 @@ class RecentlyBrowseFragment : BaseFragment(), RecentlyBrowseView {
     }
 
     override fun onFault(errorMsg: String?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
 

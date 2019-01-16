@@ -13,7 +13,7 @@ import com.paipaiwei.personal.bean.RecentlyBrowseBean
 class Collection321Adapter(data: List<RecentlyBrowseBean.ItemsBean>) :
     BaseQuickAdapter<RecentlyBrowseBean.ItemsBean, BaseViewHolder>(R.layout.recentlybrowseadapter2, data) {
     override fun convert(helper: BaseViewHolder?, item: RecentlyBrowseBean.ItemsBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
 

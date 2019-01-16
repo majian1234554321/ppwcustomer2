@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@drawable/backgrounddialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="vertical"
+
+                  android:layout_centerHorizontal="true"
+                  android:layout_height="wrap_content">
+
+        <TextView android:layout_width="245pt"
+                  android:layout_height="65pt"
+                  android:layout_gravity="center"
+                  android:background="@drawable/biaoti023"
+                  android:layout_marginTop="20pt"
+                  android:gravity="center"
+                  android:text="12121212122"
+                  android:textColor="@color/white"
+                  android:textSize="15pt"
+        />
+
+        <RelativeLayout android:layout_width="228pt"
+                        android:layout_marginTop="-20pt"
+                        android:background="@drawable/beijing0232x"
+                        android:id="@+id/rl1"
+                        android:layout_height="176pt">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_centerInParent="true"
+                       android:background="@drawable/zuanshipai0222x"
+                       android:textColor="#FF666666"
+                       android:textSize="13pt"
+            />
+
+
+        </RelativeLayout>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="暂未确定暂未确定暂未"
+                android:id="@+id/tv_1"
+                android:layout_gravity="center"
+                android:layout_marginBottom="26pt"
+                android:textColor="#FF666666"
+                android:textSize="12pt"
+                android:layout_alignParentRight="true"
+
+        />
+
+        <com.paipaiwei.personal.ui.customview.ARSetupView
+                android:layout_gravity="center"
+                android:id="@+id/arsv"
+                android:layout_marginBottom="15pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="132pt"
+                android:text="确认购买"
+                app:backgroundTint="#F9572D"
+                android:id="@+id/mb_pay"
+                app:cornerRadius="25pt"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15pt"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="8pt"
+                android:layout_width="202.5pt"
+                android:layout_marginBottom="20pt"
+                android:layout_height="15pt"
+                android:text="注：道具数量不足1时，需购买后继续参与"
+                android:textColor="#FFF9572D"
+                android:textSize="11pt"
+        />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

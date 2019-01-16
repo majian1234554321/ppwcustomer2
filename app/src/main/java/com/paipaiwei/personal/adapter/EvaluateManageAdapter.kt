@@ -32,7 +32,7 @@ class EvaluateManageAdapter(var context: Context, data: List<MultiItemEntity>) :
 
 
     override fun convert(helper: BaseViewHolder?, item22: MultiItemEntity?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
 
 
         when (helper?.itemViewType) {

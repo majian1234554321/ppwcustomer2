@@ -1,176 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tl="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- <View android:layout_width="match_parent"
-           android:background="@color/white"
-           android:layout_height="20pt"/>-->
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tl="http://schemas.android.com/tools"
-            android:layout_below="@+id/tbv_title"
-            android:background="@color/f8"
-            app:statusBarBackground="@color/white"
-            android:fitsSystemWindows="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="我的道具"
+                                       android:id="@+id/tbv_title"
+                                       android:layout_height="wrap_content"/>
 
 
-        <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/white"
+
+
+                    android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="240pt" android:layout_height="159pt"
+                   android:layout_centerInParent="true"
+                   android:layout_marginTop="8pt"
+                   android:background="@drawable/dapjubeijing0222x"
+
+        />
+    </RelativeLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:background="@color/white"
+                app:cardCornerRadius="8pt"
+                android:layout_weight="1"
+                android:layout_marginTop="15pt"
+                android:layout_marginBottom="15pt"
+                android:layout_marginLeft="15pt"
+                android:layout_marginRight="7.5pt"
+                android:id="@+id/mcva"
+                app:cardBackgroundColor="@color/white"
 
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppCompat.Light">
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:contentScrim="@color/white"
-                    app:expandedTitleGravity="left|bottom"
-
-                    app:expandedTitleMarginBottom="100dp"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            >
-
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                              android:layout_marginTop="48dp"
-                              android:orientation="vertical" android:layout_width="match_parent"
-                              android:layout_height="wrap_content">
-
-
-                    <RelativeLayout
-
-                            android:layout_marginLeft="15pt"
-                            android:layout_marginRight="15pt"
-                            android:layout_marginTop="11pt"
-                            android:id="@+id/rl_search"
-                            android:background="@drawable/stroke_search"
-                            android:layout_marginBottom="9pt"
-                            android:backgroundTint="#ECECF2"
-                            android:layout_width="match_parent"
+                app:cardElevation="5pt"
+                android:layout_height="wrap_content">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/rl_a"
+                            android:padding="15pt"
                             android:layout_height="wrap_content">
 
-                        <TextView android:layout_width="wrap_content"
-                                  android:gravity="center"
-                                  android:layout_centerInParent="true"
-                                  android:drawableLeft="@drawable/iv_search"
-                                  android:layout_gravity="center"
-                                  android:drawablePadding="4pt"
-                                  android:text="寻找你中意的商家"
-                                  android:textColor="#FF999999"
-                                  android:textSize="14pt"
-                                  android:layout_height="30pt"/>
+                <ImageView android:layout_width="57.5pt"
+                           android:id="@+id/propa"
+                           android:background="@drawable/shuijinpai0222x"
+                           android:layout_marginRight="13.5pt"
+                           android:layout_height="74.5pt"/>
 
-                    </RelativeLayout>
-
-
-                    <com.youth.banner.Banner android:layout_width="match_parent"
-                                             android:id="@+id/banner"
-                                             android:layout_height="110pt"/>
+                <TextView android:layout_width="wrap_content"
+                          tools:text="水晶拍"
+                          android:id="@+id/propa_title"
+                          android:layout_toRightOf="@+id/propa"
+                          android:layout_alignTop="@+id/propa"
+                          android:textColor="#FF333333"
+                          android:textSize="14pt"
+                          android:layout_height="wrap_content"/>
 
 
-                </LinearLayout>
+                <TextView android:layout_width="wrap_content"
+                          tools:text="数量：1"
+                          android:id="@+id/propa_count"
+                          android:layout_toRightOf="@+id/propa"
+                          android:textColor="#FF999999"
+                          android:textSize="14pt"
+                          android:layout_alignBottom="@+id/propa"
+                          android:gravity="center_vertical"
+                          android:layout_height="30pt"/>
 
 
-                <androidx.appcompat.widget.Toolbar
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_gravity="top"
-                        android:id="@+id/toolbar"
-                        android:fitsSystemWindows="true"
-                        app:contentInsetStart="@dimen/spi_8"
-                        android:background="@color/transparent"
-                        app:layout_collapseMode="pin">
-
-                    <RelativeLayout android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:textColor="#FF333333"
-                                android:textSize="17pt"
-                                android:drawablePadding="7.5pt"
-                                android:textStyle="bold"
-                                android:drawableLeft="@drawable/iv_mr_dingwei"
-                                android:id="@+id/tv_title"
-                                android:drawableRight="@drawable/iv_mr_down"
-                                android:layout_height="wrap_content"
-                        />
-
-                    </RelativeLayout>
-
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-            <LinearLayout android:layout_width="match_parent"
-                          android:orientation="vertical"
-                          android:layout_height="wrap_content">
-                <com.google.android.material.tabs.TabLayout android:layout_width="match_parent"
-                                                            android:id="@+id/mTabLayout1"
-                                                            app:tabTextColor="@color/all_3"
-                                                            app:tabIndicatorHeight="0dp"
-                                                            app:tabMode="scrollable"
-                                                            app:tabSelectedTextColor="@color/colorPrimary"
-                                                            android:layout_height="wrap_content"/>
-
-                <HorizontalScrollView android:layout_width="match_parent"
-                                      android:id="@+id/hsv"
-
-                                      android:paddingBottom="8pt"
-                                      android:scrollbars="none"
-                                      android:layout_height="wrap_content">
-
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:orientation="horizontal"
-                                  android:id="@+id/ll"
-                                  android:paddingLeft="15pt"
-                                  android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton android:layout_width="91pt"
+                                                                   android:layout_below="@+id/propa"
+                                                                   android:text="购买"
+                                                                   app:cornerRadius="15pt"
+                                                                   app:strokeWidth="1pt"
+                                                                   app:rippleColor="#FFFFFFFF"
+                                                                   app:strokeColor="#F9572D"
+                                                                   android:textColor="#FFFFFFFF"
+                                                                   android:id="@+id/mb_a"
+                                                                   android:textSize="14pt"
+                                                                   android:layout_centerHorizontal="true"
+                                                                   android:layout_height="45pt"/>
 
 
-                    </LinearLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
 
-                </HorizontalScrollView>
-
-
-            </LinearLayout>
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="48dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                app:cardCornerRadius="8pt"
+                android:id="@+id/mcvb"
+                android:layout_weight="1"
+                android:layout_marginBottom="15pt"
+                android:layout_marginLeft="7.5pt"
+                android:layout_marginRight="15pt"
+                android:layout_marginTop="15pt"
+                app:cardBackgroundColor="@color/white"
 
-            <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
-                                               app:textValue="我的道具"
+                app:cardElevation="5pt"
+                android:layout_height="wrap_content">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:padding="15pt"
+                            android:id="@+id/rl_b"
+                            android:layout_height="wrap_content">
 
-                                               android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="57.5pt"
+                           android:id="@+id/propb"
+                           android:background="@drawable/zuanshipai0222x"
+                           android:layout_marginRight="13.5pt"
+                           android:layout_height="74.5pt"/>
+
+                <TextView android:layout_width="wrap_content"
+                          tools:text="水晶拍"
+                          android:id="@+id/propb_title"
+                          android:layout_toRightOf="@+id/propb"
+                          android:layout_alignTop="@+id/propb"
+                          android:textColor="#FF333333"
+                          android:textSize="14pt"
+                          android:layout_height="wrap_content"/>
 
 
-            <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:text="确认购买"
-                    android:id="@+id/mb_buy"
-                    android:layout_height="wrap_content"/>
+                <TextView android:layout_width="wrap_content"
+                          tools:text="数量：1"
+                          android:id="@+id/propb_count"
+                          android:layout_toRightOf="@+id/propb"
+                          android:textColor="#FF999999"
+                          android:textSize="14pt"
+                          android:layout_alignBottom="@+id/propb"
+                          android:gravity="center_vertical"
+                          android:layout_height="30pt"/>
 
-        </LinearLayout>
 
+                <com.google.android.material.button.MaterialButton android:layout_width="91pt"
+                                                                   android:layout_below="@+id/propb"
+                                                                   android:text="购买"
+                                                                   android:id="@+id/mb_b"
+                                                                   app:cornerRadius="15pt"
+                                                                   app:strokeWidth="1pt"
+                                                                   app:strokeColor="#F9572D"
+                                                                   android:textColor="#FFFFFFFF"
+                                                                   app:rippleColor="#FFFFFFFF"
+                                                                   android:textSize="14pt"
+                                                                   android:layout_centerHorizontal="true"
+                                                                   android:layout_height="45pt"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 
 </LinearLayout>
+
+
+
+
+

@@ -176,7 +176,7 @@ class OrderPresent(var context: Context, var view: OrderView) : BasePresent() {
     }
 
 
-    fun detailFromCallback(id: String, type: String) {
+    fun detailFromCallback(id: String?, type: String?) {
         map.clear()
 
         map["id"] = id

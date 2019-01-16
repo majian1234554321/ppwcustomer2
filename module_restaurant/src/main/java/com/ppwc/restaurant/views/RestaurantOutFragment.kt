@@ -1,9 +1,8 @@
 package com.ppwc.restaurant.views
 
+import com.ppwc.restaurant.R
 import com.yjhh.common.base.BaseFragment
 
 class RestaurantOutFragment:BaseFragment() {
-    override fun getLayoutRes(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getLayoutRes(): Int = R.layout.restaurantoutfragment
 }

@@ -11,6 +11,8 @@ import java.util.Date;
 public class DateUtil {
 
 
+    private static StringBuilder sb;
+
     public static String getFormatDHMmDate(long seconds) {
         if (seconds < 0)
             return "还有0小时0分0秒";
@@ -33,6 +35,37 @@ public class DateUtil {
         } else {
             return day + "天" + hour + "时" + minute + "分" + second + "秒";
         }
+    }
+
+
+    public static String getFormatDHMmDate(int seconds) {
+        if (seconds <= 0)
+            return "";
+        long one_day = 60 * 60 * 24;
+        long one_hour = 60 * 60;
+        long one_minute = 60;
+        long day, hour, minute, second = 0L;
+
+        day = seconds / one_day;
+        hour = seconds % one_day / one_hour;
+        minute = seconds % one_day % one_hour / one_minute;
+        second = seconds % one_day % one_hour % one_minute;
+
+        sb = new StringBuilder();
+
+        if (minute < 10) {
+            sb.append("0").append(minute);
+        } else {
+            sb.append(minute);
+        }
+
+
+        if (second < 10)
+            sb.append(":0").append(second);
+        else
+            sb.append(":").append(second);
+        return sb.toString();
+
     }
 
 

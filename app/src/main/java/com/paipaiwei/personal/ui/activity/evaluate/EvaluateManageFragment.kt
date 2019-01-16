@@ -295,7 +295,7 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
     }
 
     private fun loadMore() {
-        // Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
+        //
         startIndex++
 
         present?.allcomments(type, isHasfile, startIndex, pageSize, "load")

@@ -14,11 +14,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun cancelCause() {
         toSubscribe2(model.cancelCause(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -28,11 +28,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun complete() {
         toSubscribe2(model.complete(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -41,11 +41,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun confirm() {
         toSubscribe2(model.confirm(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -54,11 +54,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun editAddress() {
         toSubscribe2(model.editAddress(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -67,11 +67,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun editReceivUser() {
         toSubscribe2(model.editReceivUser(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -80,11 +80,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun myOrders() {
         toSubscribe2(model.myOrders(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -93,11 +93,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun orderTypes() {
         toSubscribe2(model.orderTypes(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
@@ -106,11 +106,11 @@ class SectionOrderPresent(context: Context) : BasePresent() {
     fun payment() {
         toSubscribe2(model.payment(), object : ProcessObserver2(context) {
             override fun processValue(response: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onFault(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })

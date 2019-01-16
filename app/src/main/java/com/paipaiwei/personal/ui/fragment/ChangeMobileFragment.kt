@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 class ChangeMobileFragment : BaseFragment(), RegistView, View.OnClickListener {
     override fun registSuccess(date: LoginBean?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //
     }
 
     override fun registSuccess2(date: String?) {

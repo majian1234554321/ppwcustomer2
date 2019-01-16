@@ -115,15 +115,15 @@ class FoodActivity : BaseActivity(), View.OnClickListener {
 
         mTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // TODO("not implemented") //To change body of created functions use File ||
             }
 
             override fun onTabUnselected(p0: TabLayout.Tab?) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // TODO("not implemented") //To change body of created functions use File ||
             }
 
             override fun onTabSelected(p0: TabLayout.Tab?) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // TODO("not implemented") //To change body of created functions use File ||
             }
 
         })

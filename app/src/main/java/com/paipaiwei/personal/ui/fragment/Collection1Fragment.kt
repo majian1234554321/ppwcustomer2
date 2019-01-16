@@ -73,7 +73,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
 
 
     private fun loadMore() {
-        Toast.makeText(context, "onload", Toast.LENGTH_SHORT).show()
+
         startindex++
         sectionUselessPresent.usercollect(type, itemType, startindex, pageSize, "load")
 
