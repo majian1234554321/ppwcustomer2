@@ -36,9 +36,9 @@ class NearbyPresent(var context: Context, var view: NearbyView) : BasePresent() 
     }
 
 
-    fun nearbyData(categoryId: String, longitude: String, latitude: String, pageIndex: Int, pageSize: Int,flag:String) {
+    fun nearbyData(code: String, longitude: String, latitude: String, pageIndex: Int, pageSize: Int,flag:String) {
 
-        map["categoryId"] = categoryId
+        map["code"] = code
         map["longitude"] = longitude
         map["latitude"] = latitude
         map["pageIndex"] = pageIndex.toString()

@@ -87,9 +87,10 @@ public class AmpLocationUtil {
             public void onLocationChanged(AMapLocation location) {
                 if (location != null) {
                     //定位成功，取消定位
-                    mlocationClient.stopLocation();
+
                     sLocation=location;
                     listener.result(location);
+                    mlocationClient.stopLocation();
                 }else {
                     //获取定位数据失败
                     Log.i("LocationServer","LocationServer");

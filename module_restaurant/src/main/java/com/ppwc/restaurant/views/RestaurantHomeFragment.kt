@@ -58,6 +58,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         tv_storeName.text = model.name
 
+        ratingbar.setStar(model.grade)
 
         if (model.times != null && model.times.size > 0) {
             val sb = StringBuilder()

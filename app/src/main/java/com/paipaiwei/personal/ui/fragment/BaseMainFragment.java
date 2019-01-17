@@ -3,6 +3,7 @@ package com.paipaiwei.personal.ui.fragment;
 import android.content.Context;
 import android.widget.Toast;
 import com.yjhh.common.base.BaseFragment;
+import com.yjhh.common.utils.AmpLocationUtil;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -56,6 +57,10 @@ public abstract class BaseMainFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+
+        AmpLocationUtil.destroy();
+
 
     }
 

@@ -183,11 +183,11 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
             }
 
-            R.id.iv_fenlei ->{
+            R.id.iv_fenlei -> {
                 startActivity(Intent(mActivity, MoreSectionActivity::class.java))
             }
 
-            R.id.iv_imagegame->{
+            R.id.iv_imagegame -> {
                 (parentFragment as MainFragment).startBrotherFragment(QiangPaiFragment())
             }
 
@@ -216,7 +216,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         initRefreshLayout()
         addHeaderView()
 
-        arrayOf(tv_search, iv_scan, tv_location,iv_fenlei).forEach {
+        arrayOf(tv_search, iv_scan, tv_location, iv_fenlei).forEach {
             it.setOnClickListener(this)
         }
 
@@ -285,7 +285,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         mGridViewPager?.setVis()
         hRecyclerView = headView.findViewById(R.id.hRecyclerView)
-       val  iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
+        val iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
         iv_imagegame.setOnClickListener(this)
         hRecyclerView?.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 3)
 
@@ -378,11 +378,14 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                 BaseApplication.getIns(),
                 helper?.getView(com.ppwc.restaurant.R.id.iv_image),
                 item?.logoUrl,
-                com.ppwc.restaurant.R.drawable.icon_place_pai,
-                com.ppwc.restaurant.R.drawable.icon_place_pai,
+                R.drawable.icon_place_square,
+                R.drawable.icon_place_square,
                 5
             )
 
+
+            item?.ifPai?.let { helper?.setGone(R.id.tv_ispai, it) }
+            item?.ifBuy?.let { helper?.setGone(R.id.tv_isbuy, it) }
 
 
             item?.grade?.toFloat()

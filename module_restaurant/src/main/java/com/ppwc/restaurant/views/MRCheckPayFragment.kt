@@ -1,5 +1,6 @@
 package com.ppwc.restaurant.views
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.gson.Gson
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.bean.ShopPayPageInitModel
@@ -29,6 +31,7 @@ import kotlinx.android.synthetic.main.mrcheckpayfragment.*
 import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
 import net.cachapa.expandablelayout.ExpandableLayout
 import org.w3c.dom.Text
+import java.text.DecimalFormat
 
 
 class MRCheckPayFragment : BaseFragment() {
@@ -65,13 +68,13 @@ class MRCheckPayFragment : BaseFragment() {
 
                         val model2 = SubmitShopPayModel()
 
-                        model2.couponId
-                        model2.fromType
-                        model2.money
-                        model2.orderId
-                        model2.result
-                        model2.shopId
-                        model2.unDisMoney
+                        model2.couponId = ""
+                        model2.fromType = typeId
+                        model2.money = tv1price
+                        model2.orderId = ""
+                        model2.result = tv4price
+                        model2.shopId = shopId
+                        model2.unDisMoney = tv2price
 
 
                         ApiServices.getInstance().create(PrePayCheckServie::class.java).paySubmit(model2)
@@ -79,11 +82,11 @@ class MRCheckPayFragment : BaseFragment() {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(object : ProcessObserver2(mActivity) {
                                 override fun processValue(response: String?) {
-                                    Log.i("ShopPayPageInitModel", response)
+                                    Log.i("paySubmit", response)
                                 }
 
                                 override fun onFault(message: String) {
-
+                                    Log.i("paySubmit", message)
                                 }
 
                             })
@@ -194,6 +197,22 @@ class MRCheckPayFragment : BaseFragment() {
             .subscribe(object : ProcessObserver2(mActivity) {
                 override fun processValue(response: String?) {
                     Log.i("ShopPayPageInitModel", response)
+
+                    val mrBean = Gson().fromJson<MRCheckPayBean>(response, MRCheckPayBean::class.java)
+
+                    if (!mrBean.coupons.isEmpty()) {
+
+                    } else {
+                        mViewPager.visibility = View.GONE
+                        rl1.visibility = View.GONE
+                        rl_3.visibility = View.GONE
+                        tv_count_tips.visibility = View.VISIBLE
+
+
+                    }
+
+                    tv_select.text = mrBean.shopName
+
                 }
 
                 override fun onFault(message: String) {
@@ -201,32 +220,6 @@ class MRCheckPayFragment : BaseFragment() {
                 }
 
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -275,9 +268,9 @@ class MRCheckPayFragment : BaseFragment() {
 
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv1price = et_totleprice.text.toString()
-                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0").toString()
+                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), it.toString(), "1", "0").toString()
+                            calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
                 } else {
                     tv_finalprice.text = ""
                     tv1price = "0"
@@ -288,7 +281,7 @@ class MRCheckPayFragment : BaseFragment() {
             } else {
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), "0", "1", "0").toString()
+                            calculation(et_totleprice.text.toString(), "0", "1", "0")
 
                     tv1price = et_totleprice.text.toString()
                     tv2price = "0"
@@ -310,26 +303,26 @@ class MRCheckPayFragment : BaseFragment() {
     }
 
 
-    fun calculation(totleprice: String, discountNoPrice: String, flag: String?, discountValue: String): Float {
+    fun calculation(totleprice: String, discountNoPrice: String, flag: String?, discountValue: String): String {
 
-
+        val df = DecimalFormat("#.00")
         var price = 0f
 
-        if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
+        price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
             if ("0" == discountValue) {  //“0” 不打折扣
-                price = (totleprice.toFloat() - discountNoPrice.toFloat())
+                (totleprice.toFloat() - discountNoPrice.toFloat())
             } else {
-                price = (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
+                (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
                         discountNoPrice.toFloat()
             }
 
         } else {
-            price = totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat() +
+            totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat() +
                     discountNoPrice.toFloat()
         }
 
 
-        return price
+        return df.format(price)
     }
 
 
@@ -343,10 +336,20 @@ class MRCheckPayFragment : BaseFragment() {
             bundle.putString("shopId", shopId)
             bundle.putString("typeId", typeId)
 
+
+
             fragment.arguments = bundle
             return fragment
         }
     }
+
+
+    data class MRCheckPayBean(
+        val coupons: List<Any>,
+        val shopId: Int,
+        val shopName: String,
+        val type: Int
+    )
 
 
 }

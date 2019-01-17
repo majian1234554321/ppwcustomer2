@@ -39,10 +39,15 @@ class Main2Adapter(data: List<NearByDataBean.ItemsBean>) :
             BaseApplication.getIns(),
             helper?.getView(com.ppwc.restaurant.R.id.iv_image),
             item?.logoUrl,
-            com.ppwc.restaurant.R.drawable.icon_place_pai,
-            com.ppwc.restaurant.R.drawable.icon_place_pai,
+            com.ppwc.restaurant.R.drawable.icon_place_square,
+            com.ppwc.restaurant.R.drawable.icon_place_square,
             5
         )
+
+
+
+        item?.ifPai?.let { helper?.setGone(R.id.tv_ispai, it) }
+        item?.ifBuy?.let { helper?.setGone(R.id.tv_isbuy, it) }
 
 
 

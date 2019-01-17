@@ -17,10 +17,10 @@ class MeiShiPresent(var context: Context, var view: MeiShiHeadView) : BasePresen
 
 
 
-    fun meishi(code:String) {
+    fun module(code:String) {
         map.clear()
         map["code"]= code
-        toSubscribe2(ApiServices.getInstance().create(MeiShiService::class.java).meishi(map), object : ProcessObserver2(context,true) {
+        toSubscribe2(ApiServices.getInstance().create(MeiShiService::class.java).module(map), object : ProcessObserver2(context,true) {
             override fun processValue(response: String?) {
                 Log.i("meishi", response)
                 val model = gson.fromJson<MeiShiHeadBean>(response, MeiShiHeadBean::class.java)

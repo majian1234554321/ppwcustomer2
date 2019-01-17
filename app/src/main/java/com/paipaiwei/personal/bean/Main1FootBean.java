@@ -39,12 +39,14 @@ public class Main1FootBean {
          * labels : ["武昌区"," 西餐牛排"]
          * name : 测试占位1
          */
+        public boolean ifPai;
+        public boolean ifBuy;
         public String id;
         public String logoUrl;
         public String perCapita;
         public String distance;
         public int grade;
-        public boolean ifBuy;
+
         public boolean ifNews;
         public boolean ifRec;
         public String name;

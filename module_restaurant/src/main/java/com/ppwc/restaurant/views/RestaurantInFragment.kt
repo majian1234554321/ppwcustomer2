@@ -310,8 +310,6 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
         val type = arguments?.getString("type")
         val typeValue = arguments?.getString("typeValue")
 
-
-
         if ("MORE" == type) {
             ll_typeA.visibility = View.GONE
             mcv_Search.visibility = View.GONE
@@ -319,9 +317,6 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             tv_title.text = typeValue
             iv_search.visibility = View.VISIBLE
             mcv_Search_type.visibility = View.VISIBLE
-
-
-
 
             appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
                 override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
@@ -341,11 +336,6 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
                     }
                 }
             });
-
-
-
-
-
 
         } else {
             mcv_Search_type.visibility = View.GONE
@@ -367,7 +357,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
 
         present = MeiShiPresent(mActivity, this)
-        present?.meishi("")
+        present?.module("")
 
         queryPresent = QueryModelDataPresent(mActivity, this)
 

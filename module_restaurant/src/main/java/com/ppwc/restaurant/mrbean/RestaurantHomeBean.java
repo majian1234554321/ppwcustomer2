@@ -30,7 +30,7 @@ public class RestaurantHomeBean {
 
     public String renj;
 
-    public int grade;
+    public float grade;
     public int id;
     public boolean ifCollect;
     public boolean ifHasOneMoney;

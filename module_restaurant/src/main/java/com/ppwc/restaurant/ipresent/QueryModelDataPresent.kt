@@ -33,7 +33,7 @@ class QueryModelDataPresent(var context: Context, var view: MeiShiHeadView) : Ba
 
         map["keyword"] = keyword
         map["code"] = code
-        map["subCode"] = subCode
+
         map["all"] = all
         map["one"] = one
         map["sort"] = sort

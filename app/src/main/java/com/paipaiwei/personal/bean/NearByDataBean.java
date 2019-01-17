@@ -24,6 +24,7 @@ public class NearByDataBean {
          * name : 测试占位1
          */
 
+        public boolean ifPai;
         public String distance;
         public int grade;
         public boolean ifBuy;

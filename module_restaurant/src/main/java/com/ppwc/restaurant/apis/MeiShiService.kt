@@ -19,7 +19,7 @@ interface MeiShiService {
 
     @FormUrlEncoded
     @POST("home/module")
-    fun meishi(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
+    fun module(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
 
 
 

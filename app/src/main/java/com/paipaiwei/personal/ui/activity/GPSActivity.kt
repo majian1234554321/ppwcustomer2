@@ -63,7 +63,7 @@ class GPSActivity : BaseActivity(), View.OnClickListener {
                 AmpLocationUtil.getCurrentLocation {
 
                     val latLng =  LatLng(it.latitude, it.longitude)
-                     val marker = aMap?.addMarker(MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"))
+                    // val marker = aMap?.addMarker(MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"))
 
                      markerOption2 = MarkerOptions().zIndex(18f)
                     markerOption2?.position(latLng)
@@ -246,7 +246,7 @@ class GPSActivity : BaseActivity(), View.OnClickListener {
         aMap?.addMarker(markerOption)
 
 
-
+        AmpLocationUtil.init(this@GPSActivity)
         AmpLocationUtil.getCurrentLocation {
 
             val latLng2 =  LatLng(it.latitude, it.longitude)

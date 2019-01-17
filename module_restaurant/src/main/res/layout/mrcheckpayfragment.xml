@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+
             android:paddingTop="12pt"
             android:clipChildren="false">
 
@@ -32,7 +33,21 @@
                 android:layout_width="match_parent"
                 android:id="@+id/mViewPager"
                 android:layout_height="wrap_content"/>
+        <TextView
 
+                android:layout_marginLeft="16pt"
+                android:id="@+id/tv_count_tips"
+                android:layout_width="match_parent"
+                android:text="暂无可使用卡券"
+                android:textColor="#FFB5B5B5"
+                android:textSize="14pt"
+                android:visibility="gone"
+                android:background="#EDEDF3"
+                android:gravity="center"
+                android:layout_marginBottom="6pt"
+                android:layout_height="40pt"
+
+        />
     </FrameLayout>
 
 
@@ -45,27 +60,9 @@
     >
 
 
-        <TextView
-                android:layout_marginTop="17pt"
-                android:layout_marginLeft="16pt"
-                android:id="@+id/tv_count_tips"
-                android:layout_width="match_parent"
-                android:text="暂无可使用卡券"
-                android:textColor="#FFB5B5B5"
-                android:textSize="14pt"
-                android:visibility="gone"
-                android:background="#EDEDF3"
-                android:gravity="center"
-
-                android:layout_marginBottom="6pt"
-                android:layout_height="40pt"
-
-        />
-
-
         <RelativeLayout android:layout_width="match_parent"
                         android:background="@color/white"
-                        android:layout_height="37.5pt">
+                        android:layout_height="45pt">
 
             <TextView android:layout_width="wrap_content"
                       android:text="*"
@@ -87,48 +84,40 @@
             />
 
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_alignParentRight="true"
-                      android:text="( 元 )"
-                      android:id="@+id/tv_Y"
-                      android:layout_marginBottom="8pt"
-                      android:layout_centerVertical="true"
-                      android:textColor="#FF666666"
-                      android:textSize="14pt"
-                      android:layout_height="wrap_content"
 
-            />
 
 
             <EditText android:layout_width="wrap_content"
-                      android:hint="请输入金额"
+                      android:hint="请输入实际金额"
                       android:paddingRight="8pt"
+                      android:layout_alignParentRight="true"
                       android:id="@+id/et_totleprice"
                       android:layout_centerVertical="true"
-                      android:layout_toLeftOf="@+id/tv_Y"
-                      android:paddingTop="6pt"
                       android:inputType="numberDecimal"
                       android:layout_gravity="right"
+                      android:gravity="right|center_vertical"
                       android:textColor="#FF333333"
                       android:textSize="13pt"
                       android:background="@null"
                       android:layout_height="wrap_content"/>
 
+            <View
+                    android:layout_gravity="right"
+                 android:layout_alignParentRight="true"
+                  android:layout_alignParentBottom="true"
+                    android:background="@color/cd"
+                    android:layout_width="127pt"
+                    android:layout_height="1pt"
+            />
 
         </RelativeLayout>
 
-        <View
-                android:layout_gravity="right"
-                android:layout_alignParentRight="true"
-                android:background="@color/cd"
-                android:layout_width="127pt"
-                android:layout_height="1pt"
-        />
+
 
 
         <RelativeLayout android:layout_width="match_parent"
                         android:orientation="vertical"
-                        android:id="@+id/ll"
+                        android:id="@+id/rl1"
 
                         android:layout_height="45.5pt">
 
@@ -262,7 +251,7 @@
                     android:layout_marginTop="10pt"
                     android:background="@color/white"
                     android:layout_marginBottom="10pt"
-                    android:paddingRight="20pt"
+                    android:paddingRight="15pt"
                     android:layout_height="wrap_content">
 
 
@@ -270,6 +259,7 @@
                   android:text="*"
                   android:id="@+id/tv_XX"
                   android:paddingLeft="12pt"
+                  android:visibility="invisible"
                   android:textSize="14pt"
                   android:layout_centerVertical="true"
                   android:textColor="#FF552E"
@@ -290,6 +280,7 @@
                   android:paddingBottom="12.5pt"
                   android:paddingTop="12.5pt"
                   android:id="@+id/tv_select"
+                  android:gravity="right|center_vertical"
                   android:hint="选择核销门店"
                   android:textColor="#FF333333"
                   android:textSize="14pt"

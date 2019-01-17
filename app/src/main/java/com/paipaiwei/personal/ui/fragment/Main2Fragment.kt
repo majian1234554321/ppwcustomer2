@@ -196,14 +196,13 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
 
         if (RxPermissions(this).isGranted(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            AmpLocationUtil.init(mActivity)
             AmpLocationUtil.getCurrentLocation { am ->
 
 
-                val sb = StringBuffer();
-
                 if (am.errorCode == 0) {
-
-                    tv_title.text = am.aoiName //获取当前定位点的AOI信息
+                    if (tv_title != null)
+                        tv_title.text = am.aoiName //获取当前定位点的AOI信息
 
                     if (locationLatlng != null) {
                         locationLatlng?.locatinmLatlng(LatLng(am.latitude, am.longitude), am.address)
@@ -211,10 +210,9 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                     Log.i("LocationServer", "${am.poiName}定位成功定位信息${am.aoiName}")
                 } else {
                     //定位失败
+                    tv_title.text = "XXXXX"
                     Log.i("LocationServer", "定位失败")
                 }
-
-                Log.i("LocationServer", sb.toString());
 
 
             }
