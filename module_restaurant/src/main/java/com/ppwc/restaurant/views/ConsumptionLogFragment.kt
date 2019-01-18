@@ -8,18 +8,44 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.google.gson.Gson
 import com.ppwc.restaurant.R
+import com.ppwc.restaurant.ipresent.RestaurantOrderPresent
+import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+
 import com.yjhh.common.base.BaseFragment
 import kotlinx.android.synthetic.main.consumptionlogfragment.*
 
-class ConsumptionLogFragment : BaseFragment() {
+class ConsumptionLogFragment : BaseFragment(), RestaurantOrderSerVice.RestaurantOrderView {
+    override fun onRestaurantOrder(model: String?, flag: String) {
+        val bean = Gson().fromJson<CounsLogBean>(model, CounsLogBean::class.java)
+        if ("refresh" == flag) {
+            if (bean.items.isEmpty() && pageIndex == 0) {
+                onEmptyView()
+            } else {
+
+            }
+        } else {
+
+        }
+
+
+    }
+
+    override fun onFault(errorMsg: String?) {
+
+    }
+
     override fun getLayoutRes(): Int = R.layout.consumptionlogfragment
 
     var mAdapter: ConsumptionLogAdapter? = null
     val listValue = ArrayList<String>()
     var pageIndex = 0
     val pageSize = 15
+
+    var present: RestaurantOrderPresent? = null
+    var type = "0"  // 类别，默认null（null/-1 全部 0余额 1积分）
 
     companion object {
         fun newInstance(id: String?): ConsumptionLogFragment {
@@ -41,7 +67,7 @@ class ConsumptionLogFragment : BaseFragment() {
     }
 
     override fun initView() {
-
+        present = RestaurantOrderPresent(mActivity, this)
         initAdapter()
         initRefreshLayout()
         swipeLayout.autoRefresh()
@@ -73,12 +99,12 @@ class ConsumptionLogFragment : BaseFragment() {
 
     private fun refresh() {
         pageIndex = 0
-        // sectionCouponPresent.usermessage(status, share, pageIndex, pageSize, "refresh")
+        present?.logs(type, pageIndex, pageSize, "refresh")
     }
 
     private fun loadMore() {
         pageIndex++
-        // sectionCouponPresent.usermessage(status, share, pageIndex, pageSize, "load")
+        present?.logs(type, pageIndex, pageSize, "loadMore")
 
     }
 
@@ -91,5 +117,17 @@ class ConsumptionLogFragment : BaseFragment() {
 
     }
 
+
+    data class CounsLogBean(
+        val items: List<Any>,
+        val pageCount: Int,
+        val queryModel: QueryModel,
+        val recordCount: Int
+    )
+
+    data class QueryModel(
+        val pageIndex: Int,
+        val pageSize: Int
+    )
 
 }

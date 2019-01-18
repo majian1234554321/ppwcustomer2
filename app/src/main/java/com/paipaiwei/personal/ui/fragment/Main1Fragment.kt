@@ -192,6 +192,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             }
 
             else -> {
+                (parentFragment as MainFragment).startBrotherFragment(QiangPaiListFragment())
             }
         }
     }
@@ -283,6 +284,8 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         val headView: View = layoutInflater.inflate(R.layout.mainhead, recyclerView.parent as ViewGroup, false)
         banner = headView.findViewById(R.id.banner)
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
+         headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
+
         mGridViewPager?.setVis()
         hRecyclerView = headView.findViewById(R.id.hRecyclerView)
         val iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)

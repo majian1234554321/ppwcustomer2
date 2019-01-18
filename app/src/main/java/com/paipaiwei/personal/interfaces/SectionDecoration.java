@@ -2,10 +2,8 @@ package com.paipaiwei.personal.interfaces;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.*;
+import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -19,153 +17,168 @@ import java.util.List;
 public class SectionDecoration extends RecyclerView.ItemDecoration {
     private static final String TAG = "SectionDecoration";
 
-    private List<ModelDish> dataList;
+    private PowerGroupListener mGroupListener;
+    /**
+     *     悬浮栏高度
+     */
+    private int mGroupHeight = 80;
+    /**
+     *     是否靠左边
+     */
+    private boolean isAlignLeft = true;
 
-    private DecorationCallback callback;
-    private TextPaint textPaint;
-    private Paint paint;
-    private int topGap;
-    private int alignBottom;
-    private Paint.FontMetrics fontMetrics;
-
-
-    public SectionDecoration(List<ModelDish> dataList, Context context, DecorationCallback decorationCallback) {
-        Resources res = context.getResources();
-        this.dataList = dataList;
-        this.callback = decorationCallback;
-        //设置悬浮栏的画笔---paint
-        paint = new Paint();
-        paint.setColor(res.getColor(R.color.all_9));
-
-        //设置悬浮栏中文本的画笔
-        textPaint = new TextPaint();
-        textPaint.setAntiAlias(true);
-        textPaint.setTextSize( 14);
-        textPaint.setColor(Color.DKGRAY);
-        textPaint.setTextAlign(Paint.Align.LEFT);
-        fontMetrics = new Paint.FontMetrics();
-        //决定悬浮栏的高度等
-        topGap = res.getDimensionPixelSize(R.dimen.shopping_cart_bottom_margin);
-        //决定文本的显示位置等
-        alignBottom = res.getDimensionPixelSize(R.dimen.shopping_cart_bottom_margin);
+    private SectionDecoration(PowerGroupListener groupListener) {
+        this.mGroupListener = groupListener;
     }
+
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         int pos = parent.getChildAdapterPosition(view);
-        Log.i(TAG, "getItemOffsets：" + pos);
-        String groupId = callback.getGroupId(pos);
-        if (groupId.equals("-1")) return;
+        String groupId = getGroupName(pos);
+        if (groupId == null) {return;}
         //只有是同一组的第一个才显示悬浮栏
         if (pos == 0 || isFirstInGroup(pos)) {
-            outRect.top = topGap;
-            if (dataList.get(pos).tyee == "") {
-                outRect.top = 0;
-            }
-        } else {
-            outRect.top = 0;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDraw(c, parent, state);
-        int left = parent.getPaddingLeft();
-        int right = parent.getWidth() - parent.getPaddingRight();
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View view = parent.getChildAt(i);
-            int position = parent.getChildAdapterPosition(view);
-            String groupId = callback.getGroupId(position);
-            if (groupId.equals("-1")) return;
-            String textLine = callback.getGroupFirstLine(position).toUpperCase();
-            if (textLine == "") {
-                float top = view.getTop();
-                float bottom = view.getTop();
-                c.drawRect(left, top, right, bottom, paint);
-                return;
-            } else {
-                if (position == 0 || isFirstInGroup(position)) {
-                    float top = view.getTop() - topGap;
-                    float bottom = view.getTop();
-                    //绘制悬浮栏
-                    c.drawRect(left, top - topGap, right, bottom, paint);
-                    //绘制文本
-                    c.drawText(textLine, left, bottom, textPaint);
-                }
-            }
+            outRect.top = mGroupHeight;
+            outRect.right = parent.getHeight();
         }
     }
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
+        //获取单条的数目
         int itemCount = state.getItemCount();
         int childCount = parent.getChildCount();
+        //得出距离左边和右边的padding
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
-        float lineHeight = textPaint.getTextSize() + fontMetrics.descent;
-
-        String preGroupId = "";
-        String groupId = "-1";
+        //开始绘制
+        String preGroupName;
+        String currentGroupName = null;
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
             int position = parent.getChildAdapterPosition(view);
-
-            preGroupId = groupId;
-            groupId = callback.getGroupId(position);
-            if (groupId.equals("-1") || groupId.equals(preGroupId)) continue;
-
-            String textLine = callback.getGroupFirstLine(position).toUpperCase();
-            if (TextUtils.isEmpty(textLine)) continue;
-
+            preGroupName = currentGroupName;
+            currentGroupName = getGroupName(position);
+            if (currentGroupName == null || TextUtils.equals(currentGroupName, preGroupName))
+            {
+                continue;
+            }
             int viewBottom = view.getBottom();
-            float textY = Math.max(topGap, view.getTop());
-            //下一个和当前不一样移动当前
+            //top 决定当前顶部第一个悬浮Group的位置
+            int top = Math.max(mGroupHeight, view.getTop());
             if (position + 1 < itemCount) {
-                String nextGroupId = callback.getGroupId(position + 1);
-                //组内最后一个view进入了header
-                if (nextGroupId != groupId && viewBottom < textY) {
-                    textY = viewBottom;
+                //获取下个GroupName
+                String nextGroupName = getGroupName(position + 1);
+                //下一组的第一个View接近头部
+                if (!currentGroupName.equals(nextGroupName) && viewBottom < top) {
+                    top = viewBottom;
                 }
             }
-            //textY - topGap决定了悬浮栏绘制的高度和位置
-            c.drawRect(left, textY - topGap, right, textY, paint);
-            //left+2*alignBottom 决定了文本往左偏移的多少（加-->向左移）
-            //textY-alignBottom  决定了文本往右偏移的多少  (减-->向上移)
-            c.drawText(textLine, left + 2 * alignBottom, textY - alignBottom, textPaint);
+
+            //根据position获取View
+            View groupView = getGroupView(position);
+            if (groupView == null){ return;}
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, mGroupHeight);
+            groupView.setLayoutParams(layoutParams);
+            groupView.setDrawingCacheEnabled(true);
+            groupView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            //指定高度、宽度的groupView
+            groupView.layout(0, 0, right, mGroupHeight);
+            groupView.buildDrawingCache();
+            Bitmap bitmap = groupView.getDrawingCache();
+            int marginLeft = isAlignLeft ? 0 : right - groupView.getMeasuredWidth();
+            c.drawBitmap(bitmap, left + marginLeft, top - mGroupHeight, null);
         }
     }
 
-
     /**
      * 判断是不是组中的第一个位置
-     *
-     * @param pos
-     * @return
+     * 根据前一个组名，判断当前是否为新的组
      */
     private boolean isFirstInGroup(int pos) {
         if (pos == 0) {
             return true;
         } else {
-            // 因为是根据 字符串内容的相同与否 来判断是不是同意组的，所以此处的标记id 要是String类型
-            // 如果你只是做联系人列表，悬浮框里显示的只是一个字母，则标记id直接用 int 类型就行了
-            String prevGroupId = callback.getGroupId(pos - 1);
-            String groupId = callback.getGroupId(pos);
-            //判断前一个字符串 与 当前字符串 是否相同
-            if (prevGroupId.equals(groupId)) {
-                return false;
-            } else {
-                return true;
-            }
+            String prevGroupId = getGroupName(pos - 1);
+            String groupId = getGroupName(pos);
+            return !TextUtils.equals(prevGroupId, groupId);
         }
     }
 
-    //定义一个借口方便外界的调用
-   public interface DecorationCallback {
-        String getGroupId(int position);
-
-        String getGroupFirstLine(int position);
+    /**
+     * 获取组名
+     * @param position
+     * @return 组名
+     */
+    private String getGroupName(int position) {
+        if (mGroupListener != null) {
+            return mGroupListener.getGroupName(position);
+        } else {
+            return null;
+        }
     }
+
+    /**
+     * 获取组View
+     * @param position
+     * @return 组名
+     */
+    private View getGroupView(int position) {
+        if (mGroupListener != null) {
+            return mGroupListener.getGroupView(position);
+        } else {
+            return null;
+        }
+    }
+
+    public static class Builder {
+        SectionDecoration mDecoration;
+        private Builder(PowerGroupListener listener) {
+            mDecoration = new SectionDecoration(listener);
+        }
+        /**
+         * 初始化 listener
+         * @param listener
+         * @return
+         */
+        public static Builder init(PowerGroupListener listener) {
+            return new Builder(listener);
+        }
+        /**
+         * 设置Group高度
+         * @param groutHeight 高度
+         * @return this
+         */
+        public Builder setGroupHeight(int groutHeight) {
+            mDecoration.mGroupHeight = groutHeight;
+            return this;
+        }
+        /**
+         * 是否靠左边
+         * true 靠左边（默认）、false 靠右边
+         * @param b b
+         * @return  this
+         */
+        public Builder isAlignLeft(boolean b){
+            mDecoration.isAlignLeft = b;
+            return this;
+        }
+        public SectionDecoration build() {
+            return mDecoration;
+        }
+    }
+
+
+    public interface PowerGroupListener {
+
+        String getGroupName(int position);
+
+        View getGroupView(int position);
+    }
+
 }

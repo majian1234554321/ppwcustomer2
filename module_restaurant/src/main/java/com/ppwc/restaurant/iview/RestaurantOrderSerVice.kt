@@ -18,6 +18,11 @@ interface RestaurantOrderSerVice {
     @POST("order/del")
     fun del(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
+    @FormUrlEncoded
+    @POST("useraccount/logs")
+    fun logs(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
+
+
     interface RestaurantOrderView : BaseView {
         fun onRestaurantOrder(model: String?,flag:String)
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="#f7f7f9"
+                android:paddingTop="4pt"
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:paddingBottom="4pt"
+                android:layout_height="wrap_content">
+
+    <TextView android:layout_width="match_parent"
+              android:text="当前抢拍"
+              android:id="@+id/tv_left"
+              android:textColor="#FF333333"
+              android:textSize="14pt"
+              android:layout_height="wrap_content"/>
+
+
+    <TextView
+            android:layout_alignParentRight="true"
+            android:layout_width="77pt"
+            android:layout_height="20pt"
+            android:id="@+id/tv_right"
+            android:text="距结束15:34"
+            android:textColor="#FF333333"
+            android:textSize="14pt"
+    />
+
+
+</RelativeLayout>

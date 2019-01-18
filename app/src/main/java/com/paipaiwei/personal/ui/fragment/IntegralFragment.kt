@@ -63,7 +63,7 @@ class IntegralFragment : BaseFragment(), IntegralView {
 
     var startindex = 0
     val pageSize = 10
-    var type = ""  // 类别，默认null（null/-1 全部 0余额 1积分）
+    var type = "1"  // 类别，默认null（null/-1 全部 0余额 1积分）
 
     override fun getLayoutRes(): Int = R.layout.integralfragment
 

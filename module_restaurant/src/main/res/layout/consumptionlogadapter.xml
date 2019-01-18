@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_height="83pt">
 
-</LinearLayout>
+    <TextView
+            android:layout_width="55pt"
+            android:layout_height="20pt"
+            android:id="@+id/tv_payType"
+            android:text="微信付款"
+            android:layout_above="@+id/tv_payInfo"
+            android:textColor="#FF333333"
+            android:textSize="14pt"
+    />
+
+    <TextView
+            android:layout_width="145pt"
+            android:id="@+id/tv_payInfo"
+            android:layout_marginTop="5pt"
+            android:layout_marginBottom="5pt"
+            android:layout_centerVertical="true"
+            android:layout_height="16.5pt"
+            android:text="拍拍味－“水晶拍道具付费”"
+            android:textColor="#FF333333"
+            android:textSize="12pt"
+    />
+
+    <TextView
+            android:layout_width="96.5pt"
+            android:layout_height="16.5pt"
+            android:layout_below="@+id/tv_payInfo"
+            android:text="2018/11/11 11:11:59"
+            android:textColor="#FF999999"
+            android:textSize="12pt"
+    />
+
+
+    <TextView
+            android:layout_width="36pt"
+            android:layout_height="20pt"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="-1.00"
+            android:textColor="#FFFF552E"
+            android:textSize="14pt"
+    />
+
+
+    <View
+            android:layout_width="345pt"
+            android:layout_height="0.5pt"
+            android:layout_alignParentBottom="true"
+            android:background="#FFE6E6E6"
+    />
+
+</RelativeLayout>

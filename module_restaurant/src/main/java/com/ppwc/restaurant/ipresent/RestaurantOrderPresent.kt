@@ -50,4 +50,27 @@ class RestaurantOrderPresent(var context: Context, var view: RestaurantOrderSerV
 
 
 
+
+    fun logs(type: String?,pageIndex:Int,pageSize:Int, flag:String) {
+        map.clear()
+        map.put("type", type)
+        map.put("pageIndex", pageIndex.toString())
+        map.put("pageSize", pageSize.toString())
+
+        toSubscribe2(ApiServices.getInstance().create(RestaurantOrderSerVice::class.java).logs(map),
+            object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+                    Log.i("logs", response)
+                    view.onRestaurantOrder(response,flag)
+                }
+
+                override fun onFault(message: String) {
+                    Log.i("logs", message)
+                }
+
+            })
+    }
+
+
+
 }
