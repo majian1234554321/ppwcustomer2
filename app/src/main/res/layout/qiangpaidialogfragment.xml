@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@drawable/backgrounddialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="vertical"
+
+                  android:layout_centerHorizontal="true"
+                  android:layout_height="wrap_content">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="抢拍成功"
+                  android:id="@+id/tv_status"
+                  android:layout_marginTop="20pt"
+                  android:gravity="center"
+                  android:textColor="#FF333333"
+                  android:textSize="15pt"
+        />
+
+
+        <ImageView android:layout_width="163pt"
+                   android:id="@+id/iv_status"
+                   android:layout_marginTop="35pt"
+                   android:layout_gravity="center"
+                   android:layout_height="40pt"/>
+
+
+        <TextView
+                android:layout_width="117.5pt"
+                android:layout_height="18.5pt"
+                android:layout_gravity="center"
+                android:layout_marginTop="23pt"
+                android:id="@+id/tv_tips"
+                android:layout_marginBottom="5pt"
+                android:text="活动火爆，随时告罄"
+                android:textColor="#FF333333"
+                android:textSize="13pt"
+        />
+
+
+        <TextView
+                android:layout_width="156.5pt"
+                android:id="@+id/tv_remark"
+                android:layout_height="16.5pt"
+                android:text="需在15分钟内完成付款后领取"
+                android:textColor="#FF666666"
+                android:layout_gravity="center"
+                android:textSize="12pt"
+        />
+
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="230pt"
+                android:layout_margin="21pt"
+                android:text="前往付款"
+                app:backgroundTint="#F9572D"
+                app:cornerRadius="25pt"
+                android:id="@+id/mb_pay"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15pt"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

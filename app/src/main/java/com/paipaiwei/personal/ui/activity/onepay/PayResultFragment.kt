@@ -37,19 +37,19 @@ class PayResultFragment : BaseFragment(), OrderView {
         iv_right.setOnClickListener { mActivity.onBackPressed() }
         mb.setOnClickListener { mActivity.onBackPressed() }
 
-        val type = arguments?.getString("type")
+        val payType = arguments?.getString("payType")
         val ids = arguments?.getString("ids")
         orderPresent = OrderPresent(mActivity, this)
-        orderPresent?.detailFromCallback(ids, type)    //1微信 2支付宝 4银联
+        orderPresent?.detailFromCallback(ids, payType)    //1微信 2支付宝 4银联
     }
 
 
     companion object {
-        fun newInstance(ids: String?, type: String?): PayResultFragment {
+        fun newInstance(ids: String?, payType: String?): PayResultFragment {
             val fragment = PayResultFragment()
             val bundle = Bundle()
             bundle.putString("ids", ids)
-            bundle.putString("type", type)
+            bundle.putString("payType", payType)
             fragment.arguments = bundle
             return fragment
         }

@@ -298,6 +298,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
     val pageSize = 15
     var pageIndex = 0
 
+    var code:String? = ""
 
     var queryPresent: QueryModelDataPresent? = null
 
@@ -309,6 +310,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
         val type = arguments?.getString("type")
         val typeValue = arguments?.getString("typeValue")
+         code = arguments?.getString("code")
 
         if ("MORE" == type) {
             ll_typeA.visibility = View.GONE
@@ -362,7 +364,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
         queryPresent = QueryModelDataPresent(mActivity, this)
 
 
-        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize, "refresh")
+        queryPresent?.meishiData("", code, "", "", "", "", "", pageIndex, pageSize, "refresh")
 
         val arrays = arrayOf(rb1, rb2, rb3, rb4, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
 
@@ -407,7 +409,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
     private fun loadMore() {
 
         pageIndex++
-        queryPresent?.meishiData("", "", "", "", "", "", "", pageIndex, pageSize, "loadMore")
+        queryPresent?.meishiData("", code, "", "", "", "", "", pageIndex, pageSize, "loadMore")
 
     }
 
@@ -430,11 +432,12 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
 
     companion object {
-        fun newInstance(type: String?, typeValue: String?): RestaurantInFragment {
+        fun newInstance(type: String?, typeValue: String?,code:String?): RestaurantInFragment {
             val fragment = RestaurantInFragment()
             val bundle = Bundle()
             bundle.putString("type", type)
             bundle.putString("typeValue", typeValue)
+            bundle.putString("code", code)
 
             fragment.arguments = bundle
             return fragment

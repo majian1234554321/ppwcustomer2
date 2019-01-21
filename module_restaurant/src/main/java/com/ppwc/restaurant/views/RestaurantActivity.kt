@@ -31,7 +31,6 @@ class RestaurantActivity : BaseActivity() {
     var typeValue: String? = "XX"
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
         setStatusBar()
@@ -44,14 +43,14 @@ class RestaurantActivity : BaseActivity() {
 
         when (displayTab) {
             "RestaurantInFragment" -> {
-                loadRootFragment(R.id.frameLayout, RestaurantInFragment.newInstance(type,typeValue))
+                loadRootFragment(R.id.frameLayout, RestaurantInFragment.newInstance(type, typeValue, id))
             }
 
             "ConsumptionLogFragment" -> {
                 loadRootFragment(R.id.frameLayout, ConsumptionLogFragment.newInstance(id))
             }
 
-            "RestaurantOrderDetailsFragment" ->{
+            "RestaurantOrderDetailsFragment" -> {
 
                 loadRootFragment(R.id.frameLayout, RestaurantOrderDetailsFragment.newInstance(id))
             }

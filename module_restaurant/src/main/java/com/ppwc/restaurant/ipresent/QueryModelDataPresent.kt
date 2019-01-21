@@ -19,7 +19,7 @@ class QueryModelDataPresent(var context: Context, var view: MeiShiHeadView) : Ba
 
     fun meishiData(
         keyword: String,
-        code: String,
+        code: String?,
         subCode: String,
         all: String,
         one: String,

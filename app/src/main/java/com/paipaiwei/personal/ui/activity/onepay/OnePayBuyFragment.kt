@@ -87,8 +87,21 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
                     Log.e("accept:WX", aBoolean.toString())
                     if (aBoolean) {
 
+                        when (type) {
+                            "限时抢拍" -> {
+                                startWithPop(PayResultFragment2.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
+                            }
 
-                        startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
+                            "道具购买" -> {
+                                startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
+                            }
+
+
+                            else -> {
+                            }
+                        }
+
+
 
                     } else {
                         startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
@@ -121,7 +134,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
     var payPresent: PayPresent? = null
     var orderPresent: OrderPresent? = null
-
+    var type: String? = null
 
     override fun getLayoutRes(): Int = R.layout.onepaymoneyfragment
 
@@ -135,12 +148,14 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
         val jsonString = arguments?.getString("jsonValue")
+        type = arguments?.getString("type")
+
         val gson = Gson()
         val model = gson.fromJson<DisplayPayTypeBean>(jsonString, DisplayPayTypeBean::class.java)
 
 
         val dis5 = RxCountDown.countdown(900).subscribe {
-            if (it != null&&tv_countdown!=null)
+            if (it != null && tv_countdown != null)
                 tv_countdown.text = DateUtil.getFormatDHMmDate(it)
         }
 
@@ -163,10 +178,10 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val dis = RxView.clicks(tv_pay).throttleFirst(2, TimeUnit.SECONDS)
             .subscribe {
                 if (rb_alipay.isChecked) {
-                    payPresent?.paymentByAli(model.id, model.money.toString())
+                    payPresent?.paymentByAli(model.orderId, model.money.toString())
 
                 } else {
-                    payPresent?.paymentByWx(model.id, model.money.toString())
+                    payPresent?.paymentByWx(model.orderId, model.money.toString())
                 }
             }
 
@@ -177,11 +192,15 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
     companion object {
-        fun newInstance(jsonValue: String?): OnePayMoneyFragment {
+        fun newInstance(jsonValue: String?, type: String?): OnePayMoneyFragment {
             val fragment = OnePayMoneyFragment()
             val bundle = Bundle()
 
             bundle.putString("jsonValue", jsonValue)
+
+            bundle.putString("type", type)
+
+
             fragment.arguments = bundle
             return fragment
         }

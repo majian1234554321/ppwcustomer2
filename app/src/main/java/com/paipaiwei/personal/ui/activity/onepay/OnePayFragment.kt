@@ -91,7 +91,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
         if ("oneMoneyBuy" == flag) {
 
 
-            start(OnePayMoneyFragment.newInstance(model))
+            start(OnePayMoneyFragment.newInstance(model,"道具购买"))
         }
 
 

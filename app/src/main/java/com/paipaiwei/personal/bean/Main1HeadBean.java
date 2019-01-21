@@ -66,7 +66,7 @@ public class Main1HeadBean {
         public int count;
         public String countText;
         public int endTime;
-        public int id;
+        public String id;
         public String imageUrl;
         public String memo;
         public boolean rec;

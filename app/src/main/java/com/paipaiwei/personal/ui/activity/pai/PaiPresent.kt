@@ -8,7 +8,7 @@ import com.yjhh.common.present.BasePresent
 class PaiPresent(var context: Context, var view: PaiService.PaiView) : BasePresent() {
     fun qiangPai(type: String, pageIndex: Int, pageSize: Int, flag: String) {
         map.clear()
-        map["type"] = type
+
         map["pageIndex"] = pageIndex.toString()
         map["pageSize"] = pageSize.toString()
 

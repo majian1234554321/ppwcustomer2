@@ -128,16 +128,16 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
         mAdapter?.setOnItemClickListener { adapter, view, position ->
 
 
-            if (adapter.data.get(position) is QiangPaiListBean.ItemsBeanX.ItemsBean) {
+            if (adapter.data[position] is QiangPaiListBean.ItemsBeanX.ItemsBean) {
                 start(
                     QiangPaiFragment.newInstance(
                         (adapter.data[position] as QiangPaiListBean.ItemsBeanX.ItemsBean).id,
                         type
                     )
                 )
-                Toast.makeText(mActivity, "position$position", Toast.LENGTH_LONG).show()
+
             } else {
-                Toast.makeText(mActivity, "position$position", Toast.LENGTH_LONG).show()
+
             }
 
 

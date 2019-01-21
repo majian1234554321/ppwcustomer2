@@ -51,7 +51,7 @@ class QiangPaiPresent(var context: Context, var view: QiangPaiService.QiangPaiVi
     fun qiangPai(id: String?, type: String?, flag: String) {
         map.clear()
         map["id"] = id
-        map["type"] = type
+
 
         toSubscribe2(ApiServices.getInstance().create(QiangPaiService::class.java).qiangPai(map),
             object : ProcessObserver2(context) {

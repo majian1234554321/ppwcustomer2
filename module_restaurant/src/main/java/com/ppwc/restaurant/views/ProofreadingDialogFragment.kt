@@ -16,7 +16,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
 import com.ppwc.restaurant.R
-import kotlinx.android.synthetic.main.proofreadingdialogfragment.*
+
 import me.jessyan.autosize.internal.CustomAdapt
 
 @SuppressLint("ValidFragment")

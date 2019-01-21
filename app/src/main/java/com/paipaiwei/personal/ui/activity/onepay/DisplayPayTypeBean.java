@@ -43,4 +43,13 @@ public class DisplayPayTypeBean {
     public int type;
     public double unDisMoney;
     public int userId;
+
+
+
+    public String content;
+
+
+    public String orderId;
+
+
 }

@@ -25,11 +25,13 @@ import com.paipaiwei.personal.R.id.mb_pai
 import com.paipaiwei.personal.bean.Main1FootBean
 import com.paipaiwei.personal.bean.Main1HeadBean
 import com.paipaiwei.personal.bean.MainFinalDataBean
+import com.paipaiwei.personal.bean.QiangPaiListBean
 import com.paipaiwei.personal.common.utils.GlideImageLoader
 import com.paipaiwei.personal.present.SectionMain1Present
 import com.paipaiwei.personal.ui.activity.DisplayActivity
 import com.paipaiwei.personal.ui.activity.MoreSectionActivity
 import com.paipaiwei.personal.ui.activity.SearchActivity
+import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
 import com.paipaiwei.personal.ui.activity.parishfood.BusinessHomeActivity
 import com.paipaiwei.personal.ui.customview.GridViewPager
 import com.paipaiwei.personal.view.Main1View
@@ -79,7 +81,23 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
             if (main1bean.main1HeadBean.qiangPais != null) {
-                hRecyclerView?.adapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
+                val headAdapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
+
+                hRecyclerView?.adapter = headAdapter
+
+                headAdapter.setOnItemClickListener { adapter, view, position ->
+
+                    (parentFragment as MainFragment).startBrotherFragment(
+                        QiangPaiFragment.newInstance(
+                            (adapter.data[position] as Main1HeadBean.QiangPaisBean).id,
+                            ""
+                        )
+                    )
+
+
+                }
+
+
             }
 
 
@@ -89,25 +107,15 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                     .setPageSize(10)
                     .setGridItemClickListener { pos, position, str ->
 
-                        when (position) {
-                            0 -> {
-                                ARouter.getInstance()
-                                    .build("/RestaurantActivity/Restaurant")
-                                    .withString("displayTab", "RestaurantInFragment")
-                                    .navigation()
 
-                            }
+                        if (!TextUtils.isEmpty(list[position].linkUrl) && list[position].linkUrl.startsWith("apps")&&list[position].linkUrl.contains("code=")) {
+                            ARouter.getInstance()
+                                .build("/RestaurantActivity/Restaurant")
+                                .withString("displayTab", "RestaurantInFragment")
+                                .withString("id", list[position].linkUrl.split("code=")[1])
+                                .navigation()
+                        } else {
 
-                            1 -> {
-                                startActivity(Intent(mActivity, BusinessHomeActivity::class.java))
-                            }
-
-                            2 -> {
-                            }
-
-                            else -> {
-
-                            }
                         }
 
 
@@ -284,7 +292,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         val headView: View = layoutInflater.inflate(R.layout.mainhead, recyclerView.parent as ViewGroup, false)
         banner = headView.findViewById(R.id.banner)
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
-         headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
+        headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
 
         mGridViewPager?.setVis()
         hRecyclerView = headView.findViewById(R.id.hRecyclerView)
@@ -325,6 +333,8 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             }
 
 
+
+
             when (item.status) {
                 0 -> {// 0即将开始 1进行中 2已结束/已拍完
                     mbpai?.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
@@ -350,7 +360,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             ImageLoaderUtils.load(
                 BaseApplication.getIns(),
                 helper?.getView(R.id.iv_image_head),
-                item?.imageUrl,
+                item.imageUrl,
                 com.ppwc.restaurant.R.drawable.icon_place_pai,
                 com.ppwc.restaurant.R.drawable.icon_place_pai,
                 5

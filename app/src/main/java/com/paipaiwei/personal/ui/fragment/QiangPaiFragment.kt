@@ -7,7 +7,9 @@ import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.apis.QiangPaiService
+import com.paipaiwei.personal.bean.QiangPaiResultBean
 import com.paipaiwei.personal.present.QiangPaiPresent
+import com.paipaiwei.personal.ui.activity.onepay.OnePayMoneyFragment
 import com.yjhh.common.BaseApplication
 
 import com.yjhh.common.base.BaseFragment
@@ -37,6 +39,29 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
             tv_describe.text = modle.describe
         } else {
 
+
+            val modle2 = Gson().fromJson<QiangPaiResultBean>(response, QiangPaiResultBean::class.java)
+            var dialog: QiangPaiDialogFragment? = null
+            if (modle2.status != 0) { //抢拍失败
+                dialog = QiangPaiDialogFragment("抢拍失败", modle2.content, modle2.remark)
+            } else {
+                dialog = QiangPaiDialogFragment("抢拍成功", modle2.content, modle2.remark)
+            }
+
+            dialog.show(childFragmentManager, "TAG")
+
+            dialog.setOnDialogClick(object : QiangPaiDialogFragment.OnDialogClickListener {
+                override fun onDialogClick() {
+                    if (modle2.status != 0) {
+                        mActivity.onBackPressed()
+                    } else {
+                        start(OnePayMoneyFragment.newInstance(response,"限时抢拍"))
+                    }
+
+                    dialog.dismiss()
+                }
+
+            })
         }
 
 

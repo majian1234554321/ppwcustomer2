@@ -50,6 +50,7 @@ class MoreSectionAdapter(var activity: Activity, data: List<MoreSectionBean.Item
                 .withString("displayTab", "RestaurantInFragment")
                 .withString("type", "MORE")
                 .withString("typeValue", item.nodes[position].title)
+                .withString("id",item.nodes[position].code)
                 .navigation()
 
 
