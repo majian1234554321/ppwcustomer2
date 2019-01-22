@@ -1,5 +1,7 @@
 package com.paipaiwei.personal.common.utils;
 
+import android.text.TextUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,26 +15,27 @@ public class TimeUtil {
     /*
      * 将时间戳转换为时间
      */
-    public static String stampToDate(String s){
+    public static String stampToDate(String s) {
+        if (!TextUtils.isEmpty(s)) {
+            return "";
+        }
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long lt = new Long(s);
-        Date date = new Date(lt*1000);
+        Date date = new Date(lt * 1000);
         res = simpleDateFormat.format(date);
         return res;
     }
 
 
-
-    public static String stampToDate2(String s){
+    public static String stampToDate2(String s) {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         long lt = new Long(s);
-        Date date = new Date(lt*1000);
+        Date date = new Date(lt * 1000);
         res = simpleDateFormat.format(date);
         return res;
     }
-
 
 
     /*
@@ -42,7 +45,7 @@ public class TimeUtil {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = simpleDateFormat.parse(s);
-        long ts = date.getTime()/1000;
+        long ts = date.getTime() / 1000;
         res = String.valueOf(ts);
         return res;
     }

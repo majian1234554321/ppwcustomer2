@@ -57,7 +57,9 @@ public class Main3_1Bean {
          * payType : 1
          */
 
-
+        public int times;
+        public String time;
+        public String shopName;
         public String avatarUrl;
         public String couponDisplayText;
         public String createdTime;

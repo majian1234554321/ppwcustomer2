@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.adapter
 
+import android.graphics.Color
 import android.text.TextUtils
 import android.widget.ImageView
 import com.amap.api.services.core.PoiItem
@@ -12,16 +13,18 @@ import com.paipaiwei.personal.common.utils.ImageUtil
 import com.paipaiwei.personal.common.utils.TimeUtil
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.utils.ImageLoaderUtils
+import com.yjhh.common.utils.RxCountDown
 
 class Main3_1Adapter(data: List<Main3_1Bean.ItemsBean>) :
     BaseQuickAdapter<Main3_1Bean.ItemsBean, BaseViewHolder>(R.layout.main3_1adapter, data) {
 
 
     override fun convert(helper: BaseViewHolder?, item: Main3_1Bean.ItemsBean?) {
-        helper?.setText(R.id.tv_name, item?.nickName)
-            //?.setText(R.id.tv_time, TimeUtil.stampToDate(item?.createdTime))
+        helper?.setText(R.id.tv_name, item?.shopName)
+            ?.setText(R.id.tv_time, TimeUtil.stampToDate(item?.time))
             ?.setText(R.id.tv_price11, mContext.getString(R.string.rmb_price_double2, item?.totalMoney))
-            ?.setText(R.id.tv_status, item?.statusDisplayText)
+
+
 
 
         if (!TextUtils.isEmpty(item?.money)) {
@@ -32,41 +35,67 @@ class Main3_1Adapter(data: List<Main3_1Bean.ItemsBean>) :
         }
 
 
-        when (item?.status) {//1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭  8待评价 9待使用
+        when (item?.status) {// 1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用
             1 -> {
-                helper?.setText(R.id.tv_status,"待付款")
+                helper?.setText(R.id.tv_status, "待付款")
+                    ?.setVisible(R.id.mb_pay, true)?.setText(R.id.tv_status, "待付款")
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
+                RxCountDown.countdown(item?.times).subscribe {
+                    if (it != 0) {
+                        helper?.setText(R.id.tv_status, "待付款")
+                    } else {
+                        helper?.setText(R.id.tv_status, "已关闭")
+                    }
+                }
             }
 
+
             2 -> {
-                helper?.setText(R.id.tv_status,"已取消")
+                helper?.setText(R.id.tv_status, "已取消")
+                    ?.setGone(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#333333"))
             }
 
             3 -> {
-                helper?.setText(R.id.tv_status,"已付款")
+                helper?.setText(R.id.tv_status, "已付款")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
             }
 
             4 -> {
-                helper?.setText(R.id.tv_status,"已完成")
+                helper?.setText(R.id.tv_status, "已完成")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#333333"))
             }
 
             5 -> {
-                helper?.setText(R.id.tv_status,"配送中")
+                helper?.setText(R.id.tv_status, "配送中")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
             }
 
             6 -> {
-                helper?.setText(R.id.tv_status,"退款申请中")
+                helper?.setText(R.id.tv_status, "退款申请中")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
             }
 
             7 -> {
-                helper?.setText(R.id.tv_status,"已关闭")
+                helper?.setText(R.id.tv_status, "已关闭")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
             }
 
             8 -> {
-                helper?.setText(R.id.tv_status,"待评价")
+                helper?.setText(R.id.tv_status, "待评价")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#FFC536"))
             }
 
             9 -> {
-                helper?.setText(R.id.tv_status,"待使用")
+                helper?.setText(R.id.tv_status, "待使用")
+                    ?.setVisible(R.id.mb_pay, false)
+                    ?.setTextColor(R.id.tv_status, Color.parseColor("#2C85FF"))
             }
 
             else -> {
@@ -79,7 +108,7 @@ class Main3_1Adapter(data: List<Main3_1Bean.ItemsBean>) :
         ImageLoaderUtils.load(
             BaseApplication.context,
             helper?.getView<ImageView>(R.id.iv_image),
-            item?.avatarUrl,
+            item?.shopLogoUrl,
             R.drawable.icon_place_square,
             R.drawable.icon_place_square,
             0

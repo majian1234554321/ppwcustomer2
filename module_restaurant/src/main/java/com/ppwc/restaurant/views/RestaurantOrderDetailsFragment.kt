@@ -100,23 +100,91 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
             when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
                 1 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "待付款"
+                    mb_1.setTextColor(Color.parseColor("#FFffff"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
+
+                    mb_2.visibility = View.GONE
                 }
                 2 -> {
+
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "已取消"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
+
+
                 }
                 3 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "已付款"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 4 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "已完成"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 5 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "配送中"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 6 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "退款申请中"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 7 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "已关闭"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 8 -> {
-                    mb_2.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFC536"))
+
+
                     mb_2.visibility = View.VISIBLE
+                    mb_2.text = "待评价"
+                    mb_2.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_2.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFC536"))
+
                     mb_1.visibility = View.GONE
+
+                }
+
+                9 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "待使用"
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
+                }
+
+                10 -> {
+                    mb_1.visibility = View.VISIBLE
+                    mb_1.text = "已失效"
+                    mb_1.setTextColor(Color.parseColor("#FFE6E6E6"))
+
+                    mb_2.visibility = View.GONE
                 }
                 else -> {
                 }

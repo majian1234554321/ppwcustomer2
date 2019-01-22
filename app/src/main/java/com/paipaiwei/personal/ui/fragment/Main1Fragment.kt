@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -34,6 +35,7 @@ import com.paipaiwei.personal.ui.activity.SearchActivity
 import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
 import com.paipaiwei.personal.ui.activity.parishfood.BusinessHomeActivity
 import com.paipaiwei.personal.ui.customview.GridViewPager
+import com.paipaiwei.personal.ui.fragment.czqg.BuyOvervalueFragment
 import com.paipaiwei.personal.view.Main1View
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.uuzuche.lib_zxing.activity.CaptureActivity
@@ -44,8 +46,11 @@ import com.yjhh.common.utils.RxCountDown
 import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.RatingBar
 import com.youth.banner.Banner
+import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.main1fragment.*
 import kotlinx.android.synthetic.main.main1title.*
+import kotlinx.android.synthetic.main.mainhead.*
 import java.lang.StringBuilder
 
 
@@ -54,6 +59,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
     var startindex = 0
     val pageSize = 15
+    var headAdapter: Main1HeadAdapter? = null
 
 
     override fun onSuccess(main1bean: MainFinalDataBean, flag: String) {
@@ -69,6 +75,16 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                 .setDelayTime(5000)
                 .start()
 
+            banner!!.setOnBannerListener {
+                if ("apps://qiangpai/sup" == main1bean.main1HeadBean.banners.get(it).title) {
+                    (parentFragment as MainFragment).startBrotherFragment(
+                        BuyOvervalueFragment()
+                    )
+                } else {
+
+                }
+            }
+
 
             val list = ArrayList<Main1HeadBean.TabsBean>()
             list.clear()
@@ -81,11 +97,11 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
             if (main1bean.main1HeadBean.qiangPais != null) {
-                val headAdapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
+                headAdapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
 
                 hRecyclerView?.adapter = headAdapter
 
-                headAdapter.setOnItemClickListener { adapter, view, position ->
+                headAdapter?.setOnItemClickListener { adapter, view, position ->
 
                     (parentFragment as MainFragment).startBrotherFragment(
                         QiangPaiFragment.newInstance(
@@ -102,13 +118,35 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
 
+            if(main1bean.main1HeadBean.jinli != null){
+                iv_imagegame?.visibility = View.VISIBLE
+
+                iv_imagegame?.setOnClickListener {
+
+
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "BackViewFragment")
+                        .withString("value", main1bean.main1HeadBean.jinli.linkUrl)
+                        .navigation()
+
+
+                }
+            }else{
+                iv_imagegame?.visibility = View.GONE
+            }
+
+
             if (list.size > 0) {
                 mGridViewPager!!
                     .setPageSize(10)
                     .setGridItemClickListener { pos, position, str ->
 
 
-                        if (!TextUtils.isEmpty(list[position].linkUrl) && list[position].linkUrl.startsWith("apps")&&list[position].linkUrl.contains("code=")) {
+                        if (!TextUtils.isEmpty(list[position].linkUrl) && list[position].linkUrl.startsWith("apps") && list[position].linkUrl.contains(
+                                "code="
+                            )
+                        ) {
                             ARouter.getInstance()
                                 .build("/RestaurantActivity/Restaurant")
                                 .withString("displayTab", "RestaurantInFragment")
@@ -195,9 +233,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                 startActivity(Intent(mActivity, MoreSectionActivity::class.java))
             }
 
-            R.id.iv_imagegame -> {
-                (parentFragment as MainFragment).startBrotherFragment(QiangPaiFragment())
-            }
+
 
             else -> {
                 (parentFragment as MainFragment).startBrotherFragment(QiangPaiListFragment())
@@ -286,6 +322,8 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     var mGridViewPager: GridViewPager? = null
     var hRecyclerView: RecyclerView? = null
 
+    var iv_imagegame:ImageView? = null
+
     private fun addHeaderView() {
 
 
@@ -293,11 +331,13 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         banner = headView.findViewById(R.id.banner)
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
+        iv_imagegame=   headView.findViewById<ImageView>(R.id.iv_imagegame)
+
 
         mGridViewPager?.setVis()
         hRecyclerView = headView.findViewById(R.id.hRecyclerView)
-        val iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
-        iv_imagegame.setOnClickListener(this)
+
+
         hRecyclerView?.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 3)
 
         mAdapter?.addHeaderView(headView)
@@ -316,8 +356,19 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (headAdapter != null) {
+            headAdapter?.dis = null
+        }
+    }
+
+
     class Main1HeadAdapter(data: List<Main1HeadBean.QiangPaisBean>) :
         BaseQuickAdapter<Main1HeadBean.QiangPaisBean, BaseViewHolder>(R.layout.main1headadapter, data) {
+
+        var dis: Disposable? = null
+
         override fun convert(helper: BaseViewHolder?, item: Main1HeadBean.QiangPaisBean?) {
 
 
@@ -326,7 +377,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
             val mbpai = helper?.getView<TextView>(R.id.mb_pai)
 
-            val dis = RxCountDown.countdown(item!!.time).subscribe {
+            dis = RxCountDown.countdown(item!!.time).subscribe {
                 Log.i("Main1Fragment", it.toString())
                 helper?.setVisible(R.id.tv_count, it != 0)
                 helper?.setText(R.id.tv_count, "剩余  ${TimeUtil.secondToTime(it.toLong())}")
@@ -410,7 +461,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             if (item?.ifNews!!) {
                 helper?.setVisible(com.ppwc.restaurant.R.id.iv_zsj, true)
                 helper?.setText(com.ppwc.restaurant.R.id.iv_zsj, "新店")
-            } else if (item?.ifRec) {
+            } else if (item.ifRec) {
                 helper?.setVisible(com.ppwc.restaurant.R.id.iv_zsj, true)
                 helper?.setText(com.ppwc.restaurant.R.id.iv_zsj, "推荐")
             } else {
