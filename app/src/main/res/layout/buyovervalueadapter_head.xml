@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <ImageView android:layout_width="90pt" android:layout_height="90pt"
+               android:id="@+id/iv_headImage"
+               android:layout_marginRight="10pt"
+    />
+
+
+    <TextView
+            android:layout_toRightOf="@+id/iv_headImage"
+            android:layout_width="245pt"
+            android:id="@+id/tv_shopName"
+            android:layout_alignTop="@+id/iv_headImage"
+            android:layout_height="40pt"
+            android:text="小川料理小川料理小川料理小川料理宣传（汉街店）"
+            android:textColor="#FF333333"
+            android:textSize="14pt"
+    />
+
+
+    <com.yjhh.common.view.RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="100dp"
+            android:layout_marginTop="9pt"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_below="@+id/tv_shopName"
+            app:allStarsCount="5"
+            app:curSelectValue="1.5"
+            android:layout_toRightOf="@+id/iv_headImage"
+            app:starEmpty="@drawable/star_empty"
+            app:starFill="@drawable/star_full"
+            app:starHalf="@drawable/star_half_full"
+            app:starImageSize="15dp"
+            app:starPadding="5dp"
+            app:clickable="false"
+            app:stepSize="Half"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="25dp"
+              android:layout_below="@+id/tv_shopName"
+              android:layout_marginTop="9pt"
+              tools:text="100/人"
+              android:id="@+id/tv_renjun"
+              android:gravity="center"
+              android:textColor="#FF333333"
+              android:textSize="13pt"
+              android:paddingLeft="8pt"
+              android:layout_toRightOf="@+id/ratingbar"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="25dp"
+              android:layout_below="@+id/tv_shopName"
+              android:layout_marginTop="9pt"
+              tools:text="江浙菜"
+
+              android:id="@+id/tv_type"
+              android:gravity="center"
+              android:textColor="#FF333333"
+              android:textSize="13pt"
+              android:paddingLeft="8pt"
+              android:layout_toRightOf="@+id/tv_renjun"
+    />
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_toRightOf="@+id/iv_headImage"
+            android:drawableLeft="@drawable/icon_dingwei_gray"
+            android:layout_alignBottom="@+id/iv_headImage"
+            android:layout_height="16.5pt"
+            android:id="@+id/tv_address"
+            android:text="武昌区楚河南路汉街总部国际C座对面C…"
+            android:textColor="#FF999999"
+            android:textSize="12pt"
+    />
+
+
+</RelativeLayout>

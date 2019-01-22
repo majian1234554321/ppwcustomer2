@@ -29,7 +29,7 @@ public class QiangPaiListBean  {
         public int pageSize;
     }
 
-    public static class ItemsBeanX {
+    public static class ItemsBeanX implements  MultiItemEntity  {
         /**
          * begin : 1547794800
          * end : 1547816399
@@ -41,14 +41,19 @@ public class QiangPaiListBean  {
          * time : 0
          */
 
-        public int begin;
-        public int end;
+        public String begin;
+        public String end;
         public String name;
-        public int status;
+        public String status;
         public String statusText;
         public String testName;
         public int time;
         public List<ItemsBean> items;
+
+        @Override
+        public int getItemType() {
+            return  QiangPaiListAdapter.TYPE_LEVEL_0;
+        }
 
         public static class ItemsBean implements MultiItemEntity {
             /**
@@ -85,7 +90,7 @@ public class QiangPaiListBean  {
             public double price;
             public boolean rec;
             public String shopName;
-            public int status;
+            public String status;
             public String statusText;
             public int time;
             public String title;

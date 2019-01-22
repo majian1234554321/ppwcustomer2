@@ -30,9 +30,10 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
         when (checkedId) {
             R.id.rb1 -> {
                 rb1.setTextColor(Color.WHITE)
-                rb1.setBackgroundColor(Color.parseColor("#F9572D"))
+
                 rb2.setTextColor(Color.parseColor("#333333"))
-                rb2.setBackgroundColor(Color.WHITE)
+
+                rb1.isChecked = true
 
                 type = "0"
                 pageIndex = 1
@@ -40,9 +41,9 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
             }
             R.id.rb2 -> {
                 rb2.setTextColor(Color.WHITE)
-                rb2.setBackgroundColor(Color.parseColor("#F9572D"))
+                rb2.isChecked = true
                 rb1.setTextColor(Color.parseColor("#333333"))
-                rb1.setBackgroundColor(Color.WHITE)
+
 
                 type = "1"
                 pageIndex = 1
@@ -65,11 +66,12 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
 
         val newList = ArrayList<MultiItemEntity>()
         if (model?.items != null) {
+
+
             model.items.forEachIndexed { index, itemsBeanX ->
 
-                val headValue = HeadValue(itemsBeanX.name, itemsBeanX.statusText)
 
-                newList.add(headValue)
+                newList.add(itemsBeanX)
 
                 itemsBeanX.items.forEach {
                     newList.add(it)
@@ -143,6 +145,15 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
 
         }
 
+        mAdapter?.setOnItemChildClickListener { adapter, view, position ->
+            start(
+                QiangPaiFragment.newInstance(
+                    (adapter.data[position] as QiangPaiListBean.ItemsBeanX.ItemsBean).id,
+                    type
+                )
+            )
+        }
+
     }
 
     private fun refresh() {
@@ -159,11 +170,11 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
     }
 
 
-    data class HeadValue(var leftValue: String, var rightValue: String) : MultiItemEntity {
-        override fun getItemType(): Int {
-            return QiangPaiListAdapter.TYPE_LEVEL_0
-        }
-    }
+//    data class HeadValue(var leftValue: String, var rightValue: String, var status: String?) : MultiItemEntity {
+//        override fun getItemType(): Int {
+//            return QiangPaiListAdapter.TYPE_LEVEL_0
+//        }
+//    }
 
 
 }

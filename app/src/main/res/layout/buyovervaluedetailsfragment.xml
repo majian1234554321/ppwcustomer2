@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="超值抢购"
+                                       android:id="@+id/tbv_title"
+                                       android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@+id/tbv_title"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200pt"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20pt"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="10pt"
+                android:text="拍拍味KTV"
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:textColor="#FF333333"
+                android:textSize="14pt"
+        />
+
+        <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="5pt"
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_width="345pt"
+                android:layout_height="20pt"
+                android:text="拍拍味至尊为你转身豪华大包6小时体验"
+                android:textColor="#FF333333"
+                android:textSize="15pt"
+        />
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:singleLine="true"
+                      android:ellipsize="end"
+                      android:layout_marginTop="5pt"
+                      android:paddingLeft="15pt"
+                      android:paddingRight="15pt"
+
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="24pt"
+                    android:layout_height="17pt"
+                    android:text="现价"
+                    android:textColor="#FF333333"
+                    android:textSize="12pt"
+            />
+            <TextView
+                    android:layout_width="51pt"
+                    android:layout_height="17pt"
+                    android:text="9900.00"
+                    android:textColor="#F9572D"
+                    android:textSize="14pt"
+            />
+            <TextView
+                    android:layout_width="43pt"
+                    android:layout_height="14pt"
+                    android:text="￥299.00"
+                    android:textColor="#FF999999"
+                    android:textSize="10pt"
+            />
+
+
+        </LinearLayout>
+
+        <TextView
+                android:layout_marginTop="5pt"
+                android:singleLine="true"
+                android:ellipsize="end"
+
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_width="345pt"
+                android:layout_height="15pt"
+                android:text="限周一至周五使用"
+                android:textColor="#FF999999"
+                android:textSize="11pt"
+        />
+
+        <TextView
+                android:layout_marginTop="5pt"
+                android:layout_height="15pt"
+                android:singleLine="true"
+                android:ellipsize="end"
+
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_width="345pt"
+                android:text="有效时间：2018/11/11－2018/12/11"
+                android:textColor="#FF999999"
+                android:textSize="11pt"
+        />
+        <View
+                android:layout_width="345pt"
+                android:layout_height="0.5pt"
+                android:layout_marginTop="10pt"
+                android:layout_marginBottom="10pt"
+                android:layout_gravity="center"
+                android:background="#FFE6E6E6"
+        />
+        <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_width="345pt"
+
+                android:layout_height="18.5pt"
+                android:text="商品描述："
+                android:textColor="#FF666666"
+                android:textSize="13pt"
+        />
+
+        <TextView
+
+                android:paddingLeft="15pt"
+                android:paddingRight="15pt"
+                android:layout_width="345pt"
+                android:layout_height="73.5pt"
+                android:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
+                android:textColor="#FF666666"
+                android:textSize="13pt"
+        />
+    </LinearLayout>
+
+
+    <com.google.android.material.button.MaterialButton android:layout_width="255pt"
+                                                       app:cornerRadius="25pt"
+                                                       android:text="立即购买"
+                                                       android:layout_above="@+id/tv_rule"
+
+                                                       android:layout_centerHorizontal="true"
+                                                       app:backgroundTint="#F13716 "
+                                                       android:textColor="#FFFFFFFF"
+                                                       android:textSize="17pt"
+                                                       android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_width="57pt"
+            android:layout_height="20pt"
+            android:text="抢购规则"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="6pt"
+            android:id="@+id/tv_rule"
+            android:layout_marginBottom="10pt"
+            android:textColor="#FFF9572D"
+            android:textSize="14pt"
+    />
+
+</RelativeLayout>

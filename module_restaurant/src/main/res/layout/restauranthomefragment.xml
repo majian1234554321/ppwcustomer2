@@ -3,7 +3,7 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tl="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -80,7 +80,7 @@
                                   android:ellipsize="end"
                                   android:textSize="15pt"
                                   android:layout_height="wrap_content"
-                                  android:text="济州烤肉（汉街店）"
+                                  tools:text="济州烤肉（汉街店）"
                         />
 
 
@@ -123,7 +123,7 @@
                                   android:layout_height="wrap_content"
                                   android:id="@+id/tv_price"
 
-                                  android:text="武昌区  韩式烤肉"
+                                  tools:text="武昌区  韩式烤肉"
                         />
 
 
@@ -135,7 +135,7 @@
                                     android:paddingRight="15pt"
                                     android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content"
-                                  android:text="16:30-21:00营业"
+                                  tools:text="16:30-21:00营业"
                                   android:id="@+id/tv_times"
                                   android:textColor="#FF333333"
                                   android:paddingBottom="12pt"
@@ -165,7 +165,7 @@
                             android:drawablePadding="4pt"
                             android:drawableLeft="@drawable/icon_dingwei_gray"
                             android:paddingBottom="12pt"
-                            android:text="武昌区楚河南路汉街总部国际C座对面二楼"
+                            tools:text="武昌区楚河南路汉街总部国际C座对面二楼"
                             android:textColor="#FF333333"
                             android:textSize="13pt"
                     />
@@ -179,6 +179,8 @@
                     <LinearLayout android:layout_width="match_parent"
                                   android:orientation="vertical"
                                   android:paddingRight="21pt"
+                                  android:id="@+id/ll_qiangpai"
+                                  android:paddingTop="8pt"
                                   android:layout_height="wrap_content">
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                                   android:text="超值抢购"
@@ -189,14 +191,16 @@
 
 
                         <RelativeLayout android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_marginTop="9pt"
+                                        android:layout_marginBottom="9pt"
+                                        android:layout_height="90pt">
 
 
                             <ImageView android:layout_width="90pt"
                                        android:id="@+id/iv_image_buy"
                                        android:layout_marginRight="10pt"
-                                       android:layout_marginBottom="9pt"
-                                       android:layout_marginTop="9pt"
+
+
                                        android:layout_marginLeft="25pt"
                                        android:layout_height="90pt"/>
 
@@ -205,44 +209,50 @@
                                     android:layout_toRightOf="@+id/iv_image_buy"
                                     android:layout_width="wrap_content"
                                     android:layout_height="21pt"
-                                    android:id="@+id/iv_store_buy"
-                                    android:text="拍拍味日料寿司豪华礼券"
+                                    android:id="@+id/tv_store_buy"
+                                    tools:text="拍拍味日料寿司豪华礼券"
                                     android:textColor="#FF333333"
                                     android:textSize="15pt"
                             />
 
+
+                            <RelativeLayout android:layout_width="match_parent"
+                                            android:layout_below="@+id/tv_store_buy"
+                                            android:layout_toRightOf="@+id/iv_image_buy"
+                                            android:layout_height="wrap_content">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                                          tools:text="121212"
+                                          android:textColor="#F9572D"
+                                          android:textSize="17pt"
+
+
+                                          android:id="@+id/tv_price1"
+                                />
+
+
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                                          tools:text="121212"
+                                          android:layout_marginTop="10pt"
+                                         android:layout_centerVertical="true"
+                                          android:textColor="#FF999999"
+                                          android:textSize="12pt"
+                                          android:layout_marginLeft="5pt"
+                                          android:layout_toRightOf="@+id/tv_price1"
+                                          android:id="@+id/tv_price2"
+                                />
+                            </RelativeLayout>
+
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="18.5pt"
-                                    android:text="剩余15份"
+                                    tools:text="剩余15份"
                                     android:id="@+id/tv_tips"
                                     android:layout_toRightOf="@+id/iv_image_buy"
                                     android:layout_alignBottom="@+id/iv_image_buy"
                                     android:textColor="#FF666666"
                                     android:textSize="13pt"
-                            />
-
-
-                            <TextView android:layout_width="wrap_content" android:layout_height="20pt"
-                                      android:layout_below="@+id/iv_store_buy"
-                                      android:text="121212"
-                                      android:textColor="#F9572D"
-                                      android:textSize="17pt"
-                                      android:gravity="center"
-                                      android:layout_toRightOf="@+id/iv_image_buy"
-                                      android:id="@+id/tv_price1"
-                            />
-
-
-                            <TextView android:layout_width="wrap_content" android:layout_height="20pt"
-                                      android:layout_below="@+id/iv_store_buy"
-                                      android:text="121212"
-                                      android:gravity="center"
-                                      android:textColor="#FF999999"
-                                      android:textSize="12pt"
-                                      android:layout_marginLeft="5pt"
-                                      android:layout_toRightOf="@+id/tv_price1"
-                                      android:id="@+id/tv_price2"
                             />
 
 
@@ -254,12 +264,14 @@
                                       android:gravity="center"
                                       android:background="@drawable/button11"
                                       android:layout_alignParentRight="true"
-                                      android:layout_alignBottom="@+id/iv_image_buy"
+                                      android:layout_alignParentBottom="true"
                                       android:layout_height="30pt"/>
 
 
                         </RelativeLayout>
-
+                        <View android:layout_width="match_parent" android:layout_height="10pt"
+                              android:background="#F7F7F9 "
+                        />
 
                     </LinearLayout>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -11,153 +11,192 @@
                                        android:id="@+id/tbv_title"
                                        app:imageSrc="@drawable/icon_share"
                                        android:layout_height="wrap_content"/>
-<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-                                       android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:layout_height="match_parent">
 
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_marginTop="10pt"
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
-                  android:layout_height="wrap_content">
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_marginTop="10pt"
+                            android:layout_marginBottom="10pt"
+                            android:layout_height="28pt">
 
-                        android:layout_marginBottom="10pt"
-                        android:layout_height="28pt">
+
+                <TextView
+                        android:id="@+id/tv_countdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28pt"
+                        android:text="36:01"
+                        android:layout_toRightOf="@+id/view"
+                        android:textColor="#FFF9572D"
+                        android:textSize="20pt"
+                />
+                <View android:layout_width="0pt" android:layout_height="0pt"
+                      android:id="@+id/view"
+                      android:layout_marginLeft="2pt"
+                      android:layout_marginRight="2pt"
+                      android:layout_centerInParent="true"
+                />
+
+                <TextView
+                        android:layout_toLeftOf="@+id/view"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:layout_height="28pt"
+                        android:text="倒计时"
+                        android:textColor="#FF333333"
+                        android:textSize="14pt"
+                />
+
+            </RelativeLayout>
+            <ImageView android:layout_width="325pt" android:layout_height="178.5pt"
+                       android:layout_marginLeft="25pt"
+                       android:id="@+id/iv_image"
+                       android:layout_marginRight="25pt"
+            />
+            <TextView android:layout_width="match_parent"
+                      android:text="拍拍味KTV"
+                      android:textColor="#FF333333"
+                      android:textSize="14pt"
+                      android:paddingLeft="25pt"
+                      android:id="@+id/tv_Name"
+                      android:paddingTop="6pt"
+                      android:paddingRight="25pt"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                      android:text="拍拍味至尊为你转身豪华大包6小时体验"
+                      android:textColor="#FF333333"
+                      android:textSize="15pt"
+                      android:id="@+id/tv_info"
+                      android:paddingLeft="25pt"
+                      android:paddingTop="6pt"
+
+                      android:paddingRight="25pt"
+                      android:layout_height="wrap_content"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="25pt"
+                          android:orientation="horizontal"
+                          android:paddingRight="25pt"
+                          android:paddingTop="6pt"
+                          android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:text="抢拍价"
+
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="#FF333333"
+                        android:textSize="12pt"
+
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="9900.00"
+                        android:gravity="center"
+                        android:id="@+id/tv_price1"
+                        android:textColor="#F9572D"
+                        android:layout_marginLeft="5pt"
+                        android:layout_marginRight="5pt"
+                        android:textSize="14pt"
+                        android:layout_gravity="center"
+                />
+                <TextView
+                        android:id="@+id/tv_price2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="9900.00"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="#FF333333"
+                        android:textSize="14pt"
+                />
+
+            </LinearLayout>
 
 
             <TextView
-                    android:id="@+id/tv_countdown"
                     android:layout_width="wrap_content"
-                    android:layout_height="28pt"
-                    android:text="36:01"
-                    android:layout_toRightOf="@+id/view"
-                    android:textColor="#FFF9572D"
-                    android:textSize="20pt"
+                    android:paddingLeft="25pt"
+                    android:paddingRight="25pt"
+                    android:id="@+id/tv_useTime"
+                    android:paddingTop="6pt"
+                    android:layout_height="wrap_content"
+                    android:text="限周一至周五使用"
+                    android:textColor="#FF999999"
+                    android:textSize="11pt"
             />
-            <View android:layout_width="0pt" android:layout_height="0pt"
-                  android:id="@+id/view"
-                  android:layout_marginLeft="2pt"
-                  android:layout_marginRight="2pt"
-                  android:layout_centerInParent="true"
-            />
-
             <TextView
-                    android:layout_toLeftOf="@+id/view"
                     android:layout_width="wrap_content"
+                    android:paddingLeft="25pt"
+                    android:paddingRight="25pt"
+                    android:id="@+id/tv_time"
+                    android:paddingTop="6pt"
+                    android:layout_height="wrap_content"
+                    android:text="有效时间：2018/11/11－2018/12/11"
+                    android:textColor="#FF999999"
+                    android:textSize="11pt"
+            />
+            <RelativeLayout android:layout_width="match_parent"
+                            android:paddingLeft="25pt"
+                            android:paddingRight="25pt"
+                            android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="65.5pt"
+                        android:layout_height="wrap_content"
+                        android:text="商品描述："
+                        android:id="@+id/tv_des"
+                        android:paddingTop="12.5pt"
+                        android:textColor="#FF666666"
+                        android:textSize="13pt"
+                />
+
+
+                <TextView
+                        android:layout_toRightOf="@+id/tv_des"
+                        android:layout_width="259.5pt"
+                        android:paddingTop="12.5pt"
+                        android:id="@+id/tv_describe"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:layout_height="wrap_content"
+                        android:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
+                        android:textColor="#FF666666"
+                        android:textSize="13pt"
+                />
+
+
+            </RelativeLayout>
+            <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="85pt"
                     android:gravity="center"
-                    android:layout_height="28pt"
-                    android:text="倒计时"
-                    android:textColor="#FF333333"
-                    android:textSize="14pt"
+                    android:textColor="#FFFFFFFF"
+
+                    android:textSize="17pt"
+                    android:id="@+id/tv_submit"
+                    android:background="@drawable/button_normal002x"
+                    android:layout_height="85pt"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="抢拍规则"
+                      android:id="@+id/tv_rule"
+
+                      android:layout_gravity="center_horizontal"
+                      android:textColor="#FFF9572D"
+                      android:textSize="14pt"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="match_parent" android:layout_height="102pt"
+                       android:background="@drawable/beijing002x"
             />
 
-        </RelativeLayout>
-        <ImageView android:layout_width="325pt" android:layout_height="178.5pt"
-                   android:layout_marginLeft="25pt"
-                   android:id="@+id/iv_image"
-                   android:layout_marginRight="25pt"
-        />
-        <TextView android:layout_width="match_parent"
-                  android:text="拍拍味KTV"
-                  android:textColor="#FF333333"
-                  android:textSize="14pt"
-                  android:paddingLeft="25pt"
-                  android:id="@+id/tv_Name"
-                  android:paddingTop="6pt"
-                  android:paddingRight="25pt"
-                  android:layout_height="wrap_content"/>
-        <TextView android:layout_width="match_parent"
-                  android:text="拍拍味至尊为你转身豪华大包6小时体验"
-                  android:textColor="#FF333333"
-                  android:textSize="15pt"
-                  android:id="@+id/tv_info"
-                  android:paddingLeft="25pt"
-                  android:paddingTop="6pt"
-
-                  android:paddingRight="25pt"
-                  android:layout_height="wrap_content"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:text="价值"
-                android:paddingTop="6pt"
-                android:paddingLeft="25pt"
-                android:paddingRight="25pt"
-                android:textColor="#FF333333"
-                android:textSize="12pt"
-
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:paddingLeft="25pt"
-                android:paddingRight="25pt"
-                android:id="@+id/tv_useTime"
-                android:paddingTop="6pt"
-                android:layout_height="wrap_content"
-                android:text="限周一至周五使用"
-                android:textColor="#FF999999"
-                android:textSize="11pt"
-        />
-        <TextView
-                android:layout_width="wrap_content"
-                android:paddingLeft="25pt"
-                android:paddingRight="25pt"
-                android:id="@+id/tv_time"
-                android:paddingTop="6pt"
-                android:layout_height="wrap_content"
-                android:text="有效时间：2018/11/11－2018/12/11"
-                android:textColor="#FF999999"
-                android:textSize="11pt"
-        />
-        <RelativeLayout android:layout_width="match_parent"
-                        android:paddingLeft="25pt"
-                        android:paddingRight="25pt"
-                        android:layout_height="wrap_content">
-            <TextView
-                    android:layout_width="65.5pt"
-                    android:layout_height="wrap_content"
-                    android:text="商品描述："
-                    android:id="@+id/tv_des"
-                    android:paddingTop="12.5pt"
-                    android:textColor="#FF666666"
-                    android:textSize="13pt"
-            />
-
-
-            <TextView
-                    android:layout_toRightOf="@+id/tv_des"
-                    android:layout_width="259.5pt"
-                    android:paddingTop="12.5pt"
-                    android:id="@+id/tv_describe"
-                    android:maxLines="5"
-                    android:ellipsize="end"
-                    android:layout_height="wrap_content"
-                    android:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
-                    android:textColor="#FF666666"
-                    android:textSize="13pt"
-            />
-
-
-        </RelativeLayout>
-        <TextView
-                android:layout_gravity="center_horizontal"
-                android:layout_width="85pt"
-                android:id="@+id/tv_submit"
-                android:background="@drawable/button_normal002x"
-                android:layout_height="85pt"/>
-        <TextView android:layout_width="wrap_content"
-                  android:text="抢拍规则"
-                  android:id="@+id/tv_rule"
-                  android:layout_gravity="center_horizontal"
-                  android:textColor="#FFF9572D"
-                  android:textSize="14pt"
-                  android:layout_height="wrap_content"/>
-        <ImageView android:layout_width="match_parent" android:layout_height="102pt"
-                   android:background="@drawable/beijing002x"
-        />
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>

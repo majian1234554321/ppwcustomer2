@@ -9,8 +9,17 @@ import retrofit2.http.POST
 
 interface BuyOvervalueService {
     @FormUrlEncoded
-    @POST("qiangPai/buy")
+    @POST("qiangPai/supData")
     fun overByList(@FieldMap map: Map<String, String>): Observable<ResponseBody>
+
+
+    @POST("qiangPai/sup")
+    fun overBynav(): Observable<ResponseBody>
+
+
+
+
+
 
     interface BuyOvervalueView : BaseView {
         fun onBuyOvervalue(response: String?, flag: String?)

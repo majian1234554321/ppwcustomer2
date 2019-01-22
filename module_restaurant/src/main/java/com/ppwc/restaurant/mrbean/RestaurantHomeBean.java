@@ -52,6 +52,22 @@ public class RestaurantHomeBean {
     public List<UserCommentBean> userComment;
     public List<CommentLabel> commentLabel;
 
+    public List<QiangPai> qiangPai;
+
+    public static class QiangPai {
+        public String beginTime;
+        public String costPrice;
+        public String count;
+        public String countText;
+        public String endTime;
+        public String id;
+        public String imageUrl;
+        public String markPrice;
+        public String shopName;
+        public String time;
+        public String title;
+
+    }
 
     public static class CommentLabel {
         public String title;

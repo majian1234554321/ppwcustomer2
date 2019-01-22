@@ -2,6 +2,7 @@ package com.ppwc.restaurant.views
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import com.alibaba.android.arouter.launcher.ARouter
 
 import com.flyco.tablayout.listener.CustomTabEntity
 
@@ -35,6 +37,7 @@ import com.yjhh.common.bean.TabEntity
 import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.PhoneUtils
 import com.yjhh.common.utils.ShareUtils
+import com.yjhh.common.utils.TextStyleUtils
 import com.yjhh.common.view.AlertDialogFactory
 import kotlinx.android.synthetic.main.restauranthomefragment.*
 
@@ -50,8 +53,8 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                 BaseApplication.getIns(),
                 iv_image,
                 model.logoUrl,
-                R.drawable.icon_place_pai,
-                R.drawable.icon_place_pai,
+                R.drawable.icon_place_square,
+                R.drawable.icon_place_square,
                 5
             )
         }
@@ -80,6 +83,44 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         tv_renjun.text = "${model.renj}/每人"
 
+
+        if (model.qiangPai != null && model.qiangPai.size > 0) {
+            ll_qiangpai.visibility = View.VISIBLE
+            tv_store_buy.text = model.qiangPai[0].shopName
+
+
+            val price1 = "￥${model.qiangPai[0].costPrice}"
+            tv_price1.text = TextStyleUtils.changeTextAa(price1, 0, 1, 10)
+            tv_price2.text = "￥${model.qiangPai[0].markPrice}"
+            tv_price2.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+
+            tv_tips.text = model.qiangPai[0].countText
+
+            ImageLoaderUtils.load(
+                BaseApplication.getIns(),
+                iv_image_buy,
+                model.qiangPai.get(0).imageUrl,
+                R.drawable.icon_place_square,
+                R.drawable.icon_place_square,
+                5
+            )
+
+
+            tv_buy.setOnClickListener {
+
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "BuyOvervalueDetailsFragment")
+                    //.withString("id", (adapter.data[position] as Main1FootBean.ItemsBean).id)
+                    .navigation()
+
+
+            }
+
+
+        } else {
+            ll_qiangpai.visibility = View.GONE
+        }
 
 
         iv_tel.setOnClickListener {
@@ -165,7 +206,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             R.id.iv_share -> {
 
-                ShareUtils.dialog(mActivity,mIUiListener)
+                ShareUtils.dialog(mActivity, mIUiListener)
             }
 
             R.id.tv_buy -> {

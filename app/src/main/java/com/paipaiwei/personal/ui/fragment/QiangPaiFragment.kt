@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,7 +15,11 @@ import com.yjhh.common.BaseApplication
 
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.ImageLoaderUtils
+import com.yjhh.common.utils.RxCountDown
+import com.yjhh.common.utils.TextStyleUtils
+import com.yjhh.common.utils.TimeUtil
 import kotlinx.android.synthetic.main.qiangpaifragment.*
+import kotlin.text.Typography.times
 
 
 class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.QiangPaiView {
@@ -32,10 +37,49 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
                 R.drawable.icon_place_square,
                 0
             )
+
+            when (modle.status) { //0即将开始 1进行中 2已结束/已拍完/已过期
+                0 -> {
+                    tv_submit.text = "即将\n开拍"
+                    tv_countdown.text = TimeUtil.stampToDate(modle.beginTime.toString(), "HH:mm")
+                    tv_submit.setBackgroundResource(R.drawable.button_bukedianji2x)
+                }
+                1 -> {
+
+                    val dis = RxCountDown.countdown(modle.time).subscribe {
+                        if (it == 0) {
+                            tv_submit.text = "已结束"
+                            tv_submit.isEnabled = false
+                            tv_submit.setBackgroundResource(R.drawable.button_bukedianji2x)
+                            tv_countdown.visibility = View.INVISIBLE
+                        } else {
+                            if (tv_countdown != null)
+                                tv_countdown.text = TimeUtil.secondToTime(it.toLong())
+                        }
+                    }
+                    compositeDisposable.add(dis)
+
+
+                }
+                else -> {
+                    tv_submit.text = "已拍完"
+                    tv_submit.setBackgroundResource(R.drawable.button_bukedianji2x)
+
+                }
+            }
+
+
+
+
+
             tv_Name.text = modle.shopName
-//        tv_info =
-//        tv_useTime =
-//        tv_time =
+            tv_des.text = modle.describe
+
+            val price1 = "￥${modle.markPrice}"
+            tv_price1.text = TextStyleUtils.changeTextAa(price1, 0, 1, 10)
+            tv_price2.text = "￥${modle.costPrice}"
+            tv_price2.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+            tv_info.text = modle.title
             tv_describe.text = modle.describe
         } else {
 
@@ -55,7 +99,7 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
                     if (modle2.status != 0) {
                         mActivity.onBackPressed()
                     } else {
-                        start(OnePayMoneyFragment.newInstance(response,"限时抢拍"))
+                        start(OnePayMoneyFragment.newInstance(response, "限时抢拍"))
                     }
 
                     dialog.dismiss()
@@ -118,14 +162,14 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
 
     data class QiangPaiDetailsBean(
         val beginTime: Int,
-        val costPrice: Double,
+        val costPrice: String,
         val count: Int,
         val countText: String,
         val describe: String,
         val endTime: Int,
         val id: Int,
         val imageUrl: String,
-        val markPrice: Double,
+        val markPrice: String,
         val memo: String,
         val price: Double,
         val rec: Boolean,

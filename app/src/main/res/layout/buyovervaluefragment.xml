@@ -9,6 +9,18 @@
                                        android:id="@+id/tbv_title"
                                        android:layout_height="wrap_content"/>
 
+    <com.paipaiwei.personal.ui.customview.EnhanceTabLayout
+            android:id="@+id/mTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorWidth="30dp"
+            app:tabTextColor="#999999"
+            app:tab_Mode="mode_scrollable"
+            app:tabSelectTextColor="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabTextSize="6sp"
+    />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout android:layout_width="match_parent"
                                                        android:id="@+id/swipeLayout"

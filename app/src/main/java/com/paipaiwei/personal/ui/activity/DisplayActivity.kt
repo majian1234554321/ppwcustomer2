@@ -14,6 +14,8 @@ import com.paipaiwei.personal.bean.rxbusbean.RxAddressBean
 import com.paipaiwei.personal.ui.activity.login.ForgotPasswordFragment
 import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
 import com.paipaiwei.personal.ui.fragment.*
+import com.paipaiwei.personal.ui.fragment.czqg.BuyOvervalueDetailsFragment
+import com.paipaiwei.personal.ui.fragment.czqg.BuyOvervalueFragment
 
 import kotlinx.android.synthetic.main.activity_display.*
 
@@ -139,6 +141,13 @@ class DisplayActivity : BaseActivity() {
                 fragments = BackViewFragment.newInstance(value)
             }
 
+            "BuyOvervalueFragment"->{
+                fragments = BuyOvervalueFragment()
+            }
+
+            "BuyOvervalueDetailsFragment"->{
+                fragments = BuyOvervalueDetailsFragment()
+            }
 
 
             else -> {

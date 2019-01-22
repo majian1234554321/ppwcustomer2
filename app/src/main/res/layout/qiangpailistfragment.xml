@@ -17,17 +17,19 @@
                 android:paddingBottom="13pt"
                 android:paddingRight="15pt"
                 android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="60pt">
 
         <RadioButton android:layout_width="157pt"
                      android:button="@null"
                      android:id="@+id/rb1"
                      android:layout_marginRight="15pt"
                      android:gravity="center"
-                     android:background="#FFF9572D"
+                     android:background="@drawable/radio_selector"
+                     android:shadowRadius="8"
+                     android:checked="true"
                      android:text="今日抢拍"
                      android:layout_gravity="left"
-                     android:textColor="#FF333333"
+                     android:textColor="@color/white"
                      android:textSize="17pt"
                      android:layout_height="34pt"/>
         <RadioButton android:layout_width="157pt"
@@ -36,6 +38,7 @@
                      android:layout_marginLeft="15pt"
                      android:text="明日预告"
                      android:layout_gravity="right"
+                     android:background="@drawable/radio_selector"
                      android:gravity="center"
                      android:textColor="#FF333333"
                      android:textSize="17pt"
