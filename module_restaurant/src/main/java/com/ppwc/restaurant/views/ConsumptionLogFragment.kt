@@ -15,6 +15,7 @@ import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.utils.TimeUtil
 import kotlinx.android.synthetic.main.consumptionlogfragment.*
 
 class ConsumptionLogFragment : BaseFragment(), RestaurantOrderSerVice.RestaurantOrderView {
@@ -24,10 +25,16 @@ class ConsumptionLogFragment : BaseFragment(), RestaurantOrderSerVice.Restaurant
             if (bean.items.isEmpty() && pageIndex == 0) {
                 onEmptyView()
             } else {
-
+                mAdapter?.setNewData(bean.items)
             }
         } else {
-
+            if (bean.items.isNotEmpty() && bean.items.size == pageSize) {
+                mAdapter?.addData(bean.items)
+                mAdapter?.loadMoreComplete()
+            } else {
+                mAdapter?.addData(bean.items)
+                mAdapter?.loadMoreEnd()
+            }
         }
 
 
@@ -40,7 +47,7 @@ class ConsumptionLogFragment : BaseFragment(), RestaurantOrderSerVice.Restaurant
     override fun getLayoutRes(): Int = R.layout.consumptionlogfragment
 
     var mAdapter: ConsumptionLogAdapter? = null
-    val listValue = ArrayList<String>()
+    val listValue = ArrayList<Item>()
     var pageIndex = 0
     val pageSize = 15
 
@@ -109,20 +116,37 @@ class ConsumptionLogFragment : BaseFragment(), RestaurantOrderSerVice.Restaurant
     }
 
 
-    class ConsumptionLogAdapter(data: List<String>) :
-        BaseQuickAdapter<String, BaseViewHolder>(R.layout.consumptionlogadapter, data) {
-        override fun convert(helper: BaseViewHolder?, item: String?) {
-
+    class ConsumptionLogAdapter(data: List<Item>) :
+        BaseQuickAdapter<Item, BaseViewHolder>(R.layout.consumptionlogadapter, data) {
+        override fun convert(helper: BaseViewHolder?, item: Item?) {
+            helper?.setText(R.id.tv_payType, item?.typeName)
+                ?.setText(R.id.tv_payInfo, item?.content)
+                ?.setText(R.id.tv_time, TimeUtil.stampToDate(item?.createdTime))
+                ?.setText(R.id.tv_price, mContext.getString(R.string.rmb_price_doubled, item?.money))
         }
 
     }
 
 
     data class CounsLogBean(
-        val items: List<Any>,
+        val items: List<Item>,
         val pageCount: Int,
         val queryModel: QueryModel,
         val recordCount: Int
+    )
+
+    data class Item(
+        val balance: Int,
+        val content: String,
+        val createdTime: String,
+        val flag: Int,
+        val freeze: Double,
+        val money: Double,
+        val total: Int,
+        val tradeType: Int,
+        val tradeTypeName: String,
+        val type: Int,
+        val typeName: String
     )
 
     data class QueryModel(

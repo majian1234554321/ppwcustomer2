@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +28,7 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.GlideLoader
 import kotlinx.android.synthetic.main.restaurantinfragment.*
 
-class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadView {
+class SecondRestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadView {
     override fun MeiShiFootValue(model: MeiShiFootBean, flag: String?) {
 
 
@@ -79,29 +78,7 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
             val mAdapter = RestaurantInTabAdapter(model.tabsModuleModels)
             rv_h.adapter = mAdapter
 
-            mAdapter.setOnItemClickListener { adapter, view, position ->
-                //apps://general/index?code=0101
-                if (!TextUtils.isEmpty(model.tabsModuleModels.get(position).linkUrl)) {
-                    if (model.tabsModuleModels.get(position).linkUrl.startsWith("apps") && model.tabsModuleModels.get(
-                            position
-                        ).linkUrl.contains("code=")
-                    ) {
-                        start(
-                            SecondRestaurantInFragment.newInstance(
-                                "MORE",
-                                model.tabsModuleModels.get(position).text,
-                                model.tabsModuleModels.get(position).linkUrl.split("code=")[1]
-                            )
-                        )
-                    } else {
-                        ARouter.getInstance()
-                            .build("/DisplayActivity/Display")
-                            .withString("displayTab", "BackViewFragment")
-                            .withString("value", model.tabsModuleModels.get(position).linkUrl)
-                            .navigation()
-                    }
-                }
-
+            mAdapter.setOnItemChildClickListener { adapter, view, position ->
 
             }
 
@@ -481,8 +458,8 @@ class RestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiHeadVie
 
 
     companion object {
-        fun newInstance(type: String?, typeValue: String?, code: String?): RestaurantInFragment {
-            val fragment = RestaurantInFragment()
+        fun newInstance(type: String?, typeValue: String?, code: String?): SecondRestaurantInFragment {
+            val fragment = SecondRestaurantInFragment()
             val bundle = Bundle()
             bundle.putString("type", type)
             bundle.putString("typeValue", typeValue)

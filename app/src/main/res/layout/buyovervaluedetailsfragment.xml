@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -15,15 +15,18 @@
             android:layout_below="@+id/tbv_title"
             android:layout_width="match_parent" android:layout_height="wrap_content">
 
-        <ImageView android:layout_width="match_parent" android:layout_height="200pt"/>
+        <ImageView android:layout_width="match_parent"
+                   android:id="@+id/iv_image"
+                   android:layout_height="200pt"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="20pt"
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:id="@+id/tv_Name"
                 android:layout_marginTop="10pt"
-                android:text="拍拍味KTV"
+                tools:text="拍拍味KTV"
                 android:paddingLeft="15pt"
                 android:paddingRight="15pt"
                 android:textColor="#FF333333"
@@ -33,12 +36,13 @@
         <TextView
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:id="@+id/tv_info"
                 android:layout_marginTop="5pt"
                 android:paddingLeft="15pt"
                 android:paddingRight="15pt"
                 android:layout_width="345pt"
                 android:layout_height="20pt"
-                android:text="拍拍味至尊为你转身豪华大包6小时体验"
+                tools:text="拍拍味至尊为你转身豪华大包6小时体验"
                 android:textColor="#FF333333"
                 android:textSize="15pt"
         />
@@ -54,7 +58,7 @@
                       android:layout_height="wrap_content">
 
             <TextView
-                    android:layout_width="24pt"
+                    android:layout_width="wrap_content"
                     android:layout_height="17pt"
                     android:text="现价"
                     android:textColor="#FF333333"
@@ -62,15 +66,17 @@
             />
             <TextView
                     android:layout_width="51pt"
+                    android:id="@+id/tv_price1"
                     android:layout_height="17pt"
-                    android:text="9900.00"
+                    tools:text="9900.00"
                     android:textColor="#F9572D"
                     android:textSize="14pt"
             />
             <TextView
                     android:layout_width="43pt"
+                    android:id="@+id/tv_price2"
                     android:layout_height="14pt"
-                    android:text="￥299.00"
+                    tools:text="￥299.00"
                     android:textColor="#FF999999"
                     android:textSize="10pt"
             />
@@ -87,7 +93,7 @@
                 android:paddingRight="15pt"
                 android:layout_width="345pt"
                 android:layout_height="15pt"
-                android:text="限周一至周五使用"
+                tools:text="限周一至周五使用"
                 android:textColor="#FF999999"
                 android:textSize="11pt"
         />
@@ -101,7 +107,7 @@
                 android:paddingLeft="15pt"
                 android:paddingRight="15pt"
                 android:layout_width="345pt"
-                android:text="有效时间：2018/11/11－2018/12/11"
+                tools:text="有效时间：2018/11/11－2018/12/11"
                 android:textColor="#FF999999"
                 android:textSize="11pt"
         />
@@ -128,12 +134,12 @@
         />
 
         <TextView
-
+                android:id="@+id/tv_describe"
                 android:paddingLeft="15pt"
                 android:paddingRight="15pt"
                 android:layout_width="345pt"
                 android:layout_height="73.5pt"
-                android:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
+                tools:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
                 android:textColor="#FF666666"
                 android:textSize="13pt"
         />
@@ -144,7 +150,7 @@
                                                        app:cornerRadius="25pt"
                                                        android:text="立即购买"
                                                        android:layout_above="@+id/tv_rule"
-
+                                                       android:id="@+id/tv_submit"
                                                        android:layout_centerHorizontal="true"
                                                        app:backgroundTint="#F13716 "
                                                        android:textColor="#FFFFFFFF"

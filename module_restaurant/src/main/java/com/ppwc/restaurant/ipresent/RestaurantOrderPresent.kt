@@ -13,7 +13,7 @@ class RestaurantOrderPresent(var context: Context, var view: RestaurantOrderSerV
 
     fun detail(orderId: String?,flag:String) {
         map.clear()
-        map.put("orderId", orderId)
+        map.put("id", orderId)
 
         toSubscribe2(ApiServices.getInstance().create(RestaurantOrderSerVice::class.java).detail(map),
             object : ProcessObserver2(context) {

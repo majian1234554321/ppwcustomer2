@@ -20,7 +20,6 @@ import com.paipaiwei.personal.ui.fragment.czqg.BuyOvervalueFragment
 import kotlinx.android.synthetic.main.activity_display.*
 
 
-
 @Route(path = "/DisplayActivity/Display")
 class DisplayActivity : BaseActivity() {
 
@@ -37,12 +36,14 @@ class DisplayActivity : BaseActivity() {
     var value: String? = null
 
 
-
-    var value1:String?= null
+    var value1: String? = null
 
     @Autowired
     @JvmField
     var bean: RxAddressBean? = null
+
+
+    val jumpType = "DisplayActivity"
 
     //var fragments: BaseFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,8 +63,8 @@ class DisplayActivity : BaseActivity() {
         var fragments: BaseFragment? = null
         when (displayTab) {
 
-            "CollectionFragment"->{
-                fragments =   CollectionFragment.newInstance(value)
+            "CollectionFragment" -> {
+                fragments = CollectionFragment.newInstance(value)
             }
 
             "RegistFragment" -> {
@@ -128,7 +129,7 @@ class DisplayActivity : BaseActivity() {
             }
 
 
-            "OnePayFragment" ->{
+            "OnePayFragment" -> {
                 fragments = OnePayFragment()
             }
 
@@ -137,16 +138,16 @@ class DisplayActivity : BaseActivity() {
 
             }
 
-            "BackViewFragment" ->{
+            "BackViewFragment" -> {
                 fragments = BackViewFragment.newInstance(value)
             }
 
-            "BuyOvervalueFragment"->{
+            "BuyOvervalueFragment" -> {
                 fragments = BuyOvervalueFragment()
             }
 
-            "BuyOvervalueDetailsFragment"->{
-                fragments = BuyOvervalueDetailsFragment()
+            "BuyOvervalueDetailsFragment" -> {
+                fragments = BuyOvervalueDetailsFragment.newInstance(value, value1,jumpType)
             }
 
 

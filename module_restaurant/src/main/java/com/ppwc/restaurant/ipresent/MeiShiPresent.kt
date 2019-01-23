@@ -17,7 +17,7 @@ class MeiShiPresent(var context: Context, var view: MeiShiHeadView) : BasePresen
 
 
 
-    fun module(code:String) {
+    fun module(code:String?) {
         map.clear()
         map["code"]= code
         toSubscribe2(ApiServices.getInstance().create(MeiShiService::class.java).module(map), object : ProcessObserver2(context,true) {

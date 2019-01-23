@@ -47,7 +47,7 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
                 1 -> {
 
                     val dis = RxCountDown.countdown(modle.time).subscribe {
-                        if (it == 0) {
+                        if (it == 0&&tv_submit!=null) {
                             tv_submit.text = "已结束"
                             tv_submit.isEnabled = false
                             tv_submit.setBackgroundResource(R.drawable.button_bukedianji2x)
@@ -82,8 +82,6 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
             tv_info.text = modle.title
             tv_describe.text = modle.describe
         } else {
-
-
             val modle2 = Gson().fromJson<QiangPaiResultBean>(response, QiangPaiResultBean::class.java)
             var dialog: QiangPaiDialogFragment? = null
             if (modle2.status != 0) { //抢拍失败
@@ -130,7 +128,6 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
     }
 
     var present: QiangPaiPresent? = null
-
     var idValue: String? = null
     var typeValue: String? = null
 

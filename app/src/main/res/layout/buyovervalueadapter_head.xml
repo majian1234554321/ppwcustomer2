@@ -2,21 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+    <View android:layout_width="match_parent" android:layout_height="10pt"
+
+          android:id="@+id/view"
+          android:background="@color/e6"
+    />
+
     <ImageView android:layout_width="90pt" android:layout_height="90pt"
                android:id="@+id/iv_headImage"
-               android:layout_marginRight="10pt"
+               android:layout_below="@+id/view"
+               android:layout_margin="10pt"
     />
 
 
     <TextView
             android:layout_toRightOf="@+id/iv_headImage"
-            android:layout_width="245pt"
+            android:layout_width="match_parent"
             android:id="@+id/tv_shopName"
             android:layout_alignTop="@+id/iv_headImage"
             android:layout_height="40pt"
-            android:text="小川料理小川料理小川料理小川料理宣传（汉街店）"
+            tools:text="小川料理小川料理小川料理小川料理宣传（汉街店）"
             android:textColor="#FF333333"
             android:textSize="14pt"
     />
@@ -74,7 +83,7 @@
             android:layout_alignBottom="@+id/iv_headImage"
             android:layout_height="16.5pt"
             android:id="@+id/tv_address"
-            android:text="武昌区楚河南路汉街总部国际C座对面C…"
+            tools:text="武昌区楚河南路汉街总部国际C座对面C…"
             android:textColor="#FF999999"
             android:textSize="12pt"
     />

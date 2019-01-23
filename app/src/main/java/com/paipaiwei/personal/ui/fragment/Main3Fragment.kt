@@ -59,7 +59,7 @@ class Main3Fragment : BaseMainFragment(), OrderView {
 
                     val orderNavBean = Gson().fromJson(response, Array<OrderNavBean>::class.java)
                     orderNavBean.forEach {
-                        listNav.add(it.name)
+                        listNav.add(it.title)
                     }
 
 

@@ -163,6 +163,7 @@ public class MeiShiHeadBean {
          * text : 占位
          */
 
+        public String linkUrl;
         public String iconUrl;
         public boolean ifBuild;
         public boolean ifHideText;

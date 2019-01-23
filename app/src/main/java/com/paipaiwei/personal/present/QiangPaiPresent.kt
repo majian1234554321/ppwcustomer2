@@ -22,7 +22,6 @@ class QiangPaiPresent(var context: Context, var view: QiangPaiService.QiangPaiVi
 
                 override fun onFault(message: String) {
                     view.onFault(message)
-
                     Log.i("qiangPaiList", message)
                 }
 

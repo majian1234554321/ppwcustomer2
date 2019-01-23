@@ -178,10 +178,10 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val dis = RxView.clicks(tv_pay).throttleFirst(2, TimeUnit.SECONDS)
             .subscribe {
                 if (rb_alipay.isChecked) {
-                    payPresent?.paymentByAli(model.orderId, model.money.toString())
+                    payPresent?.paymentByAli(model.id, model.money.toString())
 
                 } else {
-                    payPresent?.paymentByWx(model.orderId, model.money.toString())
+                    payPresent?.paymentByWx(model.id, model.money.toString())
                 }
             }
 

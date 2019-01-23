@@ -10,5 +10,6 @@ public class OrderNavBean {
 
     public boolean ifCurr;
     public String name;
+    public String title;
     public String value;
 }

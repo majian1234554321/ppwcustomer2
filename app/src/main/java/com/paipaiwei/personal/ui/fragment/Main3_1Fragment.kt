@@ -34,7 +34,17 @@ class Main3_1Fragment : BaseFragment(), OrderView {
     override fun onSuccessOrder(response: String?, flag: String?) {
         val model = Gson().fromJson<Main3_1Bean>(response, Main3_1Bean::class.java)
         if ("refresh" == flag) {
-            mAdapter?.setNewData(model.items)
+            if(model.items!=null&&model.items.isNotEmpty()){
+                mAdapter?.setNewData(model.items)
+            }else{
+                val view = View.inflate(mActivity, R.layout.emptyview, null)
+                view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+
+                mAdapter?.data?.clear()
+                mAdapter?.notifyDataSetChanged()
+                mAdapter?.setEmptyView(R.layout.emptyview,mRecyclerView)
+            }
+
         } else {
             mAdapter?.addData(model.items)
 

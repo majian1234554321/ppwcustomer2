@@ -65,28 +65,45 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
         val model = Gson().fromJson<QiangPaiListBean>(response, QiangPaiListBean::class.java)
 
         val newList = ArrayList<MultiItemEntity>()
-        if (model?.items != null) {
 
 
-            model.items.forEachIndexed { index, itemsBeanX ->
+        when (flag) {
+            "refresh" -> {
+                if (model?.items != null && model.items.isNotEmpty()) {
+                    model.items.forEachIndexed { index, itemsBeanX ->
+                        newList.add(itemsBeanX)
+                        itemsBeanX.items.forEach {
+                            newList.add(it)
+                        }
+                    }
+                    mAdapter?.setNewData(newList)
+                } else {
 
-
-                newList.add(itemsBeanX)
-
-                itemsBeanX.items.forEach {
-                    newList.add(it)
+                    val view = View.inflate(mActivity, R.layout.emptyview, null)
+                    view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+                    mAdapter?.data?.clear()
+                    mAdapter?.notifyDataSetChanged()
+                    mAdapter?.emptyView = view
                 }
+
             }
-
-
-            if ("refresh" == flag) {
-                mAdapter?.setNewData(newList)
-            } else {
-                if (model.items.size != pageSize) {
+            else -> {
+                if (model?.items != null && model.items.isNotEmpty()) {
+                    model.items.forEachIndexed { index, itemsBeanX ->
+                        newList.add(itemsBeanX)
+                        itemsBeanX.items.forEach {
+                            newList.add(it)
+                        }
+                    }
+                    if (model.items.size != pageSize) {
+                        mAdapter?.loadMoreEnd()
+                    } else {
+                        mAdapter?.loadMoreComplete()
+                    }
+                } else {
                     mAdapter?.loadMoreEnd()
                 }
             }
-
         }
 
 

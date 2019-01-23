@@ -76,12 +76,17 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                 .start()
 
             banner!!.setOnBannerListener {
-                if ("apps://qiangpai/sup" == main1bean.main1HeadBean.banners.get(it).title) {
+                if ("apps://qiangpai/sup" == main1bean.main1HeadBean.banners[it].linkUrl) {
                     (parentFragment as MainFragment).startBrotherFragment(
                         BuyOvervalueFragment()
                     )
                 } else {
 
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "BackViewFragment")
+                        .withString("value", main1bean.main1HeadBean.banners[it].linkUrl)
+                        .navigation()
                 }
             }
 
@@ -118,7 +123,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
 
-            if(main1bean.main1HeadBean.jinli != null){
+            if (main1bean.main1HeadBean.jinli != null) {
                 iv_imagegame?.visibility = View.VISIBLE
 
                 iv_imagegame?.setOnClickListener {
@@ -132,7 +137,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
                 }
-            }else{
+            } else {
                 iv_imagegame?.visibility = View.GONE
             }
 
@@ -234,7 +239,6 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             }
 
 
-
             else -> {
                 (parentFragment as MainFragment).startBrotherFragment(QiangPaiListFragment())
             }
@@ -322,7 +326,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     var mGridViewPager: GridViewPager? = null
     var hRecyclerView: RecyclerView? = null
 
-    var iv_imagegame:ImageView? = null
+    var iv_imagegame: ImageView? = null
 
     private fun addHeaderView() {
 
@@ -331,7 +335,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         banner = headView.findViewById(R.id.banner)
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
-        iv_imagegame=   headView.findViewById<ImageView>(R.id.iv_imagegame)
+        iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
 
 
         mGridViewPager?.setVis()

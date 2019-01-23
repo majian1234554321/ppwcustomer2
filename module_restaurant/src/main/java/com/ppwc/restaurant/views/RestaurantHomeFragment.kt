@@ -111,7 +111,8 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "BuyOvervalueDetailsFragment")
-                    //.withString("id", (adapter.data[position] as Main1FootBean.ItemsBean).id)
+                    .withString("value", model.qiangPai[0].id)
+                    .withString("value1", "")
                     .navigation()
 
 
@@ -152,10 +153,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
 
-
-
-
-
         if (model.oneMoney != null && model.oneMoney.size > 0) {
             titles1.add("一元拍")
 
@@ -170,7 +167,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
         if (model.userComment != null && model.userComment.size > 0) {
-            titles1.add("店铺推荐")
+            titles1.add("用户评价")
             listValue.add(MultipleItem(MultipleItem.C, model.userComment, model.userCommentCount, model.commentLabel))
         }
 

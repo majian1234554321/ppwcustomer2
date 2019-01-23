@@ -59,8 +59,6 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
 
                 if ("01001" == jsonValue.optString("code")) {
                     Toast.makeText(context, "请重新登录", Toast.LENGTH_SHORT).show()
-
-
                     SharedPreferencesUtils.setParam(context, "mobile", "")
                     SharedPreferencesUtils.setParam(context, "nickName", "")
                     SharedPreferencesUtils.setParam(context, "sessionId", "")

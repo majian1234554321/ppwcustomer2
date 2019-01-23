@@ -43,6 +43,7 @@ public class Main1HeadBean {
         public boolean ifAdv;
         public String imageUrl;
         public String title;
+        public String linkUrl;
     }
 
     public static class QiangPaisBean {

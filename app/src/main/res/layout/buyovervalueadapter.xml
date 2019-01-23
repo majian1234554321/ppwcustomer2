@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30pt"
                 android:layout_marginRight="15pt"
+                android:layout_marginBottom="10pt"
                 android:layout_height="wrap_content">
 
     <View
@@ -40,21 +41,26 @@
             android:layout_marginTop="5pt"
             android:layout_height="18pt"
             android:layout_below="@+id/tv_couName"
-            android:text="剩余13份"
+            tools:text="剩余13份"
+            android:id="@+id/tv_countText"
             android:textColor="#FF666666"
             android:textSize="13pt"
     />
 
 
+
+
+
     <com.google.android.material.button.MaterialButton android:layout_width="wrap_content"
                                                        android:text="立即购买"
                                                        app:cornerRadius="25pt"
+                                                       android:id="@+id/mb_pay"
                                                        app:backgroundTint="#F9572D"
                                                        android:layout_alignBottom="@+id/iv_image"
                                                        android:layout_alignParentRight="true"
                                                        android:textColor="#FFFFFFFF"
-                                                       android:textSize="14pt"
-                                                       android:layout_height="wrap_content"/>
+                                                       android:textSize="12pt"
+                                                       android:layout_height="40pt"/>
 
 
 </RelativeLayout>

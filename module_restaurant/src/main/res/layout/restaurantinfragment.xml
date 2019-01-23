@@ -8,37 +8,33 @@
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:id="@+id/appBarLayout"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Light">
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:background="@color/white"
+                app:statusBarBackground="@color/white"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
                 android:id="@+id/collapsingToolbarLayout"
                 app:expandedTitleGravity="left|bottom"
-                app:expandedTitleMarginBottom="100dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-
-
-
         >
 
-
             <RelativeLayout android:layout_width="match_parent"
-                            android:layout_marginTop="54pt"
+                            android:layout_marginTop="64dp"
                             android:layout_height="wrap_content">
                 <com.google.android.material.card.MaterialCardView
                         app:cardCornerRadius="25pt"
-                        android:layout_marginTop="12pt"
+
                         app:cardBackgroundColor="#ECECF2"
                         android:background="#ECECF2"
                         android:layout_gravity="center_horizontal"
                         android:id="@+id/mcv_Search_type"
                         android:layout_width="310pt"
                         android:layout_centerInParent="true"
-
                         android:layout_height="30pt">
 
                     <TextView
@@ -55,10 +51,15 @@
                     />
 
                 </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                               xmlns:app="http://schemas.android.com/apk/res-auto"
-                              android:layout_marginTop="48dp"
                               android:id="@+id/ll_typeA"
                               android:orientation="vertical" android:layout_width="match_parent"
                               android:layout_height="wrap_content">
@@ -86,24 +87,29 @@
             </RelativeLayout>
 
 
-
             <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="48dp"
                     android:layout_gravity="top"
+                    android:id="@+id/toolbar"
                     app:contentInsetStart="@dimen/spi_8"
-                    android:background="@color/white"
-                    app:layout_collapseMode="pin">
+                    android:background="@color/transparent"
+                    app:layout_collapseMode="pin"
+
+            >
 
                 <RelativeLayout android:layout_width="match_parent"
-                                android:layout_marginTop="24pt"
-                                android:layout_height="match_parent">
+                                android:layout_height="wrap_content">
 
-                    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                               android:id="@+id/iv_back"
-                               android:layout_centerVertical="true"
-                               android:src="@drawable/icon_arrow_left_black"
-                    />
+
+                    <ImageView
+                            android:id="@+id/iv_back"
+
+
+                            android:layout_width="22pt"
+                            android:layout_centerVertical="true"
+                            android:layout_height="22pt"/>
+
 
                     <TextView android:layout_width="wrap_content"
                               android:textColor="#FF333333"
@@ -116,7 +122,7 @@
 
                     <ImageView android:layout_width="22pt"
                                android:id="@+id/iv_search"
-                              android:layout_marginRight="15pt"
+                               android:layout_marginRight="15pt"
                                android:layout_alignParentRight="true"
                                android:layout_centerVertical="true"
                                android:layout_height="22pt"
@@ -127,7 +133,7 @@
                     <com.google.android.material.card.MaterialCardView
                             app:cardCornerRadius="25pt"
                             app:cardBackgroundColor="#ECECF2"
-                            android:background="#ECECF2"
+                            android:background="@color/transparent"
                             android:id="@+id/mcv_Search"
                             android:layout_width="310pt"
                             android:layout_centerInParent="true"
@@ -140,7 +146,7 @@
                                 android:drawableLeft="@drawable/iv_search"
                                 android:layout_width="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="请输入城市名或拼音"
+                                android:text="请输入商家"
                                 android:gravity="center"
                                 android:drawablePadding="8pt"
                                 android:layout_gravity="center"
@@ -160,9 +166,10 @@
 
         <RelativeLayout
                 android:id="@+id/rg"
+                android:background="@color/white"
                 android:orientation="horizontal"
-
-                android:layout_width="match_parent" android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <TextView android:layout_width="wrap_content"
                       android:gravity="center"

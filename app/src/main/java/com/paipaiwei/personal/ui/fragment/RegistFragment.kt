@@ -148,9 +148,9 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
 
-                Toast.makeText(mActivity, "事件触发了1", Toast.LENGTH_SHORT).show()
+
+
 
 
                 checkbox.isChecked = false
@@ -169,7 +169,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
             override fun onClick(widget: View) {
                 //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
 
-                Toast.makeText(mActivity, "事件触发了2", Toast.LENGTH_SHORT).show()
+
 
                 checkbox.isChecked = false
             }

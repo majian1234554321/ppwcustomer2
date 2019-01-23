@@ -19,7 +19,7 @@ interface RestaurantOrderSerVice {
     fun del(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
     @FormUrlEncoded
-    @POST("useraccount/logs")
+    @POST("userAccount/logs")
     fun logs(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
 
 
