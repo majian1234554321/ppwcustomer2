@@ -14,7 +14,6 @@ import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 
 
-
 import com.yjhh.common.api.CommonService
 import com.yjhh.common.iview.CommonView
 import com.yjhh.common.model.InitBean
@@ -24,7 +23,6 @@ import io.reactivex.schedulers.Schedulers
 
 
 class CommonPresent(var context: Context, var view: CommonView) : BasePresent() {
-
 
     fun UpLoadFile(file: File) {
 
@@ -52,7 +50,6 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
 
 
     }
-
 
     fun UpLoadFiles(files: List<File?>) {
 
@@ -88,7 +85,6 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
 
     }
 
-
     fun checkVersion() {
         ApiServices.getInstance()
             .create(CommonService::class.java)
@@ -114,7 +110,6 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
 
     }
 
-
     fun init() {
         ApiServices.getInstance()
             .create(CommonService::class.java)
@@ -137,5 +132,31 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
             })
     }
 
+    fun collect(itemType: String?, itemId: String?) {
+        map.clear()
+        map.put("itemType", itemType)
+        map.put("itemId", itemId)
+
+        toSubscribe2(
+            ApiServices.getInstance().create(CommonService::class.java)
+                .collect(map), object : ProcessObserver2(context, true) {
+                override fun processValue(response: String?) {
+                    Log.i("collect", response)
+                    view.onSuccess(response)
+                }
+
+                override fun onFault(message: String) {
+                    Log.i("collect", message)
+                    view.onFault(message)
+                }
+            }
+        )
+
+
+    }
+
+    fun zan() {
+
+    }
 
 }

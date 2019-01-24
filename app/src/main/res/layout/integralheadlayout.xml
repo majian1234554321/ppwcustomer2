@@ -22,7 +22,9 @@
     <TextView
             android:text="金币明细（个）"
             android:textColor="#FF333333"
+            android:id="@+id/tv_tips"
             android:textSize="14pt"
+            android:visibility="invisible"
             android:paddingTop="30pt"
             android:paddingLeft="15pt"
             android:paddingBottom="8pt"

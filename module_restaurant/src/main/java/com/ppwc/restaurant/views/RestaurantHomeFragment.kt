@@ -34,6 +34,8 @@ import com.yjhh.common.BaseApplication
 
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.bean.TabEntity
+import com.yjhh.common.iview.CommonView
+import com.yjhh.common.present.CommonPresent
 import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.PhoneUtils
 import com.yjhh.common.utils.ShareUtils
@@ -42,7 +44,11 @@ import com.yjhh.common.view.AlertDialogFactory
 import kotlinx.android.synthetic.main.restauranthomefragment.*
 
 
-class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantView {
+class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantView, CommonView {
+    override fun onSuccess(value: String?) {
+
+    }
+
     override fun onRestaurantValue(model: RestaurantHomeBean) {
 
         if (tv_image_text != null)
@@ -215,8 +221,9 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             }
 
             R.id.iv_like -> {
-                iv_like.setBackgroundResource(R.drawable.xingxing02)
+               // iv_like.setBackgroundResource(R.drawable.xingxing02)
 
+                CommonPresent(mActivity, this).collect("1",shopId)
 
             }
 
@@ -239,14 +246,21 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
     var mAdapter: RestaurantHomeAdapter? = null
 
-
     var present: ShopPresent? = null
 
     override fun initView() {
-
+        shopId = arguments?.getString("id")
         mIUiListener = MyIUiListener()
 
         present = ShopPresent(mActivity, this)
+
+
+        /**
+         * itemType  类别(0商品 1店铺 2文章)
+         *
+         * itemId  商品id/店铺id/文章Id
+         */
+
 
 
         mTabLayout_7.tabMode = MODE_FIXED
@@ -261,14 +275,13 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         recyclerView.adapter = mAdapter
 
-        shopId = arguments?.getString("id")
+
 
         present?.shop(shopId)
 
 
 
         iv_like.setBackgroundResource(R.drawable.icon_unlike)
-
 
         mTabLayout_7.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -288,7 +301,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             }
         })
-
 
         val mOnScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -310,8 +322,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
         }
-
-
 
         recyclerView.addOnScrollListener(mOnScrollListener)
 

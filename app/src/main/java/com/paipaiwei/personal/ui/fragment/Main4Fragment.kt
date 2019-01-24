@@ -36,11 +36,15 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             R.id.iev_about -> {
 
-                ARouter.getInstance()
-                    .build("/DisplayActivity/Display")
-                    .withString("displayTab", "AboutFragment")
-                    .withInt("age", 23)
-                    .navigation(context)
+//                ARouter.getInstance()
+//                    .build("/DisplayActivity/Display")
+//                    .withString("displayTab", "AboutFragment")
+//                    .withInt("age", 23)
+//                    .navigation(context)
+
+
+                (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
+
 
             }
 
@@ -126,7 +130,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
-                        .withString("name", "老王")
+
                         .withInt("age", 23)
                         .navigation(context)
                 }
@@ -141,7 +145,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
-                        .withString("name", "老王")
+
                         .withInt("age", 23)
                         .navigation(context)
                 }

@@ -8,6 +8,7 @@ import com.paipaiwei.personal.common.ScaleTransformer
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.ArrayMap
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
@@ -41,8 +42,19 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
     }
 
     override fun onMembershipCardValue(model: MembershipCardBean) {
-        mAdapter?.setNewData(model.items)
-        list.addAll(model.items)
+
+
+        if (model.items.isNotEmpty()) {
+            mAdapter?.setNewData(model.items)
+            list.addAll(model.items)
+        }else{
+            val view = View.inflate(mActivity, R.layout.emptyview, null)
+            view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+            mAdapter?.data?.clear()
+            mAdapter?.notifyDataSetChanged()
+            mAdapter?.emptyView = view
+        }
+
     }
 
 

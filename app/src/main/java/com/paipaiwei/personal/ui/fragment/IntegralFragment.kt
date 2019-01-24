@@ -16,6 +16,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.view.ViewGroup
 import android.text.style.RelativeSizeSpan
+import kotlinx.android.synthetic.main.integralheadlayout.*
 
 
 class IntegralFragment : BaseFragment(), IntegralView {
@@ -31,7 +32,7 @@ class IntegralFragment : BaseFragment(), IntegralView {
         if ("refresh" == flag) {
 
             var textintegral = "0 个"
-
+            tv_tips?.visibility = View.VISIBLE
             if (value.integral != null) {
                 textintegral = value.integral.plus(" 个")
             }
@@ -90,12 +91,13 @@ class IntegralFragment : BaseFragment(), IntegralView {
     }
 
     var tv_count: TextView? = null
-
+    var tv_tips: TextView? = null
     private fun addHeader() {
 
         val headView: View =
             layoutInflater.inflate(R.layout.integralheadlayout, mRecyclerView.parent as ViewGroup, false)
         tv_count = headView.findViewById<TextView>(R.id.tv_count)
+        tv_tips = headView.findViewById<TextView>(R.id.tv_tips)
 
         mAdapter?.addHeaderView(headView)
 

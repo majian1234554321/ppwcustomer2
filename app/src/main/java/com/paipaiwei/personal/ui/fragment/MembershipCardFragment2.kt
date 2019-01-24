@@ -1,6 +1,7 @@
 package com.paipaiwei.personal.ui.fragment
 
 import android.graphics.drawable.Drawable
+import android.view.View
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import kotlinx.android.synthetic.main.membershipcardfragment2.*
@@ -26,8 +27,19 @@ class MembershipCardFragment2 : BaseFragment(), MembershipCardView {
     }
 
     override fun onMembershipCardValue(model: MembershipCardBean) {
-        mAdapter?.setNewData(model.items)
-        list.addAll(model.items)
+
+
+        if (model.items.isNotEmpty()) {
+            mAdapter?.setNewData(model.items)
+            list.addAll(model.items)
+        }else{
+            val view = View.inflate(mActivity, R.layout.emptyview, null)
+            view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+            mAdapter?.data?.clear()
+            mAdapter?.notifyDataSetChanged()
+            mAdapter?.emptyView = view
+        }
+
     }
 
 

@@ -15,6 +15,7 @@ import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.RxBus
+import com.yjhh.common.utils.RxCountDown
 import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.AlertDialogFactory
 import com.yjhh.common.view.TitleBarView
@@ -100,10 +101,29 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
             when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
                 1 -> {
-                    mb_1.visibility = View.VISIBLE
-                    mb_1.text = "待付款"
-                    mb_1.setTextColor(Color.parseColor("#FFffff"))
-                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
+
+                        val dis = RxCountDown.countdown(orderDetailsBean.times).subscribe {
+                            if (mb_1!=null) {
+                                mb_1.visibility = View.VISIBLE
+                                if (it <= 0) {
+
+                                    mb_1.text = "已失效"
+                                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+
+                                    mb_2.visibility = View.GONE
+                                } else {
+
+                                    mb_1.text = "剩余支付时间  ${TimeUtil.secondToTime(it.toLong())}"
+                                    mb_1.setTextColor(Color.parseColor("#FFffff"))
+                                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
+                                }
+                            }
+
+
+                    }
+                    compositeDisposable.add(dis)
+
 
                     mb_2.visibility = View.GONE
                 }
@@ -182,7 +202,8 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                 10 -> {
                     mb_1.visibility = View.VISIBLE
                     mb_1.text = "已失效"
-                    mb_1.setTextColor(Color.parseColor("#FFE6E6E6"))
+                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
 
                     mb_2.visibility = View.GONE
                 }
@@ -205,7 +226,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.mb_1 -> {
-
+               // start(OnePayMoneyFragment())
             }
             R.id.mb_2 -> {
                 start(OrderEvaluationFragment())
@@ -218,6 +239,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     override fun getLayoutRes(): Int = R.layout.restaurantorderdetailsfragment
 
     var present: RestaurantOrderPresent? = null
+
 
     override fun initView() {
         val orderId = arguments?.getString("id")

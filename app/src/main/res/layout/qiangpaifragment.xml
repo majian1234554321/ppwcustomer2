@@ -29,7 +29,7 @@
                         android:id="@+id/tv_countdown"
                         android:layout_width="wrap_content"
                         android:layout_height="28pt"
-                        android:text="36:01"
+                        tools:text="36:01"
                         android:layout_toRightOf="@+id/view"
                         android:textColor="#FFF9572D"
                         android:textSize="20pt"
@@ -67,7 +67,7 @@
                       android:paddingRight="25pt"
                       android:layout_height="wrap_content"/>
             <TextView android:layout_width="match_parent"
-                      android:text="拍拍味至尊为你转身豪华大包6小时体验"
+                      tools:text="拍拍味至尊为你转身豪华大包6小时体验"
                       android:textColor="#FF333333"
                       android:textSize="15pt"
                       android:id="@+id/tv_info"
@@ -128,7 +128,7 @@
                     android:id="@+id/tv_useTime"
                     android:paddingTop="6pt"
                     android:layout_height="wrap_content"
-                    android:text="限周一至周五使用"
+                    tools:text="限周一至周五使用"
                     android:textColor="#FF999999"
                     android:textSize="11pt"
             />
@@ -139,7 +139,7 @@
                     android:id="@+id/tv_time"
                     android:paddingTop="6pt"
                     android:layout_height="wrap_content"
-                    android:text="有效时间：2018/11/11－2018/12/11"
+                    tools:text="有效时间：2018/11/11－2018/12/11"
                     android:textColor="#FF999999"
                     android:textSize="11pt"
             />
@@ -166,7 +166,7 @@
                         android:maxLines="5"
                         android:ellipsize="end"
                         android:layout_height="wrap_content"
-                        android:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
+                        tools:text="买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣，只有拍拍味才能享受如此帝王般的实在，简直白拿买不到的实惠买不到的折扣只有"
                         android:textColor="#FF666666"
                         android:textSize="13pt"
                 />

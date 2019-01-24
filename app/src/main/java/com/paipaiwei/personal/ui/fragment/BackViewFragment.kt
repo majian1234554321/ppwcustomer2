@@ -81,7 +81,7 @@ class BackViewFragment : BaseFragment() {
         map.put("User-Agent", WebSettings.getDefaultUserAgent(BaseApplication.context) + "PPW_App")
         map.put("userAgent", "PPW_App")
 
-        map.put("PPW-TERMINAL", "1") //（0 用户端 1商户端)
+        map.put("PPW-TERMINAL", "0") //（0 用户端 1商户端)
         map.put(
             "PPW-APP-VERSION",
             APKVersionCodeUtils.getVersionCode(

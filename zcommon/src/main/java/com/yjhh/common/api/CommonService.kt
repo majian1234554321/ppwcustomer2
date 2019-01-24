@@ -3,10 +3,7 @@ package com.yjhh.common.api
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.PartMap
+import retrofit2.http.*
 
 interface CommonService {
 
@@ -27,5 +24,12 @@ interface CommonService {
     @POST("common/init")
     fun init(): Observable<ResponseBody>//
 
+    @FormUrlEncoded
+    @POST("usercollect/collect")
+    fun collect(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
+
+    @FormUrlEncoded
+    @POST("product/zan")
+    fun zan(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
 }

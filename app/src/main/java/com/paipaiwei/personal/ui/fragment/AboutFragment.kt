@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
@@ -33,10 +34,9 @@ class AboutFragment : BaseFragment() {
 
     override fun initView() {
 
+        ImmersionBar.setTitleBar(mActivity, tbv_title)
 
         recyclerView.layoutManager = LinearLayoutManager(mActivity)
-
-
 
 
         mAdapter = AboutAdapter(list)

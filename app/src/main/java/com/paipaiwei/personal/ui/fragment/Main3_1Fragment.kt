@@ -129,6 +129,14 @@ class Main3_1Fragment : BaseFragment(), OrderView {
                 .navigation()
         }
 
+        mAdapter?.setOnItemChildClickListener { adapter, view, position ->
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "RestaurantOrderDetailsFragment")
+                .withString("id", (adapter.data[position] as Main3_1Bean.ItemsBean).id)
+                .navigation()
+        }
+
 
     }
 

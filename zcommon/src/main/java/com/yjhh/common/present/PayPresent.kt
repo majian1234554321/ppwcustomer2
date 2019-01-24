@@ -14,7 +14,7 @@ class PayPresent(var context: Context,var payViiew:PayView) : BasePresent() {
 
 
 
-    fun paymentByWx(id:String,money:String) {
+    fun paymentByWx(id:String?,money:String?) {
 
         map.clear()
         map["id"] = id

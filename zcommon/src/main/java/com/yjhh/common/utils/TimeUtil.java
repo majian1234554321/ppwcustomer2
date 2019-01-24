@@ -106,7 +106,7 @@ public class TimeUtil {
                 hoursstring = "0" + hours;
         }
 
-        if (minutes > 0) {
+        if (minutes >= 0) {
             if (minutes >= 10)
                 minutesstring = String.valueOf(minutes);
             else

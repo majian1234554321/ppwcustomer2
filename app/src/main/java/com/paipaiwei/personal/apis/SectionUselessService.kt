@@ -23,11 +23,11 @@ interface SectionUselessService {
 
 
     @FormUrlEncoded
-    @POST("useraccount/logs")
+    @POST("userAccount/logs")
     fun useraccount(@FieldMap map: Map<String, String>): Observable<ResponseBody>// 资金记录/积分记录
 
 
-    @POST("useraccount")
+    @POST("userAccount")
     fun useraccountindex(): Observable<ResponseBody>// 我的余额/积分
 
 

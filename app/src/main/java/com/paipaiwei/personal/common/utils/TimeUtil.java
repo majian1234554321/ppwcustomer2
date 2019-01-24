@@ -16,7 +16,7 @@ public class TimeUtil {
      * 将时间戳转换为时间
      */
     public static String stampToDate(String s) {
-        if (!TextUtils.isEmpty(s)) {
+        if (TextUtils.isEmpty(s)) {
             return "";
         }
         String res;
