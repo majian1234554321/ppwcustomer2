@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -91,7 +92,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
         if ("oneMoneyBuy" == flag) {
 
 
-            start(OnePayMoneyFragment.newInstance(model,"道具购买"))
+            start(OnePayMoneyFragment.newInstance(model, "道具购买"))
         }
 
 
@@ -99,6 +100,7 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
     override fun onFault(errorMsg: String?) {
 
+        Toast.makeText(mActivity, errorMsg, Toast.LENGTH_LONG).show()
 
     }
 

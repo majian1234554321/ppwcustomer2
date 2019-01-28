@@ -17,6 +17,8 @@ import com.yjhh.ppwbusiness.iview.PasswordView
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.present.PasswordPresent
 import com.paipaiwei.personal.ui.activity.MainActivity
+import com.paipaiwei.personal.ui.fragment.BackViewFragment
+import com.yjhh.common.api.CommonService
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,6 +46,24 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
             }
             R.id.loginPassword -> {
                 mActivity.onBackPressed()
+            }
+
+            R.id.tv_kaidian ->{
+                ApiServices.getInstance().create(CommonService::class.java)
+                    .init()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : ProcessObserver2(mActivity) {
+                        override fun processValue(response: String?) {
+                            Log.i("01018", response)
+                            start(BackViewFragment.newInstance(JSONObject(response).optString("applyShopUrl")))
+
+                        }
+
+                        override fun onFault(message: String) {
+                            Log.i("01018", message)
+                        }
+                    })
             }
             else -> {
             }
@@ -94,7 +114,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
 
     override fun initView() {
 
-        arrayOf(loginPassword, btn_login).forEach {
+        arrayOf(loginPassword, btn_login,tv_kaidian).forEach {
             it.setOnClickListener(this)
         }
 

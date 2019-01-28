@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
@@ -75,6 +76,7 @@ class AllFeedBackFragment : BaseFragment(), AboutView {
 
 
     override fun initView() {
+        ImmersionBar.setTitleBar(activity, tbv_title)
         peresent = AboutPresent(mActivity, this)
 
         initRefreshLayout()

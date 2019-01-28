@@ -28,11 +28,14 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.present.LoginPresent
 import com.paipaiwei.personal.ui.activity.MainActivity
+import com.paipaiwei.personal.ui.fragment.BackViewFragment
 import com.paipaiwei.personal.ui.fragment.RegistFragment
 import com.paipaiwei.personal.view.LoginView
+import com.yjhh.common.api.CommonService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.module_login_activity_login.*
 
 import org.json.JSONObject
@@ -106,6 +109,27 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
 
             R.id.loginSMS -> {
                 start(LoginSMSFragment())
+            }
+
+            R.id.tv_question -> {
+                ApiServices.getInstance().create(CommonService::class.java)
+                    .init()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : ProcessObserver2(context) {
+                        override fun processValue(response: String?) {
+                            Log.i("EvaluateManageFragment", response)
+
+                            start(BackViewFragment.newInstance(JSONObject(response).optString("helpIndexUrl")))
+                        }
+
+                        override fun onFault(message: String) {
+                            Log.i("EvaluateManageFragment", message)
+                        }
+
+                    })
+
+
             }
 
 
@@ -187,7 +211,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                 }
             }
 
-        val view = arrayOf(iv_show_pwd, regist, forget_password, iv_close, iv_weChat, iv_sina, loginSMS)
+        val view = arrayOf(iv_show_pwd, regist, forget_password, iv_close, iv_weChat, iv_sina, loginSMS,tv_question)
 
         view.forEach {
             it.setOnClickListener(this)

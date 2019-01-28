@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.gyf.barlibrary.ImmersionBar
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.APKVersionCodeUtils
@@ -27,8 +28,11 @@ class BackViewFragment : BaseFragment() {
 
     override fun initView() {
         val url = arguments?.getString("url")
+        val type = arguments?.getString("type")
 
-
+        if (!TextUtils.isEmpty(type)) {
+            ImmersionBar.setTitleBar(mActivity, rl)
+        }
 
 
         mWebView.clearCache(true)
@@ -57,13 +61,12 @@ class BackViewFragment : BaseFragment() {
         mWebView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                 if(newProgress==100){
-                     progressBar1.visibility = View.GONE
-				}
-				else{
-                     progressBar1.visibility = View.VISIBLE
-                     progressBar1.progress = newProgress
-				}
+                if (newProgress == 100) {
+                    progressBar1.visibility = View.GONE
+                } else {
+                    progressBar1.visibility = View.VISIBLE
+                    progressBar1.progress = newProgress
+                }
 
             }
 
@@ -105,14 +108,17 @@ class BackViewFragment : BaseFragment() {
         mWebView.loadUrl(url, map)
 
 
+        // mWebView.loadUrl("file:////android_asset/a.html")
+
+
         mWebView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-
+                //  mWebView.loadUrl("javascript:show(0)")
             }
         }
 
-         mWebView.addJavascriptInterface(MyJSInterface(mActivity), "android")
+        mWebView.addJavascriptInterface(MyJSInterface(mActivity), "android")
 
 
         iv_back.setOnClickListener {
@@ -145,6 +151,17 @@ class BackViewFragment : BaseFragment() {
             val bundle = Bundle()
 
             bundle.putString("url", url)
+
+            fragment.arguments = bundle
+            return fragment
+        }
+
+        fun newInstance(url: String?, type: String?): BackViewFragment {
+            val fragment = BackViewFragment()
+            val bundle = Bundle()
+
+            bundle.putString("url", url)
+            bundle.putString("type", type)
             fragment.arguments = bundle
             return fragment
         }

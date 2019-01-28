@@ -4,20 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.view.RxView
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.common.utils.DateUtil
-import com.paipaiwei.personal.common.utils.TimeUtil
-import com.paipaiwei.personal.common.utils.time.TimeStampUtils
+import com.yjhh.common.utils.DateUtil
 import com.paipaiwei.personal.present.OrderPresent
 import com.paipaiwei.personal.view.OrderView
-import com.tencent.mm.opensdk.modelpay.PayReq
-import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
-import com.yjhh.common.Constants
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.bean.DisplayPayTypeBean
 import com.yjhh.common.iview.PayView
 import com.yjhh.common.model.WxPayBean
 import com.yjhh.common.pay.RxPay
@@ -27,6 +24,7 @@ import com.yjhh.common.utils.RxCountDown
 import kotlinx.android.synthetic.main.onepaymoneyfragment.*
 import java.util.concurrent.TimeUnit
 
+@Route(path = "/OnePayMoneyFragment/OnePayMoney")
 class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
@@ -98,9 +96,10 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
                             else -> {
+
+
                             }
                         }
-
 
 
                     } else {
@@ -154,6 +153,10 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val model = gson.fromJson<DisplayPayTypeBean>(jsonString, DisplayPayTypeBean::class.java)
 
 
+
+        model_info.text = model.title
+        model_price.text = model.disMoney.toString()
+
         val dis5 = RxCountDown.countdown(900).subscribe {
             if (it != null && tv_countdown != null)
                 tv_countdown.text = DateUtil.getFormatDHMmDate(it)
@@ -178,7 +181,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val dis = RxView.clicks(tv_pay).throttleFirst(2, TimeUnit.SECONDS)
             .subscribe {
                 if (rb_alipay.isChecked) {
-                    payPresent?.paymentByAli(model.id, model.money.toString())
+                    payPresent?.paymentByAli(model.id, model.money.toInt().toString())
 
                 } else {
                     payPresent?.paymentByWx(model.id, model.money.toString())

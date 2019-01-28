@@ -85,6 +85,9 @@ class RestaurantHomeAdapter(
                     }
                     tv_mark.text = sbMark.toString()
 
+                    val ruleText = multipleitema.findViewById<TextView>(R.id.ruleText)
+                    ruleText.text = item.listone!![index].ruleText
+
 
                     val tv_price = multipleitema.findViewById<TextView>(R.id.tv_price)
                     val textintegral = "${s.value}元代金券"

@@ -1,6 +1,7 @@
 package com.paipaiwei.personal.ui.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import com.paipaiwei.personal.R;
 import com.paipaiwei.personal.ui.customview.BottomBar;
 import com.paipaiwei.personal.ui.customview.BottomBarTab;
+import com.yjhh.common.utils.SharedPreferencesUtils;
 import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainFragment extends SupportFragment {
@@ -85,10 +87,14 @@ public class MainFragment extends SupportFragment {
                 showHideFragment(mFragments[position], mFragments[prePosition]);
 
                 BottomBarTab tab = mBottomBar.getItem(FIRST);
-                if (position == FIRST) {
-                    // tab.setUnreadCount(0);
-                } else {
-                    // tab.setUnreadCount(tab.getUnreadCount() + 1);
+
+
+                if (!TextUtils.isEmpty((String) SharedPreferencesUtils.getParam(_mActivity, "sessionId", ""))) {
+                    switch (position) {
+                        case FOURTH:
+                            ((Main4Fragment) mFragments[FOURTH]).clickLoadData();
+                            break;
+                    }
                 }
             }
 

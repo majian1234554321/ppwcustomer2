@@ -38,8 +38,10 @@ public class UserinfoBean {
          * userId : 1022
          */
 
-        public double balance;
-        public double integral;
+        public String sign;
+        public String coupon;
+        public String balance;
+        public String integral;
         public int userId;
     }
 

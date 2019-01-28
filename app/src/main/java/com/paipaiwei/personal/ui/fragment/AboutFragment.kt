@@ -74,10 +74,10 @@ class AboutFragment : BaseFragment() {
         mAdapter?.setOnItemClickListener { adapter, view, position ->
             when (list[position].name) {
                 "协议中心" -> {
-                    start(BackViewFragment.newInstance(list[position].linkUrl))
+                    start(BackViewFragment.newInstance(list[position].linkUrl,"title"))
                 }
                 "帮助中心" -> {
-                    start(BackViewFragment.newInstance(list[position].linkUrl))
+                    start(BackViewFragment.newInstance(list[position].linkUrl,"title"))
                 }
                 "意见反馈" -> {
                     start(A_FeedBackFragment())
@@ -106,7 +106,7 @@ class AboutFragment : BaseFragment() {
                     compositeDisposable.add(disposable)
                 }
                 "加盟合作" -> {
-                    start(BackViewFragment.newInstance(list[position].linkUrl))
+                    start(BackViewFragment.newInstance(list[position].linkUrl,"title"))
                 }
                 else -> {
                 }

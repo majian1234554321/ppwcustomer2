@@ -177,7 +177,7 @@
             android:gravity="center"
             android:textColor="#FFC6AC81"
             android:layout_marginLeft="24dp"
-
+            android:id="@+id/tv_kaidian"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="@dimen/sp_16"
             android:layout_alignParentBottom="true"
