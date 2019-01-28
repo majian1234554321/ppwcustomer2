@@ -36,11 +36,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
             R.id.iev_about -> {
 
-//                ARouter.getInstance()
-//                    .build("/DisplayActivity/Display")
-//                    .withString("displayTab", "AboutFragment")
-//                    .withInt("age", 23)
-//                    .navigation(context)
+
 
 
                 (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
@@ -50,15 +46,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
 
 
             R.id.iev_prop -> {
-//                if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
-//                    ARouter.getInstance()
-//                        .build("/DisplayActivity/Display")
-//                        .withString("displayTab", "OnePayFragment")
-//                        .withInt("age", 23)
-//                        .navigation(context)
-//                } else {
-//
-//                }
+
 
 
                 (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
@@ -74,7 +62,9 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                         .withString("value", "浏览")
                         .navigation(context)
                 } else {
-
+                    ARouter.getInstance()
+                        .build("/LoginActivity/Login")
+                        .navigation(context)
                 }
 
 
@@ -84,7 +74,9 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
                     (parentFragment as MainFragment).startBrotherFragment(MessageCenterFragment())
                 } else {
-
+                    ARouter.getInstance()
+                        .build("/LoginActivity/Login")
+                        .navigation(context)
                 }
             }
 
@@ -96,7 +88,10 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                         .withString("value", "收藏")
                         .navigation(context)
                 } else {
+                    ARouter.getInstance()
+                        .build("/LoginActivity/Login")
 
+                        .navigation(context)
                 }
 
             }
@@ -109,7 +104,10 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                         .withInt("age", 23)
                         .navigation(context)
                 } else {
+                    ARouter.getInstance()
+                        .build("/LoginActivity/Login")
 
+                        .navigation(context)
                 }
 
             }
@@ -119,7 +117,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "SettingFragment")
-                    .withInt("age", 23)
                     .navigation()
             }
 
@@ -131,7 +128,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
 
-                        .withInt("age", 23)
                         .navigation(context)
                 }
 
@@ -146,7 +142,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")
 
-                        .withInt("age", 23)
                         .navigation(context)
                 }
 
