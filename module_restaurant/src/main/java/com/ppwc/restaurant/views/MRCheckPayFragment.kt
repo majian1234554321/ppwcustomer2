@@ -68,13 +68,13 @@ class MRCheckPayFragment : BaseFragment() {
 
                         val model2 = SubmitShopPayModel()
 
-                        model2.couponId = ""
-                        model2.fromType = typeId
-                        model2.money = tv1price
-                        model2.orderId = ""
-                        model2.result = tv4price
-                        model2.shopId = shopId
-                        model2.unDisMoney = tv2price
+                        model2.couponId = ""  //（页面A）使用的券id
+                        model2.type = typeId //来源 1、商家首页 2卡券中心 3订单列表
+                        model2.money = tv1price //总消费金额
+                        model2.orderId = "" //（页面B）订单id
+                        model2.result = tv4price //客户端计算的结果（参数校验）
+                        model2.shopId = shopId //消费门店
+                        model2.unDisMoney = tv2price //不参与优惠金额
 
 
                         ApiServices.getInstance().create(PrePayCheckServie::class.java).paySubmit(model2)
@@ -83,6 +83,12 @@ class MRCheckPayFragment : BaseFragment() {
                             .subscribe(object : ProcessObserver2(mActivity) {
                                 override fun processValue(response: String?) {
                                     Log.i("paySubmit", response)
+
+                                    start(MRPendingPaymentFragment.newInstance(response))
+
+
+
+
                                 }
 
                                 override fun onFault(message: String) {
@@ -93,7 +99,7 @@ class MRCheckPayFragment : BaseFragment() {
 
 
 
-                        start(MRPendingPaymentFragment.newInstance(tv4price))
+
                         dialog.dismiss()
                     }
 
@@ -180,10 +186,11 @@ class MRCheckPayFragment : BaseFragment() {
 
         val model = ShopPayPageInitModel()
 
-        model.couponId = couponId
-        model.orderId = orderId
-        model.shopId = shopId
+        model.couponId = couponId //卡券id
+        model.orderId = orderId //订单id
+        model.shopId = shopId //订单id
         model.type = typeId
+        //type
         /*  1、商家首页，立即买单（页面A）
           2、卡券中心，我要使用（页面A）
           3、订单列表，立即使用（页面B）

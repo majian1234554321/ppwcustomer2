@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
@@ -37,6 +38,7 @@ import com.zhihu.matisse.Matisse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.a_feedbackfragment.*
+
 import java.io.File
 import java.util.*
 
@@ -143,6 +145,7 @@ class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
     val listsId = ArrayList<String>()
     @SuppressLint("CheckResult")
     override fun initView() {
+        ImmersionBar.setTitleBar(activity, tbv_title)
         arrayOf(tv_commit, tv_see)
             .forEach {
                 it.setOnClickListener(this)

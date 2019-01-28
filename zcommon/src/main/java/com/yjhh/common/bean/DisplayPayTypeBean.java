@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.ui.activity.onepay;
+package com.yjhh.common.bean;
 
 public class DisplayPayTypeBean {
 

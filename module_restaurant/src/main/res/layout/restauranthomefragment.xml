@@ -165,6 +165,7 @@
                             android:drawablePadding="4pt"
                             android:drawableLeft="@drawable/icon_dingwei_gray"
                             android:paddingBottom="12pt"
+                            android:id="@+id/tv_address"
                             tools:text="武昌区楚河南路汉街总部国际C座对面二楼"
                             android:textColor="#FF333333"
                             android:textSize="13pt"
@@ -200,7 +201,7 @@
                                        android:id="@+id/iv_image_buy"
                                        android:layout_marginRight="10pt"
 
-
+                                        android:scaleType="fitXY"
                                        android:layout_marginLeft="25pt"
                                        android:layout_height="90pt"/>
 

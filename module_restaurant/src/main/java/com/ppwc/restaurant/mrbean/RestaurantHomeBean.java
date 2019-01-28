@@ -42,6 +42,7 @@ public class RestaurantHomeBean {
     public String logoUrl;
     public MapPointBean mapPoint;
     public String name;
+    public String address;
     public int openStatus;
     public String productCount;
     public String tel;
@@ -101,6 +102,7 @@ public class RestaurantHomeBean {
          * valueUnit : 代金券
          */
 
+        public String ruleText;
         public int id;
         public boolean ifNeedAudit;
         public String paiLinkUrl;

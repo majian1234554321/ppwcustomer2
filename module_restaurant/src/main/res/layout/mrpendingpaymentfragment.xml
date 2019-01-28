@@ -29,7 +29,8 @@
                 android:layout_below="@+id/iv_image"
                 android:layout_height="25pt"
                 android:layout_centerHorizontal="true"
-                android:text="￥128.50"
+                tools:text="￥128.50"
+                android:id="@+id/tv_price"
                 android:layout_marginBottom="24pt"
                 android:textColor="#FFFF552E"
                 android:textSize="19pt"
@@ -53,27 +54,6 @@
                 android:background="@color/white"
                 android:paddingRight="15pt"
                 android:layout_height="90.5pt">
-        <RadioButton android:layout_width="match_parent"
-                     android:textColor="#FF333333"
-                     android:textSize="14pt"
-                     android:button="@null"
-                     android:checked="true"
-                     android:drawableRight="@drawable/selector_radio"
-                     android:drawablePadding="8pt"
-                     android:paddingTop="12.5pt"
-                     android:paddingBottom="12.5pt"
-                     android:drawableLeft="@drawable/zhifubaozhifu"
-                     android:layout_height="wrap_content"
-                     android:id="@+id/rb_alipay"
-                     android:text="支付宝"
-        />
-
-        <View
-                android:layout_width="327pt"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="0.5pt"
-                android:background="#FFE6E6E6"
-        />
 
         <RadioButton android:layout_width="match_parent"
                      android:layout_height="wrap_content"
@@ -83,10 +63,36 @@
                      android:drawableRight="@drawable/selector_radio"
                      android:paddingTop="12.5pt"
                      android:paddingBottom="12.5pt"
+                     android:checked="true"
                      android:textColor="#FF333333"
                      android:drawableLeft="@drawable/weixinzhifu"
                      android:textSize="14pt"
                      android:text="微信支付"
+
+        />
+        <View
+                android:layout_width="327pt"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
+
+
+
+
+        <RadioButton android:layout_width="match_parent"
+                     android:textColor="#FF333333"
+                     android:textSize="14pt"
+                     android:button="@null"
+
+                     android:drawableRight="@drawable/selector_radio"
+                     android:drawablePadding="8pt"
+                     android:paddingTop="12.5pt"
+                     android:paddingBottom="12.5pt"
+                     android:drawableLeft="@drawable/zhifubaozhifu"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/rb_alipay"
+                     android:text="支付宝"
         />
 
     </RadioGroup>

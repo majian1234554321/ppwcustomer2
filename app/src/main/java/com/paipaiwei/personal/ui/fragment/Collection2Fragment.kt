@@ -87,12 +87,12 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
                 mAdapter?.emptyView = view
             } else {
                 mAdapter?.setNewData(main1bean.items)
-                mAdapter?.disableLoadMoreIfNotFullPage()
+               // mAdapter?.disableLoadMoreIfNotFullPage()
             }
 
 
         } else {
-            //  mAdapter.onLoad(main1bean.items as ArrayList<RecentlyBrowseBean.ItemsBean>)
+
             if (main1bean.items.size < pageSize) {
                 mAdapter?.loadMoreEnd()
             } else {

@@ -66,6 +66,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
         tv_storeName.text = model.name
+        tv_address.text = model.address
 
         ratingbar.setStar(model.grade)
 
@@ -379,6 +380,17 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             }
 
             override fun tv_pai(position: Int) {
+
+
+
+
+                ARouter.getInstance()
+                    .build("/DisplayActivity/Display")
+                    .withString("displayTab", "BackViewFragment")
+                    .withString("value", listValue[0].listone?.get(position)?.paiLinkUrl)
+                    .navigation()
+
+
 
             }
 

@@ -15,11 +15,14 @@ import com.yjhh.common.utils.SharedPreferencesUtils
 
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
+import com.paipaiwei.personal.bean.UserinfoBean
+import com.paipaiwei.personal.present.SectionUserPresent
 
 import com.paipaiwei.personal.ui.activity.SignActivity
 import com.paipaiwei.personal.ui.activity.UserInfoActivity
 import com.paipaiwei.personal.ui.activity.evaluate.EvaluateManageFragment
 import com.paipaiwei.personal.ui.activity.onepay.OnePayFragment
+import com.paipaiwei.personal.view.UserInfoView
 import com.tencent.tauth.Tencent
 import com.yjhh.common.BaseApplication
 import com.yjhh.common.Constants.APP_ID_QQ
@@ -28,19 +31,34 @@ import com.yjhh.common.utils.ImageLoaderUtils
 import kotlinx.android.synthetic.main.main4fragment.*
 
 
-class Main4Fragment : BaseMainFragment(), View.OnClickListener {
+class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
+    override fun onSuccess(main1bean: UserinfoBean) {
+        tv_name.text = main1bean.nickName
+        tv_mobile.visibility = View.VISIBLE
+        tv_mobile.text = main1bean.mobile
+        ImageLoaderUtils.loadCircle(
+            mActivity,
+            profile_image,
+            main1bean.avatarUrl,
+            R.drawable.icon_login_touxiang,
+            5
+        )
+        ll_3.visibility = View.VISIBLE
+
+        tv_Integral.text =main1bean.account.integral
+            tv_sign.text =main1bean.account.sign
+            tv_counp.text =  main1bean.account.coupon
+    }
+
+    override fun onFault(errorMsg: String?) {
+
+    }
 
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
             R.id.iev_about -> {
-
-//                ARouter.getInstance()
-//                    .build("/DisplayActivity/Display")
-//                    .withString("displayTab", "AboutFragment")
-//                    .withInt("age", 23)
-//                    .navigation(context)
 
 
                 (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
@@ -266,5 +284,11 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener {
             )
         }
     }
+
+    fun clickLoadData() {
+        val  present2 = SectionUserPresent(context, this)
+        present2?.getUserinfo()
+    }
+
 
 }

@@ -8,6 +8,8 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.R.id.*
 import com.paipaiwei.personal.bean.CouponBean
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
+import com.yjhh.common.BaseApplication
+import com.yjhh.common.utils.ImageLoaderUtils
 
 
 class Collection321Adapter(data: List<RecentlyBrowseBean.ItemsBean>) :
@@ -18,9 +20,19 @@ class Collection321Adapter(data: List<RecentlyBrowseBean.ItemsBean>) :
 
 
         helper?.setText(R.id.tv_storeName,item?.title)
-        helper?.setText(R.id.tv_avgPrice,item?.consumption)
+        helper?.setText(R.id.tv_price,item?.consumption)
         helper?.setText(R.id.tv_info,item?.remark)
-        helper?.setText(R.id.tv_KM,item?.remark)
+       // helper?.setText(R.id.tv_KM,item?.remark)
+
+
+        ImageLoaderUtils.load(
+            BaseApplication.getIns(),
+            helper?.getView(R.id.iv_image),
+            item?.imageUrl,
+            R.drawable.icon_place_square,
+            R.drawable.icon_place_square,
+            0
+        )
 
 
 

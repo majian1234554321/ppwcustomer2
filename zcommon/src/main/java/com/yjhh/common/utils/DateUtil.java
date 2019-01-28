@@ -1,4 +1,4 @@
-package com.paipaiwei.personal.common.utils;
+package com.yjhh.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

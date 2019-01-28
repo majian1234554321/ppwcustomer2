@@ -105,10 +105,10 @@ class SignActivity : BaseActivity(), View.OnClickListener, SignView {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.mb_sign -> {
-               // present?.sign()
+                present?.sign()
 
 
-                SignFragment("AAAAA").show(supportFragmentManager, "TAG2")
+               // SignFragment("AAAAA").show(supportFragmentManager, "TAG2")
 
             }
 

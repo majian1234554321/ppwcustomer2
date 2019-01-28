@@ -3,15 +3,13 @@ package com.paipaiwei.personal.ui.activity.parishfood
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.widget.TextView
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.DateBean
-import com.paipaiwei.personal.common.utils.DateUtil
+import com.yjhh.common.utils.DateUtil
 import com.paipaiwei.personal.common.utils.TimeUtil
 import kotlinx.android.synthetic.main.activity_parish_reserve.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ParishReserveActivity : AppCompatActivity() {
