@@ -34,7 +34,7 @@ class BackViewFragment : BaseFragment() {
             ImmersionBar.setTitleBar(mActivity, rl)
         }
 
-
+        mWebView.clearHistory()
         mWebView.clearCache(true)
 
         val webSettings = mWebView.settings
@@ -55,7 +55,7 @@ class BackViewFragment : BaseFragment() {
         webSettings.databaseEnabled = true
         webSettings.useWideViewPort = true
 
-        mWebView.setInitialScale(25)
+        mWebView .setInitialScale(25)
 
 
         mWebView.webChromeClient = object : WebChromeClient() {
@@ -78,6 +78,7 @@ class BackViewFragment : BaseFragment() {
                 }
             }
         }
+
 
 
         val map = HashMap<String, String?>()
@@ -103,7 +104,7 @@ class BackViewFragment : BaseFragment() {
             "JSESSIONID",
             SharedPreferencesUtils.getParam(BaseApplication.context, "sessionId", "-1").toString()
         )
-
+        webSettings.userAgentString = WebSettings.getDefaultUserAgent(BaseApplication.context) + "PPW_App"
 
         mWebView.loadUrl(url, map)
 

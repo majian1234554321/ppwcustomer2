@@ -5,11 +5,13 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +22,7 @@ import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.ui.customview.ARSetupView
+import com.paipaiwei.personal.ui.fragment.BackViewFragment
 import com.yjhh.common.base.BaseFragment
 import kotlinx.android.synthetic.main.onepayfragment.*
 
@@ -113,6 +116,11 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
 
     override fun initView() {
+
+        val disType = arguments?.getString("disType")
+
+        if (!TextUtils.isEmpty("disType")){}
+
         ImmersionBar.setTitleBar(mActivity, tbv_title)
 
         present = OnePayPresent(mActivity, this)
@@ -182,6 +190,22 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
             win.attributes = params
         }
+
+
+        companion object {
+            fun newInstance(disType: String?): OnePayFragment {
+                val fragment = OnePayFragment()
+                val bundle = Bundle()
+
+                bundle.putString("disType", disType)
+
+                fragment.arguments = bundle
+                return fragment
+            }
+
+
+        }
+
 
 
     }
