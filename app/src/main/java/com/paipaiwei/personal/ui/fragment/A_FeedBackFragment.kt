@@ -43,7 +43,7 @@ import java.io.File
 import java.util.*
 
 class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
-    override fun onSuccess(value: String?) {
+    override fun onSuccess(value: String?,flag:String?) {
 
 
         val gson = Gson()
@@ -56,7 +56,7 @@ class A_FeedBackFragment : BaseFragment(), View.OnClickListener, CommonView {
 
     }
 
-    override fun onFault(errorMsg: String?) {
+    override fun onFault(errorMsg: String?,flag: String?) {
         Toast.makeText(mActivity, errorMsg, Toast.LENGTH_SHORT).show()
     }
 

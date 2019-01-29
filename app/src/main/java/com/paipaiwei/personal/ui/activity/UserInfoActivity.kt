@@ -59,7 +59,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class UserInfoActivity : BaseActivity(), View.OnClickListener, UserInfoView, CommonView {
-    override fun onSuccess(value: String?) {
+    override fun onFault(errorMsg: String?, flag: String?) {
+
+    }
+
+    override fun onSuccess(value: String?,flag:String?) {
         val gson = Gson()
         val model = gson.fromJson<PhotoBean>(value, PhotoBean::class.java)
 

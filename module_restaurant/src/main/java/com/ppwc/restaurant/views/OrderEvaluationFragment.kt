@@ -43,7 +43,7 @@ import java.util.*
 class OrderEvaluationFragment : BaseFragment(), CommonView {
 
 
-    override fun onSuccess(value: String?) {
+    override fun onSuccess(value: String?,flag:String?) {
         val gson = Gson()
         val model = gson.fromJson<PhotoBean>(value, PhotoBean::class.java)
 
@@ -53,7 +53,7 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
         }
     }
 
-    override fun onFault(errorMsg: String?) {
+    override fun onFault(errorMsg: String?,flag:String?) {
 
     }
 

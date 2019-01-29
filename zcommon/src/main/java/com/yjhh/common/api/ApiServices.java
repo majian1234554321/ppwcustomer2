@@ -73,12 +73,18 @@ public class ApiServices {
                             while (it.hasNext()) {
                                 //it.next()得到的是key，tm.get(key)得到obj
                                 String key = (String) it.next();
-                                sb.append(key).
-                                        append(
-                                                URLDecoder.decode(Objects.requireNonNull(treeMap.get(key)).replaceAll("%(?![0-9a-fA-F]{2})", "%25")
-                                                                .replaceAll("\\+", "%2B")
-                                                        , "utf-8")
-                                        );
+
+                                String s =   URLDecoder.decode(Objects.requireNonNull(treeMap.get(key)).replaceAll("%(?![0-9a-fA-F]{2})", "%25")
+                                                .replaceAll("\\+", "%2B")
+                                        , "utf-8");
+
+                                sb.append(key);
+
+                                if (s.endsWith(".00")||s.endsWith(".0")){
+                                    sb.append(s.split(".")[0]);
+                                }else {
+                                    sb.append(s);
+                                }
                             }
 
                         }

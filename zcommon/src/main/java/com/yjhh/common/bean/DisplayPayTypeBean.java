@@ -24,6 +24,7 @@ public class DisplayPayTypeBean {
      * userId : 1022
      */
 
+    public String price;
     public int createdTime;
     public double disMoney;
     public String id;

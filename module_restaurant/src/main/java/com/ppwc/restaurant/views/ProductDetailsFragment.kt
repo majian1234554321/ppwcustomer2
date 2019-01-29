@@ -9,13 +9,24 @@ import com.ppwc.restaurant.R
 import com.ppwc.restaurant.bean.ProductDetailsBean
 import com.ppwc.restaurant.ipresent.ShopPresent
 import com.ppwc.restaurant.iview.ProductDetailsView
+import com.yjhh.common.api.ApiServices
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.iview.CommonView
+import com.yjhh.common.present.CommonPresent
 import com.yjhh.common.utils.GlideLoader
 import com.yjhh.common.view.TitleBarView
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.productdetailsfragment.*
 
-class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDetailsView {
+class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDetailsView, CommonView {
+    override fun onFault(errorMsg: String?, flag: String?) {
+
+    }
+
+    override fun onSuccess(value: String?, flag: String?) {
+
+    }
+
     override fun onProductDetailsValue(model: ProductDetailsBean) {
 
         tv_storeName.text = model.shopName
@@ -79,10 +90,14 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
         when (v?.id) {
             R.id.xingxing -> {
                 xingxing.setBackgroundResource(R.drawable.xingxing032x)
+                present?.collect("0", itemId, "collect")  //	类别(0商品 1店铺 2文章)
+
+
             }
 
             R.id.dianzan -> {
-                dianzan.setBackgroundResource(R.drawable.zan032x)
+
+                present?.zan(itemId, "zan")
             }
 
             else -> {
@@ -91,14 +106,22 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
         }
     }
 
+
+    var present: CommonPresent? = null
+
     override fun getLayoutRes(): Int = R.layout.productdetailsfragment
+    var itemId: String? = ""
 
     override fun initView() {
 
 
-        val itemId = arguments?.getString("itemId")
+        itemId = arguments?.getString("itemId")
 
         ShopPresent(mActivity, this).product(itemId)
+
+
+        present = CommonPresent(mActivity, this)
+
 
         tbv_title.setOnRightClickListener(object : TitleBarView.OnRightClickListion {
             override fun setOnRightClick() {

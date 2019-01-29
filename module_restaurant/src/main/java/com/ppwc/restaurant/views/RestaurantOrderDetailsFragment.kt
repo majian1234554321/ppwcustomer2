@@ -23,10 +23,13 @@ import kotlinx.android.synthetic.main.restaurantorderdetailsfragment.*
 
 class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     RestaurantOrderSerVice.RestaurantOrderView {
+    var jsonString: String? = null
+    var statusValue = -1
+
     override fun onRestaurantOrder(model: String?, flag: String) {
 
         if ("detail" == flag) {
-
+            jsonString = model;
             val orderDetailsBean = Gson().fromJson<OrderDetailsBean>(model, OrderDetailsBean::class.java)
 
             if (!TextUtils.isEmpty(TimeUtil.stampToDate(orderDetailsBean.createdTime))) {
@@ -98,27 +101,27 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                 R.drawable.icon_place_pai
             )
 
-
+            statusValue = orderDetailsBean.status
             when (orderDetailsBean.status) { //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
                 1 -> {
 
-                        val dis = RxCountDown.countdown(orderDetailsBean.times).subscribe {
-                            if (mb_1!=null) {
-                                mb_1.visibility = View.VISIBLE
-                                if (it <= 0) {
+                    val dis = RxCountDown.countdown(orderDetailsBean.times).subscribe {
+                        if (mb_1 != null) {
+                            mb_1.visibility = View.VISIBLE
+                            if (it <= 0) {
 
-                                    mb_1.text = "已失效"
-                                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
-                                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+                                mb_1.text = "已失效"
+                                mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                                mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
 
-                                    mb_2.visibility = View.GONE
-                                } else {
+                                mb_2.visibility = View.GONE
+                            } else {
 
-                                    mb_1.text = "剩余支付时间  ${TimeUtil.secondToTime(it.toLong())}"
-                                    mb_1.setTextColor(Color.parseColor("#FFffff"))
-                                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
-                                }
+                                mb_1.text = "剩余支付时间  ${TimeUtil.secondToTime(it.toLong())}"
+                                mb_1.setTextColor(Color.parseColor("#FFffff"))
+                                mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
                             }
+                        }
 
 
                     }
@@ -226,10 +229,28 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.mb_1 -> {
-               // start(OnePayMoneyFragment())
+
+                when (statusValue) { // //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
+                    0 -> {
+                        start(MRPendingPaymentFragment.newInstance(jsonString))
+                    }
+                    else -> {
+
+                    }
+                }
+
+
             }
             R.id.mb_2 -> {
-                start(OrderEvaluationFragment())
+
+                when (statusValue) { // //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
+                    8 -> {
+                        start(OrderEvaluationFragment())
+                    }
+                    else -> {
+                    }
+                }
+
             }
             else -> {
             }

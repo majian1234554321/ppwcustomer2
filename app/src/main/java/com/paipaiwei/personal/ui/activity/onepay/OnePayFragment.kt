@@ -65,25 +65,27 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
         if ("userProp" == flag) {
             val bean = gson.fromJson<OnePayBean>(model, OnePayBean::class.java)
-            mb_aid = bean.propA.id
-            mb_bid = bean.propB.id
+
+
 
 
 
 
             if (bean.propA != null) {
+                mb_aid = bean.propA.id
                 propa_title.text = bean.propA.name
                 propa_count.text = "数量：${bean.propA.quantity}"
             } else {
-                rl_a.visibility = View.GONE
+                mcva.visibility = View.GONE
             }
 
 
             if (bean.propB != null) {
+                mb_bid = bean.propB.id
                 propb_title.text = bean.propB.name
                 propb_count.text = "数量：${bean.propB.quantity}"
             } else {
-                rl_b.visibility = View.GONE
+                mcvb.visibility = View.GONE
             }
 
 

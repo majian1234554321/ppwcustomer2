@@ -81,6 +81,8 @@ class BuyOvervalueFragment : BaseFragment(), BuyOvervalueService.BuyOvervalueVie
 
                     val view = View.inflate(mActivity, R.layout.emptyview, null)
                     view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+                    mAdapter?.data?.clear()
+                    mAdapter?.notifyDataSetChanged()
                     mAdapter?.emptyView = view
                 }
 

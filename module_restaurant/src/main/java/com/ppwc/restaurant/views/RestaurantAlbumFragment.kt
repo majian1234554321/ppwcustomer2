@@ -67,7 +67,7 @@ class RestaurantAlbumFragment : BaseFragment(), RestaurantAlbumView {
 
 
     companion object {
-        fun newInstance(id: String): RestaurantAlbumFragment {
+        fun newInstance(id: String?): RestaurantAlbumFragment {
             val fragment = RestaurantAlbumFragment()
             val bundle = Bundle()
 

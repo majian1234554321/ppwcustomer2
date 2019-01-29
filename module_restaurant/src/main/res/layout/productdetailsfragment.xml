@@ -31,7 +31,7 @@
                     android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="21pt"
-                    android:text="火焰五拼寿司"
+                    tools:text="火焰五拼寿司"
                     android:id="@+id/tv_storeName"
                     android:textColor="#FF333333"
                     android:textSize="15pt"
@@ -57,7 +57,7 @@
                     android:maxLines="3"
                     android:ellipsize="end"
                     android:layout_height="wrap_content"
-                    android:text="每天更换一次食材，每日套餐中米饭和素材随机搭配，并每天更换一次食材，每日套餐中米饭和素材随机搭配，并一次食材，每日套餐中米饭和素材随机搭配，并…"
+                    tools:text="每天更换一次食材，每日套餐中米饭和素材随机搭配，并每天更换一次食材，每日套餐中米饭和素材随机搭配，并一次食材，每日套餐中米饭和素材随机搭配，并…"
                     android:textColor="#FF666666"
                     android:textSize="12pt"
             />

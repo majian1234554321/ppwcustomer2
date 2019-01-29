@@ -56,7 +56,7 @@ class QiangPaiListAdapter(data: List<MultiItemEntity>) :
                         helper.addOnClickListener(R.id.mb_pai)
                         helper?.setText(R.id.tv_4, "即将开始")
                             .setVisible(R.id.tv_4, true)
-                            .setVisible(R.id.mb_pai, true)
+                            .setVisible(R.id.mb_pai, false)
 
                     }
                     "1" -> {

@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.paipaiwei.personal.R
@@ -23,8 +24,11 @@ import kotlin.text.Typography.times
 
 
 class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.QiangPaiView {
+    var statusValue = -1
     override fun qiangPaiValue(response: String?, flag: String?) {
         Log.i("QiangPaiFragment", response)
+
+
 
         if ("detail" == flag) {
             val modle = Gson().fromJson<QiangPaiDetailsBean>(response, QiangPaiDetailsBean::class.java)
@@ -37,7 +41,7 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
                 R.drawable.icon_place_square,
                 0
             )
-
+            statusValue = modle.status
             when (modle.status) { //0即将开始 1进行中 2已结束/已拍完/已过期
                 0 -> {
                     tv_submit.text = "即将\n开拍"
@@ -73,11 +77,11 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
 
 
             tv_Name.text = modle.shopName
-            tv_des.text = modle.describe
 
-            val price1 = "￥${modle.markPrice}"
+
+            val price1 = "￥${modle.costPrice}"
             tv_price1.text = TextStyleUtils.changeTextAa(price1, 0, 1, 10)
-            tv_price2.text = "￥${modle.costPrice}"
+            tv_price2.text = "￥${modle.markPrice}"
             tv_price2.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
             tv_info.text = modle.title
             tv_describe.text = modle.describe
@@ -119,7 +123,20 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
 
             }
             R.id.tv_submit -> {
-                present?.qiangPai(idValue, typeValue, "qiangPai")
+                when (statusValue) {
+                    0 -> { ////0即将开始 1进行中 2已结束/已拍完/已过期
+                        Toast.makeText(context, "活动暂未开始", Toast.LENGTH_SHORT).show()
+                    }
+                    1 ->{
+                        present?.qiangPai(idValue, typeValue, "qiangPai")
+                    }
+                    2->{
+                        Toast.makeText(context, "活动已结束", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                    }
+                }
+
             }
             else -> {
 

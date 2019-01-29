@@ -38,12 +38,12 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
                     var sb = StringBuilder()
                     sb.append("{\"item\":").append(response).append("}")
                     Log.i("UpLoadFile", sb.toString())
-                    view.onSuccess(sb.toString())
+                    view.onSuccess(sb.toString(),"")
                 }
 
                 override fun onFault(message: String) {
                     Log.i("UpLoadFile", message)
-                    view.onFault(message)
+                    view.onFault(message,"")
                 }
             }
         )
@@ -72,12 +72,12 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
                 var sb = StringBuilder()
                 sb.append("{\"item\":").append(response).append("}")
                 Log.i("UpLoadFile", sb.toString())
-                view.onSuccess(sb.toString())
+                view.onSuccess(sb.toString(),"")
             }
 
             override fun onFault(message: String) {
                 Log.i("UpLoadFile", message)
-                view.onFault(message)
+                view.onFault(message,"")
             }
         }
         )
@@ -93,16 +93,16 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
-                    Log.i("MainActivity", response)
+                    Log.i("checkVersion", response)
 
-                    view.onSuccess(response)
+                    view.onSuccess(response,"")
 
 
                 }
 
                 override fun onFault(message: String) {
-                    Log.i("MainActivity", message)
-                    view.onFault(message)
+                    Log.i("checkVersion", message)
+                    view.onFault(message,"")
 
                 }
 
@@ -132,7 +132,7 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
             })
     }
 
-    fun collect(itemType: String?, itemId: String?) {
+    fun collect(itemType: String?, itemId: String?, flag: String?) {
         map.clear()
         map.put("itemType", itemType)
         map.put("itemId", itemId)
@@ -142,12 +142,12 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
                 .collect(map), object : ProcessObserver2(context, true) {
                 override fun processValue(response: String?) {
                     Log.i("collect", response)
-                    view.onSuccess(response)
+                    view.onSuccess(response, flag)
                 }
 
                 override fun onFault(message: String) {
                     Log.i("collect", message)
-                    view.onFault(message)
+                    view.onFault(message,flag)
                 }
             }
         )
@@ -155,8 +155,25 @@ class CommonPresent(var context: Context, var view: CommonView) : BasePresent() 
 
     }
 
-    fun zan() {
+    fun zan(id: String?, flag: String?) {
+        map.clear()
+        map.put("id", id)
 
+
+        toSubscribe2(
+            ApiServices.getInstance().create(CommonService::class.java)
+                .zan(map), object : ProcessObserver2(context, true) {
+                override fun processValue(response: String?) {
+                    Log.i("zan", response)
+                    view.onSuccess(response, flag)
+                }
+
+                override fun onFault(message: String) {
+                    Log.i("zan", message)
+                    view.onFault(message,flag)
+                }
+            }
+        )
     }
 
 }

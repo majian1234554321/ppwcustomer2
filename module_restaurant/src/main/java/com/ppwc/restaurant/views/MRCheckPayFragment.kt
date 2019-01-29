@@ -312,7 +312,7 @@ class MRCheckPayFragment : BaseFragment() {
 
     fun calculation(totleprice: String, discountNoPrice: String, flag: String?, discountValue: String): String {
 
-        val df = DecimalFormat("#.00")
+        val df = DecimalFormat("#0.00")
         var price = 0f
 
         price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
@@ -329,7 +329,7 @@ class MRCheckPayFragment : BaseFragment() {
         }
 
 
-        return df.format(price)
+        return getString(R.string.rmb_price_double,price)
     }
 
 

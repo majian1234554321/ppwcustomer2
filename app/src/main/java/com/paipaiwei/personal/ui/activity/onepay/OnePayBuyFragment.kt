@@ -19,6 +19,7 @@ import com.yjhh.common.iview.PayView
 import com.yjhh.common.model.WxPayBean
 import com.yjhh.common.pay.RxPay
 import com.yjhh.common.present.PayPresent
+import com.yjhh.common.utils.APKVersionCodeUtils
 import com.yjhh.common.utils.RxCountDown
 
 import kotlinx.android.synthetic.main.onepaymoneyfragment.*
@@ -155,7 +156,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
         model_info.text = model.title
-        model_price.text = model.disMoney.toString()
+        model_price.text = mActivity.getString(R.string.rmb_price_double2,model.money)
 
         val dis5 = RxCountDown.countdown(900).subscribe {
             if (it != null && tv_countdown != null)
@@ -184,7 +185,14 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
                     payPresent?.paymentByAli(model.id, model.money.toInt().toString())
 
                 } else {
-                    payPresent?.paymentByWx(model.id, model.money.toString())
+
+
+
+                    if (APKVersionCodeUtils. isWeChatAppInstalled(mActivity)) {
+                        payPresent?.paymentByWx(model.id, model.money.toString())
+                    }else{
+                        Toast.makeText(mActivity,"请安装微信",Toast.LENGTH_LONG).show()
+                    }
                 }
             }
 

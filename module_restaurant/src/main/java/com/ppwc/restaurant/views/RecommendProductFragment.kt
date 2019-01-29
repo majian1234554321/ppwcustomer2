@@ -72,7 +72,7 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
 
         shopId= arguments?.getString("id")
 
-        val id = arguments?.getString("id")
+
 
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
         initAdapter()
@@ -138,7 +138,7 @@ class RecommendProductFragment : BaseFragment(), RecommendProductView {
 
 
     companion object {
-        fun newInstance(id: String): RecommendProductFragment {
+        fun newInstance(id: String?): RecommendProductFragment {
             val fragment = RecommendProductFragment()
             val bundle = Bundle()
             bundle.putString("id", id)

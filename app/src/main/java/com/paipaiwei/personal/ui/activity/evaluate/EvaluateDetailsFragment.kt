@@ -15,7 +15,7 @@ import com.paipaiwei.personal.adapter.EvaluateDetailsAdapter
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.apis.SectionEvluateService
 import com.paipaiwei.personal.bean.EvaluateDetailsBean
-import com.paipaiwei.personal.bean.SubmitShopReplyCommentModel
+import com.paipaiwei.personal.bean.SubmitUserCommentModel
 import com.yjhh.common.view.ninegrid.NineGridView
 import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.yjhh.common.view.RatingBar
@@ -49,7 +49,7 @@ class EvaluateDetailsFragment : BaseFragment() {
 
         tv_send.setOnClickListener {
 
-            val model = SubmitShopReplyCommentModel()
+            val model = SubmitUserCommentModel()
 
             if (!TextUtils.isEmpty(tv_replyContext.text.toString())) {
                 model.commentId = replayId

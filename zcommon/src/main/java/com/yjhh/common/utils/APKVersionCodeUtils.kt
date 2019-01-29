@@ -9,7 +9,10 @@ import android.text.TextUtils
 import com.azhon.appupdate.config.UpdateConfiguration
 import com.azhon.appupdate.listener.OnDownloadListener
 import com.azhon.appupdate.manager.DownloadManager
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yjhh.common.BaseApplication
+import com.yjhh.common.BaseApplication.context
+import com.yjhh.common.Constants
 import com.yjhh.common.R
 
 
@@ -91,7 +94,7 @@ object APKVersionCodeUtils {
         return channelName.toString()
     }
 
-    fun startUpdate(ctx: Context, onDownloadListener: OnDownloadListener) {
+    fun startUpdate(ctx: Context, url: String, onDownloadListener: OnDownloadListener) {
         /*
          * 整个库允许配置的内容
          * 非必选
@@ -115,15 +118,36 @@ object APKVersionCodeUtils {
         val manager = DownloadManager.getInstance(ctx)
 
         manager.setApkName("appupdate.apk")
-            .setApkUrl("http://test-1251233192.coscd.myqcloud.com/1_1.apk")
-            // .setSmallIcon(R.mipmap.ic_launcher)
+            .setApkUrl(url)
+            .setSmallIcon(R.drawable.ic_launchercommon)
             .setShowNewerToast(true)
             .setConfiguration(configuration)
             .setAuthorities(ctx.packageName)
-            .setApkDescription("1.支持断点下载\n2.支持Android N\n3.支持Android O\n4.支持自定义下载过程\n5.支持 设备>=Android M 动态权限的申请\n6.支持通知栏进度条展示(或者自定义显示进度)")
+            // .setApkDescription("1.支持断点下载\n2.支持Android N\n3.支持Android O\n4.支持自定义下载过程\n5.支持 设备>=Android M 动态权限的申请\n6.支持通知栏进度条展示(或者自定义显示进度)")
             .download()
     }
 
+
+    fun isWeChatAppInstalled(context: Context): Boolean {
+        val api = WXAPIFactory.createWXAPI(BaseApplication.context, Constants.APP_ID_WX);
+
+
+        if (api.isWXAppInstalled() && api.isWXAppSupportAPI()) {
+            return true;
+        } else {
+            val packageManager = BaseApplication.context.getPackageManager();// 获取packagemanager
+            val pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
+            if (pinfo != null) {
+                pinfo.forEach {
+
+                    if (it.packageName == "com.tencent.mm") {
+                        return true
+                    }
+                }
+            }
+            return false;
+        }
+    }
 }
 
 

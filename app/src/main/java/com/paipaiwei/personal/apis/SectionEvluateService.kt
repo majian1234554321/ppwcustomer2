@@ -1,7 +1,7 @@
 package com.paipaiwei.personal.apis
 
 
-import com.paipaiwei.personal.bean.SubmitShopReplyCommentModel
+import com.paipaiwei.personal.bean.SubmitUserCommentModel
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -13,18 +13,18 @@ interface SectionEvluateService {
     fun shopAdmin(): Observable<ResponseBody>//
 
     @FormUrlEncoded
-    @POST("shopAdminComment")
+    @POST("userComment")
     fun allcomments(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
 
     @FormUrlEncoded
-    @POST("shopAdminComment/detail")
+    @POST("userComment/detail")
     fun comment(@FieldMap map: Map<String, String>): Observable<ResponseBody>//
 
 
     @Headers("Content-Type: application/json", "Accept: application/json")//需要添加头
-    @POST("shopAdminComment/reply")
-    fun reply(@Body map: SubmitShopReplyCommentModel): Observable<ResponseBody>//
+    @POST("userComment/reply")
+    fun reply(@Body map: SubmitUserCommentModel): Observable<ResponseBody>//
 
 
 

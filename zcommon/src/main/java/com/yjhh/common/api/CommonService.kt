@@ -19,7 +19,7 @@ interface CommonService {
 
 
     @POST("common/version")
-    fun version(): Observable<ResponseBody>// 文件上传
+    fun version(): Observable<ResponseBody>
 
     @POST("common/init")
     fun init(): Observable<ResponseBody>//

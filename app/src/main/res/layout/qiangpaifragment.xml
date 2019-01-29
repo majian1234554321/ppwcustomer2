@@ -178,7 +178,7 @@
                     android:layout_width="85pt"
                     android:gravity="center"
                     android:textColor="#FFFFFFFF"
-
+                    android:lineSpacingMultiplier="0.8"
                     android:textSize="17pt"
                     android:id="@+id/tv_submit"
                     android:background="@drawable/button_normal002x"

@@ -23,7 +23,7 @@ interface ShopService {
     fun products(@FieldMap map: Map<String, String>): Observable<ResponseBody>//商家首页
 
     @FormUrlEncoded
-    @POST("shop/product")
+    @POST("product/detail")
     fun product(@FieldMap map: Map<String, String>): Observable<ResponseBody>//商品详情
 
 

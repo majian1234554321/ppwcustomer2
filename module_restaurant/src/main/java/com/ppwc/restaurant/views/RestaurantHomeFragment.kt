@@ -45,7 +45,11 @@ import kotlinx.android.synthetic.main.restauranthomefragment.*
 
 
 class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantView, CommonView {
-    override fun onSuccess(value: String?) {
+    override fun onFault(errorMsg: String?, flag: String?) {
+
+    }
+
+    override fun onSuccess(value: String?, flag: String?) {
 
     }
 
@@ -200,7 +204,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_image -> {
-                start(RestaurantAlbumFragment())
+                start(RestaurantAlbumFragment.newInstance(shopId))
             }
 
             R.id.iv_back -> {
@@ -213,18 +217,15 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                 ShareUtils.dialog(mActivity, mIUiListener)
             }
 
-            R.id.tv_buy -> {
-                start(MRCheckPayFragment())
-            }
 
             R.id.tv_buy2 -> {
                 start(MRCheckPayFragment.newInstance("", "", shopId, "1"))
             }
 
             R.id.iv_like -> {
-               // iv_like.setBackgroundResource(R.drawable.xingxing02)
+                // iv_like.setBackgroundResource(R.drawable.xingxing02)
 
-                CommonPresent(mActivity, this).collect("1",shopId)
+                CommonPresent(mActivity, this).collect("1", shopId, "collect")
 
             }
 
@@ -261,7 +262,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
          *
          * itemId  商品id/店铺id/文章Id
          */
-
 
 
         mTabLayout_7.tabMode = MODE_FIXED
@@ -331,7 +331,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         mAdapter?.setMUIOnClickListener(object : MuIListener {
             override fun tv_more2() {
 
-                start(RecommendProductFragment())
+                start(RecommendProductFragment.newInstance(shopId))
             }
 
             override fun tv_more3() {
@@ -382,14 +382,11 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             override fun tv_pai(position: Int) {
 
 
-
-
                 ARouter.getInstance()
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "BackViewFragment")
                     .withString("value", listValue[0].listone?.get(position)?.paiLinkUrl)
                     .navigation()
-
 
 
             }
@@ -402,7 +399,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
 
-        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy, tv_buy2).forEach {
+        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy2).forEach {
             it.setOnClickListener(this)
         }
 
