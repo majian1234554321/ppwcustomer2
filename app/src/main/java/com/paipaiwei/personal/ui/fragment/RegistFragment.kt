@@ -53,7 +53,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
 
         RxBus.default.post(LoginBean(mobile, true))
-        startActivity(Intent(mActivity, MainActivity::class.java))
+       // startActivity(Intent(mActivity, MainActivity::class.java))
         activity?.finish()
     }
 
@@ -64,9 +64,14 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
     override fun registSuccess(date: LoginBean?) {
 
 
-        startActivity(Intent(mActivity, MainActivity::class.java))
 
-        activity?.finish()
+
+        Toast.makeText(mActivity, "登录成功", Toast.LENGTH_SHORT).show()
+
+
+
+        // startActivity(Intent(mActivity, MainActivity::class.java))
+        mActivity.finish()
     }
 
     override fun registFault(registFaultMessage: String) {

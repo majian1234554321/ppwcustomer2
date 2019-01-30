@@ -1,6 +1,7 @@
 package com.paipaiwei.personal.present
 
 import android.content.Context
+import android.util.Log
 import com.yjhh.common.api.ProcessObserver
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.present.BasePresent
@@ -48,10 +49,13 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
             regByAccountModel.regByAccount2(phone, password, smsCode,  refId),
             object : ProcessObserver2(context) {
                 override fun processValue(response: String?) {
+
+                    Log.i("regByAccount2",response)
                     registView.registSuccess2(response)
                 }
 
                 override fun onFault(message: String) {
+                    Log.i("regByAccount2",message)
                     registView.registFault(message)
                 }
 
