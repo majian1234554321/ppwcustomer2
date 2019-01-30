@@ -47,7 +47,7 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
         if (model.items.isNotEmpty()) {
             mAdapter?.setNewData(model.items)
             list.addAll(model.items)
-        }else{
+        } else {
             val view = View.inflate(mActivity, R.layout.emptyview, null)
             view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
             mAdapter?.data?.clear()
@@ -135,7 +135,14 @@ class MembershipCardFragment : BaseFragment(), MembershipCardView {
                     if (list.get(position).ifNeedAudit) {
                         QRCodeFragment(list[position].qrCodeData).show(childFragmentManager, "TAG")
                     } else {
-                        Toast.makeText(mActivity, "立即使用", Toast.LENGTH_SHORT).show()
+                        ARouter.getInstance()
+                            .build("/DisplayActivity/Display")
+                            .withString("displayTab", "CheckPayFragment")
+                            .withString("value", list[position].id)
+                            .withString("value1", "")
+                            .withString("value2", list[position].shopId)
+                            .withString("value3", "2")
+                            .navigation()
                     }
 
 

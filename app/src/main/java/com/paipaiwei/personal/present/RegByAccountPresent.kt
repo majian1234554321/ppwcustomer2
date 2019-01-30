@@ -19,6 +19,29 @@ class RegByAccountPresent(var context: Context, var registView: RegistView) : Ba
 
 
 
+    fun sendSms(type: String, phone: String): Boolean? {
+
+        var send = true
+
+        toSubscribe2(
+            regByAccountModel.sendSms(type, phone)
+            , object : ProcessObserver2(context) {
+
+                override fun processValue(response: String?) {
+                    registView.sendSMSSuccess(response)
+                    send = true
+                }
+
+                override fun onFault(message: String) {
+                    registView.sendSMSFault(message)
+                    send = false
+                }
+
+            })
+        return send
+    }
+
+
 
     fun regByAccount2(phone: String, password: String, smsCode: String,  refId: String) {
         toSubscribe2(

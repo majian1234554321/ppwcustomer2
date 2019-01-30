@@ -3,47 +3,64 @@ package com.paipaiwei.personal.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
+import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
+import com.jakewharton.rxbinding2.view.RxView
 
 import com.yjhh.common.base.BaseActivity
 import com.paipaiwei.personal.R
+import com.paipaiwei.personal.present.OrderPresent
+import com.paipaiwei.personal.ui.activity.login.LoginFragment
+import com.paipaiwei.personal.ui.activity.onepay.PayResultFragment
+import com.paipaiwei.personal.ui.activity.onepay.PayResultFragment2
+import com.paipaiwei.personal.view.OrderView
+import com.yjhh.common.bean.DisplayPayTypeBean
+import com.yjhh.common.iview.PayView
+import com.yjhh.common.model.WxPayBean
 
 import com.yjhh.common.pay.RxPay
+import com.yjhh.common.present.PayPresent
+import com.yjhh.common.utils.APKVersionCodeUtils
+import com.yjhh.common.utils.DateUtil
+import com.yjhh.common.utils.RxCountDown
+import kotlinx.android.synthetic.main.activity_pay.*
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
+import me.yokeyword.fragmentation.anim.FragmentAnimator
+import java.util.concurrent.TimeUnit
 
+@Route(path = "/PayActivity/pay")
 class PayActivity : BaseActivity() {
+    @Autowired
+    @JvmField
+    var jsonValue: String? = null
+    @Autowired
+    @JvmField
+    var type: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
         setContentView(R.layout.activity_pay)
-
-        alipay()
-        wechatPay()
-    }
-
-
-    fun alipay() {
-        //服务器产生的订单信息
-        val str =
-            "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
-        val disposable = RxPay(this).requestAlipay(str)
-            .subscribe({ aBoolean ->
-                Log.e("oye", "accept: " + aBoolean!!)
-            }) { throwable ->
-                Log.e("oye", "accept: " + throwable.toString())
-            }
-        compositeDisposable.add(disposable)
+        if (findFragment(LoginFragment::class.java) == null) {
+            loadRootFragment(R.id.fl_container, PayFragment.newInstance(jsonValue,type))
+        }
 
     }
 
-    fun wechatPay() {
-        //"服务器生成订单后的json 具体看README格式"
-        val str = "{\"prepayId\":\"wx20171130142918877d249e440347896475\"}"
-        val disposable = RxPay(this).requestWXpay(str)
-            .subscribe({ aBoolean ->
-                Log.e("accept:", aBoolean.toString())
-            }) { throwable ->
-                Log.e("accept: ", throwable.toString())
-            }
-        compositeDisposable.add(disposable)
+
+    override fun onBackPressedSupport() {
+
+        super.onBackPressedSupport()
+    }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+
+        return DefaultHorizontalAnimator()
     }
 
 

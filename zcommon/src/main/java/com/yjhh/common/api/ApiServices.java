@@ -81,7 +81,7 @@ public class ApiServices {
                                 sb.append(key);
 
                                 if (s.endsWith(".00")||s.endsWith(".0")){
-                                    sb.append(s.split(".")[0]);
+                                    sb.append(s.substring(0,s.indexOf(".")));
                                 }else {
                                     sb.append(s);
                                 }

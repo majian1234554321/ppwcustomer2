@@ -104,7 +104,7 @@ class SplashActivity : AppCompatActivity(), CommonView {
 
         rxPermissions = RxPermissions(this)
 
-        present.checkVersion()
+
         disposable = rxPermissions!!.request(*permissions).subscribe { present.checkVersion() }
 
     }
@@ -156,19 +156,7 @@ class SplashActivity : AppCompatActivity(), CommonView {
                 override fun close() {
 
 
-                    if (!TextUtils.isEmpty(
-                            SharedPreferencesUtils.getParam(
-                                this@SplashActivity,
-                                "sessionId",
-                                ""
-                            ) as String
-                        )
-                    ) {
-                        ActivityCollector.JumpActivity(this@SplashActivity, MainActivity::class.java)
-                    } else {
-
-                        ActivityCollector.JumpActivity(this@SplashActivity, LoginActivity::class.java)
-                    }
+                    ActivityCollector.JumpActivity(this@SplashActivity, MainActivity::class.java)
 
                     dialog?.dismiss()
                     finish()
@@ -199,19 +187,7 @@ class SplashActivity : AppCompatActivity(), CommonView {
 
                     override fun onComplete() {
 
-                        if (!TextUtils.isEmpty(
-                                SharedPreferencesUtils.getParam(
-                                    this@SplashActivity,
-                                    "sessionId",
-                                    ""
-                                ) as String
-                            )
-                        ) {
-                            ActivityCollector.JumpActivity(this@SplashActivity, MainActivity::class.java)
-                        } else {
-
-                            ActivityCollector.JumpActivity(this@SplashActivity, LoginActivity::class.java)
-                        }
+                        ActivityCollector.JumpActivity(this@SplashActivity, MainActivity::class.java)
 
                         finish()
                     }

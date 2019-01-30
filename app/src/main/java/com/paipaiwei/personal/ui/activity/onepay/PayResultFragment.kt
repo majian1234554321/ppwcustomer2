@@ -17,11 +17,15 @@ class PayResultFragment : BaseFragment(), OrderView {
         val model = Gson().fromJson<PayResultBean>(response, PayResultBean::class.java)
 
 
-        tv_tips.text = model.payStatusText
-        tv_title.text = model.payStatusText
-        iev1.setTextContent("")
-        iev2.setTextContent("$")
-        iev3.setTextContent("${mActivity.getString(R.string.rmb_price_double2, model.money)}")
+        if (tv_tips != null)
+            tv_tips?.text = model.payStatusText
+
+        if (tv_title != null)
+            tv_title?.text = model.payStatusText
+
+        iev1?.setTextContent("")
+        iev2?.setTextContent("$")
+        iev3?.setTextContent("${mActivity.getString(R.string.rmb_price_double2, model.money)}")
 
     }
 

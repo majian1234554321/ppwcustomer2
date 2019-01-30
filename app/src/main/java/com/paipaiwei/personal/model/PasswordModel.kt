@@ -34,8 +34,6 @@ class PasswordModel {
         with(map) {
             put("account", account)
             put("smsCode", smsCode)
-
-            put("deviceName", deviceName)
         }
         return ApiServices.getInstance().create(LoginService::class.java).fromSms(map)
     }

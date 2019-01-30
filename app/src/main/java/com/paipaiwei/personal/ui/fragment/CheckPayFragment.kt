@@ -1,40 +1,41 @@
-package com.ppwc.restaurant.views
+package com.paipaiwei.personal.ui.fragment
 
-import android.opengl.Visibility
+
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
 import com.jakewharton.rxbinding2.widget.RxTextView
-import com.ppwc.restaurant.R
+import com.paipaiwei.personal.R
+import com.paipaiwei.personal.ui.activity.PayActivity
+import com.paipaiwei.personal.ui.activity.onepay.OnePayMoneyFragment
 import com.ppwc.restaurant.bean.ShopPayPageInitModel
 import com.ppwc.restaurant.bean.SubmitShopPayModel
 import com.ppwc.restaurant.iview.PrePayCheckServie
-import com.ppwc.restaurant.iview.RestaurantOrderSerVice
 import com.ppwc.restaurant.mrlistener.AlphaPageTransformer
+import com.ppwc.restaurant.views.MRCheckPayFragment
+import com.ppwc.restaurant.views.MRPendingPaymentFragment
+import com.ppwc.restaurant.views.ProofreadingDialogFragment
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.TextStyleUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.mrcheckpayadapter.*
-import kotlinx.android.synthetic.main.mrcheckpayfragment.*
-import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
-import net.cachapa.expandablelayout.ExpandableLayout
-import org.w3c.dom.Text
+import kotlinx.android.synthetic.main.checkpayfragment.*
+import java.lang.StringBuilder
 import java.text.DecimalFormat
 
-
-class MRCheckPayFragment : BaseFragment() {
+class CheckPayFragment : BaseFragment() {
 
 
     var tv1price = "0"
@@ -48,10 +49,10 @@ class MRCheckPayFragment : BaseFragment() {
 
     var view22: View? = null
 
-    override fun getLayoutRes(): Int = R.layout.mrcheckpayfragment
+
+    override fun getLayoutRes(): Int = R.layout.checkpayfragment
 
     override fun initView() {
-
         val couponId = arguments?.getString("couponId")
         val orderId = arguments?.getString("orderId")
         val typeId = arguments?.getString("typeId")
@@ -84,10 +85,13 @@ class MRCheckPayFragment : BaseFragment() {
                                 override fun processValue(response: String?) {
                                     Log.i("paySubmit", response)
 
-                                    start(MRPendingPaymentFragment.newInstance(response))
 
-
-
+                                    ARouter.getInstance()
+                                        .build("/PayActivity/pay")
+                                        .withString("jsonValue", response)
+                                        .withString("type", "商家买单")
+                                        .navigation()
+                                    dialog.dismiss()
 
                                 }
 
@@ -112,62 +116,9 @@ class MRCheckPayFragment : BaseFragment() {
         }
 
         mViewPager.pageMargin = 40
-        //  mViewPager.setPadding(40,0,40,0)
-
-        mViewPager.offscreenPageLimit = 3
-        mViewPager.adapter = object : PagerAdapter() {
-            override fun getCount(): Int = 3
 
 
-            override fun instantiateItem(container: ViewGroup, position: Int): Any {
-                view22 = View.inflate(mActivity, R.layout.mrcheckpayadapter, null)
 
-                val rl_head = view22?.findViewById<RelativeLayout>(R.id.rl_head)
-
-                val tv_price = view22?.findViewById<TextView>(R.id.tv_price)
-                val tv_access = view22?.findViewById<TextView>(R.id.tv_access)
-                tv_useIf = view22?.findViewById<TextView>(R.id.tv_useIf)
-                val tv_cardName = view22?.findViewById<TextView>(R.id.tv_cardName)
-
-                val rl_footer = view22?.findViewById<RelativeLayout>(R.id.rl_footer)
-
-
-                tv_price?.text = TextStyleUtils.changeTextAa(
-                    tv_price?.text.toString(),
-                    tv_price?.text.toString().length - 3,
-                    tv_price?.text.toString().length,
-                    15
-                )
-
-                rl_head?.setBackgroundResource(R.drawable.iv_red)
-
-
-                view22?.setOnClickListener {
-                    Toast.makeText(mActivity, "view", Toast.LENGTH_SHORT).show()
-
-                    rl_footer?.visibility = View.VISIBLE
-                }
-
-                tv_useIf?.setOnClickListener {
-                    Toast.makeText(mActivity, "tv_useIf", Toast.LENGTH_SHORT).show()
-                    rl_footer?.visibility = View.GONE
-                }
-
-                container.addView(view22)
-
-
-                return (view22 as View?)!!
-            }
-
-            override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-                container.removeView(`object` as View)
-            }
-
-            override fun isViewFromObject(view: View, o: Any): Boolean {
-                return view === o
-            }
-        }
-        mViewPager.setPageTransformer(true, AlphaPageTransformer())
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
@@ -205,17 +156,98 @@ class MRCheckPayFragment : BaseFragment() {
                 override fun processValue(response: String?) {
                     Log.i("ShopPayPageInitModel", response)
 
-                    val mrBean = Gson().fromJson<MRCheckPayBean>(response, MRCheckPayBean::class.java)
+                    val mrBean = Gson().fromJson<MRCheckPayFragment.MRCheckPayBean>(
+                        response,
+                        MRCheckPayFragment.MRCheckPayBean::class.java
+                    )
 
-                    if (!mrBean.coupons.isEmpty()) {
+                    if (!(mrBean?.coupons == null || !mrBean.coupons.isNotEmpty())) {
+
+
+                        mViewPager.offscreenPageLimit = mrBean?.coupons.size
+                        mViewPager.adapter = object : PagerAdapter() {
+                            override fun getCount(): Int = mrBean?.coupons.size
+
+
+                            override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                                view22 = View.inflate(mActivity, com.ppwc.restaurant.R.layout.mrcheckpayadapter, null)
+
+                                val rl_head = view22?.findViewById<RelativeLayout>(com.ppwc.restaurant.R.id.rl_head)
+
+                                val tv_price = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_price)
+                                val tv_mark = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_mark)
+
+
+                                val tv_access = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_access)
+                                tv_access?.text = mrBean?.coupons.get(position).useMark
+                                tv_useIf = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_useIf)
+                                val tv_cardName = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_cardName)
+                                tv_cardName?.text = mrBean?.coupons.get(position).code
+                                val rl_footer = view22?.findViewById<RelativeLayout>(com.ppwc.restaurant.R.id.rl_footer)
+
+
+                                val sbMark = StringBuilder();
+                                mrBean?.coupons[position].useMarks.forEach {
+                                    sbMark.append(it)
+                                    sbMark.append("\n")
+                                }
+
+                                tv_mark?.text = sbMark.toString()
+
+                                val tv_priceText =
+                                    "${mrBean?.coupons.get(position).value} ${mrBean?.coupons.get(position).valueUnit}"
+                                tv_price?.text = TextStyleUtils.changeTextAa(
+                                    tv_priceText,
+                                    tv_priceText.length - 3,
+                                    tv_priceText.length,
+                                    15
+                                )
+
+                                rl_head?.setBackgroundResource(com.ppwc.restaurant.R.drawable.iv_red)
+
+
+
+
+
+                                view22?.setOnClickListener {
+
+
+                                    rl_footer?.visibility = View.VISIBLE
+                                }
+
+                                tv_useIf?.setOnClickListener {
+
+                                    if (rl_footer?.visibility == View.VISIBLE) {
+                                        rl_footer?.visibility = View.GONE
+                                    } else {
+                                        rl_footer?.visibility == View.VISIBLE
+                                    }
+
+
+                                }
+
+                                container.addView(view22)
+
+
+                                return (view22 as View?)!!
+                            }
+
+                            override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+                                container.removeView(`object` as View)
+                            }
+
+                            override fun isViewFromObject(view: View, o: Any): Boolean {
+                                return view === o
+                            }
+                        }
+                        mViewPager.setPageTransformer(true, AlphaPageTransformer())
+
 
                     } else {
                         mViewPager.visibility = View.GONE
                         rl1.visibility = View.GONE
                         rl_3.visibility = View.GONE
                         tv_count_tips.visibility = View.VISIBLE
-
-
                     }
 
                     tv_select.text = mrBean.shopName
@@ -247,7 +279,7 @@ class MRCheckPayFragment : BaseFragment() {
 
                     tv2price = discountNoPrice.text.toString().trim()
                     tv_finalprice.text =
-                            calculation(it.toString(), discountNoPrice.text.toString(), "1", "0").toString()
+                        calculation(it.toString(), discountNoPrice.text.toString(), "1", "0").toString()
                     tv4price = tv_finalprice.text.toString()
 
                 } else {
@@ -277,7 +309,7 @@ class MRCheckPayFragment : BaseFragment() {
                     tv1price = et_totleprice.text.toString()
                     tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
+                        calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
                 } else {
                     tv_finalprice.text = ""
                     tv1price = "0"
@@ -288,7 +320,7 @@ class MRCheckPayFragment : BaseFragment() {
             } else {
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), "0", "1", "0")
+                        calculation(et_totleprice.text.toString(), "0", "1", "0")
 
                     tv1price = et_totleprice.text.toString()
                     tv2price = "0"
@@ -306,7 +338,6 @@ class MRCheckPayFragment : BaseFragment() {
 
         compositeDisposable.add(dis)
         compositeDisposable.add(dis2)
-
     }
 
 
@@ -329,13 +360,13 @@ class MRCheckPayFragment : BaseFragment() {
         }
 
 
-        return getString(R.string.rmb_price_double,price)
+        return getString(R.string.rmb_price_double, price)
     }
 
 
     companion object {
-        fun newInstance(couponId: String?, orderId: String?, shopId: String?, typeId: String?): MRCheckPayFragment {
-            val fragment = MRCheckPayFragment()
+        fun newInstance(couponId: String?, orderId: String?, shopId: String?, typeId: String?): CheckPayFragment {
+            val fragment = CheckPayFragment()
             val bundle = Bundle()
 
             bundle.putString("couponId", couponId)
@@ -349,42 +380,13 @@ class MRCheckPayFragment : BaseFragment() {
             return fragment
         }
     }
-
-
- data class MRCheckPayBean(
-    val couponId: Int,
-    val coupons: List<Coupon>,
-    val shopId: Int,
-    val shopName: String,
-    val type: Int
-)
-
-data class Coupon(
-    val code: String,
-    val id: Int,
-    val ifJinLi: Boolean,
-    val ifNeedAudit: Boolean,
-    val qrCodeData: String,
-    val shopId: Int,
-    val shopName: String,
-    val status: Int,
-    val statusText: String,
-    val style: Int,
-    val title: String,
-    val trade: String,
-    val type: Int,
-    val useFill: Double,
-    val useMark: String,
-    val useMarks: List<String>,
-    val useText: String,
-    val value: Double,
-    val valuePrefix: String,
-    val valueUnit: String
-)
-
-
-
-
-
+//
+//
+//    data class MRCheckPayBean(
+//        val coupons: List<Any>,
+//        val shopId: Int,
+//        val shopName: String,
+//        val type: Int
+//    )
 
 }

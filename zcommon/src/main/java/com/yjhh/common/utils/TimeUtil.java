@@ -114,7 +114,7 @@ public class TimeUtil {
         }
 
 
-        if (second > 0) {
+        if (second >= 0) {
             if (second >= 10)
                 secondstring = String.valueOf(second);
             else

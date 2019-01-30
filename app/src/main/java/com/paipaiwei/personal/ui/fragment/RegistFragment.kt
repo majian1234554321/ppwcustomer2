@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.content.Intent
 import androidx.core.content.ContextCompat
 import android.text.TextPaint
 import android.text.TextUtils
@@ -17,12 +18,16 @@ import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.common.utils.SpannableStringUtils
 import com.paipaiwei.personal.present.RegByAccountPresent
+import com.paipaiwei.personal.ui.activity.MainActivity
 import com.paipaiwei.personal.view.RegistView
 import com.yjhh.common.Constants.MAX_COUNT_TIME
+import com.yjhh.common.utils.RxBus
+import com.yjhh.common.utils.SharedPreferencesUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.registfragment.*
+import org.json.JSONObject
 
 import java.util.concurrent.TimeUnit
 
@@ -34,6 +39,21 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
     override fun registSuccess2(date: String?) {
         Toast.makeText(context, "用户注册成功", Toast.LENGTH_SHORT).show()
+
+        val jsonObject = JSONObject(date)
+        val mobile = jsonObject.getString("mobile")
+        val nickName = jsonObject.getString("nickName")
+        val sessionId = jsonObject.getString("sessionId")
+        val type = jsonObject.getString("type")
+
+        SharedPreferencesUtils.setParam(mActivity, "mobile", mobile)
+        SharedPreferencesUtils.setParam(mActivity, "nickName", nickName)
+        SharedPreferencesUtils.setParam(mActivity, "sessionId", sessionId)
+        SharedPreferencesUtils.setParam(mActivity, "type", type)
+
+
+        RxBus.default.post(LoginBean(mobile, true))
+        startActivity(Intent(mActivity, MainActivity::class.java))
         activity?.finish()
     }
 
@@ -43,19 +63,23 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
     override fun registSuccess(date: LoginBean?) {
 
+
+        startActivity(Intent(mActivity, MainActivity::class.java))
+
         activity?.finish()
     }
 
     override fun registFault(registFaultMessage: String) {
-        Toast.makeText(context, "用户注册失败$registFaultMessage", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "$registFaultMessage", Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendSMSSuccess(date: LoginBean?) {
+    override fun sendSMSSuccess(date: String?) {
         Toast.makeText(context, "验证码发送成功", Toast.LENGTH_SHORT).show()
+        tv_verifyCode?.text = "发送验证码"
     }
 
     override fun sendSMSFault(message: String) {
-        Toast.makeText(context, "验证码发送失败$message", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -92,7 +116,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
     }
 
 
-
     private lateinit var regByAccountPresent: RegByAccountPresent
     override fun initView() {
 
@@ -114,7 +137,7 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
-                   // regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
+                    regByAccountPresent.sendSms(TYPE, et_phone.text.toString())
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
@@ -135,10 +158,15 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (it == 0L) {
-                    RxView.enabled(tv_verifyCode).accept(true)
-                    RxTextView.text(tv_verifyCode).accept("发送验证码")
+                    if (tv_verifyCode != null) {
+                        RxView.enabled(tv_verifyCode).accept(true)
+                        RxTextView.text(tv_verifyCode).accept("发送验证码")
+                    }
                 } else {
-                    RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
+                    if (tv_verifyCode != null) {
+                        RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
+                    }
+
 
                 }
                 Log.i("TAG", it.toString())
@@ -148,9 +176,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
 
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-
-
-
 
 
                 checkbox.isChecked = false
@@ -168,7 +193,6 @@ class RegistFragment : BaseFragment(), View.OnClickListener, RegistView {
         val clickableSpan2: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 //ToastUtils.showShortToast("事件触发了 landscapes and nedes")
-
 
 
                 checkbox.isChecked = false

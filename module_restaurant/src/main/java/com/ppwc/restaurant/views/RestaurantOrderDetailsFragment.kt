@@ -29,7 +29,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     override fun onRestaurantOrder(model: String?, flag: String) {
 
         if ("detail" == flag) {
-            jsonString = model;
+            jsonString = model
             val orderDetailsBean = Gson().fromJson<OrderDetailsBean>(model, OrderDetailsBean::class.java)
 
             if (!TextUtils.isEmpty(TimeUtil.stampToDate(orderDetailsBean.createdTime))) {
@@ -231,7 +231,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
             R.id.mb_1 -> {
 
                 when (statusValue) { // //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
-                    0 -> {
+                    1 -> {
                         start(MRPendingPaymentFragment.newInstance(jsonString))
                     }
                     else -> {

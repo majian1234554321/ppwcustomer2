@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -43,7 +44,7 @@ import java.util.*
 class OrderEvaluationFragment : BaseFragment(), CommonView {
 
 
-    override fun onSuccess(value: String?,flag:String?) {
+    override fun onSuccess(value: String?, flag: String?) {
         val gson = Gson()
         val model = gson.fromJson<PhotoBean>(value, PhotoBean::class.java)
 
@@ -53,7 +54,7 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
         }
     }
 
-    override fun onFault(errorMsg: String?,flag:String?) {
+    override fun onFault(errorMsg: String?, flag: String?) {
 
     }
 
@@ -80,9 +81,9 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
         lists.clear()
 
 
-        mAdapter = OrderEvaluationAdapter(mActivity,lists,9)
+        mAdapter = OrderEvaluationAdapter(mActivity, lists, 9)
         recyclerView.adapter = mAdapter
-     //  mAdapter?.addHeaderView(headView)
+        //  mAdapter?.addHeaderView(headView)
 
 
         mAdapter?.setOnItemClickListener(object : OrderEvaluationAdapter.OnRecycleViewItemClickListener {
@@ -110,6 +111,10 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
             }
 
         })
+
+        tv_submit.setOnClickListener {
+
+        }
 
     }
 
@@ -285,6 +290,17 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
         }
 
 
+    }
+
+    companion object {
+        fun newInstance(ids: String?, payType: String?): OrderEvaluationFragment {
+            val fragment = OrderEvaluationFragment()
+            val bundle = Bundle()
+            bundle.putString("ids", ids)
+            bundle.putString("payType", payType)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
 

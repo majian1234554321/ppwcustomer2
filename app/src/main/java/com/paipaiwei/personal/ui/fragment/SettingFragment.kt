@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
@@ -50,10 +51,11 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
 
             R.id.tv_loginout -> {
                 loginOut()
+
+
                 ARouter.getInstance()
                     .build("/LoginActivity/Login")
-                    .withString("name", "老王")
-                    .withInt("age", 23)
+
                     .navigation(context)
 
                 RxBus.default.post(LoginBean("", false))
@@ -68,16 +70,27 @@ class SettingFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun initView() {
-        iev_resetPwd.setOnClickListener(this)
-        iev_resetPhone.setOnClickListener(this)
-        iev_resetMessage.setOnClickListener(this)
-        iev_resetMemory.setOnClickListener(this)
-        iev_resetVersion.setOnClickListener(this)
-        tv_loginout.setOnClickListener(this)
+
 
         iev_resetMemory.setTextContent(DataCleanManager.getTotalCacheSize(mActivity))
 
 
+        arrayOf(
+            iev_resetPwd,
+            iev_resetPhone,
+            iev_resetMessage,
+            iev_resetMemory,
+            iev_resetVersion,
+            tv_loginout
+        ).forEach {
+            it.setOnClickListener(this)
+        }
+
+        if (!TextUtils.isEmpty(SharedPreferencesUtils.getParam(context, "sessionId", "") as String)) {
+            tv_loginout.visibility = View.VISIBLE
+        } else {
+            tv_loginout.visibility = View.GONE
+        }
 
 
     }

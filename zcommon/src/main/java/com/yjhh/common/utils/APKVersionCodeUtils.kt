@@ -132,17 +132,15 @@ object APKVersionCodeUtils {
         val api = WXAPIFactory.createWXAPI(BaseApplication.context, Constants.APP_ID_WX);
 
 
-        if (api.isWXAppInstalled() && api.isWXAppSupportAPI()) {
-            return true;
+        if (api.isWXAppInstalled && api.isWXAppSupportAPI) {
+            return true
         } else {
-            val packageManager = BaseApplication.context.getPackageManager();// 获取packagemanager
-            val pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
-            if (pinfo != null) {
-                pinfo.forEach {
+            val packageManager = BaseApplication.context.packageManager;// 获取pacemaker
+            val pinfo = packageManager.getInstalledPackages(0)// 获取所有已安装程序的包信息
+            pinfo?.forEach {
 
-                    if (it.packageName == "com.tencent.mm") {
-                        return true
-                    }
+                if (it.packageName == "com.tencent.mm") {
+                    return true
                 }
             }
             return false;

@@ -35,7 +35,7 @@ class ChangeMobileFragment : BaseFragment(), RegistView, View.OnClickListener {
         Toast.makeText(mActivity, registFaultMessage, Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendSMSSuccess(date: LoginBean?) {
+    override fun sendSMSSuccess(date: String?) {
         Toast.makeText(context, "验证码发送成功", Toast.LENGTH_SHORT).show()
     }
 
@@ -72,7 +72,7 @@ class ChangeMobileFragment : BaseFragment(), RegistView, View.OnClickListener {
             .doOnNext {
                 if (it) {
                     Log.i("TAG", "初始化")
-                    //regByAccountPresent.sendSms(TYPE, et_newPhone.text.toString())
+                    regByAccountPresent.sendSms(TYPE, et_newPhone.text.toString())
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())

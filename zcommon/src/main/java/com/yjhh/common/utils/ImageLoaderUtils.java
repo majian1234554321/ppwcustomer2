@@ -107,15 +107,20 @@ public class ImageLoaderUtils {
                 .centerCrop()
                 .transform(new GlideCircleTransform(context));
         // 图片加载库采用Glide框架
-        Glide.with(context).load(url)
-                .apply(options)
-                .transition(new DrawableTransitionOptions().crossFade())
-                .into(new SimpleTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
-                        imageView.setImageDrawable(resource);
-                    }
-                });
+        if (url!=null){
+            Glide.with(context).load(url)
+                    .apply(options)
+                    .transition(new DrawableTransitionOptions().crossFade())
+                    .into(new SimpleTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                            imageView.setImageDrawable(resource);
+                        }
+                    });
+        }else {
+
+        }
+
     }
 }
 

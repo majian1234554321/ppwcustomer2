@@ -25,12 +25,10 @@ class RegByAccountModel {
             put("refId", refId)
 
 
-
         }
 
         return ApiServices.getInstance().create(LoginService::class.java).regByAccount(map)
     }
-
 
 
     fun regByAccount2(
@@ -54,7 +52,6 @@ class RegByAccountModel {
     }
 
 
-
     /**
      *
      * 获取短信验证码
@@ -65,6 +62,8 @@ class RegByAccountModel {
         with(map) {
             put("type", type)
             put("phone", phone)
+            put ("len", "6")
+
         }
         return ApiServices.getInstance().create(LoginService::class.java).sendSms(map)
     }

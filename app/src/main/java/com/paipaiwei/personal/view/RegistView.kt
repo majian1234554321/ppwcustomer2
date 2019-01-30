@@ -11,6 +11,6 @@ interface RegistView  {
 
     fun registFault(registFaultMessage: String)
 
-    fun sendSMSSuccess(date: LoginBean?)
+    fun sendSMSSuccess(date: String?)
     fun sendSMSFault(message: String)
 }

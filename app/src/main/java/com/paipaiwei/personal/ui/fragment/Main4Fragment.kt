@@ -36,18 +36,35 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
         tv_name.text = main1bean.nickName
         tv_mobile.visibility = View.VISIBLE
         tv_mobile.text = main1bean.mobile
-        ImageLoaderUtils.loadCircle(
-            mActivity,
-            profile_image,
-            main1bean.avatarUrl,
-            R.drawable.icon_login_touxiang,
-            5
-        )
+        if (!TextUtils.isEmpty(main1bean.avatarUrl)) {
+            ImageLoaderUtils.loadCircle(
+                mActivity,
+                profile_image,
+                main1bean.avatarUrl,
+                R.drawable.icon_login_touxiang,
+                5
+            )
+        }else{
+            ImageLoaderUtils.load(
+                mActivity,
+                profile_image,
+                "",
+                R.drawable.icon_login_touxiang,
+                R.drawable.icon_login_touxiang, 0
+            )
+        }
+
+
         ll_3.visibility = View.VISIBLE
 
-        tv_Integral.text =main1bean.account.integral
-            tv_sign.text =main1bean.account.sign
-            tv_counp.text =  main1bean.account.coupon
+
+        if (main1bean.account != null) {
+            tv_Integral.text = main1bean.account.integral
+            tv_sign.text = main1bean.account.sign
+            tv_counp.text = main1bean.account.coupon
+        }
+
+
     }
 
     override fun onFault(errorMsg: String?) {
@@ -61,8 +78,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
             R.id.iev_about -> {
 
 
-
-
                 (parentFragment as MainFragment).startBrotherFragment(AboutFragment())
 
 
@@ -70,7 +85,6 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
 
 
             R.id.iev_prop -> {
-
 
 
                 (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
@@ -261,17 +275,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
 
     fun updateUI(flag: Boolean) {
         if (flag) {
-            tv_name.text = SharedPreferencesUtils.getParam(context, "nickName", "") as String
-            tv_mobile.visibility = View.VISIBLE
-            tv_mobile.text = SharedPreferencesUtils.getParam(context, "mobile", "") as String
-            ImageLoaderUtils.load(
-                mActivity,
-                profile_image,
-                "",
-                R.drawable.icon_login_touxiang,
-                R.drawable.icon_login_touxiang, 0
-            )
-            ll_3.visibility = View.VISIBLE
+            clickLoadData()
         } else {
             ll_3.visibility = View.GONE
             tv_name.text = "请点击登录"
@@ -287,7 +291,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
     }
 
     fun clickLoadData() {
-        val  present2 = SectionUserPresent(context, this)
+        val present2 = SectionUserPresent(context, this)
         present2?.getUserinfo()
     }
 

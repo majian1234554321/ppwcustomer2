@@ -35,8 +35,18 @@ class DisplayActivity : BaseActivity() {
     @JvmField
     var value: String? = null
 
-
+    @Autowired
+    @JvmField
     var value1: String? = null
+
+    @Autowired
+    @JvmField
+    var value2: String? = null
+
+    @Autowired
+    @JvmField
+    var value3: String? = null
+
 
     @Autowired
     @JvmField
@@ -147,9 +157,13 @@ class DisplayActivity : BaseActivity() {
             }
 
             "BuyOvervalueDetailsFragment" -> {
-                fragments = BuyOvervalueDetailsFragment.newInstance(value, value1,jumpType)
+                fragments = BuyOvervalueDetailsFragment.newInstance(value, value1, jumpType)
             }
 
+
+            "CheckPayFragment" -> {
+                fragments = CheckPayFragment.newInstance(value, value1, value2, value3)
+            }
 
             else -> {
 

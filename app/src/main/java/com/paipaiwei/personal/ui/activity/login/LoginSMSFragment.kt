@@ -96,6 +96,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
 
     override fun onSuccessSMS(value: String?) {
         Toast.makeText(BaseApplication.context, "验证码发送成功", Toast.LENGTH_SHORT).show()
+        compositeDisposable.clear()
     }
 
     override fun onFaultSMS(errorMsg: String?) {
@@ -163,8 +164,11 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (it == 0L) {
-                    RxView.enabled(tv_verifyCode).accept(true)
-                    RxTextView.text(tv_verifyCode).accept("发送验证码")
+                    if (tv_verifyCode!=null){
+                        RxView.enabled(tv_verifyCode).accept(true)
+                        RxTextView.text(tv_verifyCode).accept("发送验证码")
+                    }
+
 
                 } else {
                     if (tv_verifyCode!=null){

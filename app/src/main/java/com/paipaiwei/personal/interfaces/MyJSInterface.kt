@@ -28,12 +28,12 @@ class MyJSInterface(var context: Context) {
     @JavascriptInterface
     fun viewOrder(json: String?) {
         Log.i("TAG:viewOrder", json)
-        val jsonObject = JSONObject(json)
+
 
         ARouter.getInstance()
             .build("/RestaurantActivity/Restaurant")
             .withString("displayTab", "RestaurantOrderDetailsFragment")
-            .withString("id", json)
+            .withString("id", json.toString())
             .navigation()
 
 

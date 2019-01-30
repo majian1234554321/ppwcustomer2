@@ -52,7 +52,8 @@ public class MembershipCardBean {
         public String buttonText;
         public int flag;
         public String flagText;
-        public int id;
+        public String id;
+        public String shopId;
         public boolean ifNeedAudit;
         public String qrCodeData;
         public String shopName;
