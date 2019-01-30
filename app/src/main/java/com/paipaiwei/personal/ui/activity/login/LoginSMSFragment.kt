@@ -15,10 +15,12 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SharedPreferencesUtils
 import com.yjhh.ppwbusiness.iview.PasswordView
 import com.paipaiwei.personal.R
+import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.present.PasswordPresent
 import com.paipaiwei.personal.ui.activity.MainActivity
 import com.paipaiwei.personal.ui.fragment.BackViewFragment
 import com.yjhh.common.api.CommonService
+import com.yjhh.common.utils.RxBus
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,7 +50,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
                 mActivity.onBackPressed()
             }
 
-            R.id.tv_kaidian ->{
+            R.id.tv_kaidian -> {
                 ApiServices.getInstance().create(CommonService::class.java)
                     .init()
                     .subscribeOn(Schedulers.io())
@@ -85,9 +87,9 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
 
         Toast.makeText(mActivity, "登录成功", Toast.LENGTH_SHORT).show()
 
-        //RxBus.default.post(LoginBean(mobile, true))
+        RxBus.default.post(LoginBean(mobile, true))
 
-        startActivity(Intent(mActivity, MainActivity::class.java))
+        // startActivity(Intent(mActivity, MainActivity::class.java))
         mActivity.finish()
     }
 
@@ -104,9 +106,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
     }
 
 
-
     val TYPE = "1"//1登录 2注册 21 重置密码 22找回密码
-
 
 
     var present: PasswordPresent? = null
@@ -115,7 +115,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
 
     override fun initView() {
 
-        arrayOf(loginPassword, btn_login,tv_kaidian).forEach {
+        arrayOf(loginPassword, btn_login, tv_kaidian).forEach {
             it.setOnClickListener(this)
         }
 
@@ -164,14 +164,14 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (it == 0L) {
-                    if (tv_verifyCode!=null){
+                    if (tv_verifyCode != null) {
                         RxView.enabled(tv_verifyCode).accept(true)
                         RxTextView.text(tv_verifyCode).accept("发送验证码")
                     }
 
 
                 } else {
-                    if (tv_verifyCode!=null){
+                    if (tv_verifyCode != null) {
                         RxTextView.text(tv_verifyCode).accept("剩余 $it 秒")
                     }
 

@@ -62,10 +62,10 @@ class BackViewFragment : BaseFragment() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
                 if (newProgress == 100) {
-                    progressBar1.visibility = View.GONE
+                    progressBar1?.visibility = View.GONE
                 } else {
-                    progressBar1.visibility = View.VISIBLE
-                    progressBar1.progress = newProgress
+                    progressBar1?.visibility = View.VISIBLE
+                    progressBar1?.progress = newProgress
                 }
 
             }

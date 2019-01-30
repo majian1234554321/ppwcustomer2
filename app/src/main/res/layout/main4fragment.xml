@@ -47,6 +47,7 @@
                             android:layout_height="wrap_content">
                 <ImageView
                         android:id="@+id/profile_image"
+                        android:background="@drawable/icon_login_touxiang"
                         android:layout_width="74pt"
                         android:layout_height="74pt"
                 />

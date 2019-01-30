@@ -126,6 +126,17 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             if (main1bean.main1HeadBean.jinli != null) {
                 iv_imagegame?.visibility = View.VISIBLE
 
+
+                ImageLoaderUtils.loadCircle(
+                    mActivity,
+                    iv_imagegame,
+                    main1bean.main1HeadBean.jinli.imageUrl,
+                    R.drawable.icon_place_pai,
+                    R.drawable.icon_place_pai
+                )
+
+
+
                 iv_imagegame?.setOnClickListener {
 
 

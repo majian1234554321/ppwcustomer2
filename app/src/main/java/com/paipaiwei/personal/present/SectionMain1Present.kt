@@ -80,6 +80,7 @@ class SectionMain1Present(context: Context) : BasePresent() {
                 val mainFinalDataBean = MainFinalDataBean()
                 if (!TextUtils.isEmpty(jsonValue1) && jsonValue1.contains("success")) {
                     val jSONObject1 = JSONObject(jsonValue1)
+                    LogUtils.i("joinMain", jsonValue1)
                     if (jSONObject1.getBoolean("success")) {
                         val jsonString = jSONObject1.getString("data")
 

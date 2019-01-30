@@ -145,7 +145,13 @@ class SplashActivity : AppCompatActivity(), CommonView {
 
     override fun onSuccess(value: String?, flag: String?) {
         val modelVersionBean = Gson().fromJson<VersionBean>(value, VersionBean::class.java)
+
+
         if (APKVersionCodeUtils.getVerName(this) != modelVersionBean.version) {
+
+            if (!TextUtils.isEmpty(modelVersionBean.marketUrl)){
+
+
             dialog = if (modelVersionBean.ifCover == 1) {//是否强制覆盖(0否 1是)
                 AppUpdateFragment(true, modelVersionBean.content, modelVersionBean.marketUrl)
             } else {
@@ -171,7 +177,12 @@ class SplashActivity : AppCompatActivity(), CommonView {
                     )
                 }
 
-            })
+            })}else{
+                ActivityCollector.JumpActivity(this@SplashActivity, MainActivity::class.java)
+
+
+                finish()
+            }
 
         } else {
 
