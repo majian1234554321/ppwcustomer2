@@ -12,6 +12,7 @@ import com.paipaiwei.personal.R
 import com.yjhh.common.utils.DateUtil
 import com.paipaiwei.personal.present.OrderPresent
 import com.paipaiwei.personal.view.OrderView
+import com.ppwc.restaurant.views.OrderEvaluationFragment
 
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.bean.DisplayPayTypeBean
@@ -43,7 +44,8 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
         if (value != null) {
             val jsonObject = JSONObject(value);
-           val str =  jsonObject.optString("data")
+            val str = jsonObject.optString("data")
+            val id = jsonObject.optString("id")
 
 //            val str =
 //                "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
@@ -53,9 +55,9 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
                     if (aBoolean) {
-
+                        toDispatchSuccess(id, "2")
                     } else {
-                        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+                        toDispatchError(id, "2")
                     }
 
 
@@ -90,26 +92,11 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
                     Log.e("accept:WX", aBoolean.toString())
                     if (aBoolean) {
 
-                        when (type) {
-                            "限时抢拍" -> {
-                                startWithPop(PayResultFragment2.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                            }
-
-                            "道具购买" -> {
-                                startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                            }
-
-
-                            else -> {
-
-
-                            }
-                        }
+                        toDispatchSuccess(model.id, "1")
 
 
                     } else {
-                        startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+                        toDispatchError(model.id, "1")
 
                     }
                 }) { throwable ->
@@ -218,6 +205,30 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+
+    fun toDispatchSuccess(id: String?, type: String?) {
+        when (type) {
+            "限时抢拍" -> {
+                startWithPop(PayResultFragment2.newInstance(id, type)) //	//1微信 2支付宝 4银联
+            }
+            "道具购买" -> {
+                startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
+            }
+            "商家买单" -> {
+                startWithPop(OrderEvaluationFragment())
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
+    fun toDispatchError(id: String?, type: String?) {
+        startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
+        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
     }
 
 

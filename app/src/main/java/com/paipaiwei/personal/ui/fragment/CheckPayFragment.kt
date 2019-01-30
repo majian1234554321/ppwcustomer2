@@ -63,7 +63,6 @@ class CheckPayFragment : BaseFragment() {
             if ("0" != tv1price) {
                 val dialog = ProofreadingDialogFragment(tv1price, tv2price, tv3price, tv4price)
                 dialog.show(childFragmentManager, "TAG")
-
                 dialog.setOnDialogClick(object : ProofreadingDialogFragment.OnDialogClickListener {
                     override fun onDialogClick() {
 
@@ -108,6 +107,8 @@ class CheckPayFragment : BaseFragment() {
                     }
 
                 })
+
+
             } else {
                 Toast.makeText(mActivity, "实付金额必须大于0", Toast.LENGTH_SHORT).show()
             }
@@ -116,24 +117,7 @@ class CheckPayFragment : BaseFragment() {
         }
 
         mViewPager.pageMargin = 40
-
-
-
-        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
-            }
-
-            override fun onPageSelected(position: Int) {
-
-
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-        })
-
+        mViewPager.currentItem = 0
 
         val model = ShopPayPageInitModel()
 
@@ -162,6 +146,7 @@ class CheckPayFragment : BaseFragment() {
                     )
 
                     if (!(mrBean?.coupons == null || !mrBean.coupons.isNotEmpty())) {
+
 
 
                         mViewPager.offscreenPageLimit = mrBean?.coupons.size
@@ -242,6 +227,30 @@ class CheckPayFragment : BaseFragment() {
                         }
                         mViewPager.setPageTransformer(true, AlphaPageTransformer())
 
+                        tv3price = mrBean.coupons[0].value
+                        tv_3.text = tv3price
+
+
+                        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                            override fun onPageScrolled(
+                                position: Int,
+                                positionOffset: Float,
+                                positionOffsetPixels: Int
+                            ) {
+
+                            }
+
+                            override fun onPageSelected(position: Int) {
+
+                                tv3price = mrBean.coupons[position].value
+                                tv_3.text = tv3price
+                            }
+
+                            override fun onPageScrollStateChanged(state: Int) {
+
+                            }
+                        })
+
 
                     } else {
                         mViewPager.visibility = View.GONE
@@ -279,12 +288,12 @@ class CheckPayFragment : BaseFragment() {
 
                     tv2price = discountNoPrice.text.toString().trim()
                     tv_finalprice.text =
-                        calculation(it.toString(), discountNoPrice.text.toString(), "1", "0").toString()
+                        calculation(it.toString(), discountNoPrice.text.toString(), "1", tv3price).toString()
                     tv4price = tv_finalprice.text.toString()
 
                 } else {
                     tv2price = "0"
-                    tv_finalprice.text = calculation(it.toString(), "0", "1", "0").toString()
+                    tv_finalprice.text = calculation(it.toString(), "0", "1", tv3price).toString()
 
                     tv4price = tv_finalprice.text.toString()
                 }
@@ -307,9 +316,9 @@ class CheckPayFragment : BaseFragment() {
 
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv1price = et_totleprice.text.toString()
-                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
+                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                     tv_finalprice.text =
-                        calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
+                        calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                 } else {
                     tv_finalprice.text = ""
                     tv1price = "0"
@@ -320,7 +329,7 @@ class CheckPayFragment : BaseFragment() {
             } else {
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv_finalprice.text =
-                        calculation(et_totleprice.text.toString(), "0", "1", "0")
+                        calculation(et_totleprice.text.toString(), "0", "1", tv3price)
 
                     tv1price = et_totleprice.text.toString()
                     tv2price = "0"
@@ -343,24 +352,40 @@ class CheckPayFragment : BaseFragment() {
 
     fun calculation(totleprice: String, discountNoPrice: String, flag: String?, discountValue: String): String {
 
-        val df = DecimalFormat("#0.00")
+//        val df = DecimalFormat("#0.00")
         var price = 0f
 
-        price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
-            if ("0" == discountValue) {  //“0” 不打折扣
-                (totleprice.toFloat() - discountNoPrice.toFloat())
-            } else {
-                (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
-                        discountNoPrice.toFloat()
-            }
 
+
+
+
+        if ((totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat()) >= 0) {
+            price =
+                (totleprice.toFloat() - discountValue.toFloat())
+
+            return getString(R.string.rmb_price_double, price)
         } else {
-            totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat() +
-                    discountNoPrice.toFloat()
+
+            price = discountNoPrice.toFloat()
+
+            return getString(R.string.rmb_price_double, price)
         }
 
 
-        return getString(R.string.rmb_price_double, price)
+//        price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
+//            if ("0" == discountValue) {  //“0” 不打折扣
+//                (totleprice.toFloat() - discountNoPrice.toFloat())
+//            } else {
+//                (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
+//                        discountNoPrice.toFloat()
+//            }
+//
+//        } else {
+//            totleprice.toFloat() - discountValue.toFloat() +
+//                    discountNoPrice.toFloat()
+//        }
+
+
     }
 
 

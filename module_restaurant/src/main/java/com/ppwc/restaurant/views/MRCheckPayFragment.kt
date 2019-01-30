@@ -26,11 +26,11 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.TextStyleUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.mrcheckpayadapter.*
+
 import kotlinx.android.synthetic.main.mrcheckpayfragment.*
-import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
-import net.cachapa.expandablelayout.ExpandableLayout
-import org.w3c.dom.Text
+
+
+
 import java.lang.StringBuilder
 import java.text.DecimalFormat
 
@@ -113,24 +113,11 @@ class MRCheckPayFragment : BaseFragment() {
         }
 
         mViewPager.pageMargin = 40
-
+        mViewPager.currentItem = 0
 
 
         mViewPager.setPageTransformer(true, AlphaPageTransformer())
-        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
-            }
-
-            override fun onPageSelected(position: Int) {
-
-
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-        })
 
 
         val model = ShopPayPageInitModel()
@@ -233,6 +220,29 @@ class MRCheckPayFragment : BaseFragment() {
                                 return view === o
                             }
                         }
+
+
+                        tv3price = mrBean.coupons[0].value
+                        tv_3.text = tv3price
+
+
+                        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+                            }
+
+                            override fun onPageSelected(position: Int) {
+                                tv3price = mrBean.coupons[position].value
+                                tv_3.text = tv3price
+
+                            }
+
+                            override fun onPageScrollStateChanged(state: Int) {
+
+                            }
+                        })
+
+
                     } else {
                         mViewPager.visibility = View.GONE
                         rl1.visibility = View.GONE
@@ -271,12 +281,12 @@ class MRCheckPayFragment : BaseFragment() {
 
                     tv2price = discountNoPrice.text.toString().trim()
                     tv_finalprice.text =
-                            calculation(it.toString(), discountNoPrice.text.toString(), "1", "0").toString()
+                            calculation(it.toString(), discountNoPrice.text.toString(), "1", tv3price).toString()
                     tv4price = tv_finalprice.text.toString()
 
                 } else {
                     tv2price = "0"
-                    tv_finalprice.text = calculation(it.toString(), "0", "1", "0").toString()
+                    tv_finalprice.text = calculation(it.toString(), "0", "1", tv3price).toString()
 
                     tv4price = tv_finalprice.text.toString()
                 }
@@ -299,9 +309,9 @@ class MRCheckPayFragment : BaseFragment() {
 
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv1price = et_totleprice.text.toString()
-                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
+                    tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), it.toString(), "1", "0")
+                            calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                 } else {
                     tv_finalprice.text = ""
                     tv1price = "0"
@@ -312,7 +322,7 @@ class MRCheckPayFragment : BaseFragment() {
             } else {
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), "0", "1", "0")
+                            calculation(et_totleprice.text.toString(), "0", "1", tv3price)
 
                     tv1price = et_totleprice.text.toString()
                     tv2price = "0"
@@ -339,21 +349,18 @@ class MRCheckPayFragment : BaseFragment() {
         val df = DecimalFormat("#0.00")
         var price = 0f
 
-        price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
-            if ("0" == discountValue) {  //“0” 不打折扣
-                (totleprice.toFloat() - discountNoPrice.toFloat())
-            } else {
-                (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
-                        discountNoPrice.toFloat()
-            }
 
+        if ((totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat()) >= 0) {
+            price =
+                (totleprice.toFloat() - discountValue.toFloat())
+
+            return getString(R.string.rmb_price_double, price)
         } else {
-            totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat() +
-                    discountNoPrice.toFloat()
+
+            price = discountNoPrice.toFloat()
+
+            return getString(R.string.rmb_price_double, price)
         }
-
-
-        return getString(R.string.rmb_price_double,price)
     }
 
 
@@ -401,7 +408,7 @@ data class Coupon(
     val useMark: String,
     val useMarks: List<String>,
     val useText: String,
-    val value: Double,
+    val value: String,
     val valuePrefix: String,
     val valueUnit: String
 )

@@ -24,6 +24,7 @@ import com.yjhh.common.utils.APKVersionCodeUtils
 import com.yjhh.common.utils.DateUtil
 import com.yjhh.common.utils.RxCountDown
 import kotlinx.android.synthetic.main.payfragment.*
+import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 class PayFragment : BaseFragment(), PayView, OrderView {
@@ -63,17 +64,20 @@ class PayFragment : BaseFragment(), PayView, OrderView {
 
     override fun onAliPayValue(value: String?) {
         if (value != null) {
-            val str =
-                "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
+
+            val jsonObject = JSONObject(value)
+            val str = jsonObject.optString("data")
+            val id = jsonObject.optString("id")
+//            val str =
+//                "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
             val disposable = RxPay(mActivity).requestAlipay(str)
                 .subscribe({ aBoolean ->
                     Log.e("accept:Ali", "accept: " + aBoolean!!)
 
-
                     if (aBoolean) {
-
+                        toDispatchSuccess(id, "2")
                     } else {
-                        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+                        toDispatchError(id, "2")
                     }
 
 
