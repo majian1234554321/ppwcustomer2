@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.mrcheckpayfragment.*
 import kotlinx.android.synthetic.main.mrpaysuccessfragment.*
 import net.cachapa.expandablelayout.ExpandableLayout
 import org.w3c.dom.Text
+import java.lang.StringBuilder
 import java.text.DecimalFormat
 
 
@@ -112,61 +113,9 @@ class MRCheckPayFragment : BaseFragment() {
         }
 
         mViewPager.pageMargin = 40
-        //  mViewPager.setPadding(40,0,40,0)
-
-        mViewPager.offscreenPageLimit = 3
-        mViewPager.adapter = object : PagerAdapter() {
-            override fun getCount(): Int = 3
 
 
-            override fun instantiateItem(container: ViewGroup, position: Int): Any {
-                view22 = View.inflate(mActivity, R.layout.mrcheckpayadapter, null)
 
-                val rl_head = view22?.findViewById<RelativeLayout>(R.id.rl_head)
-
-                val tv_price = view22?.findViewById<TextView>(R.id.tv_price)
-                val tv_access = view22?.findViewById<TextView>(R.id.tv_access)
-                tv_useIf = view22?.findViewById<TextView>(R.id.tv_useIf)
-                val tv_cardName = view22?.findViewById<TextView>(R.id.tv_cardName)
-
-                val rl_footer = view22?.findViewById<RelativeLayout>(R.id.rl_footer)
-
-
-                tv_price?.text = TextStyleUtils.changeTextAa(
-                    tv_price?.text.toString(),
-                    tv_price?.text.toString().length - 3,
-                    tv_price?.text.toString().length,
-                    15
-                )
-
-                rl_head?.setBackgroundResource(R.drawable.iv_red)
-
-
-                view22?.setOnClickListener {
-                    Toast.makeText(mActivity, "view", Toast.LENGTH_SHORT).show()
-
-                    rl_footer?.visibility = View.VISIBLE
-                }
-
-                tv_useIf?.setOnClickListener {
-                    Toast.makeText(mActivity, "tv_useIf", Toast.LENGTH_SHORT).show()
-                    rl_footer?.visibility = View.GONE
-                }
-
-                container.addView(view22)
-
-
-                return (view22 as View?)!!
-            }
-
-            override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-                container.removeView(`object` as View)
-            }
-
-            override fun isViewFromObject(view: View, o: Any): Boolean {
-                return view === o
-            }
-        }
         mViewPager.setPageTransformer(true, AlphaPageTransformer())
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -208,7 +157,82 @@ class MRCheckPayFragment : BaseFragment() {
                     val mrBean = Gson().fromJson<MRCheckPayBean>(response, MRCheckPayBean::class.java)
 
                     if (!mrBean.coupons.isEmpty()) {
+                        mViewPager.offscreenPageLimit = mrBean.coupons.size
+                        mViewPager.adapter = object : PagerAdapter() {
+                            override fun getCount(): Int = mrBean.coupons.size
 
+
+                            override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                                view22 = View.inflate(mActivity, com.ppwc.restaurant.R.layout.mrcheckpayadapter, null)
+
+                                val rl_head = view22?.findViewById<RelativeLayout>(com.ppwc.restaurant.R.id.rl_head)
+
+                                val tv_price = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_price)
+                                val tv_mark = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_mark)
+
+
+                                val tv_access = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_access)
+                                tv_access?.text = mrBean?.coupons?.get(position)?.useMark
+                                tv_useIf = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_useIf)
+                                val tv_cardName = view22?.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_cardName)
+                                tv_cardName?.text = mrBean?.coupons?.get(position)?.code
+                                val rl_footer = view22?.findViewById<RelativeLayout>(com.ppwc.restaurant.R.id.rl_footer)
+
+
+                                val sbMark = StringBuilder();
+                                mrBean.coupons[position].useMarks.forEach {
+                                    sbMark.append(it)
+                                    sbMark.append("\n")
+                                }
+
+                                tv_mark?.text = sbMark.toString()
+
+                                val tv_priceText =
+                                    "${mrBean?.coupons?.get(position)?.value} ${mrBean?.coupons?.get(position)?.valueUnit}"
+                                tv_price?.text = TextStyleUtils.changeTextAa(
+                                    tv_priceText,
+                                    tv_priceText.length - 3,
+                                    tv_priceText.length,
+                                    15
+                                )
+
+                                rl_head?.setBackgroundResource(com.ppwc.restaurant.R.drawable.iv_red)
+
+
+
+
+
+                                view22?.setOnClickListener {
+
+
+                                    rl_footer?.visibility = View.VISIBLE
+                                }
+
+                                tv_useIf?.setOnClickListener {
+
+                                    if (rl_footer?.visibility == View.VISIBLE) {
+                                        rl_footer?.visibility = View.GONE
+                                    } else {
+                                        rl_footer?.visibility == View.VISIBLE
+                                    }
+
+
+                                }
+
+                                container.addView(view22)
+
+
+                                return (view22 as View?)!!
+                            }
+
+                            override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+                                container.removeView(`object` as View)
+                            }
+
+                            override fun isViewFromObject(view: View, o: Any): Boolean {
+                                return view === o
+                            }
+                        }
                     } else {
                         mViewPager.visibility = View.GONE
                         rl1.visibility = View.GONE

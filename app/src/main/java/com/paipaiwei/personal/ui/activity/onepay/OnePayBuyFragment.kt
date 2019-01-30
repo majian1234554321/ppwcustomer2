@@ -23,6 +23,7 @@ import com.yjhh.common.utils.APKVersionCodeUtils
 import com.yjhh.common.utils.RxCountDown
 
 import kotlinx.android.synthetic.main.onepaymoneyfragment.*
+import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 @Route(path = "/OnePayMoneyFragment/OnePayMoney")
@@ -41,8 +42,11 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
     override fun onAliPayValue(value: String?) {
 
         if (value != null) {
-            val str =
-                "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
+            val jsonObject = JSONObject(value);
+           val str =  jsonObject.optString("data")
+
+//            val str =
+//                "partner=\"2088121059329235\"&seller_id=\"1993349866@qq.com\"&out_trade_no=\"XGJ_LIVE20171130142905-440402\"&subject=\"一对一收费单节\"&body=\"一对一收费单节\"&total_fee=\"0.01\"&notify_url=\"http://new.antwk.com/api/order/alipayNotify\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"1757281m\"&return_url=\"m.alipay.com\"&sign=\"vn%2Fw5wJAYSdP5rtQxumnAXPaaidyeVOluEoDlvS4axezmvfpoIHzwxj5pqNrJ5NMKq7NK8krHWBo8Z6jeTkFbCb2mvLbyBicAjDz02WyPOmKM%2F%2FGRfqfDlX4Q0T06PQmipNFVD3UPHrwPQbHG3eeWobqBFG0jcu%2FtnMZrsZvzso%3D\"&sign_type=\"RSA\""
             val disposable = RxPay(mActivity).requestAlipay(str)
                 .subscribe({ aBoolean ->
                     Log.e("accept:Ali", "accept: " + aBoolean!!)
@@ -156,7 +160,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
 
 
         model_info.text = model.title
-        model_price.text = mActivity.getString(R.string.rmb_price_double2,model.money)
+        model_price.text = mActivity.getString(R.string.rmb_price_double2, model.money)
 
         val dis5 = RxCountDown.countdown(900).subscribe {
             if (it != null && tv_countdown != null)
@@ -182,23 +186,20 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
         val dis = RxView.clicks(tv_pay).throttleFirst(2, TimeUnit.SECONDS)
             .subscribe {
                 if (rb_alipay.isChecked) {
-                    payPresent?.paymentByAli(model.id, model.money.toInt().toString())
+                    payPresent?.paymentByAli(model.id, model.money.toString())
 
                 } else {
 
 
-
-                    if (APKVersionCodeUtils. isWeChatAppInstalled(mActivity)) {
+                    if (APKVersionCodeUtils.isWeChatAppInstalled(mActivity)) {
                         payPresent?.paymentByWx(model.id, model.money.toString())
-                    }else{
-                        Toast.makeText(mActivity,"请安装微信",Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(mActivity, "请安装微信", Toast.LENGTH_LONG).show()
                     }
                 }
             }
 
         compositeDisposable.add(dis)
-
-
 
 
     }

@@ -46,27 +46,9 @@ class PayFragment : BaseFragment(), PayView, OrderView {
                 .subscribe({ aBoolean ->
                     Log.e("accept:WX", aBoolean.toString())
                     if (aBoolean) {
-                        when (type) {
-                            "限时抢拍" -> {
-                                startWithPop(PayResultFragment2.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                            }
-
-                            "道具购买" -> {
-                                startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                            }
-                            "商家买单" -> {
-                                startWithPop(OrderEvaluationFragment())
-                            }
-
-                            else -> {
-
-                            }
-                        }
-
+                        toDispatchSuccess(model.id, "1")
                     } else {
-                        startWithPop(OrderEvaluationFragment())
-                      //  startWithPop(PayResultFragment.newInstance(model.id, "1")) //	//1微信 2支付宝 4银联
-                        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+                        toDispatchError(model.id, "1")
 
                     }
                 }) { throwable ->
@@ -113,7 +95,6 @@ class PayFragment : BaseFragment(), PayView, OrderView {
     var payPresent: PayPresent? = null
     var orderPresent: OrderPresent? = null
     var type: String? = null
-
 
     override fun getLayoutRes(): Int = R.layout.payfragment
 
@@ -194,5 +175,30 @@ class PayFragment : BaseFragment(), PayView, OrderView {
             return fragment
         }
     }
+
+
+    fun toDispatchSuccess(id: String?, type: String?) {
+        when (type) {
+            "限时抢拍" -> {
+                startWithPop(PayResultFragment2.newInstance(id, type)) //	//1微信 2支付宝 4银联
+            }
+            "道具购买" -> {
+                startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
+            }
+            "商家买单" -> {
+                startWithPop(OrderEvaluationFragment())
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
+    fun toDispatchError(id: String?, type: String?) {
+        startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
+        Toast.makeText(mActivity, "支付失败", Toast.LENGTH_SHORT).show()
+    }
+
 
 }
