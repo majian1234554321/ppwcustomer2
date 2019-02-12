@@ -34,6 +34,7 @@ import com.yjhh.common.listener.LocationLatlng
 import com.yjhh.common.utils.AmpLocationUtil
 import com.yjhh.common.utils.permission.PermissionUtils
 import com.yjhh.common.view.AlertDialogFactory
+import java.lang.StringBuilder
 
 
 class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
@@ -61,7 +62,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
             if (pageIndex == 0) {
 
                 if (model.items.size == pageSize) {
-
+                    mAdapter?.loadMoreComplete()
                 } else {
                     mAdapter?.loadMoreEnd()
                 }
@@ -93,7 +94,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
     private var locationLatlng: LocationLatlng? = null
 
 
-    var model1212: List<NearbyBean.CategoryModelsBean>? = null
+    var modelTAb: List<NearbyBean.CategoryModelsBean>? = null
 
     override fun onNearby(model: NearbyBean) {
 
@@ -118,7 +119,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
             for (i in 0 until model.categoryModels.size) {
                 mTabLayout1.addTab(mTabLayout1.newTab().setText(model.categoryModels[i].title))
             }
-            model1212 = model.categoryModels
+            modelTAb = model.categoryModels
 
         }
 
@@ -254,11 +255,11 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                 val lisCheckBox = ArrayList<CheckBox>()
                 lisCheckBox.clear()
                 ll.removeAllViews()
-                if (model1212 != null && tab?.position != null && model1212!![tab?.position!!].nodes != null && model1212!![tab?.position!!].nodes.isNotEmpty()) {
+                if (modelTAb != null && tab?.position != null && modelTAb!![tab?.position!!].nodes != null && modelTAb!![tab?.position!!].nodes.isNotEmpty()) {
 
                     ll.visibility = View.VISIBLE
 
-                    for (i in 0 until model1212!![tab.position].nodes.size) {
+                    for (i in 0 until modelTAb!![tab.position].nodes.size) {
 
                         val checkboxitem = View.inflate(mActivity, R.layout.checkboxitem2, null) as CheckBox
                         checkboxitem.buttonDrawable = ColorDrawable(Color.TRANSPARENT)
@@ -266,7 +267,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
                         checkboxitem.setTextColor(Color.parseColor("#666666"))
 
-                        val listA = model1212!![tab.position]
+                        val listA = modelTAb!![tab.position]
                         val listB = listA.nodes[i]
                         checkboxitem.text = listB.title
                         checkboxitem.isChecked = false
@@ -286,19 +287,41 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
                     val intList = ArrayList<Int>()
 
+
                     lisCheckBox.forEachIndexed { index, checkBox ->
 
                         checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                            val sb = StringBuilder()
+
                             if (checkBox.isChecked) {
                                 buttonView.setBackgroundResource(R.drawable.checkbox)
                                 buttonView.setTextColor(Color.WHITE)
                                 intList.add(index)
-                                Toast.makeText(context, intList.size.toString(), Toast.LENGTH_SHORT).show()
+
+                                intList.forEach {
+                                    sb.append(modelTAb!![tab?.position].nodes[it].title).append("\t")
+                                }
+
+                                Toast.makeText(
+                                    context,
+                                    "点击了${modelTAb!![tab?.position].title} 目录下的 ${sb.toString()}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
                             } else {
+
                                 intList.remove(index)
-                                Toast.makeText(context, intList.size.toString(), Toast.LENGTH_SHORT).show()
+                                intList.forEach {
+                                    sb.append(modelTAb!![tab?.position].nodes[it].title).append("\t")
+                                }
                                 buttonView.setBackgroundResource(R.drawable.uncheckbox)
                                 buttonView.setTextColor(Color.parseColor("#666666"))
+
+                                Toast.makeText(
+                                    context,
+                                    "点击了${modelTAb!![tab?.position].title} 目录下的 $sb",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
 
                         }

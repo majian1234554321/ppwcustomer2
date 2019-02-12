@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.gson.internal.bind.TypeAdapters.URL
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.BaseApplication
@@ -183,6 +184,8 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
         compositeDisposable.add(disposable)
 
 
+
+        //URL("").readText()
     }
 
 
