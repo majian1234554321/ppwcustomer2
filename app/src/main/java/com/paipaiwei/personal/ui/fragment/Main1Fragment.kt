@@ -122,6 +122,28 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             }
 
 
+            if (main1bean.main1HeadBean.invite != null) {
+
+                if ((main1bean.main1HeadBean.invite.ifShowBtn)) {
+                    val dialogFragment = InvitationDialogFragment(
+                        mActivity,
+                        main1bean.main1HeadBean.invite.title,
+                        main1bean.main1HeadBean.invite.imageUrl
+                    )
+                    dialogFragment.show(childFragmentManager, "dialogFragment")
+                    dialogFragment.setOnClickListener(object :
+                        InvitationDialogFragment.OnDialogClickListener {
+                        override fun onDialogClick() {
+                            start(OnePayFragment())
+                            dialogFragment.dismiss()
+                        }
+
+                    })
+                }
+
+
+            }
+
 
             if (main1bean.main1HeadBean.jinli != null) {
                 iv_imagegame?.visibility = View.VISIBLE

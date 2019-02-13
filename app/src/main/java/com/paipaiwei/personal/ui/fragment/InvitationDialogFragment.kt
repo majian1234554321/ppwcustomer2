@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
+import android.widget.ImageView
 
 
 import android.widget.RelativeLayout
@@ -18,11 +19,13 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
 
 import com.paipaiwei.personal.R
+import com.yjhh.common.utils.ImageLoaderUtils
+import kotlinx.android.synthetic.main.invitationfragment.*
 import org.w3c.dom.Text
 
 
 @SuppressLint("ValidFragment")
-class InvitationDialogFragment(var activity: Activity, var tips: String) : DialogFragment() {
+class InvitationDialogFragment(var activity: Activity, var tips: String?,var imageUrl:String?) : DialogFragment() {
 
     interface OnDialogClickListener {
         fun onDialogClick()
@@ -41,8 +44,20 @@ class InvitationDialogFragment(var activity: Activity, var tips: String) : Dialo
 
         val mb = view.findViewById<MaterialButton>(R.id.mb)
         val tv_tips = view.findViewById<TextView>(R.id.tv_tips)
+        val iv_image = view.findViewById<ImageView>(R.id.iv_image)
 
         tv_tips.text = tips
+
+
+
+        ImageLoaderUtils.loadCircle(
+            activity,
+            iv_image,
+            imageUrl,
+            R.drawable.icon_place_pai,
+            R.drawable.icon_place_pai
+        )
+
 
 
 

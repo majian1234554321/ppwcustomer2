@@ -18,6 +18,20 @@ public class Main1HeadBean {
     public List<BannersBean> banners;
     public List<QiangPaisBean> qiangPais;
     public List<TabsBean> tabs;
+    public InviteBean invite;
+
+    public static class InviteBean {
+        public String btnText;
+        public String code;
+        public Boolean ifShowBtn;
+        public String linkUrl;
+        public String type;
+        public String title;
+        public String imageUrl;
+
+
+    }
+
 
     public static class JinliBean {
         /**

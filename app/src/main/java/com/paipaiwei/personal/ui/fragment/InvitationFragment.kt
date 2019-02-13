@@ -101,7 +101,7 @@ class InvitationFragment : BaseFragment() {
                                     val modelX = Gson().fromJson<InvitationBean>(response, InvitationBean::class.java)
 
 
-                                    val dialogFragment = InvitationDialogFragment(mActivity,modelX.title)
+                                    val dialogFragment = InvitationDialogFragment(mActivity,modelX.title,modelX.imageUrl)
                                     dialogFragment.show(childFragmentManager, "dialogFragment")
                                     dialogFragment.setOnClickListener(object :
                                         InvitationDialogFragment.OnDialogClickListener {
@@ -164,6 +164,8 @@ class InvitationFragment : BaseFragment() {
         val shareUrl: String,
         val total: Int, val btnText: String, val code: String, val ifShowBtn: Boolean, val title: String,
         val type: Int
+
+
 
     )
 
