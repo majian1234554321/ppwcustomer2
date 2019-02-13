@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       android:id="@+id/tbv_title"
+                                       app:textValue="邀新有礼"
+                                       app:imageSrc="@drawable/icon_share"
+                                       app:imageDis="true"
+                                       android:layout_height="wrap_content"/>
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:background="@drawable/yaoxinyouli"
+                                           android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_marginTop="200pt"
+                            android:layout_marginLeft="15pt"
+                            android:layout_marginRight="15pt"
+                            android:layout_marginBottom="12pt"
+                            android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="160pt"
+                        app:cardCornerRadius="12pt"
+                        android:layout_alignParentLeft="true"
+                        android:layout_height="wrap_content">
+
+
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="13pt"
+                                    android:layout_marginRight="13pt"
+                                    android:layout_height="70pt">
+
+                        <ImageView android:layout_width="45pt"
+                                   android:id="@+id/iv_image"
+
+                                   android:layout_height="45pt"/>
+
+                        <TextView android:layout_width="wrap_content"
+                                  tools:text="111212"
+                                  android:id="@+id/tv_name"
+                                  android:layout_toRightOf="@+id/iv_image"
+                                  android:layout_alignTop="@+id/iv_image"
+                                  android:layout_height="wrap_content"/>
+                        <TextView android:layout_width="wrap_content"
+                                  tools:text="55555555555"
+                                  android:id="@+id/tv_phone"
+                                  android:layout_toRightOf="@+id/iv_image"
+                                  android:layout_alignBottom="@+id/iv_image"
+                                  android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView android:layout_width="160pt"
+                                                   app:cardCornerRadius="12pt"
+                                                   android:layout_alignParentRight="true"
+                                                   android:layout_height="wrap_content">
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:orientation="vertical"
+                                  android:gravity="center"
+                                  android:layout_height="70pt">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_gravity="center"
+                                android:text="总邀请人数（人）"
+                                android:textColor="#FF666666"
+                                android:textSize="11pt"
+                        />
+                        <TextView
+                                android:layout_gravity="center"
+                                android:layout_width="21.5pt"
+                                android:layout_height="23pt"
+                                tools:text="18"
+                                android:id="@+id/tv_people2"
+                                android:textColor="#FF333333"
+                                android:textSize="19pt"
+                        />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                                               android:layout_marginLeft="15pt"
+                                               android:layout_marginRight="15pt"
+                                               app:cardCornerRadius="12pt"
+                                               android:layout_height="149pt">
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="vertical"
+                              android:padding="13pt"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:text="受邀人数"
+                              android:layout_height="wrap_content"/>
+
+
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                        <ProgressBar android:layout_width="match_parent"
+                                     android:layout_marginTop="11.5pt"
+                                     android:id="@+id/progressBar"
+                                     android:max="5"
+                                     android:layout_marginRight="10pt"
+                                     android:layout_toLeftOf="@+id/tv_people"
+                                     android:layout_centerVertical="true"
+                                     android:layout_marginBottom="11.5pt"
+                                     android:layout_height="10pt"
+                                     android:progressDrawable="@drawable/pg2"
+                                     style="?android:attr/progressBarStyleHorizontal"
+                        />
+
+                        <TextView android:layout_width="wrap_content"
+                                  android:text="4/5 人"
+                                  android:id="@+id/tv_people"
+                                  android:textColor="#FFF6382E"
+                                  android:textSize="14pt"
+                                  android:layout_centerVertical="true"
+                                  android:layout_alignParentRight="true"
+                                  android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                            android:text="领取"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="17pt"
+                            android:id="@+id/mb_access"
+                            app:backgroundTint="@color/colorPrimary"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_width="148pt"
+                            android:layout_height="wrap_content"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="16.5pt"
+                            android:text="邀请规则"
+                            android:id="@+id/tv_rule"
+                            android:layout_gravity="center"
+                            android:textColor="#FF2C85FF"
+                            android:textSize="12pt"
+                    />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                    android:layout_marginTop="24pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21pt"
+                    android:text="-  四步奖励拿不停  -"
+                    android:layout_gravity="center"
+                    android:textColor="#FF333333"
+                    android:textSize="15pt"
+            />
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+
+                          android:layout_height="wrap_content">
+
+                <TextView android:layout_width="0dp"
+                          android:text="分享新人好友"
+                          android:layout_weight="1"
+                          android:gravity="center"
+                          android:drawableTop="@drawable/fenxianghaoyou"
+                          android:layout_height="wrap_content"/>
+
+                <View
+                        android:layout_width="17pt"
+                        android:background="@color/white"
+                        android:layout_marginTop="35pt"
+                        android:layout_height="3pt"
+                />
+
+                <TextView android:layout_width="0dp"
+                          android:text="好友注册成功"
+                          android:layout_weight="1"
+                          android:gravity="center"
+                          android:drawableTop="@drawable/haoyouzhuce"
+                          android:layout_height="wrap_content"/>
+                <View
+                        android:layout_width="17pt"
+                        android:background="@color/white"
+                        android:layout_marginTop="35pt"
+                        android:layout_height="3pt"
+                />
+                <TextView android:layout_width="0dp"
+                          android:text="下载APP登录"
+                          android:drawableTop="@drawable/xiazaidenglu"
+                          android:layout_weight="1"
+                          android:gravity="center"
+                          android:layout_height="wrap_content"/>
+                <View
+                        android:layout_width="17pt"
+                        android:background="@color/white"
+                        android:layout_marginTop="35pt"
+                        android:layout_height="3pt"
+                />
+                <TextView android:layout_width="0dp"
+                          android:text="使用奖励"
+                          android:gravity="center"
+                          android:drawableTop="@drawable/shiyongjiangli"
+                          android:layout_weight="1"
+                          android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

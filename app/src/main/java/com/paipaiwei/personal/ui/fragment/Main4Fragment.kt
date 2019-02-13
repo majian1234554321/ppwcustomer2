@@ -227,6 +227,9 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
                     .navigation()
 
             }
+            R.id.iev_Invitation ->{
+                (parentFragment as MainFragment).startBrotherFragment(InvitationFragment())
+            }
 
             else -> {
                 startActivity(Intent(mActivity, SignActivity::class.java))
@@ -262,6 +265,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
             ll_card,
             ll_sign,
             iev_Collection,
+            iev_Invitation,
             rl0
 
         )

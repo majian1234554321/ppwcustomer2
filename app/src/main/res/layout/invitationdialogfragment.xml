@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:layout_width="match_parent"
+
+
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/invitationdialog"
+
+                    android:layout_height="wrap_content">
+
+        <ImageView android:layout_width="60dp" android:layout_height="60dp"
+                   android:background="@drawable/shiyongjiangli"
+                   android:layout_centerInParent="true"
+        />
+
+
+        <TextView android:layout_width="138pt"
+                  android:gravity="center"
+                  tools:text="adadadadad"
+                  android:id="@+id/tv_tips"
+                  android:layout_marginTop="295dp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_gravity="center"
+
+                  android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton android:layout_width="138pt"
+                                                           android:text="查看道具"
+                                                           android:gravity="center"
+                                                           android:layout_centerHorizontal="true"
+                                                           android:layout_marginTop="315dp"
+                                                           android:layout_gravity="center"
+                                                           app:strokeWidth="1dp"
+                                                           android:id="@+id/mb"
+                                                           android:elevation="-1dp"
+                                                           app:cornerRadius="5dp"
+                                                           app:rippleColor="@color/colorPrimary"
+                                                           app:backgroundTint="@color/white"
+                                                           app:strokeColor="@color/colorPrimary"
+                                                           android:textColor="@color/colorPrimary"
+                                                           android:textSize="15pt"
+                                                           android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

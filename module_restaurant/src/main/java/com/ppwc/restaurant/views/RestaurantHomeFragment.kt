@@ -214,7 +214,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             R.id.iv_share -> {
 
-                ShareUtils.dialog(mActivity, mIUiListener)
+                ShareUtils.dialog(mActivity, mIUiListener,"","","")
             }
 
 

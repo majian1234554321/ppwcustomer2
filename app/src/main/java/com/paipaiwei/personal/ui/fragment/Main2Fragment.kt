@@ -178,19 +178,14 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
         appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
             override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
-                if (state == State.EXPANDED) {
+                when (state) {
+                    State.EXPANDED -> //展开状态
+                        iv_search.visibility = View.GONE
+                    State.COLLAPSED -> //折叠状态
 
-                    //展开状态
-                    iv_search.visibility = View.GONE
-
-                } else if (state == State.COLLAPSED) {
-                    //折叠状态
-
-                    iv_search.visibility = View.VISIBLE
-                } else {
-                    //中间状态
-                    iv_search.visibility = View.GONE
-
+                        iv_search.visibility = View.VISIBLE
+                    else -> //中间状态
+                        iv_search.visibility = View.GONE
                 }
             }
         });

@@ -34,15 +34,15 @@ class Main3_1Fragment : BaseFragment(), OrderView {
     override fun onSuccessOrder(response: String?, flag: String?) {
         val model = Gson().fromJson<Main3_1Bean>(response, Main3_1Bean::class.java)
         if ("refresh" == flag) {
-            if(model.items!=null&&model.items.isNotEmpty()){
+            if (model.items != null && model.items.isNotEmpty()) {
                 mAdapter?.setNewData(model.items)
-            }else{
+            } else {
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
 
                 mAdapter?.data?.clear()
                 mAdapter?.notifyDataSetChanged()
-                mAdapter?.setEmptyView(R.layout.emptyview,mRecyclerView)
+                mAdapter?.setEmptyView(R.layout.emptyview, mRecyclerView)
             }
 
         } else {
@@ -78,8 +78,7 @@ class Main3_1Fragment : BaseFragment(), OrderView {
     var pageIndex = 0
     val pageSize = 15
     var type: String? = ""
-    var status = ""
-
+    var status = "" //状态：默认全部null（0全部 1待付款，2已完成，3待评价）
     var present: OrderPresent? = null
     var mAdapter: Main3_1Adapter? = null
     var listValue = ArrayList<Main3_1Bean.ItemsBean>()

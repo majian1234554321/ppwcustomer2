@@ -16,7 +16,7 @@
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:id="@+id/tv_tips"
-              android:text="当前无预约订单"
+              android:text="暂无信息"
               android:textColor="#FF333333"
               android:gravity="center"
               android:layout_centerInParent="true"
