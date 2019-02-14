@@ -104,6 +104,9 @@ class Main3_4Fragment : BaseFragment(), OrderView {
 
 
     }
+    override fun onSupportVisible() {
+        swipeLayout.autoRefresh()
+    }
 
     private fun initAdapter() {
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)

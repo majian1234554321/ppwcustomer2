@@ -29,6 +29,9 @@ public class TimeUtil {
 
 
     public static String stampToDate2(String s) {
+        if (TextUtils.isEmpty(s)){
+            return "";
+        }
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         long lt = new Long(s);

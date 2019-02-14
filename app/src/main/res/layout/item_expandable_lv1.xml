@@ -63,12 +63,7 @@
                   android:text="121212121212121："
                   android:layout_height="wrap_content"/>
 
-        <View
-                android:layout_width="351pt"
-                android:layout_height="1pt"
-                android:id="@+id/view"
-                android:background="#FFF2F2F2"
-        />
+
 
     </LinearLayout>
 
@@ -93,23 +88,35 @@
                       android:text="999"
             />
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查看详情"
-                    android:id="@+id/tv_more"
-                    android:layout_centerVertical="true"
-                    android:drawablePadding="6pt"
-                    android:layout_alignParentRight="true"
-                    android:drawableRight="@drawable/icon_jiantou3"
-                    android:textColor="#FFC8AF85"
-                    android:textSize="12pt"
-            />
 
 
 
 
         </RelativeLayout>
+        <View
+                android:layout_width="351pt"
+                android:layout_height="1pt"
+                android:id="@+id/view2"
+                android:background="#FFF2F2F2"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看详情"
+                android:layout_marginTop="8pt"
+                android:layout_marginBottom="8pt"
+                android:id="@+id/tv_more"
+                android:layout_centerVertical="true"
+                android:drawablePadding="6pt"
+                android:layout_alignParentRight="true"
+
+                android:textColor="#2C85FF"
+                android:textSize="12pt"
+        />
+
+
+
         <View android:layout_width="match_parent" android:layout_height="10pt"
               android:background="@color/f8"
               android:layout_below="@+id/tv_more"

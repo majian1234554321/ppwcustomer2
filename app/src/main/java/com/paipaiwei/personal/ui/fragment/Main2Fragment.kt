@@ -97,7 +97,8 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
     var modelTAb: List<NearbyBean.CategoryModelsBean>? = null
 
     override fun onNearby(model: NearbyBean) {
-
+        rl0.visibility = View.GONE
+        cl0.visibility = View.VISIBLE
 
         if (model.bannerModels != null) {
             val listImageBanner = ArrayList<String>()
@@ -128,7 +129,8 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
 
     override fun onFault(errorMsg: String?) {
-
+        rl0.visibility = View.VISIBLE
+        cl0.visibility = View.GONE
     }
 
 
@@ -144,6 +146,11 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
     override fun initView() {
 
+
+        rl0.setOnClickListener {
+            present?.nearby()
+            present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
+        }
 
         present = NearbyPresent(mActivity, this)
         present?.nearby()

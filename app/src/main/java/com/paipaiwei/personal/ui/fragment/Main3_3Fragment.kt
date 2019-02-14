@@ -106,6 +106,10 @@ class Main3_3Fragment : BaseFragment(), OrderView {
 
     }
 
+    override fun onSupportVisible() {
+        swipeLayout.autoRefresh()
+    }
+
     private fun initAdapter() {
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mRecyclerView.addItemDecoration(SpaceItemDecoration2(4, "top"))

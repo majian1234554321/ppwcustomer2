@@ -1,51 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tl="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tl="http://schemas.android.com/apk/res-auto"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
 
-    <View android:layout_width="match_parent" android:layout_height="20pt"
-          android:background="@color/white"
-    />
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:id="@+id/ll0"
+                  android:layout_height="match_parent">
 
-
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
-
-        <com.paipaiwei.personal.ui.customview.dropdownmenu.DropDownMenu
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_below="@+id/view"
-                android:id="@+id/dropDownMenu"
-                android:layout_width="wrap_content"
-
-                android:layout_height="match_parent"
-                app:ddmenuTextSize="17pt"
-                app:ddtextUnselectedColor="@color/all_3"
-                app:ddtextSelectedColor="@color/all_3"
-                app:dddividerColor="@color/gray"
-                app:ddunderlineColor="@color/gray"
-                app:ddmenuMenuHeightPercent="0.5"
-                app:ddmenuSelectedIcon="@drawable/icon_arrow_up"
-                app:ddmaskColor="@color/cd"
-                app:ddmenuBackgroundColor="@color/white"
-                app:ddmenuUnselectedIcon="@drawable/icon_arrow_down"
+        <View android:layout_width="match_parent" android:layout_height="20pt"
+              android:background="@color/white"
         />
 
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+            <com.paipaiwei.personal.ui.customview.dropdownmenu.DropDownMenu
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_below="@+id/view"
+                    android:id="@+id/dropDownMenu"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    app:ddmenuTextSize="17pt"
+                    app:ddtextUnselectedColor="@color/all_3"
+                    app:ddtextSelectedColor="@color/all_3"
+                    app:dddividerColor="@color/gray"
+                    app:ddunderlineColor="@color/gray"
+                    app:ddmenuMenuHeightPercent="0.5"
+                    app:ddmenuSelectedIcon="@drawable/icon_arrow_up"
+                    app:ddmaskColor="@color/cd"
+                    app:ddmenuBackgroundColor="@color/white"
+                    app:ddmenuUnselectedIcon="@drawable/icon_arrow_down"
+            />
+
+            <TextView android:layout_width="wrap_content"
+                      android:text="消费记录"
+                      android:id="@+id/tv_consumption"
+                      android:textColor="#FF2C85FF"
+                      android:textSize="15pt"
+                      android:paddingRight="15pt"
+                      android:paddingBottom="15pt"
+                      android:paddingTop="18pt"
+                      android:layout_alignParentRight="true"
+                      android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl0"
+                    android:layout_height="match_parent">
+
+
+        <ImageView android:layout_width="131pt"
+                   android:layout_gravity="center"
+                   android:id="@+id/iv"
+                   android:layout_centerHorizontal="true"
+                   android:layout_above="@+id/tv_0"
+                   android:src="@drawable/wuwangluo"
+                   android:layout_height="100pt"/>
+
+
         <TextView android:layout_width="wrap_content"
-                  android:text="消费记录"
-                  android:id="@+id/tv_consumption"
-                  android:textColor="#FF2C85FF"
+                  android:text="网络不稳定，请重新加载"
+                  android:textColor="#FF333333"
                   android:textSize="15pt"
-                  android:paddingRight="15pt"
-                  android:paddingBottom="15pt"
-                  android:paddingTop="18pt"
-                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="47pt"
+                  android:id="@+id/tv_0"
+                  android:drawablePadding="8pt"
+                  android:layout_marginBottom="13pt"
+
+
+                  android:layout_centerInParent="true"
                   android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="点击屏幕重新加载"
+                  android:layout_below="@+id/tv_0"
+                  android:gravity="center"
+                  android:layout_gravity="center"
+                  android:drawablePadding="8pt"
+                  android:textColor="#FFF9572D"
+                  android:textSize="13pt"
+
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+
 
     </RelativeLayout>
 
 
-</LinearLayout>
+</FrameLayout>

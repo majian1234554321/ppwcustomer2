@@ -30,7 +30,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.mrcheckpayfragment.*
 
 
-
 import java.lang.StringBuilder
 import java.text.DecimalFormat
 
@@ -88,8 +87,6 @@ class MRCheckPayFragment : BaseFragment() {
                                     start(MRPendingPaymentFragment.newInstance(response))
 
 
-
-
                                 }
 
                                 override fun onFault(message: String) {
@@ -117,7 +114,6 @@ class MRCheckPayFragment : BaseFragment() {
 
 
         mViewPager.setPageTransformer(true, AlphaPageTransformer())
-
 
 
         val model = ShopPayPageInitModel()
@@ -227,7 +223,11 @@ class MRCheckPayFragment : BaseFragment() {
 
 
                         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                            override fun onPageScrolled(
+                                position: Int,
+                                positionOffset: Float,
+                                positionOffsetPixels: Int
+                            ) {
 
                             }
 
@@ -281,7 +281,7 @@ class MRCheckPayFragment : BaseFragment() {
 
                     tv2price = discountNoPrice.text.toString().trim()
                     tv_finalprice.text =
-                            calculation(it.toString(), discountNoPrice.text.toString(), "1", tv3price).toString()
+                        calculation(it.toString(), discountNoPrice.text.toString(), "1", tv3price).toString()
                     tv4price = tv_finalprice.text.toString()
 
                 } else {
@@ -311,7 +311,7 @@ class MRCheckPayFragment : BaseFragment() {
                     tv1price = et_totleprice.text.toString()
                     tv4price = calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
+                        calculation(et_totleprice.text.toString(), it.toString(), "1", tv3price)
                 } else {
                     tv_finalprice.text = ""
                     tv1price = "0"
@@ -322,7 +322,7 @@ class MRCheckPayFragment : BaseFragment() {
             } else {
                 if (!TextUtils.isEmpty(et_totleprice.text.toString().trim())) {
                     tv_finalprice.text =
-                            calculation(et_totleprice.text.toString(), "0", "1", tv3price)
+                        calculation(et_totleprice.text.toString(), "0", "1", tv3price)
 
                     tv1price = et_totleprice.text.toString()
                     tv2price = "0"
@@ -349,18 +349,18 @@ class MRCheckPayFragment : BaseFragment() {
         val df = DecimalFormat("#0.00")
         var price = 0f
 
-
-        if ((totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat()) >= 0) {
-            price =
-                (totleprice.toFloat() - discountValue.toFloat())
-
-            return getString(R.string.rmb_price_double, price)
+        if ((totleprice.toFloat() - discountValue.toFloat() - discountNoPrice.toFloat()) >= 0) {
+            price = (totleprice.toFloat() - discountValue.toFloat() - discountNoPrice.toFloat())
         } else {
-
-            price = discountNoPrice.toFloat()
-
-            return getString(R.string.rmb_price_double, price)
+            price = 0f
         }
+
+        price += discountNoPrice.toFloat()
+
+
+
+
+        return getString(R.string.rmb_price_double, price)
     }
 
 
@@ -382,40 +382,36 @@ class MRCheckPayFragment : BaseFragment() {
     }
 
 
- data class MRCheckPayBean(
-    val couponId: Int,
-    val coupons: List<Coupon>,
-    val shopId: Int,
-    val shopName: String,
-    val type: Int
-)
+    data class MRCheckPayBean(
+        val couponId: Int,
+        val coupons: List<Coupon>,
+        val shopId: Int,
+        val shopName: String,
+        val type: Int
+    )
 
-data class Coupon(
-    val code: String,
-    val id: Int,
-    val ifJinLi: Boolean,
-    val ifNeedAudit: Boolean,
-    val qrCodeData: String,
-    val shopId: Int,
-    val shopName: String,
-    val status: Int,
-    val statusText: String,
-    val style: Int,
-    val title: String,
-    val trade: String,
-    val type: Int,
-    val useFill: Double,
-    val useMark: String,
-    val useMarks: List<String>,
-    val useText: String,
-    val value: String,
-    val valuePrefix: String,
-    val valueUnit: String
-)
-
-
-
-
+    data class Coupon(
+        val code: String,
+        val id: Int,
+        val ifJinLi: Boolean,
+        val ifNeedAudit: Boolean,
+        val qrCodeData: String,
+        val shopId: Int,
+        val shopName: String,
+        val status: Int,
+        val statusText: String,
+        val style: Int,
+        val title: String,
+        val trade: String,
+        val type: Int,
+        val useFill: Double,
+        val useMark: String,
+        val useMarks: List<String>,
+        val useText: String,
+        val value: String,
+        val valuePrefix: String,
+        val valueUnit: String
+    )
 
 
 }

@@ -157,11 +157,9 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         swipeLayout.setRefreshHeader(ClassicsHeader(context))
 
-        mAdapter = EvaluateManageAdapter(mActivity, listAll)
+        mAdapter = EvaluateManageAdapter(mActivity ,fragmentManager,listAll)
 
-//        for (i in mTitles.indices) {
-//            mTabEntities.add(TabEntity(mTitles[i], R.mipmap.ic_launcher, R.mipmap.ic_launcher))
-//        }
+
 
         initRefreshLayout()
 

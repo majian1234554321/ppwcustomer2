@@ -2,6 +2,7 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/white"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,10 +18,10 @@
 
         <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="48dp"
-                android:visibility="gone"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_default_color"/>
+                android:layout_width="25pt"
+                android:layout_height="25pt"
+                android:layout_marginRight="10pt"
+                android:src="@drawable/icon_place"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +66,7 @@
                           android:textSize="12pt"
                           android:layout_marginRight="7.15pt"
                           android:layout_height="wrap_content"/>
-                <com.paipaiwei.personal.ui.customview.RatingBar
+                <com.yjhh.common.view.RatingBar
 
                         android:id="@+id/id_ratingbar"
                         android:layout_width="100dp"
@@ -85,6 +86,14 @@
                         app:starPadding="1.35pt"
                         app:clickable="false"
                         app:stepSize="Half"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          tools:text = "5"
+                          android:id="@+id/tv_score"
+                          android:gravity="center"
+                          android:layout_gravity="center"
+                />
+
             </LinearLayout>
 
 

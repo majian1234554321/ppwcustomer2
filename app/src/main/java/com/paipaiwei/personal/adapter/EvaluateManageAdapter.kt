@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.text.TextUtils
 import android.view.View
 import android.widget.LinearLayout
+import androidx.fragment.app.FragmentManager
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -19,7 +20,7 @@ import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.yjhh.common.view.RatingBar
 
 
-class EvaluateManageAdapter(var context: Context, data: List<MultiItemEntity>) :
+class EvaluateManageAdapter(var context: Context, var fragmentManager: FragmentManager?, data: List<MultiItemEntity>) :
     BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(data) {
 
 
@@ -49,7 +50,7 @@ class EvaluateManageAdapter(var context: Context, data: List<MultiItemEntity>) :
 
                     val view = helper.getView<NineGridView>(R.id.nineGrid)
 
-                    view?.setAdapter(NineGridViewClickAdapter(context, list))
+                    view?.setAdapter(NineGridViewClickAdapter(context, list,fragmentManager))
                     helper.setVisible(R.id.nineGrid, true)
                 } else {
                     helper.setVisible(R.id.nineGrid, false)

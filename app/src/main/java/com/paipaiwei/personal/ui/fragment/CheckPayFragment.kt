@@ -352,40 +352,21 @@ class CheckPayFragment : BaseFragment() {
 
     fun calculation(totleprice: String, discountNoPrice: String, flag: String?, discountValue: String): String {
 
-//        val df = DecimalFormat("#0.00")
+        val df = DecimalFormat("#0.00")
         var price = 0f
 
-
-
-
-
-        if ((totleprice.toFloat() - discountNoPrice.toFloat() - discountValue.toFloat()) >= 0) {
-            price =
-                (totleprice.toFloat() - discountValue.toFloat())
-
-            return getString(R.string.rmb_price_double, price)
+        if ((totleprice.toFloat() - discountValue.toFloat() - discountNoPrice.toFloat()) >= 0) {
+            price = (totleprice.toFloat() - discountValue.toFloat() - discountNoPrice.toFloat())
         } else {
-
-            price = discountNoPrice.toFloat()
-
-            return getString(R.string.rmb_price_double, price)
+            price = 0f
         }
 
-
-//        price = if ("1" == flag) { //  类型（0满减（面值）1 抵扣（折扣百分比））
-//            if ("0" == discountValue) {  //“0” 不打折扣
-//                (totleprice.toFloat() - discountNoPrice.toFloat())
-//            } else {
-//                (totleprice.toFloat() - discountNoPrice.toFloat()) * discountValue.toFloat() +
-//                        discountNoPrice.toFloat()
-//            }
-//
-//        } else {
-//            totleprice.toFloat() - discountValue.toFloat() +
-//                    discountNoPrice.toFloat()
-//        }
+        price += discountNoPrice.toFloat()
 
 
+
+
+        return getString(R.string.rmb_price_double, price)
     }
 
 

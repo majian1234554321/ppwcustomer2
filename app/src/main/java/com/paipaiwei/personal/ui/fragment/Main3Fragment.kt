@@ -34,25 +34,62 @@ class Main3Fragment : BaseMainFragment(), OrderView {
     }
 
     private val headers = arrayOf("全部订单")
-
+    val mTitles = arrayOf("全部订单", "已完成", "未完成", "待评价")
     private val popupViews = ArrayList<View>()
+    val mFragments = ArrayList<BaseFragment>()
+    var m3_1:Main3_1Fragment? = null
 
     override fun initView() {
-        val mTitles = arrayOf("全部订单", "已完成", "未完成", "待评价")
 
-        val mFragments = ArrayList<BaseFragment>()
-        val m3_1 = Main3_1Fragment()
+        mFragments.clear()
 
-        mFragments.add(m3_1)
+         m3_1 = Main3_1Fragment()
+
+        mFragments.add(m3_1 as Main3_1Fragment)
         mFragments.add(Main3_2Fragment())
         mFragments.add(Main3_3Fragment())
         mFragments.add(Main3_4Fragment())
 
 
 
+        loadData()
+
+
+
+
+
+
+
+        rl0.setOnClickListener {
+            loadData()
+        }
+
+
+        tv_consumption.setOnClickListener {
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "ConsumptionLogFragment")
+                //.withString("id", (adapter.data[position] as Main1FootBean.ItemsBean).id)
+                .navigation()
+        }
+
+    }
+
+
+
+    fun loadData(){
         ApiServices.getInstance().create(OrderService::class.java).nav().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe(object : ProcessObserver2(mActivity) {
                 override fun processValue(response: String?) {
+
+
+
+                    rl0.visibility = View.GONE
+                    ll0.visibility = View.VISIBLE
+
+
+
+
 
                     val listNav = ArrayList<String>()
                     listNav.clear()
@@ -79,7 +116,7 @@ class Main3Fragment : BaseMainFragment(), OrderView {
                         dropDownMenu.setTabText(listNav[position])
                         dropDownMenu.closeMenu()
 
-                        m3_1.loadData(orderNavBean[position].value)
+                        m3_1?.loadData(orderNavBean[position].value)
 
                     }
 
@@ -94,7 +131,7 @@ class Main3Fragment : BaseMainFragment(), OrderView {
 
                     dropDownMenu.setDropDownMenu(Arrays.asList(*headers), popupViews, contentView)
 
-
+                    mViewPager.offscreenPageLimit = 4
                     mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, mTitles)
                     mTabLayout.setViewPager(mViewPager)
 
@@ -102,24 +139,14 @@ class Main3Fragment : BaseMainFragment(), OrderView {
                 }
 
                 override fun onFault(message: String) {
-                    Log.i("nav", message)
+                    rl0.visibility = View.VISIBLE
+                    ll0.visibility = View.GONE
                 }
 
             })
-
-
-        // OrderPresent(mActivity, this).orderTypes()
-
-
-        tv_consumption.setOnClickListener {
-            ARouter.getInstance()
-                .build("/RestaurantActivity/Restaurant")
-                .withString("displayTab", "ConsumptionLogFragment")
-                //.withString("id", (adapter.data[position] as Main1FootBean.ItemsBean).id)
-                .navigation()
-        }
-
     }
+
+
 
     override fun getLayoutRes(): Int = R.layout.main3fragment
 }

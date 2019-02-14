@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-   <!-- <View android:layout_width="match_parent"
-          android:background="@color/white"
-          android:layout_height="20pt"/>-->
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +14,7 @@
             xmlns:tl="http://schemas.android.com/tools"
             android:layout_below="@+id/tbv_title"
             android:background="@color/f8"
+            android:id="@+id/cl0"
             app:statusBarBackground="@color/white"
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
@@ -166,4 +165,48 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-</LinearLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/rl0"
+                    android:visibility="gone"
+                    android:layout_height="match_parent">
+
+
+        <ImageView android:layout_width="131pt"
+                   android:layout_gravity="center"
+                   android:id="@+id/iv"
+                   android:layout_centerHorizontal="true"
+                   android:layout_above="@+id/tv_0"
+                   android:src="@drawable/wuwangluo"
+                   android:layout_height="100pt"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="网络不稳定，请重新加载"
+                  android:textColor="#FF333333"
+                  android:textSize="15pt"
+                  android:layout_marginTop="47pt"
+                  android:id="@+id/tv_0"
+                  android:drawablePadding="8pt"
+                  android:layout_marginBottom="13pt"
+
+
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="点击屏幕重新加载"
+                  android:layout_below="@+id/tv_0"
+                  android:gravity="center"
+                  android:layout_gravity="center"
+                  android:drawablePadding="8pt"
+                  android:textColor="#FFF9572D"
+                  android:textSize="13pt"
+
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

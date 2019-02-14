@@ -139,6 +139,10 @@ class Main3_1Fragment : BaseFragment(), OrderView {
 
     }
 
+    override fun onSupportVisible() {
+        swipeLayout.autoRefresh()
+    }
+
     private fun initRefreshLayout() {
         swipeLayout.setOnRefreshListener { refreshLayout ->
             refresh()

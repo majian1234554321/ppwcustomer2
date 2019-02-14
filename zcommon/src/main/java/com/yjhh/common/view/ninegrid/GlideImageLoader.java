@@ -22,8 +22,8 @@ public class GlideImageLoader implements NineGridView.ImageLoader {
                 // 如果没设置fallback，model为空时将显示error的Drawable，
                 // 如果error的Drawable也没设置，就显示placeholder的Drawable
                 //.priority(Priority.NORMAL) //指定加载的优先级，优先级越高越优先加载，
-                .placeholder(R.drawable.ic_default_color)
-                .error(R.drawable.ic_default_color)
+                .placeholder(R.drawable.icon_place_square)
+                .error(R.drawable.icon_place_square)
                 // 缓存原始数据
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop();

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.Gson
+import com.gyf.barlibrary.ImmersionBar
 import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
@@ -16,6 +18,7 @@ import com.paipaiwei.personal.R
 import com.yjhh.common.api.SectionEvluateService
 import com.paipaiwei.personal.bean.EvaluateDetailsBean
 import com.yjhh.common.bean.SubmitUserCommentModel
+import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.view.ninegrid.NineGridView
 import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.yjhh.common.view.RatingBar
@@ -32,6 +35,8 @@ class EvaluateDetailsFragment : BaseFragment() {
 
     val list = ArrayList<EvaluateDetailsBean.ItemsBean>()
     override fun initView() {
+
+        ImmersionBar.setTitleBar(activity, tbv_title)
 
         mAdapter = EvaluateDetailsAdapter(list)
         addHeadView()
@@ -56,6 +61,11 @@ class EvaluateDetailsFragment : BaseFragment() {
                 model.content = tv_replyContext.text.toString()
 
 
+                model.orderId = ""
+                model.productGrade = ""
+                model.serviceGrade = ""
+
+
                 ApiServices.getInstance()
                     .create(SectionEvluateService::class.java)
                     .reply(model)
@@ -72,6 +82,7 @@ class EvaluateDetailsFragment : BaseFragment() {
 
                         override fun onFault(message: String) {
                             Log.i("EvaluateDetailsFragment", message)
+                            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                         }
 
                     })
@@ -90,7 +101,11 @@ class EvaluateDetailsFragment : BaseFragment() {
     var tv_content: TextView? = null
     var tv_time: TextView? = null
     var tv_username: TextView? = null
+    var avatar: ImageView? = null
     var id_ratingbar: RatingBar? = null
+    var tv_score: TextView? = null
+
+
 
     private fun addHeadView() {
         val headView = View.inflate(mActivity, R.layout.evaluatedetailshead, null)
@@ -99,6 +114,10 @@ class EvaluateDetailsFragment : BaseFragment() {
         tv_content = headView.findViewById(R.id.tv_content)
         tv_username = headView.findViewById(R.id.tv_username)
         id_ratingbar = headView.findViewById(R.id.id_ratingbar)
+        avatar = headView.findViewById(R.id.avatar)
+        tv_score = headView.findViewById(R.id.tv_score)
+
+
 
         mAdapter?.addHeaderView(headView)
     }
@@ -151,6 +170,11 @@ class EvaluateDetailsFragment : BaseFragment() {
                     }
 
 
+
+                    ImageLoaderUtils.loadCircle(mActivity,avatar,bean.avatarUrl,R.drawable.icon_place,R.drawable.icon_place)
+                    id_ratingbar?.setStar(bean.shopGrade.toFloat())
+                    tv_score?.text = bean.shopGrade.toString()
+
                     nineGridView?.setAdapter(NineGridViewClickAdapter(context, url))
 
 
@@ -158,7 +182,7 @@ class EvaluateDetailsFragment : BaseFragment() {
                     tv_content?.text = bean?.content
                     tv_time?.text = bean.timeText
 
-                    bean?.shopScore?.let { id_ratingbar?.setStar(it) }
+                  //  bean?.shopScore?.let { id_ratingbar?.setStar(it) }
 
 
                     mAdapter?.setNewData(bean.items)

@@ -19,6 +19,8 @@ public class EvaluateDetailsBean {
      * timeText : 2018-12-11
      */
 
+    public int shopGrade;
+    public String avatarUrl;
     public String userName;
     public String content;
     public int createdTime;
