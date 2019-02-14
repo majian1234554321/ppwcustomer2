@@ -2,6 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:background="@drawable/solid_frame_white"
+                android:layout_marginLeft="15pt"
+                android:layout_marginRight="15pt"
+                android:layout_marginTop="15pt"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
             android:orientation="vertical"

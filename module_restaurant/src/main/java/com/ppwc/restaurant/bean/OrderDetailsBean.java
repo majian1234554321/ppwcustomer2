@@ -33,13 +33,13 @@ public class OrderDetailsBean {
     public String createdTime;
     public float disMoney;
     public int displayStatus;
-    public int id;
+    public String id;
     public boolean ifComment;
     public int ifHasItem;
     public float money;
     public int number;
     public String orderNo;
-    public int shopId;
+    public String shopId;
     public String shopLogoUrl;
     public String shopName;
     public int status;

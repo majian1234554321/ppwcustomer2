@@ -40,6 +40,7 @@ class TitleBarView @JvmOverloads constructor(
 
         val type = context.theme.obtainStyledAttributes(attributeSet, R.styleable.TitleBarView, defStyleAttr, 0)
         val textValue = type.getString(R.styleable.TitleBarView_textValue)
+        val textRightValue = type.getString(R.styleable.TitleBarView_textRightValue)
         val textColor =
             type.getColor(R.styleable.TitleBarView_textColor, ContextCompat.getColor(context, R.color.all_3))
         val textSize = type.getDimension(R.styleable.TitleBarView_textSize, 18f)
@@ -53,6 +54,9 @@ class TitleBarView @JvmOverloads constructor(
         val imageSrc = type.getResourceId(R.styleable.TitleBarView_imageSrc, R.drawable.icon_place_pai)
 
         val imageDis = type.getBoolean(R.styleable.TitleBarView_imageDis, false)
+        val textRightDisplay = type.getBoolean(R.styleable.TitleBarView_textRightDisplay, false)
+
+
 
         type.recycle()
 
@@ -69,7 +73,7 @@ class TitleBarView @JvmOverloads constructor(
         val rl_background = view.findViewById<Toolbar>(R.id.toolbar)
 
         rl_background.setBackgroundColor(titleBarBackground)
-        // iv_right.setImageResource(imageSrc)
+        iv_right.text = textRightValue
 
         if (imageDis) {
             iv_right.visibility = View.VISIBLE
@@ -77,6 +81,15 @@ class TitleBarView @JvmOverloads constructor(
         } else {
             iv_right.visibility = View.GONE
         }
+
+
+
+        if (textRightDisplay) {
+            iv_right.visibility = View.VISIBLE
+        } else {
+            iv_right.visibility = View.GONE
+        }
+
 
 
         iv_right.setOnClickListener {

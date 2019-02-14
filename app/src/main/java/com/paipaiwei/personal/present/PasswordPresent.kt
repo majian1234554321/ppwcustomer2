@@ -8,7 +8,7 @@ import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.api.SectionUserService
 import com.yjhh.common.present.BasePresent
 
-import com.yjhh.ppwbusiness.iview.PasswordView
+import com.paipaiwei.personal.view.PasswordView
 import com.paipaiwei.personal.model.PasswordModel
 
 class PasswordPresent(var context: Context, var registView: PasswordView) : BasePresent() {

@@ -1,6 +1,6 @@
-package com.yjhh.ppwbusiness.iview
+package com.paipaiwei.personal.view
 
-import com.paipaiwei.personal.view.SendSMSView
+
 
 interface PasswordView : SendSMSView {
     fun onSuccess(value: String?)

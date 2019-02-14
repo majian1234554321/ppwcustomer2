@@ -10,18 +10,19 @@
                                                  android:layout_height="wrap_content"/>
     <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/mTabLayout"
+            android:paddingLeft="24pt"
+            android:paddingRight="24pt"
+            android:layout_below="@+id/tbv_title"
+
             android:layout_width="match_parent"
             android:layout_height="48dp"
             app:tl_tab_space_equal="true"
-            android:layout_gravity="center"
-            app:tl_textSelectColor="#FFC8AF85"
-            app:tl_textUnselectColor="#FF333333"
-            app:tl_indicator_color="#FFC8AF85"
-            app:tl_indicator_width_equal_title="true"
+            app:tl_textUnselectColor="#333333"
+            app:tl_textSelectColor="#FFF9572D"
+            app:tl_indicator_color="#FFF9572D"
+
             android:background="@color/white"
-
-
-            tl:tl_indicator_width="10dp"/>
+            app:tl_indicator_width="42pt"/>
 
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/mViewPager"

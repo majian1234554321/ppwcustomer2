@@ -1,4 +1,4 @@
-package com.yjhh.ppwbusiness.views.cui
+package com.yjhh.common.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable

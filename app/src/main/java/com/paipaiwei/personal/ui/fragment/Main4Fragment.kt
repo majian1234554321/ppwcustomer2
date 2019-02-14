@@ -266,6 +266,7 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
             ll_sign,
             iev_Collection,
             iev_Invitation,
+            iv_message,
             rl0
 
         )

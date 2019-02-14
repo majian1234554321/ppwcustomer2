@@ -1,30 +1,20 @@
 package com.paipaiwei.personal.ui.activity.evaluate
 
-import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.flyco.tablayout.listener.CustomTabEntity
-import com.flyco.tablayout.listener.OnTabSelectListener
 import com.google.gson.Gson
-import com.gyf.barlibrary.ImmersionBar
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.yjhh.common.api.ApiServices
-import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.adapter.EvaluateManageAdapter
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.apis.SectionEvluateService
 import com.paipaiwei.personal.bean.*
 import com.paipaiwei.personal.present.EvaluatePresent
 import com.paipaiwei.personal.view.EvaluateView
-import com.yjhh.common.bean.TabEntity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 
 import kotlinx.android.synthetic.main.evaluatemanagefragment.*
+
 import java.util.*
 
 class EvaluateManageFragment : BaseFragment(), EvaluateView {
@@ -144,8 +134,7 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
 
     }
 
-    private val mTitles = arrayOf("全部评价", "好评", "中评", "差评")
-    private val mTabEntities = java.util.ArrayList<CustomTabEntity>()
+
     override fun getLayoutRes(): Int = R.layout.evaluatemanagefragment
 
     var type = "0"//类别，默认null（null/0全部 1好评 2中评 3差评）
@@ -176,41 +165,7 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
 
         initRefreshLayout()
 
-        ApiServices.getInstance()
-            .create(SectionEvluateService::class.java)
-            .nav()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : ProcessObserver2(mActivity) {
-                override fun processValue(response: String?) {
-                    Log.i("EvaluateManageFragment", response)
 
-                    //mTabLayout_7.
-
-                    val model = Gson().fromJson<Array<EvaluateManageNavBean>>(
-                        response,
-                        Array<EvaluateManageNavBean>::class.java
-                    )
-
-
-                    for (i in model.indices) {
-                        mTabEntities.add(
-                            TabEntity(
-                                model[i].title,
-                                R.mipmap.ic_launcher,
-                                R.mipmap.ic_launcher
-                            )
-                        )
-                    }
-
-                    mTabLayout_7.setTabData(mTabEntities)
-                }
-
-                override fun onFault(message: String) {
-                    Log.i("EvaluateManageFragment", message)
-                }
-
-            })
 
 
 
@@ -220,37 +175,7 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
 
 
 
-        mTabLayout_7.setOnTabSelectListener(object : OnTabSelectListener {
-            override fun onTabSelect(position: Int) {
-                Log.i("EvaluateManageFragment", position.toString())
 
-                type = position.toString()
-                startIndex = 0
-                swipeLayout.autoRefresh()
-
-            }
-
-            override fun onTabReselect(position: Int) {
-
-            }
-
-        })
-
-        checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-
-                checkbox.setTextColor(Color.parseColor("#FF552E"))
-                isHasfile = "1"
-                startIndex = 0
-                present?.allcomments(type, isHasfile, startIndex, pageSize, "refresh")
-            } else {
-                checkbox.setTextColor(Color.parseColor("#888888"))
-                isHasfile = "0"
-                startIndex = 0
-                present?.allcomments(type, isHasfile, startIndex, pageSize, "refresh")
-
-            }
-        }
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
 
@@ -291,14 +216,14 @@ class EvaluateManageFragment : BaseFragment(), EvaluateView {
     private fun refresh() {
         startIndex = 0
 
-        present?.allcomments(type, isHasfile, startIndex, pageSize, "refresh")
+        present?.allcomments( startIndex, pageSize, "refresh")
     }
 
     private fun loadMore() {
         //
         startIndex++
 
-        present?.allcomments(type, isHasfile, startIndex, pageSize, "load")
+        present?.allcomments( startIndex, pageSize, "load")
 
 
     }

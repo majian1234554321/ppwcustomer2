@@ -48,7 +48,7 @@
 
 
 
-            <com.yjhh.ppwbusiness.views.cui.RatingBar
+            <com.paipaiwei.personal.ui.customview.RatingBar
                     android:id="@+id/id_ratingbar"
                     android:layout_width="100dp"
                     android:layout_height="25dp"
@@ -79,7 +79,7 @@
                     android:textColor="#505050"
                     android:textSize="12sp"/>
 
-            <com.yjhh.ppwbusiness.views.evaluate.ninegrid.NineGridView
+            <com.yjhh.common.view.ninegrid.NineGridView
                     android:id="@+id/nineGrid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

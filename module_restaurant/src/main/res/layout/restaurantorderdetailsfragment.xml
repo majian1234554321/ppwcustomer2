@@ -24,6 +24,7 @@
             <RelativeLayout android:layout_width="match_parent"
                             android:paddingLeft="15pt"
                             android:paddingRight="15pt"
+                            android:id="@+id/rl_home"
                             android:background="@color/white"
                             android:layout_height="wrap_content">
 

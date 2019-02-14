@@ -1,7 +1,7 @@
-package com.paipaiwei.personal.apis
+package com.yjhh.common.api
 
 
-import com.paipaiwei.personal.bean.SubmitUserCommentModel
+import com.yjhh.common.bean.SubmitUserCommentModel
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -23,8 +23,10 @@ interface SectionEvluateService {
 
 
     @Headers("Content-Type: application/json", "Accept: application/json")//需要添加头
-    @POST("userComment/reply")
+    @POST("userComment/submit")
     fun reply(@Body map: SubmitUserCommentModel): Observable<ResponseBody>//
+
+
 
 
 

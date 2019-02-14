@@ -31,7 +31,7 @@
                   android:drawablePadding="6pt"
                   android:textSize="14pt"
                   tools:text="121212"
-                  android:hint="请输入商家、商家名称"
+                  android:hint="请输入商家名称"
                   android:layout_marginTop="7pt"
                   android:layout_marginBottom="7pt"
                   android:drawableLeft="@drawable/icon_search"
@@ -103,7 +103,7 @@
 
             <LinearLayout android:layout_width="match_parent"
                           android:id="@+id/ll_hot"
-
+                          android:paddingTop="20pt"
                           android:orientation="vertical" android:layout_height="wrap_content">
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:text="热门搜索"

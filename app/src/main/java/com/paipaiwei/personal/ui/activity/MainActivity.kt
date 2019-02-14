@@ -36,6 +36,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         if (findFragment(MainFragment::class.java) == null) {
             loadRootFragment(R.id.fl_container, MainFragment.newInstance())
         }

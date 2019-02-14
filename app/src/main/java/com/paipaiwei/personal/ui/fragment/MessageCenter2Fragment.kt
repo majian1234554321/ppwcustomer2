@@ -1,5 +1,7 @@
 package com.paipaiwei.personal.ui.fragment
 
+import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -27,12 +29,13 @@ class MessageCenter2Fragment : BaseFragment(), MyMessageView {
     var status = "-1"//状态，默认null(null/-1 全部 0未生效 1 有效的 2已过期的/失效的)
     override fun onSuccess(main1bean: MyMessageBean, flag: String) {
         if ("refresh" == flag) {
-            if (swipeLayout!=null) {
-                swipeLayout.finishRefresh()
+            if (startindex==0&&main1bean.items.size==0){
+                val view = View.inflate(mActivity, com.ppwc.restaurant.R.layout.emptyview, null)
+                view.findViewById<TextView>(com.ppwc.restaurant.R.id.tv_tips).text = "暂无数据"
+                mAdapter?.emptyView = view
+            }else{
+                mAdapter.setNewData(main1bean.items as ArrayList<MyMessageBean.ItemsBean>)
             }
-
-            mAdapter.setNewData(main1bean.items as ArrayList<MyMessageBean.ItemsBean>)
-
         } else {
             mAdapter.addData(main1bean.items as ArrayList<MyMessageBean.ItemsBean>)
             mAdapter.loadMoreComplete()
@@ -60,7 +63,7 @@ class MessageCenter2Fragment : BaseFragment(), MyMessageView {
 
 
 
-        mRecyclerView.addItemDecoration(SpaceItemDecoration(30))
+        //mRecyclerView.addItemDecoration(SpaceItemDecoration(30))
         mAdapter = MyMessageFragmentAdapter(list)
         sectionCouponPresent = SectionUselessPresent(context, this)
         mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)

@@ -18,7 +18,7 @@ public class RatingBar2  extends View {
     //星星的总数
     private int mStartTotalNumber = 5;
     //选中的星星个数
-    private float mSelectedNumber;
+    public float mSelectedNumber;
     // 星星之间的间距
     private int mStartDistance;
     // 是否画满

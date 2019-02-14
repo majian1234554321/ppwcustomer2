@@ -17,7 +17,7 @@ import com.yjhh.common.BaseApplication
 import com.yjhh.common.Constants.MAX_COUNT_TIME
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.ppwbusiness.iview.PasswordView
+import com.paipaiwei.personal.view.PasswordView
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

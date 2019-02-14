@@ -118,6 +118,8 @@ public abstract class BaseFragment extends SupportFragment implements CustomAdap
         }
     }
 
+
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

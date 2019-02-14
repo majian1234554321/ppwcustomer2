@@ -1,11 +1,9 @@
 package com.paipaiwei.personal.ui.activity.login
 
-import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.google.gson.internal.bind.TypeAdapters.URL
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yjhh.common.BaseApplication
@@ -14,11 +12,10 @@ import com.yjhh.common.api.ApiServices
 import com.yjhh.common.api.ProcessObserver2
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.SharedPreferencesUtils
-import com.yjhh.ppwbusiness.iview.PasswordView
+import com.paipaiwei.personal.view.PasswordView
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.bean.LoginBean
 import com.paipaiwei.personal.present.PasswordPresent
-import com.paipaiwei.personal.ui.activity.MainActivity
 import com.paipaiwei.personal.ui.fragment.BackViewFragment
 import com.yjhh.common.api.CommonService
 import com.yjhh.common.utils.RxBus

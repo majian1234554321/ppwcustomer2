@@ -25,6 +25,9 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     RestaurantOrderSerVice.RestaurantOrderView {
     var jsonString: String? = null
     var statusValue = -1
+    var orderId :String? = null
+    var shopLogoUrl:String? = null
+    var shopName:String? = null
 
     override fun onRestaurantOrder(model: String?, flag: String) {
 
@@ -56,7 +59,10 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                 iev5.visibility = View.GONE
             }
 
+            orderId = orderDetailsBean.id
 
+             shopLogoUrl= orderDetailsBean.shopLogoUrl
+             shopName= orderDetailsBean.shopName
 
 
             if (!TextUtils.isEmpty(orderDetailsBean.useTime)) {
@@ -89,6 +95,11 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                 iev10.visibility = View.GONE
             }
 
+
+
+            rl_home.setOnClickListener {
+                start(RestaurantHomeFragment.newInstance(orderDetailsBean.shopId))
+            }
 
 
 
@@ -235,7 +246,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                         start(MRPendingPaymentFragment.newInstance(jsonString))
                     }
                     else -> {
-
+                        start(OrderEvaluationFragment.newInstance(shopLogoUrl,shopName,"",orderId))
                     }
                 }
 
@@ -245,7 +256,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
                 when (statusValue) { // //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
                     8 -> {
-                        start(OrderEvaluationFragment())
+                        start(OrderEvaluationFragment.newInstance(shopLogoUrl,shopName,"",orderId))
                     }
                     else -> {
                     }

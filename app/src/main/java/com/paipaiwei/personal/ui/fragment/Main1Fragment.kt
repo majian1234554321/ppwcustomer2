@@ -46,7 +46,9 @@ import com.yjhh.common.utils.RxCountDown
 import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.RatingBar
 import com.youth.banner.Banner
+import io.reactivex.CompletableObserver
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.main1fragment.*
 import kotlinx.android.synthetic.main.main1title.*
@@ -103,7 +105,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
             if (main1bean.main1HeadBean.qiangPais != null) {
                 headAdapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
-
+                headAdapter?.setValue(compositeDisposable)
                 hRecyclerView?.adapter = headAdapter
 
                 headAdapter?.setOnItemClickListener { adapter, view, position ->
@@ -393,18 +395,21 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (headAdapter != null) {
-            headAdapter?.dis = null
-        }
+    override fun onPause() {
+        super.onPause()
+
     }
 
 
     class Main1HeadAdapter(data: List<Main1HeadBean.QiangPaisBean>) :
         BaseQuickAdapter<Main1HeadBean.QiangPaisBean, BaseViewHolder>(R.layout.main1headadapter, data) {
 
-        var dis: Disposable? = null
+        var compositeDisposable: CompositeDisposable? = null
+
+        fun setValue(compositeDisposable: CompositeDisposable) {
+            this.compositeDisposable = compositeDisposable
+        }
+
 
         override fun convert(helper: BaseViewHolder?, item: Main1HeadBean.QiangPaisBean?) {
 
@@ -414,11 +419,15 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
             val mbpai = helper?.getView<TextView>(R.id.mb_pai)
 
-            dis = RxCountDown.countdown(item!!.time).subscribe {
+            val dis = RxCountDown.countdown(item!!.time).subscribe {
                 Log.i("Main1Fragment", it.toString())
                 helper?.setVisible(R.id.tv_count, it != 0)
                 helper?.setText(R.id.tv_count, "剩余  ${TimeUtil.secondToTime(it.toLong())}")
             }
+
+
+
+            compositeDisposable?.add(dis)
 
 
 
@@ -547,3 +556,5 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     }
 
 }
+
+

@@ -18,16 +18,19 @@ import com.ppwc.restaurant.R.id.recyclerView
 import com.ppwc.restaurant.adapter.OrderEvaluationAdapter
 import com.ppwc.restaurant.adapter.OrderEvaluationAdapter2
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.yjhh.common.api.ApiServices
+import com.yjhh.common.api.ProcessObserver2
+import com.yjhh.common.api.SectionEvluateService
 import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.bean.SubmitUserCommentModel
 import com.yjhh.common.iview.CommonView
 import com.yjhh.common.model.PhotoBean
 import com.yjhh.common.present.CommonPresent
+import com.yjhh.common.utils.ImageLoaderUtils
+import com.yjhh.common.utils.PhoneUtils
 import com.yjhh.common.utils.PhotoUtils
-import com.yjhh.common.view.AbsSheetDialog
-import com.yjhh.common.view.AlertDialogFactory
-import com.yjhh.common.view.BottomVerSheetDialog
-import com.yjhh.common.view.RatingBar
+import com.yjhh.common.view.*
 import com.yjhh.common.view.fragments.PhotoFragment
 import com.zhihu.matisse.Matisse
 import io.reactivex.Flowable
@@ -69,6 +72,22 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
 
     var present: CommonPresent? = null
 
+
+    companion object {
+        fun newInstance(shopLogoUrl: String?,shopName: String?,commentId: String?, orderId: String?): OrderEvaluationFragment {
+            val fragment = OrderEvaluationFragment()
+            val bundle = Bundle()
+            bundle.putString("shopLogoUrl", shopLogoUrl)
+            bundle.putString("shopName", shopName)
+            bundle.putString("commentId", commentId)
+            bundle.putString("orderId", orderId)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+
+
     override fun initView() {
 
 
@@ -77,13 +96,24 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
         val headView = View.inflate(mActivity, R.layout.orderheadview, null)
 
 
+        val commentId = arguments?.getString("commentId")
+        val orderId = arguments?.getString("orderId")
+
+        val shopLogoUrl = arguments?.getString("shopLogoUrl")
+        val shopName = arguments?.getString("shopName")
+
+
+        ImageLoaderUtils.loadCircle(mActivity,iv_image,shopLogoUrl,R.drawable.icon_place,R.drawable.icon_place)
+
+
+        tv_storeName.text = shopName
         recyclerView.layoutManager = GridLayoutManager(mActivity, 3)
         lists.clear()
 
 
         mAdapter = OrderEvaluationAdapter(mActivity, lists, 9)
         recyclerView.adapter = mAdapter
-        //  mAdapter?.addHeaderView(headView)
+
 
 
         mAdapter?.setOnItemClickListener(object : OrderEvaluationAdapter.OnRecycleViewItemClickListener {
@@ -112,9 +142,46 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
 
         })
 
-        tv_submit.setOnClickListener {
 
-        }
+        tbv_title.setOnRightClickListener(object : TitleBarView.OnRightClickListion {
+            override fun setOnRightClick() {
+                val model = SubmitUserCommentModel()
+
+                if (!TextUtils.isEmpty(et_info.text.toString())) {
+                    model.commentId = commentId
+                    model.content = et_info.text.toString()
+                    model.fileIds = listsId
+                    model.orderId = orderId
+                    model.productGrade = id_ratingbar.mSelectedNumber.toInt().toString()
+                    model.serviceGrade = id_ratingbar.mSelectedNumber.toInt().toString()
+
+                    ApiServices.getInstance()
+                        .create(SectionEvluateService::class.java)
+                        .reply(model)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(object : ProcessObserver2(mActivity) {
+                            override fun processValue(response: String?) {
+                                Log.i("EvaluateDetailsFragment", response)
+                                mActivity.finish()
+
+                            }
+
+                            override fun onFault(message: String) {
+                                Log.i("EvaluateDetailsFragment", message)
+                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                            }
+
+                        })
+
+                } else {
+                    Toast.makeText(context, "回复内容不能为空", Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+
+        })
 
     }
 
@@ -292,16 +359,7 @@ class OrderEvaluationFragment : BaseFragment(), CommonView {
 
     }
 
-    companion object {
-        fun newInstance(ids: String?, payType: String?): OrderEvaluationFragment {
-            val fragment = OrderEvaluationFragment()
-            val bundle = Bundle()
-            bundle.putString("ids", ids)
-            bundle.putString("payType", payType)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
+
 
 
 }

@@ -13,9 +13,9 @@ import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.PhoneUtils
 import com.paipaiwei.personal.adapter.EvaluateDetailsAdapter
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.apis.SectionEvluateService
+import com.yjhh.common.api.SectionEvluateService
 import com.paipaiwei.personal.bean.EvaluateDetailsBean
-import com.paipaiwei.personal.bean.SubmitUserCommentModel
+import com.yjhh.common.bean.SubmitUserCommentModel
 import com.yjhh.common.view.ninegrid.NineGridView
 import com.yjhh.common.view.ninegrid.NineGridViewClickAdapter
 import com.yjhh.common.view.RatingBar

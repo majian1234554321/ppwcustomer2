@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
+import com.gyf.barlibrary.ImmersionBar
 import com.yjhh.common.base.BaseFragment
 
 import com.paipaiwei.personal.R
@@ -14,6 +15,8 @@ class MessageCenterFragment : BaseFragment() {
     override fun getLayoutRes(): Int = R.layout.messagecenterfragment
 
     override fun initView() {
+
+        ImmersionBar.setTitleBar(mActivity, tbv_title)
         val mFragments = ArrayList<BaseFragment>()
         mFragments.add(MessageCenter1Fragment())
         mFragments.add(MessageCenter2Fragment())
