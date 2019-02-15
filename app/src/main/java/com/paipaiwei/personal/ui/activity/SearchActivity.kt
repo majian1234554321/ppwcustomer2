@@ -51,6 +51,16 @@ class SearchActivity : BaseActivity(), QueryResultView, SearchInfoView {
         ll_hot.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
         mAdapter?.setNewData(model.items)
+
+        if (model.items.size==0) {
+            val view = View.inflate(this, R.layout.emptyview, null)
+            view.findViewById<TextView>(R.id.tv_tips).text = "没有搜索到相关数据"
+            mAdapter?.emptyView = view
+        }else{
+            mAdapter?.setNewData(model.items)
+        }
+
+
     }
 
     override fun SearchInfoValue(modle: SearchInfoBean) {

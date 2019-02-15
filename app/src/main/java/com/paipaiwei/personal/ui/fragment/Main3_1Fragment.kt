@@ -164,7 +164,7 @@ class Main3_1Fragment : BaseFragment(), OrderView {
 
     fun loadData(type: String?) {
         this.type = type
-        swipeLayout.autoRefresh()
+        swipeLayout?.autoRefresh()
     }
 
 

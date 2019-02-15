@@ -340,7 +340,21 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         })
 
 
+
+        rl_search.setOnClickListener {
+            ARouter.getInstance()
+                .build("/SearchActivity/Search")
+                .navigation()
+        }
+
+        iv_search.setOnClickListener {
+            ARouter.getInstance()
+                .build("/SearchActivity/Search")
+                .navigation()
+        }
     }
+
+
 
 
     private fun refresh() {

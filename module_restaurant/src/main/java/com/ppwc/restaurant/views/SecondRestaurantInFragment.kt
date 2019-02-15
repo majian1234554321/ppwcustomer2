@@ -264,6 +264,21 @@ class SecondRestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiH
             }
 
 
+            R.id.iv_search->{
+                ARouter.getInstance()
+                    .build("/SearchActivity/Search")
+                    .navigation()
+            }
+
+
+            R.id.mcv_Search_type->{
+                ARouter.getInstance()
+                    .build("/SearchActivity/Search")
+                    .navigation()
+            }
+
+
+
             else -> {
 
                 val postcard = ARouter.getInstance().build("/SearchActivity/Search")
@@ -392,7 +407,7 @@ class SecondRestaurantInFragment : BaseFragment(), View.OnClickListener, MeiShiH
 
         queryPresent?.meishiData("", code, "", "", "", "", "", pageIndex, pageSize, "refresh")
 
-        val arrays = arrayOf(rb1, rb2, rb3, rb4, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4)
+        val arrays = arrayOf(rb1, rb2, rb3, rb4, iv_back, tv_reset, tv_confirm, fl1, fl3, fl4,iv_search,mcv_Search_type)
 
         query1Adapter = Query1Adapter(mActivity, listAll, 0)
         lv_1.adapter = query1Adapter
