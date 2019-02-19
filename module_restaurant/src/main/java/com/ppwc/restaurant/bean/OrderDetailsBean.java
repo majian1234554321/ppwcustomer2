@@ -28,6 +28,9 @@ public class OrderDetailsBean {
      * userId : 1023
      */
 
+
+
+    public String couponId;
     public float useDisMoney;
     public String finishTime;
     public String createdTime;
@@ -43,7 +46,7 @@ public class OrderDetailsBean {
     public String shopLogoUrl;
     public String shopName;
     public int status;
-    public int subStatus;
+    public String subStatus;
     public int suppPayType;
     public int times;
     public float totalMoney;

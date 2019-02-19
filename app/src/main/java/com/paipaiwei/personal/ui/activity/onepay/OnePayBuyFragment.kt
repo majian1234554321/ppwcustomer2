@@ -221,7 +221,7 @@ class OnePayMoneyFragment : BaseFragment(), PayView, OrderView {
             }
 
             else -> {
-
+                startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
             }
         }
     }

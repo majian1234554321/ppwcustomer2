@@ -7,6 +7,7 @@ import com.yjhh.common.base.BaseActivity
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Main2ViewPagerAdapter
+
 import kotlinx.android.synthetic.main.activity_business_home.*
 
 class BusinessHomeActivity : BaseActivity(), View.OnClickListener {
@@ -21,7 +22,7 @@ class BusinessHomeActivity : BaseActivity(), View.OnClickListener {
 
             R.id.tv_Reserve -> {
 
-                startActivity(Intent(this, ParishReserveActivity::class.java))
+              //  startActivity(Intent(this, ParishReserveActivity::class.java))
             }
 
             else -> {

@@ -28,12 +28,12 @@ public class NearbyBean {
 
         public String title;
         public String iconUrl;
-        public int id;
+        public String code;
         public List<Nodes> nodes;
     }
 
     public static class Nodes {
-        public String id;
+        public String code;
         public String title;
     }
 

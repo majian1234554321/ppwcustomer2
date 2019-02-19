@@ -76,8 +76,8 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
             if (bean.propA != null) {
                 mb_aid = bean.propA.id
-                propa_title.text = bean.propA.name
-                propa_count.text = "数量：${bean.propA.quantity}"
+                propa_title?.text = bean.propA.name
+                propa_count?.text = "数量：${bean.propA.quantity}"
             } else {
                 mcva.visibility = View.GONE
             }
@@ -85,8 +85,8 @@ class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickLis
 
             if (bean.propB != null) {
                 mb_bid = bean.propB.id
-                propb_title.text = bean.propB.name
-                propb_count.text = "数量：${bean.propB.quantity}"
+                propb_title?.text = bean.propB.name
+                propb_count?.text = "数量：${bean.propB.quantity}"
             } else {
                 mcvb.visibility = View.GONE
             }

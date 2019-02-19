@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -50,8 +51,21 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
     }
 
     override fun onSuccess(value: String?, flag: String?) {
+        if ("collect" == flag) {
+            if (ifCollect) {
+                iv_like.setBackgroundResource(R.drawable.icon_unlike)
+            } else {
+                iv_like.setBackgroundResource(R.drawable.xingxing02)
+            }
 
+            ifCollect = !ifCollect
+        }
     }
+
+
+    var ifCollect = false
+
+    var shopName :String? = null
 
     override fun onRestaurantValue(model: RestaurantHomeBean) {
 
@@ -69,10 +83,12 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             )
         }
 
-        tv_storeName.text = model.name
-        tv_address.text = model.address
+        tv_storeName?.text = model.name
+        tv_address?.text = model.address
 
-        ratingbar.setStar(model.grade)
+        shopName = model.name;
+
+        ratingbar?.setStar(model.grade)
 
         if (model.times != null && model.times.size > 0) {
             val sb = StringBuilder()
@@ -81,18 +97,20 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                 sb.append(it.begin).append("-").append(it.end).append(" ")
             }
 
-            tv_times.text = "${sb.toString()} 营业"
+            tv_times?.text = "${sb.toString()} 营业"
         }
 
 
+
+        ifCollect = model.ifCollect
         if (model.ifCollect) {
-            iv_like.setBackgroundResource(R.drawable.xingxing02)
+            iv_like?.setBackgroundResource(R.drawable.xingxing02)
         } else {
-            iv_like.setBackgroundResource(R.drawable.icon_unlike)
+            iv_like?.setBackgroundResource(R.drawable.icon_unlike)
         }
 
 
-        tv_renjun.text = "${model.renj}/每人"
+        tv_renjun?.text = "${model.renj}/每人"
 
 
         if (model.qiangPai != null && model.qiangPai.size > 0) {
@@ -214,12 +232,14 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             R.id.iv_share -> {
 
-                ShareUtils.dialog(mActivity, mIUiListener,"","","")
+                ShareUtils.dialog(mActivity, mIUiListener, "", "", "")
             }
 
 
             R.id.tv_buy2 -> {
-                start(MRCheckPayFragment.newInstance("", "", shopId, "1"))
+                start(RestaurantHomePayFragment.newInstance("", "", shopId, "1"))
+
+
             }
 
             R.id.iv_like -> {
@@ -231,6 +251,11 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
             else -> {
+
+
+                start(ParishReserveFragment.newInstance(shopId, shopName))
+
+
             }
         }
     }
@@ -399,7 +424,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
 
-        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy2).forEach {
+        arrayOf(iv_image, iv_back, iv_like, iv_share, tv_buy1, tv_buy2).forEach {
             it.setOnClickListener(this)
         }
 

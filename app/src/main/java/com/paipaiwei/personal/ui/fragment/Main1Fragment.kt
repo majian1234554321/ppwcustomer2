@@ -54,6 +54,7 @@ import kotlinx.android.synthetic.main.main1fragment.*
 import kotlinx.android.synthetic.main.main1title.*
 import kotlinx.android.synthetic.main.mainhead.*
 import java.lang.StringBuilder
+import java.net.ConnectException
 
 
 class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
@@ -72,12 +73,27 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
             main1bean.main1HeadBean.banners?.forEach {
                 bannerImage.add(it.imageUrl)
             }
-            banner!!.setImages(bannerImage)
-                .setImageLoader(GlideImageLoader())
-                .setDelayTime(5000)
-                .start()
+            banner?.setImages(bannerImage)
+                ?.setImageLoader(GlideImageLoader())
+                ?.setDelayTime(5000)
+                ?.start()
 
-            banner!!.setOnBannerListener {
+            banner?.setOnClickListener {
+                if ("apps://qiangpai/sup" == main1bean.main1HeadBean.banners[0].linkUrl) {
+                    (parentFragment as MainFragment).startBrotherFragment(
+                        BuyOvervalueFragment()
+                    )
+                } else {
+
+                    ARouter.getInstance()
+                        .build("/DisplayActivity/Display")
+                        .withString("displayTab", "BackViewFragment")
+                        .withString("value", main1bean.main1HeadBean.banners[0].linkUrl)
+                        .navigation()
+                }
+            }
+
+            banner?.setOnBannerListener {
                 if ("apps://qiangpai/sup" == main1bean.main1HeadBean.banners[it].linkUrl) {
                     (parentFragment as MainFragment).startBrotherFragment(
                         BuyOvervalueFragment()
@@ -242,6 +258,9 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
     override fun onFault(errorMsg: String?) {
+
+
+
         Toast.makeText(mActivity, errorMsg, Toast.LENGTH_SHORT).show()
     }
 

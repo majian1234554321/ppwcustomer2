@@ -86,7 +86,7 @@
     <com.yjhh.common.view.ninegrid.NineGridView
             android:id="@+id/nineGrid"
             android:layout_width="351pt"
-
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
             android:paddingTop="6dp"/>

@@ -114,7 +114,7 @@ dependencies {
     api 'androidx.room:room-runtime:2.1.0-alpha03'
     kapt 'androidx.room:room-compiler:2.1.0-alpha03'
     api 'me.jessyan:autosize:1.0.6'
-    api 'com.github.arcadefire:nice-spinner:1.3.4'
+
     // kapt (name: 'arclayout-release', ext: 'aar')
     api(name: 'arclayout-release', ext: 'aar')
     api 'com.azhon:appupdate:1.7.3'
@@ -124,6 +124,10 @@ dependencies {
     api(name: 'immersionbar-2.3.3-beta15', ext: 'aar')
     api(name: 'pickerview-release', ext: 'aar')
     api(name: 'wheelview-release', ext: 'aar')
+    api(name: 'spinner-library', ext: 'aar')
+
+
+
     api 'com.dsiner.lib:xrv:1.1.2'
     api 'com.amap.api:map2d:5.2.0'
     api 'com.amap.api:location:4.4.0'

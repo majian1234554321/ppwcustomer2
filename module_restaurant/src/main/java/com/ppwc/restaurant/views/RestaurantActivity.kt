@@ -1,13 +1,12 @@
 package com.ppwc.restaurant.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ppwc.restaurant.R
+import com.ppwc.restaurant.views.reserve.ReserveListFragment
 import com.yjhh.common.base.BaseActivity
-import com.yjhh.common.base.BaseFragment
 
 
 @Route(path = "/RestaurantActivity/Restaurant")
@@ -53,6 +52,10 @@ class RestaurantActivity : BaseActivity() {
             "RestaurantOrderDetailsFragment" -> {
 
                 loadRootFragment(R.id.frameLayout, RestaurantOrderDetailsFragment.newInstance(id))
+            }
+
+            "ReserveListFragment" ->{
+                loadRootFragment(R.id.frameLayout, ReserveListFragment())
             }
 
             else -> {

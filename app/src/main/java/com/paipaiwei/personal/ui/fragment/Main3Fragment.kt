@@ -1,7 +1,6 @@
 package com.paipaiwei.personal.ui.fragment
 
 
-import android.util.Log
 import android.view.View
 import android.widget.GridView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -37,13 +36,13 @@ class Main3Fragment : BaseMainFragment(), OrderView {
     val mTitles = arrayOf("全部订单", "已完成", "未完成", "待评价")
     private val popupViews = ArrayList<View>()
     val mFragments = ArrayList<BaseFragment>()
-    var m3_1:Main3_1Fragment? = null
+    var m3_1: Main3_1Fragment? = null
 
     override fun initView() {
 
         mFragments.clear()
 
-         m3_1 = Main3_1Fragment()
+        m3_1 = Main3_1Fragment()
 
         mFragments.add(m3_1 as Main3_1Fragment)
         mFragments.add(Main3_2Fragment())
@@ -73,22 +72,28 @@ class Main3Fragment : BaseMainFragment(), OrderView {
                 .navigation()
         }
 
+
+        tv_resv.setOnClickListener {
+
+
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "ReserveListFragment")
+                .navigation()
+        }
+
+
     }
 
 
-
-    fun loadData(){
+    fun loadData() {
         ApiServices.getInstance().create(OrderService::class.java).nav().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe(object : ProcessObserver2(mActivity) {
                 override fun processValue(response: String?) {
 
 
-
                     rl0.visibility = View.GONE
                     ll0.visibility = View.VISIBLE
-
-
-
 
 
                     val listNav = ArrayList<String>()
@@ -98,7 +103,6 @@ class Main3Fragment : BaseMainFragment(), OrderView {
                     orderNavBean.forEach {
                         listNav.add(it.title)
                     }
-
 
 
                     val constellationView = layoutInflater.inflate(R.layout.custom_layout, null)
@@ -145,7 +149,6 @@ class Main3Fragment : BaseMainFragment(), OrderView {
 
             })
     }
-
 
 
     override fun getLayoutRes(): Int = R.layout.main3fragment

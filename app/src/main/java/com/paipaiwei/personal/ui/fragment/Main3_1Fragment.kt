@@ -35,7 +35,11 @@ class Main3_1Fragment : BaseFragment(), OrderView {
         val model = Gson().fromJson<Main3_1Bean>(response, Main3_1Bean::class.java)
         if ("refresh" == flag) {
             if (model.items != null && model.items.isNotEmpty()) {
+                mRecyclerView?.scrollToPosition(0)
                 mAdapter?.setNewData(model.items)
+
+
+
             } else {
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
@@ -68,7 +72,7 @@ class Main3_1Fragment : BaseFragment(), OrderView {
         }
 
         view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
-        mAdapter?.setNewData(listValue)
+
         mAdapter?.emptyView = view
 
     }

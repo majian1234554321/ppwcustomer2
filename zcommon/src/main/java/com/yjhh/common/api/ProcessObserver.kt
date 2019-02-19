@@ -4,6 +4,7 @@ import android.content.Context
 import com.yjhh.common.base.WaitProgressDialog
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import java.net.ConnectException
 
 
 abstract class ProcessObserver<T>(var context: Context) : Observer<BaseResponse<T>> {
@@ -30,7 +31,11 @@ abstract class ProcessObserver<T>(var context: Context) : Observer<BaseResponse<
     abstract fun onFault(message: String)
 
     override fun onError(e: Throwable) {
-        onFault(e.toString())
+        if (e is ConnectException){
+            onFault("连接服务器失败")
+        }else{
+            onFault(e.toString())
+        }
     }
 
     override fun onComplete() {

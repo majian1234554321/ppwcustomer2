@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.main2fragment.*
 import com.amap.api.maps2d.model.LatLng
 import com.d.lib.xrv.listener.AppBarStateChangeListener
 import com.google.android.material.appbar.AppBarLayout
+import com.paipaiwei.personal.bean.Main1FootBean
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.yjhh.common.Constants
 import com.yjhh.common.listener.LocationLatlng
@@ -65,6 +66,10 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                     mAdapter?.loadMoreComplete()
                 } else {
                     mAdapter?.loadMoreEnd()
+
+                    val view = View.inflate(mActivity, R.layout.emptyview, null)
+                    view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
+                    mAdapter?.emptyView = view
                 }
 
             } else {
@@ -149,12 +154,12 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
         rl0.setOnClickListener {
             present?.nearby()
-            present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
+            present?.nearbyData(code, Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
         }
 
         present = NearbyPresent(mActivity, this)
         present?.nearby()
-        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
+        present?.nearbyData(code, Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
 
         arrayOf(rl_search).forEach {
             it.setOnClickListener(this)
@@ -164,7 +169,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         mAdapter = Main2Adapter(list)
         recyclerView.adapter = mAdapter
         mAdapter?.setOnLoadMoreListener({
-            loadMore()
+            loadMore(code)
         }, recyclerView)
 
 
@@ -173,13 +178,23 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
 
-            val intent = Intent(mActivity, GPSActivity::class.java)
+//            val intent = Intent(mActivity, GPSActivity::class.java)
+//
+//            intent.putExtra("address", "")
+//            intent.putExtra("gotoLatitude", "")
+//            intent.putExtra("gotoLongitude", "")
+//
+//            startActivity(intent)
 
-            intent.putExtra("address", "")
-            intent.putExtra("gotoLatitude", "")
-            intent.putExtra("gotoLongitude", "")
 
-            startActivity(intent)
+
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "RestaurantHomeFragment")
+                .withString("id", (adapter.data[position] as NearByDataBean.ItemsBean).id)
+                .navigation()
+
+
         }
 
 
@@ -254,16 +269,16 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                 } else {
                     ll.visibility = View.GONE
                 }
-                val lisCheckBox = ArrayList<CheckBox>()
+                val lisCheckBox = ArrayList<RadioButton>()
                 lisCheckBox.clear()
                 ll.removeAllViews()
                 if (modelTAb != null && tab?.position != null && modelTAb!![tab?.position!!].nodes != null && modelTAb!![tab?.position!!].nodes.isNotEmpty()) {
-
+                    refresh(modelTAb?.get(tab?.position!!)?.code)
                     ll.visibility = View.VISIBLE
 
                     for (i in 0 until modelTAb!![tab.position].nodes.size) {
 
-                        val checkboxitem = View.inflate(mActivity, R.layout.checkboxitem2, null) as CheckBox
+                        val checkboxitem = View.inflate(mActivity, R.layout.checkboxitem2, null) as RadioButton
                         checkboxitem.buttonDrawable = ColorDrawable(Color.TRANSPARENT)
                         checkboxitem.setBackgroundResource(R.drawable.uncheckbox)
 
@@ -298,17 +313,28 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                             if (checkBox.isChecked) {
                                 buttonView.setBackgroundResource(R.drawable.checkbox)
                                 buttonView.setTextColor(Color.WHITE)
+
                                 intList.add(index)
 
                                 intList.forEach {
                                     sb.append(modelTAb!![tab?.position].nodes[it].title).append("\t")
                                 }
 
-                                Toast.makeText(
-                                    context,
-                                    "点击了${modelTAb!![tab?.position].title} 目录下的 ${sb.toString()}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+
+                                if(modelTAb!![tab.position]?.nodes[index].code!=null){
+                                    code = modelTAb!![tab.position]?.nodes[index].code
+                                }
+
+
+
+                                refresh(code)
+
+
+//                                Toast.makeText(
+//                                    context,
+//                                    "点击了${modelTAb!![tab?.position].title} 目录下的 ${sb.toString()}",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
 
                             } else {
 
@@ -319,11 +345,11 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                                 buttonView.setBackgroundResource(R.drawable.uncheckbox)
                                 buttonView.setTextColor(Color.parseColor("#666666"))
 
-                                Toast.makeText(
-                                    context,
-                                    "点击了${modelTAb!![tab?.position].title} 目录下的 $sb",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+//                                Toast.makeText(
+//                                    context,
+//                                    "点击了${modelTAb!![tab?.position].title} 目录下的 $sb",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
                             }
 
                         }
@@ -355,16 +381,17 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
     }
 
 
+    var code = ""
 
 
-    private fun refresh() {
+    private fun refresh(code: String?) {
         pageIndex = 0
-        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
+        present?.nearbyData(code, Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "refresh")
     }
 
-    private fun loadMore() {
+    private fun loadMore(code: String) {
         pageIndex++
-        present?.nearbyData("", Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "loadMore")
+        present?.nearbyData(code, Constants.LONGITUDE, Constants.LATITUDE, pageIndex, pageSize, "loadMore")
     }
 
 

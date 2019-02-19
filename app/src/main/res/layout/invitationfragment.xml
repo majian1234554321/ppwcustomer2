@@ -10,6 +10,7 @@
                                        app:textValue="邀新有礼"
                                        app:imageSrc="@drawable/icon_share"
                                        app:imageDis="true"
+                                       app:textRightDisplay = "true"
                                        android:layout_height="wrap_content"/>
 
     <androidx.core.widget.NestedScrollView android:layout_width="match_parent"

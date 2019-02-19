@@ -16,6 +16,7 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import java.net.ConnectException
 
 
 abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
@@ -86,7 +87,17 @@ abstract class ProcessObserver2(var context: Context) : Observer<ResponseBody> {
     abstract fun onFault(message: String)
 
     override fun onError(e: Throwable) {
-        onFault(e.toString())
+
+        if (e is ConnectException){
+            onFault("连接服务器失败")
+        }else{
+            onFault(e.toString())
+        }
+
+
+
+
+
     }
 
     override fun onComplete() {

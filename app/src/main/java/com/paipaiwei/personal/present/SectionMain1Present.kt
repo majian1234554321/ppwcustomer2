@@ -20,6 +20,7 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import java.net.ConnectException
 
 class SectionMain1Present(context: Context) : BasePresent() {
 
@@ -126,7 +127,17 @@ class SectionMain1Present(context: Context) : BasePresent() {
                         main1View.onFault("无法获取首页数据")
                     }
                 }, {
-                    main1View.onFault(it.toString())
+
+                    if (it is ConnectException){
+
+
+                        main1View.onFault("连接服务器失败")
+
+                    }else{
+                        main1View.onFault(it.toString())
+                    }
+
+
                 }
             )
 

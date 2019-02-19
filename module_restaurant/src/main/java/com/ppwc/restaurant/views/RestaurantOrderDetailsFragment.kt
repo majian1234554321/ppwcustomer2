@@ -25,9 +25,14 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     RestaurantOrderSerVice.RestaurantOrderView {
     var jsonString: String? = null
     var statusValue = -1
-    var orderId :String? = null
-    var shopLogoUrl:String? = null
-    var shopName:String? = null
+    var orderId: String? = null
+    var shopLogoUrl: String? = null
+    var shopName: String? = null
+    var shopId:String? = null
+    var couponId :String ? = null
+    var subStatus:String? = null
+
+
 
     override fun onRestaurantOrder(model: String?, flag: String) {
 
@@ -60,10 +65,11 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
             }
 
             orderId = orderDetailsBean.id
-
-             shopLogoUrl= orderDetailsBean.shopLogoUrl
-             shopName= orderDetailsBean.shopName
-
+            shopId = orderDetailsBean.shopId
+            shopLogoUrl = orderDetailsBean.shopLogoUrl
+            shopName = orderDetailsBean.shopName
+            couponId = orderDetailsBean.couponId
+            subStatus =   orderDetailsBean.subStatus
 
             if (!TextUtils.isEmpty(orderDetailsBean.useTime)) {
                 iev6.setTextContent(TimeUtil.stampToDate(orderDetailsBean.useTime)) //	消费 时间
@@ -147,18 +153,33 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                     mb_1.text = "已取消"
                     mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
                     mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
-
                     mb_2.visibility = View.GONE
 
 
                 }
                 3 -> {
-                    mb_1.visibility = View.VISIBLE
-                    mb_1.text = "已付款"
-                    mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
-                    mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
 
-                    mb_2.visibility = View.GONE
+
+
+                    if (orderDetailsBean.subStatus=="1"){
+                        mb_1.text = "立即使用"
+                        mb_1.visibility = View.VISIBLE
+
+                        mb_1.setTextColor(Color.WHITE)
+                        mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F9572D"))
+                        mb_2.visibility = View.GONE
+                    }else{
+                        mb_1.text = "已付款"
+                        mb_1.visibility = View.VISIBLE
+
+                        mb_1.setTextColor(Color.parseColor("#FFB5B5B5"))
+                        mb_1.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFE6E6E6"))
+                        mb_2.visibility = View.GONE
+                    }
+
+                    //子项 的staus =1 时候显示 立即使用
+
+
                 }
                 4 -> {
                     mb_1.visibility = View.VISIBLE
@@ -245,8 +266,21 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                     1 -> {
                         start(MRPendingPaymentFragment.newInstance(jsonString))
                     }
+
+                    3 -> {
+
+                        if (subStatus=="1"){
+                            start(RestaurantHomePayFragment.newInstance(couponId,orderId,shopId,"3"))
+                        }else{
+
+                        }
+
+
+
+                    }
+
                     else -> {
-                        start(OrderEvaluationFragment.newInstance(shopLogoUrl,shopName,"",orderId))
+                        start(OrderEvaluationFragment.newInstance(shopLogoUrl, shopName, "", orderId))
                     }
                 }
 
@@ -256,7 +290,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
 
                 when (statusValue) { // //（1待付款 2已取消 3已付款 4已完成 5配送中 6退款申请中 7已关闭 // 8待评价 9待使用 10已失效）
                     8 -> {
-                        start(OrderEvaluationFragment.newInstance(shopLogoUrl,shopName,"",orderId))
+                        start(OrderEvaluationFragment.newInstance(shopLogoUrl, shopName, "", orderId))
                     }
                     else -> {
                     }

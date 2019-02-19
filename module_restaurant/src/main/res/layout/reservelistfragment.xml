@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       android:id="@+id/tbv_title"
+                                       app:textValue="预约订单"
+                                       android:layout_height="wrap_content"/>
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+
+
+
+            android:id="@+id/mTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:tl_tab_space_equal="true"
+            app:tl_textUnselectColor="#333333"
+            app:tl_textSelectColor="#FFF9572D"
+            app:tl_indicator_color="#FFF9572D"
+
+            android:background="@color/white"
+            app:tl_indicator_width="42pt"/>
+
+
+    <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:id="@+id/mViewPager"
+            android:background="#f7f7f9"
+            android:layout_below="@+id/mTabLayout"
+            android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

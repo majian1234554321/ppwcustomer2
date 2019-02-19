@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.ArrayMap
 import android.util.Log
 import android.view.View
 import com.google.gson.Gson
@@ -18,11 +19,15 @@ import com.paipaiwei.personal.ui.fragment.QiangPaiDialogFragment
 import com.paipaiwei.personal.ui.fragment.QiangPaiFragment
 
 import com.yjhh.common.BaseApplication
+import com.yjhh.common.api.ApiServices
+import com.yjhh.common.api.ProcessObserver2
 
 import com.yjhh.common.base.BaseFragment
 import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.RxCountDown
 import com.yjhh.common.utils.TextStyleUtils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.buyovervaluedetailsfragment.*
 
@@ -56,19 +61,43 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
                 }
                 1 -> {
 
-                    val dis = RxCountDown.countdown(modle.time).subscribe {
-                        if (it == 0) {
-                            tv_submit.text = "已结束"
-                            tv_submit.isEnabled = false
-                            tv_submit.setTextColor(Color.parseColor("#B5B5B5"))
-                            tv_submit.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#E6E6E6"))
-                            // tv_countdown.visibility = View.INVISIBLE
-                        } else {
-//                            if (tv_countdown != null)
-//                                tv_countdown.text = TimeUtil.secondToTime(it.toLong())
-                        }
+
+                    tv_submit.text = "立即抢购"
+                    tv_submit.isEnabled = true
+                    tv_submit.setTextColor(Color.WHITE)
+                    tv_submit.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F13716"))
+
+
+                    tv_submit.setOnClickListener {
+
+                        val map = ArrayMap<String,String>()
+                        map.clear()
+                        map["id"] = modle.id
+
+                        ApiServices.getInstance().create(QiangPaiService::class.java)
+                            .qiangPaiBuy(map)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(object : ProcessObserver2(mActivity) {
+                                override fun processValue(response: String?) {
+
+
+                                    start(OnePayMoneyFragment.newInstance(response,"超值抢购"))
+
+                                }
+
+                                override fun onFault(message: String) {
+
+                                }
+
+                            })
+
+
+
+
                     }
-                    compositeDisposable.add(dis)
+
+
 
 
                 }
@@ -127,13 +156,13 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
     var present: QiangPaiPresent? = null
     var idValue: String? = null
     var typeValue: String? = null
-    var jumpTypeValue:String? = null
+    var jumpTypeValue: String? = null
 
 
     override fun initView() {
         jumpTypeValue = arguments?.getString("jumpType")
 
-        if ("STATUS" ==jumpTypeValue){
+        if ("STATUS" == jumpTypeValue) {
             ImmersionBar.setTitleBar(activity, tbv_title)
         }
 
@@ -148,12 +177,12 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
 
 
     companion object {
-        fun newInstance(id: String?, type: String?,jumpType:String?): BuyOvervalueDetailsFragment {
+        fun newInstance(id: String?, type: String?, jumpType: String?): BuyOvervalueDetailsFragment {
             val fragment = BuyOvervalueDetailsFragment()
             val bundle = Bundle()
             bundle.putString("id", id)
             bundle.putString("type", type)
-            bundle.putString("jumpType",jumpType)
+            bundle.putString("jumpType", jumpType)
             fragment.arguments = bundle
             return fragment
         }

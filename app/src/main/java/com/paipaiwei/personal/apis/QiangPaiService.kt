@@ -24,6 +24,14 @@ interface QiangPaiService {
     fun qiangPai(@FieldMap map: Map<String, String>): Observable<ResponseBody>
 
 
+
+    @FormUrlEncoded
+    @POST("qiangPai/buy")
+    fun qiangPaiBuy(@FieldMap map: Map<String, String>): Observable<ResponseBody>
+
+
+
+
     interface QiangPaiView : BaseView {
         fun qiangPaiValue(response: String?, flag: String?)
     }

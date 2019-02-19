@@ -138,14 +138,14 @@
                                       android:scrollbars="none"
                                       android:layout_height="wrap_content">
 
-                    <LinearLayout android:layout_width="match_parent"
+                    <RadioGroup android:layout_width="match_parent"
                                   android:orientation="horizontal"
                                   android:id="@+id/ll"
                                   android:paddingLeft="15pt"
                                   android:layout_height="30pt">
 
 
-                    </LinearLayout>
+                    </RadioGroup>
 
 
                 </HorizontalScrollView>

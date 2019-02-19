@@ -10,6 +10,7 @@
                                        android:id="@+id/tbv_title"
                                        app:textValue="订单详情"
                                        app:imageDis="true"
+                                       app:textRightDisplay="true"
                                        app:imageSrc="@drawable/iv_delete"
                                        android:layout_height="wrap_content"/>
 

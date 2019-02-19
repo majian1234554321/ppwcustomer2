@@ -181,7 +181,7 @@ class QiangPaiFragment : BaseFragment(), View.OnClickListener, QiangPaiService.Q
         val countText: String,
         val describe: String,
         val endTime: Int,
-        val id: Int,
+        val id: String,
         val imageUrl: String,
         val markPrice: String,
         val memo: String,

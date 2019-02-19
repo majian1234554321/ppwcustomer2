@@ -79,6 +79,19 @@ public class TimeUtil {
     }
 
 
+    public static String dateToStamp2(String s) throws ParseException {
+        if (TextUtils.isEmpty(s)) {
+            return "";
+        }
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime() / 1000;
+        res = String.valueOf(ts);
+        return res;
+    }
+
+
     public static String secondToTime(long second) {
 
         String daystring = "";
