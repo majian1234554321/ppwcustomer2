@@ -26,7 +26,7 @@ class TitleBarView @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-    fun setTitle(name: String) {
+    fun setTitleValue(name: String?) {
         tv_title.text = name
     }
 

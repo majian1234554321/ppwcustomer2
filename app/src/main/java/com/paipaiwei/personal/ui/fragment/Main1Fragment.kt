@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -119,7 +120,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
 
-            if (main1bean.main1HeadBean.qiangPais != null) {
+            if (main1bean.main1HeadBean.qiangPais != null&&main1bean.main1HeadBean.qiangPais.isNotEmpty()) {
                 headAdapter = Main1HeadAdapter(main1bean.main1HeadBean.qiangPais)
                 headAdapter?.setValue(compositeDisposable)
                 hRecyclerView?.adapter = headAdapter
@@ -135,8 +136,10 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
 
 
                 }
+                rl_qiangpai?.visibility = View.VISIBLE
 
-
+            }else{
+                rl_qiangpai?.visibility = View.GONE
             }
 
 
@@ -381,6 +384,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
     var hRecyclerView: RecyclerView? = null
 
     var iv_imagegame: ImageView? = null
+    var rl_qiangpai:RelativeLayout? = null
 
     private fun addHeaderView() {
 
@@ -390,6 +394,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
         mGridViewPager = headView.findViewById(R.id.mGridViewPager)
         headView.findViewById<TextView>(R.id.tv_more).setOnClickListener(this)
         iv_imagegame = headView.findViewById<ImageView>(R.id.iv_imagegame)
+        rl_qiangpai = headView.findViewById<RelativeLayout>(R.id.rl_qiangpai22)
 
 
         mGridViewPager?.setVis()

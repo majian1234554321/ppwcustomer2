@@ -9,7 +9,7 @@
 
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
-
+                                       app:textColor="@color/all_3"
                                        android:layout_height="wrap_content"/>
 
     <LinearLayout android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/mTabLayout"
                 app:tabIndicatorHeight="0dp"
                 android:background="@color/white"
-                app:tabSelectedTextColor="@color/colorPrimary"
+
                 app:tabBackground="@color/white"
                 app:tabGravity="center"
                 android:layout_height="70dp"/>
@@ -77,10 +77,10 @@
                           android:gravity="center"
                           android:layout_height="wrap_content"/>
 
-                <com.paipaiwei.personal.ui.customview.ARSetupView
+                <com.yjhh.common.view.ARSetupView
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
-
+                        android:id="@+id/arsv2"
                         android:gravity="center"
                         android:layout_height="wrap_content"/>
 
@@ -129,33 +129,36 @@
                 <RadioGroup
                         android:layout_marginLeft="69.5pt"
                         android:orientation="horizontal"
-                        android:paddingTop="12.5pt"
-                        android:paddingBottom="12.5pt"
+                        android:layout_marginTop="12.5pt"
+                        android:layout_marginBottom="12.5pt"
                         android:layout_toRightOf="@id/tv_Contacts"
                         android:layout_below="@+id/view1"
                         android:id="@+id/rg_gender"
 
                         android:layout_width="match_parent" android:layout_height="wrap_content">
 
-                    <RadioButton android:layout_width="41pt"
+                    <RadioButton android:layout_width="wrap_content"
                                  android:text="先生"
                                  android:button="@null"
-                                 android:background="@drawable/tag_bg2"
+                                 android:paddingLeft="10pt"
+                                 android:paddingRight="10pt"
+                                 android:textColor="@color/white"
                                  android:id="@+id/rb_male"
-
+                                 android:background="@drawable/mr_check_bg2"
                                  android:gravity="center"
                                  android:checked="true"
-
-
                                  android:textSize="12pt"
                                  android:layout_marginRight="@dimen/sp_16"
                                  android:layout_height="22pt"/>
-                    <RadioButton android:layout_width="41pt"
+                    <RadioButton android:layout_width="wrap_content"
                                  android:text="女士"
                                  android:button="@null"
                                  android:textSize="12pt"
+                                 android:textColor="@color/all_3"
+                                 android:paddingLeft="10pt"
+                                 android:paddingRight="10pt"
                                  android:gravity="center"
-                                 android:background="@drawable/tag_bg2"
+                                 android:background="@drawable/mr_check_bg"
                                  android:id="@+id/rb_female"
                                  android:layout_height="22pt"/>
 
@@ -197,6 +200,8 @@
                               android:hint="请输入手机号"
                               android:layout_marginLeft="15pt"
                               android:paddingTop="8dp"
+                              android:maxLength="11"
+                              android:inputType="number"
                               android:textColor="#FF333333"
                               android:textSize="14pt"
                               android:paddingBottom="8dp"

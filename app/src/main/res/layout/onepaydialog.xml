@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:background="@drawable/backgrounddialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -18,7 +18,7 @@
                   android:background="@drawable/biaoti023"
                   android:layout_marginTop="20pt"
                   android:gravity="center"
-                  android:text="12121212122"
+                  tools:text="12121212122"
                   android:textColor="@color/white"
                   android:textSize="15pt"
         />
@@ -54,7 +54,7 @@
 
         />
 
-        <com.paipaiwei.personal.ui.customview.ARSetupView
+        <com.yjhh.common.view.ARSetupView
                 android:layout_gravity="center"
                 android:id="@+id/arsv"
                 android:layout_marginBottom="15pt"

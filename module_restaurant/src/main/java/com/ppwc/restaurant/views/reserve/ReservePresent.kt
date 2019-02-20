@@ -30,4 +30,26 @@ class ReservePresent(var context: Context, var view: ReserveService.ReserveView)
 
             })
     }
+
+
+    fun cancelReservation(id: String?, cause: String?,flag: String?) {
+
+        map.clear()
+        map.put("id", id)
+        map.put("cause", cause)
+
+
+        toSubscribe2(ApiServices.getInstance().create(ReserveService::class.java).cancelReservation(map),
+            object : ProcessObserver2(context) {
+                override fun processValue(response: String?) {
+                    view.reserveSuccess(response, flag)
+                }
+
+                override fun onFault(message: String) {
+                    view.onFault(message)
+                }
+
+            })
+    }
+
 }

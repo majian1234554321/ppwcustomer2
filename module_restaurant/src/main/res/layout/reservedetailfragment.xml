@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -10,18 +10,20 @@
                                        app:textValue="预约详情"
                                        android:layout_height="wrap_content"/>
 
-    <ImageView android:layout_width="118pt"
+    <ImageView android:layout_width="wrap_content"
                android:layout_marginTop="17pt"
                android:layout_gravity="center"
 
+               android:id="@+id/iv_image"
                android:layout_marginBottom="7.5pt"
-               android:layout_height="79pt"/>
+               android:layout_height="wrap_content"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="24pt"
             android:layout_gravity="center"
             android:text="已接受预约"
+            android:id="@+id/tv_1"
             android:layout_marginBottom="11.5pt"
             android:textColor="#FF333333"
             android:textSize="17pt"
@@ -30,10 +32,11 @@
     <TextView
             android:layout_width="95pt"
             android:layout_height="30pt"
-           android:gravity="center"
+            android:gravity="center"
             android:layout_marginBottom="20pt"
             android:layout_gravity="center"
             android:text="取消预约"
+            android:id="@+id/tv_2"
             android:textColor="#FFFFFFFF"
             android:textSize="13pt"
             android:background="#FFF9572D"
@@ -41,24 +44,82 @@
 
     <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                          app:ievtextValue2="商家名"
+                                         android:paddingLeft="24pt"
+                                         app:ievtextColor2="#FF666666"
+                                         android:paddingRight="24pt"
+                                         app:ievRightTextColor="#333333"
                                          android:id="@+id/iev1"
                                          android:layout_height="wrap_content"/>
     <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                          app:ievtextValue2="时间"
+                                         app:ievtextColor2="#FF666666"
+                                         app:ievRightTextColor="#333333"
+                                         android:paddingLeft="24pt"
+                                         android:paddingRight="24pt"
                                          android:id="@+id/iev2"
                                          android:layout_height="wrap_content"/>
     <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                          app:ievtextValue2="人数"
                                          android:id="@+id/iev3"
+                                         app:ievtextColor2="#FF666666"
+                                         app:ievRightTextColor="#333333"
+                                         android:paddingLeft="24pt"
+                                         android:paddingRight="24pt"
                                          android:layout_height="wrap_content"/>
     <com.yjhh.common.view.ItemEntryView2 android:layout_width="match_parent"
                                          app:ievtextValue2="联系方式"
                                          android:id="@+id/iev4"
+                                         android:paddingLeft="24pt"
+                                         app:ievRightTextColor="#333333"
+                                         app:ievtextColor2="#FF666666"
+                                         android:paddingRight="24pt"
                                          android:layout_height="wrap_content"/>
+
+
+    <RelativeLayout
+            android:paddingLeft="24pt"
+            android:paddingRight="24pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:paddingBottom="12.5pt"
+                  android:paddingTop="12.5pt"
+                  android:text="备注"
+                  android:id="@+id/tv_left"
+                  android:textColor="#FF666666"
+                  android:textSize="14pt"
+        />
+
+
+        <TextView android:layout_width="213pt" android:layout_height="wrap_content"
+                  android:paddingBottom="12.5pt"
+                  android:paddingTop="12.5pt"
+                  android:gravity="right"
+                  android:id="@+id/tv_right22"
+
+                  android:textColor="#FF333333"
+                  android:textSize="14pt"
+                  android:layout_alignParentRight="true"
+        />
+
+        <View
+                android:layout_below="@+id/tv_left"
+                android:layout_width="match_parent"
+                android:layout_height="0.5pt"
+                android:background="#FFE6E6E6"
+        />
+
+    </RelativeLayout>
 
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:text="用户主动取消"
+              android:visibility="gone"
+              android:paddingLeft="24pt"
+              android:layout_marginTop="5pt"
+              android:paddingRight="24pt"
+              android:id="@+id/tv_3"
               android:textColor="#FF666666"
               android:textSize="14pt"
     />
@@ -66,11 +127,15 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="19pt"
-            android:text="取消原因：下错订单"
+            android:visibility="gone"
+            android:layout_marginTop="5pt"
+            android:paddingLeft="24pt"
+            android:id="@+id/tv_4"
+            android:paddingRight="24pt"
+            tools:text="取消原因：下错订单"
             android:textColor="#FFFF552E"
             android:textSize="12pt"
     />
-
 
 
 </LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/white"
+              android:padding="15pt"
+              android:layout_marginTop="10pt"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:layout_height="20pt"
+                android:id="@+id/tv_name"
+                android:text="外婆家（中南店）"
+                android:textColor="#FF333333"
+                android:textSize="14pt"
+        />
+
+
+        <TextView
+                android:id="@+id/tv_status"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="20pt"
+                android:text="等待接受预约"
+                android:textColor="#FF333333"
+                android:textSize="14pt"
+        />
+
+    </RelativeLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+
+                  android:layout_marginTop="18pt"
+                  android:paddingLeft="40pt"
+                  android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="人数：5"
+                  android:id="@+id/tv_userCount"
+                  android:textColor="#FF333333"
+                  android:textSize="15pt"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="21pt"
+                android:text="预计"
+                android:gravity="center"
+                android:layout_marginLeft="30pt"
+                android:layout_marginRight="10pt"
+                android:textColor="#FF666666"
+                android:textSize="11pt"
+        />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="21pt"
+                android:gravity="center"
+                android:id="@+id/timeText"
+                android:text="2018/11/12 18:30"
+                android:textColor="#FF333333"
+                android:textSize="15pt"
+        />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="21pt"
+                android:text="到店"
+                android:layout_marginLeft="10pt"
+                android:gravity="center"
+                android:textColor="#FF666666"
+                android:textSize="11pt"
+        />
+
+
+    </LinearLayout>
+
+
+    <View
+            android:layout_width="345pt"
+            android:layout_marginTop="12pt"
+            android:layout_marginBottom="12pt"
+            android:layout_height="0.5pt"
+            android:background="#FFE6E6E6"
+    />
+
+
+    <RelativeLayout android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content">
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:paddingLeft="11.5pt"
+                  android:paddingRight="11.5pt"
+                  android:layout_height="30pt"
+                  android:text="取消预约"
+
+                  android:gravity="center"
+                  android:id="@+id/tv_text"
+                  android:background="@color/colorPrimaryDark"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="13pt"
+        />
+
+        <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="16.5pt"
+                android:drawablePadding="8pt"
+                android:text="查看详情"
+                android:drawableRight="@drawable/gengduo067"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#FF2C85FF"
+                android:textSize="12pt"
+        />
+
+    </RelativeLayout>
+
+</LinearLayout>

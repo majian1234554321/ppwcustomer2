@@ -21,9 +21,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.paipaiwei.personal.R
-import com.paipaiwei.personal.ui.customview.ARSetupView
-import com.paipaiwei.personal.ui.fragment.BackViewFragment
+
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.view.ARSetupView
 import kotlinx.android.synthetic.main.onepayfragment.*
 
 class OnePayFragment : BaseFragment(), OnePayService.OnePayView, View.OnClickListener {
