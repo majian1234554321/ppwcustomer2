@@ -155,7 +155,7 @@ class Main1Fragment : BaseMainFragment(), Main1View, View.OnClickListener {
                     dialogFragment.setOnClickListener(object :
                         InvitationDialogFragment.OnDialogClickListener {
                         override fun onDialogClick() {
-                            start(OnePayFragment())
+                            (parentFragment as MainFragment).startBrotherFragment(OnePayFragment())
                             dialogFragment.dismiss()
                         }
 

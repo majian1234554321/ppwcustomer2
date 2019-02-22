@@ -23,8 +23,8 @@ class CollectionFragment : BaseFragment() {
         tbv_title.setTitle("我的$type")
 
         val mFragments = ArrayList<BaseFragment>()
-        mFragments.add(Collection1Fragment.newInstance(type))
         mFragments.add(Collection2Fragment.newInstance(type))
+        mFragments.add(Collection1Fragment.newInstance(type))
 
         mViewPager.adapter = Main2ViewPagerAdapter(childFragmentManager, mFragments, array)
         mTabLayout.setViewPager(mViewPager)

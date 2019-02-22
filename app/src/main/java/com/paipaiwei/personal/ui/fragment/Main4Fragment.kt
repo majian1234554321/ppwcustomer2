@@ -295,6 +295,13 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
         }
     }
 
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        val present2 = SectionUserPresent(context, this)
+        present2?.getUserinfo()
+    }
+
+
     fun clickLoadData() {
         val present2 = SectionUserPresent(context, this)
         present2?.getUserinfo()

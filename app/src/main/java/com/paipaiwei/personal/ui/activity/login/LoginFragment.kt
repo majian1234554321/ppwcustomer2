@@ -91,7 +91,7 @@ class LoginFragment : BaseFragment(), LoginView, View.OnClickListener {
                 req.scope = "snsapi_userinfo";//
 //                req.scope = "snsapi_login";//提示 scope参数错误，或者没有scope权限
                 req.state = "wechat_sdk_微信登录";
-                api.sendReq(req);
+                api.sendReq(req)
 
 
             }

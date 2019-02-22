@@ -90,6 +90,9 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
         ratingbar?.setStar(model.grade)
 
+
+        tv_XX?.text = model.grade.toInt().toString()
+
         if (model.times != null && model.times.size > 0) {
             val sb = StringBuilder()
 
@@ -110,7 +113,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
         }
 
 
-        tv_renjun?.text = "${model.renj}/每人"
+        tv_renjun?.text = "${model.renj}"
 
 
         if (model.qiangPai != null && model.qiangPai.size > 0) {
@@ -141,7 +144,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
                     .build("/DisplayActivity/Display")
                     .withString("displayTab", "BuyOvervalueDetailsFragment")
                     .withString("value", model.qiangPai[0].id)
-                    .withString("value1", "")
+                    .withString("value1", "商家首页超值抢购")
                     .navigation()
 
 

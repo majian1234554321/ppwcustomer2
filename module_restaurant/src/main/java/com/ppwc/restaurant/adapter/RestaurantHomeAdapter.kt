@@ -57,9 +57,9 @@ class RestaurantHomeAdapter(
 
     var itemHeight = 0
 
+    var listAExpandableLayout = ArrayList<ExpandableLayout>()
 
-    public var listAExpandableLayout = ArrayList<ExpandableLayout>()
-    public var listATextView = ArrayList<TextView>()
+    var listATextView = ArrayList<TextView>()
 
     override fun convert(helper: BaseViewHolder, item: MultipleItem) {
         when (helper.itemViewType) {
@@ -73,12 +73,16 @@ class RestaurantHomeAdapter(
                     lp.bottomMargin = 12
                     helper.getView<LinearLayout>(R.id.lla).addView(multipleitema, lp)
                     val expandable_layout = multipleitema.findViewById<ExpandableLayout>(R.id.expandable_layout)
+                    val tv_access = multipleitema.findViewById<TextView>(R.id.tv_access)
+                    tv_access.text = item.listone!![index].useMark
 
 
                     val tv_cardName = multipleitema.findViewById<TextView>(R.id.tv_cardName)
                     tv_cardName.text = item.listone!![index].title
 
                     val tv_mark = multipleitema.findViewById<TextView>(R.id.tv_mark)
+
+
                     val sbMark = StringBuilder()
                     item.listone!![index].useMarks.forEach {
                         sbMark.append(it).append("\n")
@@ -166,7 +170,7 @@ class RestaurantHomeAdapter(
                 }
 
                 viewB.layoutManager = GridLayoutManager(helper.itemView.context, 3)
-                viewB.addItemDecoration( GridSpacingItemDecoration(3, 15, false));
+                viewB.addItemDecoration(GridSpacingItemDecoration(3, 15, false));
                 viewB.setHasFixedSize(true)
                 val viewBAdapter = MultipleitemAdapter(item.listProducts)
                 viewB?.adapter = viewBAdapter
@@ -274,21 +278,19 @@ class RestaurantHomeAdapter(
                 }
 
                 val tagFlowLayout = helper.getView<TagFlowLayout>(R.id.tagFlowLayout)
-                if(item.commentLabel!=null){
+                if (item.commentLabel != null) {
                     val tagAdapter =
                         MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.commentLabel)
                     tagFlowLayout.adapter = tagAdapter
                     tagFlowLayout.visibility = View.VISIBLE
-                }else{
+                } else {
                     tagFlowLayout.visibility = View.GONE
                 }
 
 
-
-
                 val view = View(helper.itemView.context)
                 view.layoutParams =
-                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parentHeight - itemHeight)
+                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parentHeight - itemHeight)
                 helper.itemView.post {
                     parentHeight = mRecyclerView.height
                     itemHeight = helper.itemView.height
@@ -299,7 +301,7 @@ class RestaurantHomeAdapter(
             MultipleItem.D -> {
                 val view = View(helper.itemView.context)
                 view.layoutParams =
-                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 48)
+                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 48)
             }
 
         }
@@ -312,7 +314,7 @@ class RestaurantHomeAdapter(
         addItemType(MultipleItem.D, R.layout.pingjia)
     }
 
-    public var muilisteners: MuIListener? = null
+    var muilisteners: MuIListener? = null
 
     fun setMUIOnClickListener(muilisteners: MuIListener) {
         this.muilisteners = muilisteners

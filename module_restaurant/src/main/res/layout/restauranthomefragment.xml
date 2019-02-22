@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tl="http://schemas.android.com/tools"
+
             android:layout_marginTop="20pt"
             android:background="@color/f8"
             android:layout_width="match_parent"
@@ -102,6 +102,17 @@
                                 app:clickable="false"
                                 app:stepSize="Half"/>
 
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="25dp"
+                                  android:id="@+id/tv_XX"
+                                  android:layout_marginTop="9pt"
+                                  android:gravity="center"
+                                  android:layout_below="@+id/tv_storeName"
+                                  android:textColor="@color/all_3"
+                                  android:layout_toRightOf="@+id/ratingbar"
+                        />
+
+
                         <TextView android:layout_width="wrap_content" android:layout_height="25dp"
                                   android:layout_below="@+id/tv_storeName"
                                   android:layout_marginTop="9pt"
@@ -111,7 +122,7 @@
                                   android:textColor="#FF333333"
                                   android:textSize="13pt"
                                   android:paddingLeft="8pt"
-                                  android:layout_toRightOf="@+id/ratingbar"
+                                  android:layout_toRightOf="@+id/tv_XX"
                         />
 
 

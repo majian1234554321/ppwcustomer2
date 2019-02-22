@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="match_parent"
-                    app:ddmenuTextSize="17pt"
+                    app:ddmenuTextSize="15pt"
                     app:ddtextUnselectedColor="@color/all_3"
                     app:ddtextSelectedColor="@color/all_3"
                     app:dddividerColor="@color/gray"

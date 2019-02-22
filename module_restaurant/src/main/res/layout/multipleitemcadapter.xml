@@ -14,7 +14,7 @@
                     android:paddingRight="15pt"
                     android:layout_height="wrap_content">
         <TextView
-                android:layout_width="60pt"
+                android:layout_width="wrap_content"
                 android:layout_height="21pt"
                 android:text="用户评价"
                 android:textColor="#FF171717"

@@ -43,7 +43,12 @@ class MyJSInterface(var context: Context) {
     @JavascriptInterface
     fun viewCoupon(json: String?) {
         Log.i("TAG:viewCoupon", json)
-        val jsonObject = JSONObject(json)
+
+        ARouter.getInstance()
+            .build("/RestaurantActivity/Restaurant")
+            .withString("displayTab", "RestaurantOrderDetailsFragment")
+            .withString("id", json.toString())
+            .navigation()
     }
 
 

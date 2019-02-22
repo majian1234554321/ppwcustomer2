@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:fitsSystemWindows="true"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
     <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
                                        android:id="@+id/tbv_title"
                                        app:textValue="订单详情"
@@ -13,7 +13,6 @@
                                        app:textRightDisplay="true"
                                        app:imageSrc="@drawable/iv_delete"
                                        android:layout_height="wrap_content"/>
-
 
     <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
                                            android:layout_below="@+id/tbv_title"
@@ -62,7 +61,8 @@
             />
 
             <RelativeLayout android:layout_width="match_parent"
-
+                            android:id="@+id/rl_card"
+                            android:visibility="gone"
                             android:layout_height="wrap_content">
 
                 <LinearLayout android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                             android:paddingBottom="5pt"
                             android:layout_height="wrap_content"
                             android:id="@+id/tv_1"
-                            android:text="卡券"
+                            tools:text="卡券"
                             android:textColor="#FF666666"
                             android:textSize="14pt"
                     />
@@ -86,7 +86,8 @@
                             android:layout_width="wrap_content"
                             android:paddingBottom="5pt"
                             android:layout_height="wrap_content"
-                            android:text="卡券"
+                            tools:text="卡券"
+                            android:id="@+id/tv_2"
                             android:textColor="#FF666666"
                             android:textSize="14pt"
                     />
@@ -94,20 +95,14 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:paddingBottom="5pt"
+                            android:id="@+id/tv_3"
                             android:layout_height="wrap_content"
-                            android:text="限周一至周五使用"
+                            tools:text="限周一至周五使用"
                             android:textColor="#FF999999"
                             android:textSize="12pt"
                     />
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5pt"
-                            android:text="有效时间：2018/11/11－2018/12/11"
-                            android:textColor="#FF999999"
-                            android:textSize="12pt"
-                    />
+
                 </LinearLayout>
 
 
@@ -175,7 +170,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="10pt"
                         android:background="#f7f7f9"
-
                 />
 
 
@@ -224,7 +218,6 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-
     <RelativeLayout android:layout_width="match_parent"
                     android:id="@+id/rl_foot"
                     android:layout_alignParentBottom="true"
@@ -244,6 +237,7 @@
                 android:paddingBottom="7pt"
                 android:layout_marginRight="15pt"
                 android:textColor="#FFFFFFFF"
+
                 android:textSize="15pt"
                 android:layout_height="wrap_content"/>
 
@@ -255,6 +249,7 @@
                 android:id="@+id/mb_1"
                 app:backgroundTint="@color/colorPrimary"
                 android:textSize="15pt"
+                android:visibility="invisible"
                 app:cornerRadius="25pt"
                 android:layout_height="wrap_content"/>
 

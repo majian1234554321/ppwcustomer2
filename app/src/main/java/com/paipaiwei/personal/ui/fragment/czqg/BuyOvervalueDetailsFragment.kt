@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.ArrayMap
 import android.util.Log
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
 import com.gyf.barlibrary.ImmersionBar
 import com.paipaiwei.personal.R
@@ -70,7 +71,7 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
 
                     tv_submit.setOnClickListener {
 
-                        val map = ArrayMap<String,String>()
+                        val map = ArrayMap<String, String>()
                         map.clear()
                         map["id"] = modle.id
 
@@ -82,7 +83,15 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
                                 override fun processValue(response: String?) {
 
 
-                                    start(OnePayMoneyFragment.newInstance(response,"超值抢购"))
+                                    ARouter.getInstance()
+                                        .build("/PayActivity/pay")
+                                        .withString("jsonValue", response)
+                                        .withString("type", "超值抢购")
+                                        .navigation()
+                                    // dialog.dismiss()
+
+
+                                    // start(OnePayMoneyFragment.newInstance(response,"超值抢购"))
 
                                 }
 
@@ -93,11 +102,7 @@ class BuyOvervalueDetailsFragment : BaseFragment(), QiangPaiService.QiangPaiView
                             })
 
 
-
-
                     }
-
-
 
 
                 }

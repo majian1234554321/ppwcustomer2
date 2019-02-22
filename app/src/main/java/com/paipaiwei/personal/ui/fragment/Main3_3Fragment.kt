@@ -99,7 +99,7 @@ class Main3_3Fragment : BaseFragment(), OrderView {
 
         val dis = RxBus.default.toFlowable(LoginBean::class.java).subscribe {
             LogUtils.i("Main4Fragment", it.mobile)
-            swipeLayout.autoRefresh()
+            swipeLayout?.autoRefresh()
         }
         compositeDisposable.add(dis)
 

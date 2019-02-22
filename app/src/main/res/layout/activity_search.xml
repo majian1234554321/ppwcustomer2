@@ -22,7 +22,6 @@
         />
 
         <EditText android:layout_width="310pt"
-
                   android:id="@+id/et_search"
                   android:layout_centerVertical="true"
                   android:layout_marginRight="30pt"
@@ -31,6 +30,8 @@
                   android:drawablePadding="6pt"
                   android:textSize="14pt"
                   tools:text="121212"
+                  android:imeOptions="actionSearch"
+                  android:singleLine="true"
                   android:hint="请输入商家名称"
                   android:layout_marginTop="7pt"
                   android:layout_marginBottom="7pt"
@@ -77,14 +78,11 @@
 
                     <ImageView android:layout_width="22pt" android:layout_height="22pt"
                                android:src="@drawable/iv_delete"
-                              android:id="@+id/iv_delete"
+                               android:id="@+id/iv_delete"
                                android:layout_alignParentRight="true"
                     />
 
                 </RelativeLayout>
-
-
-
 
 
                 <com.zhy.view.flowlayout.TagFlowLayout

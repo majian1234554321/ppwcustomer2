@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.widget.TextView;
 
 /**
  * drawableLeft与文本一起居中显示
- *
- *
  */
 public class DrawableCenterTextView extends TextView {
 
@@ -32,18 +32,23 @@ public class DrawableCenterTextView extends TextView {
         if (drawables != null) {
             Drawable drawableLeft = drawables[2];
             if (drawableLeft != null) {
-
                 float textWidth = getPaint().measureText(getText().toString());
                 int drawablePadding = getCompoundDrawablePadding();
                 int drawableWidth = 0;
                 drawableWidth = drawableLeft.getIntrinsicWidth();
                 float bodyWidth = textWidth + drawableWidth + drawablePadding;
-                setPadding(0, 48, (int)(getWidth() - bodyWidth), 48);
+                setPadding(0, dpTpPx(16), (int) (getWidth() - bodyWidth), dpTpPx(16));
                 canvas.translate((getWidth() - bodyWidth) / 2, 0);
             }
         }
 
         super.onDraw(canvas);
+    }
+
+
+    public int dpTpPx(float value) {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm) + 0.5);
     }
 }
 

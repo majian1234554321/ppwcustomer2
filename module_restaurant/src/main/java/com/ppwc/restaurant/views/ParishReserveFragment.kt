@@ -55,7 +55,7 @@ class ParishReserveFragment : BaseFragment() {
 
         val dateList = ArrayList<DateBean>()
 
-        for (i in 0 until 15) {
+        for (i in 0 until 30) {
             val bean = DateBean(
                 DateUtil.dayForWeek(DateUtil.getFetureDate(i, "YMD")), DateUtil.getFetureDate(i, "YMD"),
                 DateUtil.getFetureDate(i, "MD"),

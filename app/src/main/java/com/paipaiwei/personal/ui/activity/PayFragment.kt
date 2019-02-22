@@ -194,7 +194,7 @@ class PayFragment : BaseFragment(), PayView, OrderView {
             }
 
             else -> {
-
+                startWithPop(PayResultFragment2.newInstance(id, type))
             }
         }
     }

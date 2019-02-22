@@ -20,6 +20,7 @@ import com.yjhh.common.utils.TimeUtil
 import com.yjhh.common.view.AlertDialogFactory
 import com.yjhh.common.view.TitleBarView
 import kotlinx.android.synthetic.main.restaurantorderdetailsfragment.*
+import java.lang.StringBuilder
 
 class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
     RestaurantOrderSerVice.RestaurantOrderView {
@@ -244,6 +245,32 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                 }
                 else -> {
                 }
+            }
+
+
+            if (orderDetailsBean.items!=null&&orderDetailsBean.items.isNotEmpty()){
+                rl_card?.visibility = View.VISIBLE
+                tv_1.text= "卡券 ${orderDetailsBean.items[0].title}"
+                tv_2.text= "券码 ${orderDetailsBean.items[0].number}"
+
+                if (orderDetailsBean.items[0].useRemarks!=null){
+                    tv_3.visibility = View.VISIBLE
+
+                    val sb = StringBuilder()
+
+                    orderDetailsBean.items[0].useRemarks.forEach {
+                        sb.append(it).append("\n")
+                    }
+                    tv_3.text = sb.toString()
+
+                }else{
+                    tv_3.visibility = View.GONE
+                }
+
+
+
+            }else{
+                rl_card?.visibility = View.GONE
             }
 
 

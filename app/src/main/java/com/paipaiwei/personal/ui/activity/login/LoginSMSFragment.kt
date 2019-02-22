@@ -96,7 +96,7 @@ class LoginSMSFragment : BaseFragment(), PasswordView, View.OnClickListener {
 
     override fun onSuccessSMS(value: String?) {
         Toast.makeText(BaseApplication.context, "验证码发送成功", Toast.LENGTH_SHORT).show()
-        compositeDisposable.clear()
+
     }
 
     override fun onFaultSMS(errorMsg: String?) {

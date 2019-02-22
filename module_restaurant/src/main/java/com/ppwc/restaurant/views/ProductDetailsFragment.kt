@@ -18,12 +18,43 @@ import com.yjhh.common.view.TitleBarView
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.productdetailsfragment.*
 
+
 class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDetailsView, CommonView {
     override fun onFault(errorMsg: String?, flag: String?) {
 
     }
 
+
+    private var ifCollect = false
+    private var ifZan = false
+
     override fun onSuccess(value: String?, flag: String?) {
+        if ("collect" == flag) {
+            if (ifCollect) {
+                xingxing.setBackgroundResource(R.drawable.xingxing032x)
+            } else {
+                xingxing.setBackgroundResource(R.drawable.xingxing042x)
+            }
+
+            ifCollect = !ifCollect
+        } else if ("zan" == flag) {
+            if (ifZan) {
+                dianzan.setBackgroundResource(R.drawable.zan032x)
+
+                var count =  tv_count.text.toString().toInt()-1
+
+                tv_count.text = count.toString()
+
+            } else {
+                dianzan.setBackgroundResource(R.drawable.zan042x)
+                var count =  tv_count.text.toString().toInt()+1
+
+                tv_count.text = count.toString()
+            }
+
+            ifZan = !ifZan
+        }
+
 
     }
 
@@ -33,7 +64,7 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
         tv_price.text = model.price
         tv_info.text = model.describe
         tv_count.text = model.zan
-
+        ifZan = model.ifZan
 
         if (model.ifZan) {
             dianzan.setBackgroundResource(R.drawable.zan042x)
@@ -41,7 +72,7 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
             dianzan.setBackgroundResource(R.drawable.zan032x)
         }
 
-
+        ifCollect = model.ifCollect
         if (model.ifCollect) {
             xingxing.setBackgroundResource(R.drawable.xingxing042x)
         } else {
@@ -89,7 +120,7 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.xingxing -> {
-                xingxing.setBackgroundResource(R.drawable.xingxing032x)
+
                 present?.collect("0", itemId, "collect")  //	类别(0商品 1店铺 2文章)
 
 

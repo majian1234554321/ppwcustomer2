@@ -57,7 +57,7 @@
 
 
         <TextView android:layout_width="wrap_content"
-                  android:text="最高350元获得此券"
+                  tools:text="最高350元获得此券"
 
                   android:layout_alignParentBottom="true"
                   android:paddingLeft="19pt"
