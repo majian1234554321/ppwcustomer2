@@ -307,7 +307,7 @@ class RestaurantOrderDetailsFragment : BaseFragment(), View.OnClickListener,
                     }
 
                     else -> {
-                        start(OrderEvaluationFragment.newInstance(shopLogoUrl, shopName, "", orderId))
+                        //start(OrderEvaluationFragment.newInstance(shopLogoUrl, shopName, "", orderId))
                     }
                 }
 

@@ -39,7 +39,7 @@ public class ProductDetailsBean {
     public String logoUrl;
     public String name;
     public int orderBy;
-    public String price;
+    public float price;
     public int saleStatus;
     public String saleStatusText;
     public int shopId;

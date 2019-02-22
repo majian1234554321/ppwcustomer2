@@ -125,6 +125,12 @@ class Main4Fragment : BaseMainFragment(), View.OnClickListener, UserInfoView {
                         .withString("displayTab", "CollectionFragment")
                         .withString("value", "收藏")
                         .navigation(context)
+
+
+
+                    //(parentFragment as MainFragment).startBrotherFragment(CollectionFragment.newInstance("收藏"))
+
+
                 } else {
                     ARouter.getInstance()
                         .build("/LoginActivity/Login")

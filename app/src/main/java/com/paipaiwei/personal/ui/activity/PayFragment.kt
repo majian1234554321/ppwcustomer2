@@ -184,7 +184,7 @@ class PayFragment : BaseFragment(), PayView, OrderView {
     fun toDispatchSuccess(id: String?, type: String?) {
         when (type) {
             "限时抢拍" -> {
-                startWithPop(PayResultFragment2.newInstance(id, type)) //	//1微信 2支付宝 4银联
+                startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
             }
             "道具购买" -> {
                 startWithPop(PayResultFragment.newInstance(id, type)) //	//1微信 2支付宝 4银联
@@ -194,7 +194,7 @@ class PayFragment : BaseFragment(), PayView, OrderView {
             }
 
             else -> {
-                startWithPop(PayResultFragment2.newInstance(id, type))
+                startWithPop(PayResultFragment.newInstance(id, type))
             }
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
@@ -12,13 +13,14 @@ import com.paipaiwei.personal.adapter.Collection123Adapter
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
+import com.yjhh.common.view.WrapContentLinearLayoutManager
 import kotlinx.android.synthetic.main.collectionmain123.*
 
 class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
     var startindex = 0
     val pageSize = 10
     var type = "0"    //默认null（null/0收藏 1足迹）
-    val itemType = "0"//默认null( null/0 店铺 1商品 2 文章)
+    val itemType = "1"//默认null( null/0 店铺 1商品 2 文章)
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
@@ -48,7 +50,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
             loadMore()
         }, mRecyclerView)
 
-        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        mRecyclerView.layoutManager = WrapContentLinearLayoutManager(context)
 
 
         mRecyclerView.adapter = mAdapter
@@ -57,6 +59,15 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
         swipeLayout.setOnRefreshListener { refreshLayout ->
             refresh()
             refreshLayout.finishRefresh()
+        }
+
+
+        mAdapter?.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "RestaurantHomeFragment")
+                .withString("id", mAdapter?.data?.get(position)?.itemId)
+                .navigation()
         }
 
 
@@ -86,6 +97,7 @@ class Collection1Fragment : BaseFragment(), RecentlyBrowseView {
 
 
             if (startindex==0&&main1bean.items.isEmpty()) {
+                mAdapter?.data?.clear()
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
                 mAdapter?.emptyView = view

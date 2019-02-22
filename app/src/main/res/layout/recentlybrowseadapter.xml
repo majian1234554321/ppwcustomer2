@@ -36,8 +36,8 @@
                   android:id="@+id/tv_storeName"
                   android:textColor="#FF333333"
                   android:singleLine="true"
+                  android:maxEms="12"
                   android:ellipsize="end"
-                  android:maxEms="15"
                   android:textSize="15pt"
                   android:layout_height="wrap_content"
                   tools:text="济州烤肉（汉街店）"
@@ -45,7 +45,6 @@
 
 
         <TextView
-
                 android:layout_width="15pt"
                 android:layout_height="15pt"
                 android:text="拍"
@@ -148,10 +147,11 @@
                         android:layout_toRightOf="@+id/iv_image"
                         android:layout_height="wrap_content">
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="20pt"
                       android:text="更多"
                       android:drawableRight="@drawable/icon_jiantou08"
                       android:id="@+id/tv_more"
+                      android:gravity="center"
                       android:layout_centerVertical="true"
                       android:layout_alignParentRight="true"
                       android:textColor="#FFFE892F"

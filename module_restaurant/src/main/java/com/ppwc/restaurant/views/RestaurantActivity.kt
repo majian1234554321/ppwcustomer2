@@ -58,6 +58,10 @@ class RestaurantActivity : BaseActivity() {
                 loadRootFragment(R.id.frameLayout, ReserveListFragment())
             }
 
+            "ProductDetailsFragment" ->{
+                loadRootFragment(R.id.frameLayout, ProductDetailsFragment.newInstance(id))
+            }
+
             else -> {
                 loadRootFragment(R.id.frameLayout, RestaurantHomeFragment.newInstance(id))
 

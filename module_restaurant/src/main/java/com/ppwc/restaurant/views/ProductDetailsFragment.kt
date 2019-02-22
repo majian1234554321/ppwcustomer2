@@ -60,23 +60,23 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
 
     override fun onProductDetailsValue(model: ProductDetailsBean) {
 
-        tv_storeName.text = model.shopName
-        tv_price.text = model.price
-        tv_info.text = model.describe
-        tv_count.text = model.zan
+        tv_storeName?.text = model.shopName
+        tv_price?.text = getString(R.string.rmb_price_double2,model.price)
+        tv_info?.text = model.describe
+        tv_count?.text = model.zan
         ifZan = model.ifZan
 
         if (model.ifZan) {
-            dianzan.setBackgroundResource(R.drawable.zan042x)
+            dianzan?.setBackgroundResource(R.drawable.zan042x)
         } else {
-            dianzan.setBackgroundResource(R.drawable.zan032x)
+            dianzan?.setBackgroundResource(R.drawable.zan032x)
         }
 
         ifCollect = model.ifCollect
         if (model.ifCollect) {
-            xingxing.setBackgroundResource(R.drawable.xingxing042x)
+            xingxing?.setBackgroundResource(R.drawable.xingxing042x)
         } else {
-            xingxing.setBackgroundResource(R.drawable.xingxing032x)
+            xingxing?.setBackgroundResource(R.drawable.xingxing032x)
         }
 
 
@@ -87,15 +87,15 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
                 imageList.add(it.fileUrl)
             }
 
-            banner.setBannerStyle(BannerConfig.NOT_INDICATOR)
-            banner.setImages(imageList)
-                .setImageLoader(GlideLoader())
-                .setDelayTime(10000000)
-                .start()
+            banner?.setBannerStyle(BannerConfig.NOT_INDICATOR)
+            banner?.setImages(imageList)
+                ?.setImageLoader(GlideLoader())
+                ?.setDelayTime(10000000)
+                ?.start()
 
-            tv_index.text = "1/${imageList.size}"
+            tv_index?.text = "1/${imageList.size}"
 
-            banner.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            banner?.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 }
 
@@ -171,7 +171,7 @@ class ProductDetailsFragment : BaseFragment(), View.OnClickListener, ProductDeta
 
 
     companion object {
-        fun newInstance(id: String): ProductDetailsFragment {
+        fun newInstance(id: String?): ProductDetailsFragment {
             val fragment = ProductDetailsFragment()
             val bundle = Bundle()
             bundle.putString("itemId", id)

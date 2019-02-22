@@ -5,26 +5,29 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.yjhh.common.base.BaseFragment
 import com.paipaiwei.personal.R
 import com.paipaiwei.personal.adapter.Collection123Adapter
 import com.paipaiwei.personal.adapter.Collection321Adapter
+import com.paipaiwei.personal.bean.Main1FootBean
 import com.paipaiwei.personal.bean.RecentlyBrowseBean
 import com.paipaiwei.personal.present.SectionUselessPresent
 import com.paipaiwei.personal.view.RecentlyBrowseView
+import com.yjhh.common.view.WrapContentLinearLayoutManager
 import kotlinx.android.synthetic.main.collectionmain123.*
 
 class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
     var startindex = 0
     val pageSize = 10
     var type = "0"    //默认null（null/0收藏 1足迹）
-    val itemType = "1"//默认null( null/0 店铺 1商品 2 文章)
+    val itemType = "0"//默认null( null/0 店铺 1商品 2 文章)
     override fun getLayoutRes(): Int = R.layout.collectionmain123
 
 
-    private  var mAdapter: Collection321Adapter? = null
+    private var mAdapter: Collection321Adapter? = null
     lateinit var sectionUselessPresent: SectionUselessPresent
 
     val lists = ArrayList<RecentlyBrowseBean.ItemsBean>()
@@ -47,7 +50,7 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
             loadMore()
         }, mRecyclerView)
 
-        mRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        mRecyclerView.layoutManager = WrapContentLinearLayoutManager(context)
 
 
         mRecyclerView.adapter = mAdapter
@@ -58,6 +61,14 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
             refreshLayout.finishRefresh()
         }
 
+
+        mAdapter?.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance()
+                .build("/RestaurantActivity/Restaurant")
+                .withString("displayTab", "ProductDetailsFragment")
+                .withString("id", mAdapter?.data?.get(position)?.itemId)
+                .navigation()
+        }
 
         refresh()
 
@@ -82,12 +93,13 @@ class Collection2Fragment : BaseFragment(), RecentlyBrowseView {
     override fun onSuccess(main1bean: RecentlyBrowseBean, flag: String) {
         if ("refresh" == flag) {
             if (startindex == 0 && main1bean.items.isEmpty()) {
+                mAdapter?.data?.clear()
                 val view = View.inflate(mActivity, R.layout.emptyview, null)
                 view.findViewById<TextView>(R.id.tv_tips).text = "暂无数据"
                 mAdapter?.emptyView = view
             } else {
                 mAdapter?.setNewData(main1bean.items)
-               // mAdapter?.disableLoadMoreIfNotFullPage()
+                // mAdapter?.disableLoadMoreIfNotFullPage()
             }
 
 

@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.adapter
 
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -18,11 +19,10 @@ class Collection321Adapter(data: List<RecentlyBrowseBean.ItemsBean>) :
         //
 
 
-
-        helper?.setText(R.id.tv_storeName,item?.title)
-        helper?.setText(R.id.tv_price,item?.consumption)
-        helper?.setText(R.id.tv_info,item?.remark)
-       // helper?.setText(R.id.tv_KM,item?.remark)
+        helper?.setText(R.id.tv_storeName, item?.title)
+        helper?.setText(R.id.tv_price, mContext.getString(R.string.rmb_price_double2, item?.price))
+        helper?.setText(R.id.tv_info, item?.remark)
+        // helper?.setText(R.id.tv_KM,item?.remark)
 
 
         ImageLoaderUtils.load(
@@ -33,7 +33,6 @@ class Collection321Adapter(data: List<RecentlyBrowseBean.ItemsBean>) :
             R.drawable.icon_place_square,
             0
         )
-
 
 
     }

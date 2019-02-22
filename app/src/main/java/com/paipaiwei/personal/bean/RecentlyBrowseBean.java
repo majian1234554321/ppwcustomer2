@@ -89,9 +89,22 @@ public class RecentlyBrowseBean {
          * type : 0
          */
 
+
+        public boolean ifPai;
+        public boolean ifBuy;
+        public boolean ifNews;
+        public boolean ifRec;
+
+
+        public float price;
+        public String distance;
+        public List<CouponsBean> coupons;
+        public List<String> labels;
+
+        public String itemId;
         private String consumption;
         private double grade;
-        private int id;
+        private String id;
         private boolean ifTakeout;
         private String imageUrl;
         private String linkUrl;
@@ -100,6 +113,27 @@ public class RecentlyBrowseBean {
         private int time;
         private String title;
         private int type;
+
+
+        public static class CouponsBean {
+            /**
+             * dis : 900
+             * full : 1000
+             * title : 券名
+             * type : 1
+             * value : 900
+             * valueText : 900
+             */
+
+            public int dis;
+            public int full;
+            public String title;
+            public int type;
+            public int value;
+            public String valueText;
+        }
+
+
 
         public String getConsumption() {
             return consumption;
@@ -117,11 +151,11 @@ public class RecentlyBrowseBean {
             this.grade = grade;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
