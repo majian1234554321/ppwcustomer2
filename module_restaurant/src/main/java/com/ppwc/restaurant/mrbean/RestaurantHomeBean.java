@@ -189,7 +189,7 @@ public class RestaurantHomeBean {
 
         public String content;
         public String createdTime;
-        public int id;
+        public String id;
         public String ifShop;
         public String pv;
         public String pvText;

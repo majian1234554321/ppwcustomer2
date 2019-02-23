@@ -3,6 +3,7 @@
               xmlns:zhy="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:paddingTop="16pt"
+
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -38,6 +39,7 @@
     <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/tagFlowLayout"
             zhy:max_select="-1"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            android:paddingLeft="15pt"

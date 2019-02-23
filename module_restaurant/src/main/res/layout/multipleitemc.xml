@@ -3,6 +3,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:id="@+id/rl_content3"
                 android:layout_marginTop="15pt"
                 android:layout_height="wrap_content">
 
@@ -107,7 +108,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商家回复"
+                    tools:text="商家回复"
                     android:id="@+id/tv_replay"
                     android:paddingLeft="10pt"
                     android:paddingTop="4pt"
@@ -134,8 +135,9 @@
                 android:layout_width="302pt"
                 android:paddingTop="8pt"
                 android:paddingBottom="8pt"
+                android:id="@+id/tv_reply_content"
                 android:layout_height="wrap_content"
-                android:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，吃饭基本都…"
+                tools:text="小川料理有很多家分店，这一家分店是汉街的第二家店，位于汉街第三街区外侧的松竹路沿街，店面很显眼的。人气很高，吃饭基本都…"
                 android:textColor="#FF999999"
                 android:textSize="13pt"
         />
@@ -173,7 +175,7 @@
         <View
                 android:layout_marginTop="15pt"
                 android:layout_width="345pt"
-                android:layout_height="0.5pt"
+                android:layout_height="1pt"
                 android:background="#FFE6E6E6"
         />
 

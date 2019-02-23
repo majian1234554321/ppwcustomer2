@@ -7,4 +7,6 @@ public interface MuIListener {
 
     void tv_more2();
     void tv_more3();
+
+    void rl_content3(String id);
 }

@@ -43,8 +43,8 @@ public class ImageLoaderUtils {
                 .error(errorImage)
                 // 缓存原始数据
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .transform(new CornersTranform(context, radius));
+                .centerCrop();
+               // .transform(new CornersTranform(context, radius));
         // 图片加载库采用Glide框架
         Glide.with(BaseApplication.getIns()).load(url).apply(options)
                 .transition(new DrawableTransitionOptions().crossFade())

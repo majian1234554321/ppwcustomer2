@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/white"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+    <com.yjhh.common.view.TitleBarView android:layout_width="match_parent"
+                                       app:textValue="更多评价"
+                                       android:id="@+id/tbv_title"
+                                       android:layout_height="wrap_content"/>
+
+
+    <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/mTabLayout_7"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="12pt"
+            android:paddingRight="12pt"
+            android:background="@color/white"
+            app:tl_iconVisible="false"
+            app:tl_tab_space_equal="true"
+            app:tl_indicator_color="#F9572D"
+            app:tl_textUnselectColor="@color/all_3"
+            app:tl_textSelectColor="#F9572D"
+            app:tl_indicator_width_equal_title="true"
+
+            app:tl_textBold="SELECT"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="match_parent"
+            android:id="@+id/checkbox"
+            android:text="只看有图片的评论"
+            android:background="@color/f8"
+            android:paddingTop="7.5pt"
+            android:layout_marginLeft="6pt"
+            android:paddingBottom="7.5pt"
+
+            android:textColor="#FF888888"
+            android:theme="@style/MyCheckBox"
+            android:textSize="12pt"
+            android:layout_height="wrap_content"/>
+
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                       android:layout_width="match_parent"
+                                                       android:id="@+id/swipeLayout"
+                                                       android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                   android:id="@+id/mRecyclerView"
+                                                   android:background="@color/white"
+                                                   android:layout_height="match_parent"/>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</LinearLayout>

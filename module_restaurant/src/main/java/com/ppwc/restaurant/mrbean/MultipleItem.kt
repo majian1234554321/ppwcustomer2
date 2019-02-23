@@ -48,7 +48,7 @@ class MultipleItem : MultiItemEntity {
         itemType: Int,
         listUserComment: List<RestaurantHomeBean.UserCommentBean>,
         size: Int,
-        commentLabel: List<RestaurantHomeBean.CommentLabel>
+        commentLabel: List<RestaurantHomeBean.CommentLabel>?
     ) {
         this.itemType = itemType
         this.listUserComment = listUserComment

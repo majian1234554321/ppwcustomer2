@@ -95,6 +95,9 @@ class QiangPaiListFragment : BaseFragment(), QiangPaiService.QiangPaiView, Radio
                             newList.add(it)
                         }
                     }
+
+                    mAdapter?.addData(newList)
+
                     if (model.items.size != pageSize) {
                         mAdapter?.loadMoreEnd()
                     } else {

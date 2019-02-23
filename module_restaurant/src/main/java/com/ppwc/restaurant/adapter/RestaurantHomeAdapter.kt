@@ -10,10 +10,7 @@ import android.text.format.DateUtils
 import android.text.style.RelativeSizeSpan
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.R.id.parent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
@@ -203,6 +200,11 @@ class RestaurantHomeAdapter(
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
 
+                    multipleitemc.findViewById<RelativeLayout>(R.id.rl_content3)
+                        .setOnClickListener {
+                            muilisteners?.rl_content3(userCommentBean.id)
+                        }
+
 
                     val iv_image3 = multipleitemc.findViewById<ImageView>(R.id.iv_image3)
 
@@ -239,6 +241,8 @@ class RestaurantHomeAdapter(
                         "商家回复"
                     }//是否商家回复 0否 1是
 
+                    val tv_reply_content = multipleitemc.findViewById<TextView>(R.id.tv_reply_content)
+                    tv_reply_content.text = userCommentBean.content
 
                     val tv_pv = multipleitemc.findViewById<TextView>(R.id.tv_pv)
                     tv_pv.text = userCommentBean.pv
@@ -282,7 +286,7 @@ class RestaurantHomeAdapter(
                     val tagAdapter =
                         MultipleItemCTagAdapter(helper.itemView.context as Activity, tagFlowLayout, item.commentLabel)
                     tagFlowLayout.adapter = tagAdapter
-                    tagFlowLayout.visibility = View.VISIBLE
+                    tagFlowLayout.visibility = View.GONE
                 } else {
                     tagFlowLayout.visibility = View.GONE
                 }
@@ -295,6 +299,7 @@ class RestaurantHomeAdapter(
                     parentHeight = mRecyclerView.height
                     itemHeight = helper.itemView.height
                 }
+
 
             }
 

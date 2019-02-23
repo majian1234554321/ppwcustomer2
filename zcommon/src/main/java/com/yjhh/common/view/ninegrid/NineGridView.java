@@ -16,6 +16,9 @@ import com.yjhh.common.R;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 public class NineGridView extends ViewGroup {
 
     public static final int MODE_FILL = 0;          //填充模式，类似于微信
@@ -97,7 +100,7 @@ public class NineGridView extends ViewGroup {
         int childrenCount = mImageInfo.size();
         for (int i = 0; i < childrenCount; i++) {
             ImageView childrenView = (ImageView) getChildAt(i);
-            
+
             int rowNum = i / columnCount;
             int columnNum = i % columnCount;
             int left = (gridWidth + gridSpacing) * columnNum + getPaddingLeft();
@@ -243,3 +246,4 @@ public class NineGridView extends ViewGroup {
         Bitmap getCacheImage(String url);
     }
 }
+

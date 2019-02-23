@@ -89,7 +89,7 @@ class ReserveList1Fragment : BaseFragment(), ReserveService.ReserveView {
 
 
 
-                present?.cancelReservation(id, value,"cancelReservation")
+                present?.cancelReservation(id, value, "cancelReservation")
             }
         }
 

@@ -357,18 +357,22 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
 
         mAdapter?.setMUIOnClickListener(object : MuIListener {
+            override fun rl_content3(id: String?) {
+                start(CommentsDetailsFragment.newInstance(id))
+            }
+
+
+
             override fun tv_more2() {
 
                 start(RecommendProductFragment.newInstance(shopId))
             }
 
             override fun tv_more3() {
-
+                start(MoreCommentsFragment.newInstance(shopId))
             }
 
             override fun tv_if(position: Int) {
-                //Toast.makeText(mActivity, "position:tv_if$position", Toast.LENGTH_SHORT).show()
-
 
                 if (listValue[0].flag!!) {
 
