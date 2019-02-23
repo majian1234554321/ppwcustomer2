@@ -38,7 +38,7 @@ public class BaseActivity extends SupportActivity implements CustomAdapt {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //transparentAndCoverStatusBar(this);
+
         super.onCreate(savedInstanceState);
 
         mImmersionBar = ImmersionBar.with(this);
