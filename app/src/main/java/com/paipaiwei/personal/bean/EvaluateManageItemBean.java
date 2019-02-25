@@ -19,7 +19,7 @@ public class EvaluateManageItemBean extends AbstractExpandableItem<SubCommentsBe
     public List<SubCommentsBean> items;
     public String pv;
     public String pvText;
-    public String shopGrade;
+    public float shopGrade;
     public String shopGradeText;
     public String shopLogoPath;
     public String shopLogoUrl;

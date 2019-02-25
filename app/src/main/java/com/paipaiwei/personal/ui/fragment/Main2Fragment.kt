@@ -29,6 +29,7 @@ import com.amap.api.maps2d.model.LatLng
 import com.d.lib.xrv.listener.AppBarStateChangeListener
 import com.google.android.material.appbar.AppBarLayout
 import com.paipaiwei.personal.bean.Main1FootBean
+import com.paipaiwei.personal.ui.activity.SelectMapActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.yjhh.common.Constants
 import com.yjhh.common.listener.LocationLatlng
@@ -174,19 +175,14 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
 
 
 
+        tv_title.setOnClickListener {
+            startActivityForResult(Intent(mActivity, SelectMapActivity::class.java), 10085)
+        }
+
+
 
 
         mAdapter?.setOnItemClickListener { adapter, view, position ->
-
-//            val intent = Intent(mActivity, GPSActivity::class.java)
-//
-//            intent.putExtra("address", "")
-//            intent.putExtra("gotoLatitude", "")
-//            intent.putExtra("gotoLongitude", "")
-//
-//            startActivity(intent)
-
-
 
             ARouter.getInstance()
                 .build("/RestaurantActivity/Restaurant")
@@ -228,7 +224,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                     Log.i("LocationServer", "${am.poiName}定位成功定位信息${am.aoiName}")
                 } else {
                     //定位失败
-                    tv_title.text = "XXXXX"
+                    tv_title.text = "获取定位失败"
                     Log.i("LocationServer", "定位失败")
                 }
 
@@ -321,7 +317,7 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
                                 }
 
 
-                                if(modelTAb!![tab.position]?.nodes[index].code!=null){
+                                if (modelTAb!![tab.position]?.nodes[index].code != null) {
                                     code = modelTAb!![tab.position]?.nodes[index].code
                                 }
 
@@ -403,11 +399,25 @@ class Main2Fragment : BaseMainFragment(), NearbyView, View.OnClickListener {
         when (requestCode) {
             10086 -> {
                 val keyWord = data?.getStringExtra("keyWord")
-                //  Toast.makeText(mActivity, keyWord, Toast.LENGTH_SHORT).show()
+
                 Log.i("Main2Fragment", "232323")
 
             }
             else -> {
+
+
+                if (data != null) {
+                    val latitude = data?.getStringExtra("latitude")
+                    val longitude = data?.getStringExtra("longitude")
+                    val addressName = data?.getStringExtra("addressName")
+
+                    tv_title?.text = addressName
+
+                    pageIndex = 0
+                    present?.nearbyData(code, longitude, latitude, pageIndex, pageSize, "refresh")
+                }
+
+
             }
         }
 

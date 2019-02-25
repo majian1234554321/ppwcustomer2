@@ -61,57 +61,26 @@ class EvaluateManageAdapter(var context: Context, var fragmentManager: FragmentM
 
                     val view = helper.getView<NineGridImageView<String>>(R.id.nineGrid)
 
-                  //  view.set
+                    ImageLoaderUtils.loadCircle(
+                        context,
+                        helper.getView(R.id.iv_image),
+                        item.shopLogoUrl,
+                        R.drawable.icon_place_square,
+                        R.drawable.icon_place_square
+                    )
+
 
                     view?.setAdapter(object : NineGridImageViewAdapter<String>(){
                         override fun onDisplayImage(context: Context?, imageView: ImageView, t: String?) {
-//                            ImageLoaderUtils.load(
-//                                context,
-//                                imageView,
-//                                t,
-//                                R.drawable.icon_place_square,
-//                                R.drawable.icon_place_square,0
-//                            )
+                            ImageLoaderUtils.load(
+                                context,
+                                imageView,
+                                t,
+                                R.drawable.icon_place_square,
+                                R.drawable.icon_place_square,0
+                            )
 
-//                            val options = RequestOptions()
-//                                // 但不保证所有图片都按序加载
-//                                // 枚举Priority.IMMEDIATE，Priority.HIGH，Priority.NORMAL，Priority.LOW
-//                                // 默认为Priority.NORMAL
-//                                // 如果没设置fallback，model为空时将显示error的Drawable，
-//                                // 如果error的Drawable也没设置，就显示placeholder的Drawable
-//                                //.priority(Priority.NORMAL) //指定加载的优先级，优先级越高越优先加载，
-//                                .placeholder(com.yjhh.common.R.drawable.icon_place_square)
-//                                .error(com.yjhh.common.R.drawable.icon_place_square)
-//                                // 缓存原始数据
-//                                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-//                                .centerCrop()
-
-
-                            val options = RequestOptions()
-                                // 但不保证所有图片都按序加载
-                                // 枚举Priority.IMMEDIATE，Priority.HIGH，Priority.NORMAL，Priority.LOW
-                                // 默认为Priority.NORMAL
-                                // 如果没设置fallback，model为空时将显示error的Drawable，
-                                // 如果error的Drawable也没设置，就显示placeholder的Drawable
-                                .priority(Priority.NORMAL) //指定加载的优先级，优先级越高越优先加载，
-                                .placeholder(com.yjhh.common.R.drawable.icon_place_square)
-                                .error(com.yjhh.common.R.drawable.icon_place_square)
-                                // 缓存原始数据
-                                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                .centerCrop()
-                               // .transform(CornersTranform(context, 10f))
-
-
-
-
-
-
-
-
-                            Glide.with(mContext).load(t)
-                                .apply(options)
-                                .transition(DrawableTransitionOptions().crossFade())
-                                .into(imageView)
+//
 
                         }
 
@@ -129,11 +98,11 @@ class EvaluateManageAdapter(var context: Context, var fragmentManager: FragmentM
 
 
 
-                helper.getView<RatingBar>(R.id.id_ratingbar).setStar(item.shopScore)
+                helper.getView<RatingBar>(R.id.id_ratingbar).setStar(item.shopGrade)
 
 
-                helper.setText(R.id.tv_username, item?.userName)
-                helper.setText(R.id.tv_content, item?.content)
+                helper.setText(R.id.tv_username, item?.shopName)
+                helper.setText(R.id.tv_content, item?.content).setText(R.id.tv_grade,item.shopGrade.toInt().toString())
                 helper.setText(R.id.tv_time, TimeUtil.stampToDate2(item?.createdTime))
 
 

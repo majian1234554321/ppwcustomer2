@@ -59,24 +59,21 @@
         -->
 
 
-
-
         <activity android:name="com.tencent.connect.common.AssistActivity"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"
-                  />
+        />
 
         <activity
                 android:name="com.tencent.tauth.AuthActivity"
 
                 android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent1107889251" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="tencent1107889251"/>
             </intent-filter>
         </activity>
-
 
 
         <!-- 必须注册在微博授权，分享微博时候用到 -->
@@ -136,9 +133,6 @@
                 android:screenOrientation="behind"
                 android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
-
-
-
 
 
         <activity
@@ -230,7 +224,9 @@
         <activity android:name=".ui.activity.SetNickNameActivity">
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity"/>
-        <activity android:name=".ui.activity.SelectMapActivity">
+        <activity android:name=".ui.activity.SelectMapActivity"
+                  android:launchMode="singleTop"
+        >
         </activity>
         <activity android:name=".ui.activity.FlutterDisActivity">
         </activity>

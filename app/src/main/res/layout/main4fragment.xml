@@ -249,6 +249,17 @@
                 app:ievtextColor="@color/all_3"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
+
+        <com.yjhh.common.view.ItemEntryView
+                android:paddingLeft="4pt"
+                android:paddingRight="4pt"
+                android:id="@+id/iev_Invitation"
+                app:ievdrwableleft="@drawable/icon_bangzhu"
+                app:ievtextValue="邀新有礼" app:ievunderline="true"
+                app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
+                app:ievtextColor="@color/all_3"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
         <com.yjhh.common.view.ItemEntryView
                 android:paddingLeft="4pt"
                 android:paddingRight="4pt"
@@ -272,15 +283,6 @@
 
 
 
-        <com.yjhh.common.view.ItemEntryView
-                android:paddingLeft="4pt"
-                android:paddingRight="4pt"
-                android:id="@+id/iev_Invitation"
-                app:ievdrwableleft="@drawable/icon_bangzhu"
-                app:ievtextValue="邀新有礼" app:ievunderline="true"
-                app:ievbackground="@color/white" app:ievtextpadding="@dimen/sp_12"
-                app:ievtextColor="@color/all_3"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 
     </LinearLayout>

@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".views.RestaurantActivity"
                   android:theme="@style/AppTheme"
+                  android:launchMode="singleTop"
         >
 
         </activity>

@@ -18,7 +18,7 @@ android {
         //applicationId "com.paipaiwei.personal"
         applicationId "com.paipaiwei.personal"
         flavorDimensions "default"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
 
         versionCode 1

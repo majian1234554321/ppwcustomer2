@@ -18,6 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="21pt"
                 android:text="店铺推荐"
+                android:layout_centerVertical="true"
                 android:textColor="#FF171717"
                 android:textSize="15pt"
         />
@@ -27,6 +28,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="20pt"
+                android:layout_centerVertical="true"
                 android:id="@+id/tv_more2"
                 android:gravity="right"
                 tools:text="更多评价（120条）"

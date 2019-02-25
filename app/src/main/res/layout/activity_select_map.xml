@@ -26,6 +26,7 @@
                   android:paddingLeft="15pt"
                   android:paddingRight="15pt"
                   android:id="@+id/tv_location"
+                  android:visibility="gone"
                   android:layout_centerVertical="true"
                   android:layout_gravity="center"
                   android:drawableLeft="@drawable/dingwei01"
@@ -35,7 +36,7 @@
 
         <com.paipaiwei.personal.ui.customview.dropdownmenu.DrawableCenterEditTextView
 
-
+                android:visibility="gone"
                 android:drawableLeft="@drawable/icon_search"
                 android:layout_width="match_parent"
                 android:layout_centerVertical="true"

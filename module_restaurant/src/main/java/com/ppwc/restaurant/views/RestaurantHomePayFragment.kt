@@ -20,9 +20,10 @@ import com.yjhh.common.utils.ImageLoaderUtils
 import com.yjhh.common.utils.TextStyleUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.restauranthomepayfragment.*
 
 
-import kotlinx.android.synthetic.main.restaurantorderdetailsfragment.*
+
 
 class RestaurantHomePayFragment :BaseFragment() {
     override fun getLayoutRes(): Int  = R.layout.restauranthomepayfragment
@@ -66,6 +67,8 @@ class RestaurantHomePayFragment :BaseFragment() {
                     val mrBean = Gson().fromJson<MRCheckPayFragment.MRCheckPayBean>(response, MRCheckPayFragment.MRCheckPayBean::class.java)
 
                     ImageLoaderUtils.load(mActivity,iv_image,mrBean.shopName,R.drawable.icon_place_square,R.drawable.icon_place_square,0)
+
+                    tv_name.text = mrBean.shopName
 
 
                 }

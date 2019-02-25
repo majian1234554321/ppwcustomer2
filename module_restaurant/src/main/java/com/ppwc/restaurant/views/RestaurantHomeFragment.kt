@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.ArrayMap
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -19,6 +20,7 @@ import com.flyco.tablayout.listener.CustomTabEntity
 
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.MODE_FIXED
+import com.google.gson.Gson
 import com.ppwc.restaurant.R
 import com.ppwc.restaurant.adapter.RestaurantHomeAdapter
 import com.ppwc.restaurant.ipresent.ShopPresent
@@ -32,8 +34,13 @@ import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
 import com.yjhh.common.BaseApplication
+import com.yjhh.common.api.ApiServices
+import com.yjhh.common.api.ProcessObserver2
+import com.yjhh.common.api.SectionCommonService
 
 import com.yjhh.common.base.BaseFragment
+import com.yjhh.common.bean.ShareModel
+import com.yjhh.common.bean.ShareModel2
 import com.yjhh.common.bean.TabEntity
 import com.yjhh.common.iview.CommonView
 import com.yjhh.common.present.CommonPresent
@@ -42,6 +49,8 @@ import com.yjhh.common.utils.PhoneUtils
 import com.yjhh.common.utils.ShareUtils
 import com.yjhh.common.utils.TextStyleUtils
 import com.yjhh.common.view.AlertDialogFactory
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.restauranthomefragment.*
 
 
@@ -65,7 +74,7 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
     var ifCollect = false
 
-    var shopName :String? = null
+    var shopName: String? = null
 
     override fun onRestaurantValue(model: RestaurantHomeBean) {
 
@@ -235,7 +244,37 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
 
             R.id.iv_share -> {
 
-                ShareUtils.dialog(mActivity, mIUiListener, "", "", "")
+
+                //标识 商品id，店铺id，活动id。。。。
+                //类别 0缺省 1商品 2店铺 3活动 4抢拍 5抢购 6一元拍
+                val shareModel = ShareModel(shopId, "2")
+
+
+
+                ApiServices.getInstance().create(SectionCommonService::class.java)
+                    .share(shareModel)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : ProcessObserver2(mActivity) {
+                        override fun processValue(response: String?) {
+                            Log.i("share", response)
+
+
+                            //链接地址 返回类型 0链接+图 1仅图片
+                            val model2 = Gson().fromJson<ShareModel2>(response, ShareModel2::class.java)
+
+                            ShareUtils.dialog(mActivity, mIUiListener, shopName, model2.linkUrl, "")
+
+
+                        }
+
+                        override fun onFault(message: String) {
+                            Log.i("share", message)
+                        }
+
+                    })
+
+
             }
 
 
@@ -360,7 +399,6 @@ class RestaurantHomeFragment : BaseFragment(), View.OnClickListener, RestaurantV
             override fun rl_content3(id: String?) {
                 start(CommentsDetailsFragment.newInstance(id))
             }
-
 
 
             override fun tv_more2() {

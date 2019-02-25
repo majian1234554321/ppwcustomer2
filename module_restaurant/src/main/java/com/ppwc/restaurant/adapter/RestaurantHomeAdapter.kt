@@ -160,7 +160,7 @@ class RestaurantHomeAdapter(
 
                 val tv_more2 = helper.getView<TextView>(R.id.tv_more2)
 
-                tv_more2.text = "更多推荐(${item.type})"
+                tv_more2.text = "更多商品(${item.type})"
 
                 tv_more2.setOnClickListener {
                     muilisteners?.tv_more2()

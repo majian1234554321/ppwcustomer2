@@ -67,10 +67,10 @@ public class ShareUtils {
                                 final Bundle params = new Bundle();
                                 params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
                                 params.putString(QQShare.SHARE_TO_QQ_TITLE, title);// 标题
-                                params.putString(QQShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");// 摘要
+                                // params.putString(QQShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");// 摘要
                                 params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, webpageUrl);// 内容地址
-                                params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://imgcache.qq.com/qzone/space_item/pre/0/66768.gif");// 网络图片地址　　params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "应用名称");// 应用名称
-                                params.putString(QQShare.SHARE_TO_QQ_EXT_INT, "其它附加功能");
+                                // params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://imgcache.qq.com/qzone/space_item/pre/0/66768.gif");// 网络图片地址　　params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "应用名称");// 应用名称
+                                //params.putString(QQShare.SHARE_TO_QQ_EXT_INT, "其它附加功能");
                                 //分享操作要在主线程中完成
                                 mTencent.shareToQQ(activity, params, mIUiListener);
 
@@ -80,10 +80,10 @@ public class ShareUtils {
                                 final Bundle params2 = new Bundle();
                                 params2.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
                                 params2.putString(QzoneShare.SHARE_TO_QQ_TITLE, title);// 标题
-                                params2.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");// 摘要
+                                //  params2.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");// 摘要
                                 params2.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, webpageUrl);// 内容地址
                                 ArrayList<String> imgUrlList = new ArrayList<>();
-                                imgUrlList.add("http://f.hiphotos.baidu.com/image/h%3D200/sign=6f05c5f929738bd4db21b531918a876c/6a600c338744ebf8affdde1bdef9d72a6059a702.jpg");
+                                //imgUrlList.add("http://f.hiphotos.baidu.com/image/h%3D200/sign=6f05c5f929738bd4db21b531918a876c/6a600c338744ebf8affdde1bdef9d72a6059a702.jpg");
                                 params2.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imgUrlList);// 图片地址
                                 // 分享操作要在主线程中完成
                                 mTencent2.shareToQzone(activity, params2, mIUiListener);
@@ -145,7 +145,7 @@ public class ShareUtils {
         webpage.webpageUrl = webpageUrl;
 //用 WXWebpageObject 对象初始化一个 WXMediaMessage 对象
         WXMediaMessage msg = new WXMediaMessage(webpage);
-        msg.title = "拍拍味";
+        msg.title = title;
         msg.description = description;
         Bitmap thumbBmp = BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_image);
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);

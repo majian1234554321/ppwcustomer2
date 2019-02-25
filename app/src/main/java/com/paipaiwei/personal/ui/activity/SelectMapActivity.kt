@@ -1,5 +1,6 @@
 package com.paipaiwei.personal.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -204,18 +205,6 @@ class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, 
                     )
 
 
-//                    val marker = aMap?.addMarker(
-//                        MarkerOptions()
-//                            .position(LatLng(amapLocation.latitude, amapLocation.longitude))
-//                            .title("好好学习")
-//                            .icon(
-//                                BitmapDescriptorFactory.fromResource(R.drawable.bg_address)
-//                            )
-//                            .draggable(true)
-//                    )
-//                    marker?.showInfoWindow()// 设置默认显示一个infowinfow
-
-
                     //获取定位信息
                     val buffer = StringBuffer()
                     buffer.append(amapLocation.country + "" + amapLocation.province + "" + amapLocation.city + "" + amapLocation.province + "" + amapLocation.district + "" + amapLocation.street + "" + amapLocation.streetNum);
@@ -260,6 +249,10 @@ class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, 
 
         mapView.onCreate(savedInstanceState)
         aMap = mapView.map
+
+        iv_back?.setOnClickListener {
+            finish()
+        }
 
         val settings = aMap?.uiSettings
 
@@ -324,6 +317,20 @@ class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, 
         mAdapter = MapAddressAdapter(list)
         recyclerView.adapter = mAdapter
 
+        mAdapter?.setOnItemClickListener { adapter, view, position ->
+
+
+            val intent = Intent()
+            intent.putExtra("latitude", mAdapter?.data?.get(position)?.latLonPoint?.latitude.toString())
+            intent.putExtra("longitude", mAdapter?.data?.get(position)?.latLonPoint?.longitude.toString())
+            intent.putExtra("addressName", mAdapter?.data?.get(position)?.title)
+
+            setResult(RESULT_OK, intent)
+            finish()
+
+
+        }
+
     }
 
 
@@ -336,7 +343,6 @@ class SelectMapActivity : BaseActivity(), AMapLocationListener, LocationSource, 
         super.onPause()
         mapView.onPause()
     }
-
 
 
     override fun onDestroy() {
